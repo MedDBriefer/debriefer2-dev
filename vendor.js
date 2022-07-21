@@ -14048,7 +14048,7 @@ class vt {
      * (see https://github.com/axemclion/IndexedDBShim).
      */    static S() {
         var t;
-        return "undefined" != typeof process && "YES" === (null === (t = ({"NODE_ENV":"development","NX_FIREBASE_PROJECT":"ScottDev","NX_CLASS_CODE":"test-content","NX_CLI_SET":"true","NX_WORKSPACE_ROOT":"/home/pitt/projects/monorepo","NX_TERMINAL_OUTPUT_PATH":"/home/pitt/projects/monorepo/node_modules/.cache/nx/terminalOutputs/ccc2114324bc24a3ace1e278a9e25988fbd21421fc3a420b6fbc989bd196c347","NX_STREAM_OUTPUT":"true","NX_TASK_TARGET_PROJECT":"debriefer2","NX_TASK_HASH":"ccc2114324bc24a3ace1e278a9e25988fbd21421fc3a420b6fbc989bd196c347"})) || void 0 === t ? void 0 : t.C);
+        return "undefined" != typeof process && "YES" === (null === (t = ({"NODE_ENV":"development","NX_FIREBASE_PROJECT":"ScottDev","NX_CLASS_CODE":"test-content","NX_CLI_SET":"true","NX_WORKSPACE_ROOT":"/home/pitt/projects/monorepo","NX_TERMINAL_OUTPUT_PATH":"/home/pitt/projects/monorepo/node_modules/.cache/nx/terminalOutputs/e8dcfa96a1098576c74dbdc37811aba8b79739886e33dbd87031790ccdedba14","NX_STREAM_OUTPUT":"true","NX_TASK_TARGET_PROJECT":"debriefer2","NX_TASK_HASH":"e8dcfa96a1098576c74dbdc37811aba8b79739886e33dbd87031790ccdedba14"})) || void 0 === t ? void 0 : t.C);
     }
     /** Helper to get a typed SimpleDbStore from a transaction. */    static N(t, e) {
         return t.store(e);
