@@ -1,6 +1,6 @@
 (self["webpackChunkdebriefer2"] = self["webpackChunkdebriefer2"] || []).push([["main"],{
 
-/***/ 7295:
+/***/ 37295:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8,15 +8,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ App)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7267);
-/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9526);
-/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6011);
-/* harmony import */ var _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6127);
-/* harmony import */ var _meddbriefer_log_chooser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9834);
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5056);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3015);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/apps/debriefer2/src/App.js";
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7267);
+/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(89526);
+/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(36011);
+/* harmony import */ var _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(36127);
+/* harmony import */ var _meddbriefer_log_chooser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(59834);
+/* harmony import */ var _SaveModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(91929);
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(55056);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(53015);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/apps/debriefer2/src/App.js";
 
 
 
@@ -24,13 +25,19 @@ var _jsxFileName = "/Users/user/Projects/monorepo/apps/debriefer2/src/App.js";
 
 
 
+
+
+
+const computeTitle = (obsLog, scenario) => {
+  return `${scenario.name} / ${obsLog.userName} / ${obsLog.label}`;
+};
 
 function App() {
   const {
     auth,
     db
-  } = (0,_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__.useFirebaseProject)(_environments_environment__WEBPACK_IMPORTED_MODULE_5__.environment.firebaseProject);
-  let history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
+  } = (0,_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__.useFirebaseProject)(_environments_environment__WEBPACK_IMPORTED_MODULE_6__.environment.firebaseProject);
+  let history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useHistory)();
   window.db = db;
 
   function redirectToCond2Debriefing(debriefID) {
@@ -38,55 +45,181 @@ function App() {
     history.push(newURL);
   }
 
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__.FirebaseContext.Provider, {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__.FirebaseContext.Provider, {
     value: {
       auth,
       db
     },
-    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.AuthProvider, {
-      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, {
-        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.AuthProvider, {
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, {
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
           path: "/debriefing/:debriefingID",
           authFlowLayout: _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.UnauthedLayout,
-          component: _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.DebLog
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 37,
-          columnNumber: 15
-        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
-          authFlowLayout: _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.UnauthedLayout,
-          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_log_chooser__WEBPACK_IMPORTED_MODULE_3__.LogChooser, {
-            redirectToCond2Debriefing: redirectToCond2Debriefing
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.DebLog, {
+            computeTitle: computeTitle,
+            saveButtonLabel: "Save",
+            saveModal: _SaveModal__WEBPACK_IMPORTED_MODULE_4__["default"]
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 44,
-            columnNumber: 17
+            lineNumber: 46,
+            columnNumber: 15
           }, this)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 43,
-          columnNumber: 15
+          lineNumber: 42,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
+          authFlowLayout: _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.UnauthedLayout,
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_log_chooser__WEBPACK_IMPORTED_MODULE_3__.LogChooser, {
+            redirectToCond2Debriefing: redirectToCond2Debriefing
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 54,
+            columnNumber: 15
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 53,
+          columnNumber: 13
         }, this)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 36,
-        columnNumber: 13
+        lineNumber: 41,
+        columnNumber: 11
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 35,
+      lineNumber: 40,
       columnNumber: 9
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 29,
+    lineNumber: 34,
     columnNumber: 7
   }, this);
 }
 
 /***/ }),
 
-/***/ 3015:
+/***/ 91929:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SaveModal)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7267);
+/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55334);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/apps/debriefer2/src/SaveModal.jsx";
+
+
+
+
+
+function SaveModal({
+  show,
+  dismiss
+}) {
+  let history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
+
+  const submitHandler = event => {
+    event.preventDefault();
+    console.log("I'm done clicked");
+    history.push("/");
+  };
+
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__.MDBModal, {
+    title: "Are you finished with this debriefing?",
+    show: show,
+    dismiss: dismiss,
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
+      className: "container",
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
+        className: "row",
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
+          className: "col-12",
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("span", {
+              className: "text-danger",
+              children: "WARNING: "
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 25,
+              columnNumber: 15
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("span", {
+              children: "Clicking \"I'm Done\" will not allow you to view the debriefing any longer. Don't click on it unless you are truly done with this debriefing."
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 26,
+              columnNumber: 15
+            }, this)]
+          }, void 0, true, {
+            fileName: _jsxFileName,
+            lineNumber: 24,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 23,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 22,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
+        className: "row",
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
+          className: "col-12",
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            color: "danger",
+            size: "lg",
+            onClick: submitHandler,
+            children: "I'm Done"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 36,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            color: "primary",
+            size: "lg",
+            onClick: dismiss,
+            children: "Cancel"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 39,
+            columnNumber: 13
+          }, this)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 35,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 34,
+        columnNumber: 9
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 21,
+      columnNumber: 7
+    }, this)
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 16,
+    columnNumber: 5
+  }, this);
+}
+
+/***/ }),
+
+/***/ 53015:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -98,23 +231,23 @@ __webpack_require__.r(__webpack_exports__);
 // When building for production, this file is replaced with `environment.prod.ts`.
 const environment = {
   production: false,
-  firebaseProject: ({"NODE_ENV":"development","NX_CLI_SET":"true","NX_WORKSPACE_ROOT":"/Users/user/Projects/monorepo","NX_TERMINAL_OUTPUT_PATH":"/Users/user/Projects/monorepo/node_modules/.cache/nx/terminalOutputs/452c30993cf9c332453e7ebc3fe473a8d33ccb4517a66715238e2de79cee83bb","NX_STREAM_OUTPUT":"true","NX_TASK_TARGET_PROJECT":"debriefer2","NX_TASK_HASH":"452c30993cf9c332453e7ebc3fe473a8d33ccb4517a66715238e2de79cee83bb"}).NX_FIREBASE_PROJECT || "MedDBrieferDev"
+  firebaseProject: "ScottDev" || 0
 };
 
 /***/ }),
 
-/***/ 7645:
+/***/ 57645:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7029);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6643);
-/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7295);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/apps/debriefer2/src/main.js";
+/* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(17029);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(47933);
+/* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(37295);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/apps/debriefer2/src/main.js";
 
 
 
@@ -141,7 +274,7 @@ root.render( /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.
 
 /***/ }),
 
-/***/ 6006:
+/***/ 44231:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -356,7 +489,7 @@ const findHeaderFor = (numericalID, log) => {
 
 /***/ }),
 
-/***/ 4654:
+/***/ 84654:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -364,17 +497,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "analyzeEvents": () => (/* binding */ analyzeEvents)
 /* harmony export */ });
-/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8913);
-/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5064);
-/* harmony import */ var _summarizeAnalysis__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5937);
-/* harmony import */ var _constraintHandling__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2296);
-/* harmony import */ var _actionInsertion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6006);
-/* harmony import */ var _handleMinimal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2283);
+/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(48913);
+/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(85064);
+/* harmony import */ var _summarizeAnalysis__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(80838);
+/* harmony import */ var _constraintHandling__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(22296);
+/* harmony import */ var _actionInsertion__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(44231);
+/* harmony import */ var _handleMinimal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(72283);
 /* harmony import */ var _organizeCond1Display__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3769);
-/* harmony import */ var _vitalsChecking__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(5700);
+/* harmony import */ var _vitalsChecking__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(15700);
 /* harmony import */ var _meddbriefer_feedback_data__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9205);
-/* harmony import */ var _meddebriefer_prompt_answer_grading__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(580);
-/* harmony import */ var _scenarioDataAccesors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(4548);
+/* harmony import */ var _meddebriefer_prompt_answer_grading__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(87988);
+/* harmony import */ var _scenarioDataAccesors__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(94548);
 
 
  //for debug
@@ -991,6 +1124,10 @@ const annotateInputEvents = (events, problems) => {
         }
 
         eventObj = (0,_meddebriefer_prompt_answer_grading__WEBPACK_IMPORTED_MODULE_9__.processAssessmentAnswers)(event, eventObj, prescribedAnswers, "decision-option-incorrect");
+
+        if (!eventObj.answerCorrect) {
+          eventObj.incorrectAnswersFB = "You should have responded " + eventObj.incorrectAnswersFB;
+        }
       }
 
       if (eventObj.type === "assessment-option") {
@@ -1002,6 +1139,10 @@ const annotateInputEvents = (events, problems) => {
         }
 
         eventObj = (0,_meddebriefer_prompt_answer_grading__WEBPACK_IMPORTED_MODULE_9__.processAssessmentAnswers)(event, eventObj, prescribedAnswers, "assessment-option-incorrect");
+
+        if (!eventObj.answerCorrect) {
+          eventObj.incorrectAnswersFB = "You should have responded " + eventObj.incorrectAnswersFB;
+        }
       } // add the formatted object to our list of formatted objects for the current phase and the id to our set of confirmed ids
 
 
@@ -1704,7 +1845,7 @@ function analyzeEvents(scen, log) {
 
 /***/ }),
 
-/***/ 2296:
+/***/ 22296:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1712,8 +1853,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "checkAgainstKB": () => (/* binding */ checkAgainstKB)
 /* harmony export */ });
-/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5064);
-/* harmony import */ var _actionInsertion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6006);
+/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(85064);
+/* harmony import */ var _actionInsertion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44231);
 
  //start support functions for constraint checking
 
@@ -2086,7 +2227,7 @@ const processFirstArg = (firstArgItem, phases, phaseNames, entryNames, entries, 
 
 /***/ }),
 
-/***/ 5064:
+/***/ 85064:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2109,31 +2250,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "pushNew": () => (/* binding */ pushNew),
 /* harmony export */   "saveAnalysisLog": () => (/* binding */ saveAnalysisLog),
 /* harmony export */   "saveCommentLog": () => (/* binding */ saveCommentLog),
-/* harmony export */   "saveGradingLog": () => (/* binding */ saveGradingLog),
 /* harmony export */   "saveLog": () => (/* binding */ saveLog),
 /* harmony export */   "scenarios": () => (/* binding */ scenarios),
 /* harmony export */   "trimAction": () => (/* binding */ trimAction),
 /* harmony export */   "trimActions": () => (/* binding */ trimActions)
 /* harmony export */ });
 /* harmony import */ var _meddbriefer_feedback_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9205);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6957);
-/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8913);
-/* harmony import */ var _scenarioDataAccesors__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4548);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(86957);
  //import {  requiredPhaseNames } from "./analyzeEvents";
 // constraintsViolated,
 // import { c2FB } from "./summarizeAnalysis";
 
- //import { itemByID } from './analyzeEvents'
 
 
-
-
-const _ = __webpack_require__(6635);
-
-let recreate = false; //a true setting will cause the observer log to be recreated from the analysis log whenever a save is done during review.  The recreated
-//log is saved in the recreatedLog collection
-
-let gradingReport = false; //a true setting will true the analysis log into a format that may be better for human grading/analysis
+const _ = __webpack_require__(76635);
 
 const C2_FIELDS = ["feedbackAbsent", "feedbackOutOfOrder", "feedbackErrors"];
 const scenarios = {
@@ -2352,11 +2482,11 @@ function getFBField(currentEntry, field, c2FB) {
           break;
 
         case "why":
-          if (fb && ["contraindicated", "unnecessary", "irrelevant"].includes(status) && fb.feedbackErrors && fb.feedbackErrors[0] !== "") {
+          if (fb && status.includes("contraindicated", "unnecessary", "irrelevant") && fb.feedbackErrors && fb.feedbackErrors[0] !== "") {
             result = fb.feedbackErrors;
           }
 
-          if (fb && !["contraindicated", "unnecessary", "irrelevant"].includes(status) && fb.feedbackAbsent && fb.feedbackAbsent[0] !== "") {
+          if (fb && !status.includes("contraindicated", "unnecessary", "irrelevant") && fb.feedbackAbsent && fb.feedbackAbsent[0] !== "") {
             result = fb.feedbackAbsent;
           }
 
@@ -2365,7 +2495,7 @@ function getFBField(currentEntry, field, c2FB) {
         case "incorrectAnswersFB":
           //get from c2 ds field feedbackErrors
           if (fb && fb.feedbackErrors && fb.feedbackErrors[0] !== "") {
-            result = fixStrSp(currentEntry[field]) + ".\xa0\xa0" + fb.feedbackErrors;
+            result = fb.feedbackErrors;
           }
 
           break;
@@ -2620,7 +2750,7 @@ var scenarioConstraints = {}; // adds on scenario specific constraints where the
 const initializeConstraints = scenarioName => {
   // look up applicable conditional constraints from const structure scenarioConstraintIDs
   let constraintIDs = _meddbriefer_feedback_data__WEBPACK_IMPORTED_MODULE_0__.scenarioConstraintIDs[scenarioName];
-  initialConstraints = JSON.parse(JSON.stringify(_meddbriefer_feedback_data__WEBPACK_IMPORTED_MODULE_0__.globalConstraints));
+  initialConstraints = _meddbriefer_feedback_data__WEBPACK_IMPORTED_MODULE_0__.globalConstraints;
 
   if (!!constraintIDs && constraintIDs.length !== 0) {
     for (const [key, val] of Object.entries(_meddbriefer_feedback_data__WEBPACK_IMPORTED_MODULE_0__.conditionalConstraints)) {
@@ -2752,125 +2882,14 @@ const saveAnalysisLog = async (db, obsLog, analysisData, userName) => {
     } else {
       data["events"] = actions;
     }
-  } //window.alert(`analyzed-log/${data.label} created`); 
-  //console.log("about to save data", data)
+  } //console.log("about to save data", data)
 
 
   const dataWithID = await saveLog(db, "analyzed-logs", undefined, data); //window.alert(`analyzed-log/${data.label} created`); 
 
   return dataWithID;
 };
-const ITEM_FIELDS = ["abbrLabel", "depth", "graded", "parentID", "phase", "subPhase"];
-const OB_FIELDS = ["id", "label", "type", "finding", "vitalType", "vital", "value", "prompt", "promptID", "intvVariant", "patientStatus", "performedCorrectly", "timestamp"];
-
-const initializeItemLookupByID = scenario => {
-  let checklistLookupByID = (0,_scenarioDataAccesors__WEBPACK_IMPORTED_MODULE_3__.groupByKey)(scenario._checkListMetaData.filter(e => _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_2__.ANALYSIS_TYPES.includes(e.type)), "id");
-  let intvLookupByID;
-
-  if (!!scenario._interventions) {
-    intvLookupByID = (0,_scenarioDataAccesors__WEBPACK_IMPORTED_MODULE_3__.groupByKey)(scenario._interventions, "id");
-  } else {
-    intvLookupByID = (0,_scenarioDataAccesors__WEBPACK_IMPORTED_MODULE_3__.groupByKey)(scenario.intvMetaData.filter(e => _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_2__.ANALYSIS_TYPES.includes(e.type)), "id");
-  }
-
-  let result = Object.assign(checklistLookupByID, intvLookupByID);
-  return result;
-};
-
-const initializeByAnswerLabel = scenario => {
-  let result = (0,_scenarioDataAccesors__WEBPACK_IMPORTED_MODULE_3__.groupByKey)(scenario._interventionPromptAnswers, "label" || 0);
-  return result;
-};
-
-const createObsLogFromAnalysisLog = async (db, scenario, anaLog, actions) => {
-  let itemByID = initializeItemLookupByID(scenario);
-  let byAnswerLabel = initializeByAnswerLabel(scenario);
-  let data = {
-    "label": anaLog.label || "",
-    "userName": anaLog.analyzer || "",
-    "classCode": anaLog.classCode || "",
-    "condition": anaLog.condition || "",
-    "scenarioName": anaLog.scenarioName || "",
-    "timestamp": Date()
-  };
-  let newActions = [];
-  actions.forEach(function (logObj, index) {
-    if (logObj.numericalID >= 1 && logObj.timestamp !== -1) {
-      let newObj = {};
-      OB_FIELDS.forEach(fldName => {
-        if (!!logObj[fldName] && logObj[fldName] !== undefined) {
-          newObj[fldName] = logObj[fldName];
-        }
-      });
-      let item = getItem(logObj.id, itemByID, []);
-
-      if (item) {
-        ITEM_FIELDS.forEach(fldName => {
-          if (!!item[fldName] && item[fldName] !== undefined) {
-            newObj[fldName] = item[fldName];
-          }
-        });
-      }
-
-      if (newObj.type === "intervention") {
-        newObj.interventionID = newObj.id;
-      }
-
-      if (!!logObj.answerDetails) {
-        let answers = {};
-
-        for (const [key, value] of Object.entries(logObj.answerDetails)) {
-          let answerID = byAnswerLabel[value.givenAnswer];
-
-          if (!answerID) {
-            console.log("answerID not found for: ", value.givenAnswer);
-          } else {
-            answers[key] = [answerID[0].id];
-          }
-        }
-
-        newObj.answers = answers;
-      }
-
-      newActions.push(newObj);
-    }
-  });
-  data["events"] = newActions;
-  console.log("saving recreated log: ", data);
-  const dataWithID = await saveLog(db, "recreatedLogs", undefined, data);
-  return dataWithID;
-}; //log input needs to be an analysis log
-
-
-const saveGradingLog = async (db, log, actions) => {
-  let data = {
-    "label": log.label,
-    "analyzer": log.analyzer || "",
-    "classCode": log.classCode || "",
-    "condition": log.condition || "",
-    "scenarioName": log.scenarioName,
-    "timestamp": Date()
-  };
-  actions.forEach(function (logObj, index) {
-    if (logObj.numericalID >= 1) {
-      if (!data[logObj.id]) {
-        data[logObj.id] = logObj.status;
-      } else {
-        for (let index = 1; index < 10; index++) {
-          if (!data[logObj.id + index]) {
-            data[logObj.id + index] = logObj.status;
-            break;
-          }
-        }
-      }
-    }
-  }); //console.log("about to save data", data)
-
-  const dataWithID = await saveLog(db, "grading-logs", undefined, data); //window.alert(`analyzed-log/${data.label} created`); 
-
-  return dataWithID;
-};
-const saveCommentLog = async (db, scenario, priorLog, id, comments, userName) => {
+const saveCommentLog = async (db, priorLog, id, comments, userName) => {
   let data = {
     label: priorLog.label || null,
     reviewer: userName,
@@ -2882,15 +2901,6 @@ const saveCommentLog = async (db, scenario, priorLog, id, comments, userName) =>
     comments: comments,
     timestamp: Date()
   };
-
-  if (recreate) {
-    createObsLogFromAnalysisLog(db, scenario, priorLog, priorLog["events"]);
-  }
-
-  if (gradingReport) {
-    saveGradingLog(db, priorLog, priorLog["events"]);
-  }
-
   await saveLog(db, "cond1-comments", id, data); //window.alert(`cond1-comments/${priorLog.label} saved`); 
   // return savedData
 }; // export const saveAsCommentLog = (db, priorLog, comments, userName) => {
@@ -2971,7 +2981,7 @@ const getItem = (val, itemByID, itemByLabel) => {
 
 /***/ }),
 
-/***/ 2283:
+/***/ 72283:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3109,7 +3119,7 @@ function checkForMinimalCases(actions, formattedActions, problems) {
 
 /***/ }),
 
-/***/ 4303:
+/***/ 54303:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3128,10 +3138,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "saveLog": () => (/* reexport safe */ _debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.saveLog),
 /* harmony export */   "summarizeAnalysis": () => (/* reexport safe */ _summarizeAnalysis__WEBPACK_IMPORTED_MODULE_3__.summarizeAnalysis)
 /* harmony export */ });
-/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5064);
-/* harmony import */ var _analyzeEvents__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4654);
-/* harmony import */ var _vitalsChecking__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5700);
-/* harmony import */ var _summarizeAnalysis__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5937);
+/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(85064);
+/* harmony import */ var _analyzeEvents__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(84654);
+/* harmony import */ var _vitalsChecking__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15700);
+/* harmony import */ var _summarizeAnalysis__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(80838);
 
 
 
@@ -3147,8 +3157,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "organizeLogDisplay": () => (/* binding */ organizeLogDisplay)
 /* harmony export */ });
-/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5064);
-/* harmony import */ var _actionInsertion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6006);
+/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(85064);
+/* harmony import */ var _actionInsertion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44231);
 
  //to display the log using the phase structures accumulated
 // i.e. puts the phases data together in the order in which
@@ -3356,7 +3366,7 @@ const determineHLcolor = (lowerColor, higherColor) => {
 
 /***/ }),
 
-/***/ 4548:
+/***/ 94548:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3367,7 +3377,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getChecklistItemsByType": () => (/* binding */ getChecklistItemsByType),
 /* harmony export */   "groupByKey": () => (/* binding */ groupByKey)
 /* harmony export */ });
-/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8913);
+/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(48913);
  // input: list of objects and a fieldName
 // returns: an object who's attributes are the distinct values for that fieldName mapped to the subset
 // of list items which share that field value
@@ -3422,7 +3432,7 @@ const getChecklistHierarchy = scenario => {
 
 /***/ }),
 
-/***/ 5937:
+/***/ 80838:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3430,7 +3440,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "summarizeAnalysis": () => (/* binding */ summarizeAnalysis)
 /* harmony export */ });
-/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5064);
+/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(85064);
 /* harmony import */ var _meddbriefer_feedback_data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9205);
  // import { requiredPhaseNames } from "./analyzeEvents";
 
@@ -3684,7 +3694,7 @@ function summarizeAnalysis(analysisData, scenIEFeedback, itemByIDArray = undefin
 
 /***/ }),
 
-/***/ 6957:
+/***/ 86957:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3698,7 +3708,7 @@ const formatAsMinSecs = seconds => {
 
 /***/ }),
 
-/***/ 5700:
+/***/ 15700:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3708,7 +3718,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "doVitalsFeedback": () => (/* binding */ doVitalsFeedback)
 /* harmony export */ });
 /* harmony import */ var _meddbriefer_feedback_data_analysisData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7686);
-/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5064);
+/* harmony import */ var _debriefingUtils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(85064);
 
 
 function doVitalsFeedback(actions, vitalsCount, scen) {
@@ -3840,7 +3850,7 @@ function doVitalsCounts(actions, scen) {
 
 /***/ }),
 
-/***/ 6950:
+/***/ 36950:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3850,11 +3860,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/Card.js";
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/Card.js";
 
 
 
@@ -3909,7 +3919,7 @@ function Card({
 
 /***/ }),
 
-/***/ 8681:
+/***/ 38681:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -3919,19 +3929,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(7267);
-/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5334);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5634);
-/* harmony import */ var _header_StepTabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2003);
-/* harmony import */ var _d_Define__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5118);
-/* harmony import */ var _e_Explain__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2490);
-/* harmony import */ var _b_Benchmarks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(901);
-/* harmony import */ var _r_Review__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(2266);
-/* harmony import */ var _ie_InvestigateExamine__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(927);
-/* harmony import */ var _f_Formalize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1454);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/Cond2Debriefing.jsx";
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(7267);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(77122);
+/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55334);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55634);
+/* harmony import */ var _header_StepTabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(22003);
+/* harmony import */ var _d_Define__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(15118);
+/* harmony import */ var _e_Explain__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(42490);
+/* harmony import */ var _b_Benchmarks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(10901);
+/* harmony import */ var _r_Review__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(62266);
+/* harmony import */ var _ie_InvestigateExamine__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(60927);
+/* harmony import */ var _f_Formalize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(11454);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/Cond2Debriefing.jsx";
+
+
+ // import { AuthContext } from "@meddbriefer/mdb-auth";
 
 
 
@@ -3945,95 +3959,142 @@ var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefi
 
 
 
-function Cond2Debriefing({
-  debriefingID
+function SaveButton({
+  label
 }) {
   const {
+    allSlidesCompleted,
+    setDone
+  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_2__.useDebriefing)();
+
+  const clickHandler = event => {
+    console.log("save button clicked");
+    setDone(true);
+    event.target.blur();
+  };
+
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    color: "primary",
+    disabled: !allSlidesCompleted,
+    onClick: clickHandler,
+    children: label
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 31,
+    columnNumber: 5
+  }, this);
+}
+
+function Cond2Debriefing({
+  debriefingID,
+  computeTitle,
+  saveButtonLabel,
+  saveModal: SaveModal
+}) {
+  const {
+    allSlidesCompleted,
+    done,
+    setDone,
+    obsLog,
     scenario
   } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_2__.useDebriefing)();
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)("div", {
     className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_10__["default"]["cond2-wrapper"],
     children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(_meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__.MDBNavBar, {
-      title: `Debriefing for ${scenario.name}`
+      title: computeTitle(obsLog, scenario),
+      leftNav: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(SaveButton, {
+        label: saveButtonLabel
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 48,
+        columnNumber: 18
+      }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 24,
+      lineNumber: 46,
       columnNumber: 7
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(_header_StepTabs__WEBPACK_IMPORTED_MODULE_3__["default"], {}, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 25,
+      lineNumber: 50,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Switch, {
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Switch, {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
         path: "/debriefing/:debriefingID/D/:stepPath",
         component: _d_Define__WEBPACK_IMPORTED_MODULE_4__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 27,
+        lineNumber: 52,
         columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
         path: "/debriefing/:debriefingID/E/:stepPath",
         component: _e_Explain__WEBPACK_IMPORTED_MODULE_5__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 31,
+        lineNumber: 56,
         columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
         path: "/debriefing/:debriefingID/B/:stepPath",
         component: _b_Benchmarks__WEBPACK_IMPORTED_MODULE_6__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 35,
+        lineNumber: 60,
         columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
         path: "/debriefing/:debriefingID/R/:stepPath",
         component: _r_Review__WEBPACK_IMPORTED_MODULE_7__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 39,
+        lineNumber: 64,
         columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
         path: "/debriefing/:debriefingID/IE/:stepPath",
         component: _ie_InvestigateExamine__WEBPACK_IMPORTED_MODULE_8__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 43,
+        lineNumber: 68,
         columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
         path: "/debriefing/:debriefingID/F/:stepPath",
         component: _f_Formalize__WEBPACK_IMPORTED_MODULE_9__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 47,
+        lineNumber: 72,
         columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Redirect, {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Redirect, {
           to: `/debriefing/${debriefingID}/D/1`
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 52,
+          lineNumber: 77,
           columnNumber: 11
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 51,
+        lineNumber: 76,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 26,
+      lineNumber: 51,
+      columnNumber: 7
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(SaveModal, {
+      show: done,
+      dismiss: () => setDone(false)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 80,
       columnNumber: 7
     }, this)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 23,
+    lineNumber: 45,
     columnNumber: 5
   }, this);
 }
 
 /***/ }),
 
-/***/ 5634:
+/***/ 55634:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4047,14 +4108,12 @@ __webpack_require__.r(__webpack_exports__);
 
 const DebriefingContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createContext({
   debriefingID: undefined,
+  debLog: undefined,
+  obsLog: undefined,
   scenario: undefined,
-  // slides: undefined,
-  // slideData: undefined,
   getSlideData: undefined,
-  //   pathData: undefined,
   getPathData: undefined,
   updatePathData: undefined,
-  // idData: undefined,
   getIdData: undefined,
   updateIdData: undefined,
   stepStepPathToPath: undefined,
@@ -4073,13 +4132,17 @@ const DebriefingContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defaul
   bOutline: undefined,
   ieOutline: undefined,
   computeExpandedSlides: undefined,
-  stepPathIsExpanded: undefined
+  stepPathIsExpanded: undefined,
+  allSlidesCompleted: undefined,
+  setAllSlidesCompleted: undefined,
+  done: undefined,
+  setDone: undefined
 });
 const useDebriefing = () => (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(DebriefingContext);
 
 /***/ }),
 
-/***/ 901:
+/***/ 10901:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4087,18 +4150,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Benchmarks)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7267);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5634);
-/* harmony import */ var _layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9685);
-/* harmony import */ var _outline_FlatLeftNav__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3292);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/b/Benchmarks.jsx";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(55634);
+/* harmony import */ var _layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49685);
+/* harmony import */ var _outline_FlatLeftNav__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(83292);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/b/Benchmarks.jsx";
 
 
 
@@ -4212,7 +4275,7 @@ function Benchmarks() {
 
 /***/ }),
 
-/***/ 5118:
+/***/ 15118:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4220,18 +4283,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Define)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7267);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5634);
-/* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6645);
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6950);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/d/Define.jsx";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(55634);
+/* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(26645);
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(36950);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/d/Define.jsx";
 
 
 
@@ -4292,7 +4355,7 @@ function Define() {
 
 /***/ }),
 
-/***/ 2490:
+/***/ 42490:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4300,7 +4363,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Explain)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
@@ -4309,11 +4372,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7267);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5634);
-/* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6645);
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6950);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/e/Explain.jsx";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55634);
+/* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(26645);
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(36950);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/e/Explain.jsx";
 
 
 
@@ -4384,7 +4447,7 @@ function Explain() {
 
 /***/ }),
 
-/***/ 1454:
+/***/ 11454:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4392,19 +4455,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Formalize)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7122);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(77122);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7267);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5634);
-/* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6645);
-/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6950);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/f/Formalize.jsx";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(55634);
+/* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(26645);
+/* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(36950);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/f/Formalize.jsx";
+
 
 
 
@@ -4419,8 +4483,10 @@ function Formalize() {
     stepPath
   } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useParams)();
   const {
+    allSlidesCompleted,
     getSlideData,
     getIdData,
+    setAllSlidesCompleted,
     updateIdData
   } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_3__.useDebriefing)();
   const [myData, setMyData] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
@@ -4434,6 +4500,7 @@ function Formalize() {
     updateIdData('formalize', {
       response: response.value
     });
+    setAllSlidesCompleted(true);
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
@@ -4447,7 +4514,7 @@ function Formalize() {
       children: "loading..."
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 29,
+      lineNumber: 30,
       columnNumber: 12
     }, this);
   }
@@ -4462,9 +4529,23 @@ function Formalize() {
         children: myData.questions
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 35,
+        lineNumber: 36,
         columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("form", {
+      }, this), allSlidesCompleted ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("h5", {
+          children: "You said:"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 39,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
+          children: getIdData("formalize").response
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 40,
+          columnNumber: 13
+        }, this)]
+      }, void 0, true) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("form", {
         onSubmit: submitHandler,
         children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("textarea", {
           id: "response",
@@ -4474,41 +4555,41 @@ function Formalize() {
           required: true
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 37,
-          columnNumber: 11
+          lineNumber: 44,
+          columnNumber: 13
         }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("br", {}, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 45,
-          columnNumber: 11
+          lineNumber: 52,
+          columnNumber: 13
         }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
           type: "submit",
           color: "primary",
           children: "Submit"
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 46,
-          columnNumber: 11
+          lineNumber: 53,
+          columnNumber: 13
         }, this)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 36,
-        columnNumber: 9
+        lineNumber: 43,
+        columnNumber: 11
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 34,
+      lineNumber: 35,
       columnNumber: 7
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 33,
+    lineNumber: 34,
     columnNumber: 5
   }, this);
 }
 
 /***/ }),
 
-/***/ 2831:
+/***/ 12831:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4518,12 +4599,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5634);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/footer/NavButtons.jsx";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55634);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/footer/NavButtons.jsx";
 
 
 
@@ -4567,7 +4648,7 @@ function NavButtons({
 
 /***/ }),
 
-/***/ 2003:
+/***/ 22003:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4577,10 +4658,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _TopButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(103);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/StepTabs.jsx";
+/* harmony import */ var _TopButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20103);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/StepTabs.jsx";
 
 
 
@@ -4634,7 +4715,7 @@ function StepTabs() {
 
 /***/ }),
 
-/***/ 103:
+/***/ 20103:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4642,23 +4723,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TopButton)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7950);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(77950);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8319);
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(48319);
 /* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(7267);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5634);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/TopButton.js";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(55634);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/TopButton.js";
 
 
 
@@ -4702,7 +4783,7 @@ function TopButton({
 
 /***/ }),
 
-/***/ 1359:
+/***/ 71359:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4710,17 +4791,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Analysis)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9529);
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2784);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8428);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7122);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5634);
-/* harmony import */ var _AnalysisMessages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3119);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/Analysis.jsx";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(38428);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(77122);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55634);
+/* harmony import */ var _AnalysisMessages__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(53119);
+/* harmony import */ var _FeedbackIcon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(79211);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(20506);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(24495);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/Analysis.jsx";
+
 
 
 
@@ -4731,162 +4813,177 @@ var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefi
 
 function Analysis({
   slide,
+  stepPath,
   getRequiredSubActions,
   analyzedHandler
 }) {
   const {
+    getPathData,
+    getUserRating,
     ieSummary
-  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_2__.useDebriefing)(); // console.log("Analysis", slide)
-
-  const getStatus = id => {
-    const sts = ieSummary[id].status; // console.log(`status for ${id}: ${sts}`)
-
-    return sts;
-  };
-
-  const isGood = id => "good" === getStatus(id);
-
-  const isAbsent = id => "absent" === getStatus(id);
-
-  const hasError = id => ["error", "errors", "misorderedError"].includes(getStatus(id));
-
-  const isOutOfOrder = id => ["misordered", "misorderedError"].includes(getStatus(id));
-
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("h4", {
-      children: "Analysis based off of what the observer recorded you doing"
-    }, void 0, false, {
+  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_1__.useDebriefing)();
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("h4", {
+      children: ["Feedback based on your recorded actions:", /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("i", {
+        children: [" ", slide.label]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 21,
+        columnNumber: 9
+      }, this)]
+    }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 26,
+      lineNumber: 19,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("div", {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("div", {
       className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_4__["default"]["feedback-list"],
       style: {
-        maxHeight: "500px",
+        maxHeight: "460px",
         overflowY: "auto"
       },
-      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
         size: "sm",
         striped: true,
         bordered: true,
-        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("thead", {
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("thead", {
           style: {
             height: "28px",
             backgroundColor: "white",
             position: "sticky",
             top: 0
           },
-          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("th", {
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("th", {
               children: "Action"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 37,
+              lineNumber: 40,
               columnNumber: 15
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("th", {
-              children: "Correct"
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("th", {
+              children: "Your Rating"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 38,
+              lineNumber: 41,
               columnNumber: 15
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("th", {
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("th", {
+              children: "System Rating"
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 42,
+              columnNumber: 15
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("th", {
               children: "Feedback"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 39,
+              lineNumber: 43,
               columnNumber: 15
             }, this)]
           }, void 0, true, {
             fileName: _jsxFileName,
-            lineNumber: 36,
+            lineNumber: 39,
             columnNumber: 13
           }, this)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 35,
+          lineNumber: 31,
           columnNumber: 11
-        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("tbody", {
-          children: getRequiredSubActions(slide).map((sa, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("tbody", {
+          children: getRequiredSubActions(slide).map((sa, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
               children: sa.label
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 45,
+              lineNumber: 49,
               columnNumber: 17
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
-              children: isGood(sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("i", {
-                className: "bi-check-lg",
-                style: {
-                  color: "green"
-                }
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
+              children: [getUserRating(sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("i", {
+                className: "bi-check-lg"
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 48,
-                columnNumber: 21
-              }, this)
-            }, void 0, false, {
+                lineNumber: 51,
+                columnNumber: 44
+              }, this), " "]
+            }, void 0, true, {
               fileName: _jsxFileName,
-              lineNumber: 46,
+              lineNumber: 50,
               columnNumber: 17
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
-              children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_AnalysisMessages__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                errors: hasError(sa.id) ? sa.feedbackErrors : [],
-                absent: isAbsent(sa.id) ? sa.feedbackAbsent : []
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
+              children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_FeedbackIcon__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                isGood: (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isGood)(ieSummary, sa.id)
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 57,
+                lineNumber: 54,
                 columnNumber: 19
               }, this)
             }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 53,
+              columnNumber: 17
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
+              children: [(0,_utils__WEBPACK_IMPORTED_MODULE_5__.hasError)(ieSummary, sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_AnalysisMessages__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                messages: sa.feedbackErrors
+              }, void 0, false, {
+                fileName: _jsxFileName,
+                lineNumber: 62,
+                columnNumber: 21
+              }, this), (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isAbsent)(ieSummary, sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_AnalysisMessages__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                messages: sa.feedbackAbsent
+              }, void 0, false, {
+                fileName: _jsxFileName,
+                lineNumber: 65,
+                columnNumber: 21
+              }, this)]
+            }, void 0, true, {
               fileName: _jsxFileName,
               lineNumber: 56,
               columnNumber: 17
             }, this)]
           }, idx, true, {
             fileName: _jsxFileName,
-            lineNumber: 44,
+            lineNumber: 48,
             columnNumber: 15
           }, this))
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 42,
+          lineNumber: 46,
           columnNumber: 11
         }, this)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 34,
+        lineNumber: 30,
         columnNumber: 9
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 27,
+      lineNumber: 23,
       columnNumber: 7
-    }, this), isOutOfOrder(slide.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("h5", {
+    }, this), (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isOutOfOrder)(ieSummary, slide.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("h5", {
         children: "The following steps were performed out of order:"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 69,
+        lineNumber: 75,
         columnNumber: 11
-      }, this), slide.feedbackOutOfOrder.map((para, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("p", {
+      }, this), slide.feedbackOutOfOrder.map((para, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
         children: para
       }, idx, false, {
         fileName: _jsxFileName,
-        lineNumber: 71,
+        lineNumber: 77,
         columnNumber: 13
       }, this))]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 68,
+      lineNumber: 74,
       columnNumber: 9
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       size: "sm",
       color: "primary",
       onClick: analyzedHandler,
+      disabled: getPathData("IE", stepPath).analyzed,
       children: "Ok"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 75,
+      lineNumber: 81,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -4894,7 +4991,7 @@ function Analysis({
 
 /***/ }),
 
-/***/ 3119:
+/***/ 53119:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -4902,98 +4999,91 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ AnalysisMessages)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_array_flat_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7072);
-/* harmony import */ var core_js_modules_es_array_flat_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_flat_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7694);
-/* harmony import */ var core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2784);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7122);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/AnalysisMessages.jsx";
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/AnalysisMessages.jsx";
 
 
 
 
 
 
-
-
+const PLACEHOLDER = "There are errors at this step. We will discuss them shortly";
 function AnalysisMessages({
-  errors,
-  absent
+  messages
 }) {
-  const [msgs, setMsgs] = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null);
-  const [showLess, setShowLess] = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
-  (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
-    const tmp = [errors, absent].flat();
-    const tmp2 = tmp.filter(msg => msg !== ""); // console.log("errors", errors, "absent", absent, "flattened", tmp, "filtered", tmp2, "length > 1", tmp2.length > 1);
-
+  const [msgs, setMsgs] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [showLess, setShowLess] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    const tmp = messages.filter(msg => msg !== "");
+    const tmp2 = tmp.length > 0 ? [...tmp] : [PLACEHOLDER];
     setMsgs(tmp2);
     setShowLess(tmp2.length > 1);
-  }, [errors, absent]);
+  }, [messages]);
 
   if (!msgs) {
-    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("div", {
+    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
       children: "calculating"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 21,
+      lineNumber: 23,
       columnNumber: 16
     }, this);
   }
 
   if (msgs.length === 0) {
-    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("span", {}, void 0, false, {
+    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("span", {}, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 24,
+      lineNumber: 26,
       columnNumber: 16
     }, this);
   }
 
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("div", {
-    children: showLess ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("p", {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
+    children: showLess ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("p", {
         children: msgs[0]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 31,
+        lineNumber: 33,
         columnNumber: 15
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         color: "link",
         size: "sm",
         onClick: () => setShowLess(false),
         children: "show more"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 34,
+        lineNumber: 36,
         columnNumber: 15
       }, this)]
-    }, void 0, true) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-      children: [msgs.map((msg, i) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("p", {
+    }, void 0, true) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+      children: [msgs.map((msg, i) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("p", {
         children: msg
       }, i, false, {
         fileName: _jsxFileName,
-        lineNumber: 46,
+        lineNumber: 48,
         columnNumber: 19
-      }, this)), msgs.length > 1 && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, this)), msgs.length > 1 && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         color: "link",
         size: "sm",
         onClick: () => setShowLess(true),
         children: "show less"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 51,
+        lineNumber: 53,
         columnNumber: 15
       }, this)]
     }, void 0, true)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 27,
+    lineNumber: 29,
     columnNumber: 9
   }, this);
 }
@@ -5008,19 +5098,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ExamineForm)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7950);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(77950);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8319);
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48319);
 /* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7122);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2779);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(77122);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5634);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/ExamineForm.js";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55634);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/ExamineForm.js";
 
 
 
@@ -5032,12 +5122,14 @@ var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefi
 
 function ExamineForm({
   slide,
+  stepPath,
   submitHandler
 }) {
   var _slide$type;
 
   const {
-    getIdData
+    getIdData,
+    getPathData
   } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_4__.useDebriefing)();
 
   const handleSubmit = event => {
@@ -5056,29 +5148,29 @@ function ExamineForm({
           children: slide.label
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 22,
+          lineNumber: 24,
           columnNumber: 29
         }, this)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 21,
+        lineNumber: 23,
         columnNumber: 9
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 20,
+      lineNumber: 22,
       columnNumber: 7
     }, this), ((_slide$type = slide.type) == null ? void 0 : _slide$type.toLowerCase()) === "required" ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
       children: "What did you do instead? What do you think led to this error?"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 27,
+      lineNumber: 29,
       columnNumber: 9
     }, this) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
       children: "Why did you perform this action?"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 29,
+      lineNumber: 31,
       columnNumber: 9
     }, this), slide.prompts && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
@@ -5086,24 +5178,24 @@ function ExamineForm({
           children: "For example:"
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 35,
+          lineNumber: 37,
           columnNumber: 13
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 34,
+        lineNumber: 36,
         columnNumber: 11
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("ul", {
         children: slide.prompts.split(";").map((prompt, i) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("li", {
           children: prompt
         }, i, false, {
           fileName: _jsxFileName,
-          lineNumber: 39,
+          lineNumber: 41,
           columnNumber: 15
         }, this))
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 37,
+        lineNumber: 39,
         columnNumber: 11
       }, this)]
     }, void 0, true), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("form", {
@@ -5112,28 +5204,30 @@ function ExamineForm({
         id: "examine",
         cols: 80,
         placeholder: "Enter your response here...",
-        defaultValue: getIdData(slide.id).examine
+        defaultValue: getIdData(slide.id).examine,
+        disabled: getPathData("IE", stepPath).examined
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 46,
+        lineNumber: 48,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("br", {}, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 52,
+        lineNumber: 55,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
         type: "submit",
         size: "sm",
         color: "primary",
+        disabled: getPathData("IE", stepPath).examined,
         children: "Submit"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 53,
+        lineNumber: 56,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 45,
+      lineNumber: 47,
       columnNumber: 7
     }, this)]
   }, void 0, true, {
@@ -5145,7 +5239,36 @@ function ExamineForm({
 
 /***/ }),
 
-/***/ 927:
+/***/ 79211:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ FeedbackIcon)
+/* harmony export */ });
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/FeedbackIcon.jsx";
+
+function FeedbackIcon({
+  isGood
+}) {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("span", {
+    className: "material-icons-outlined",
+    style: {
+      color: isGood ? "green" : "red"
+    },
+    children: isGood ? "sentiment_satisfied" : "highlight_off"
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 3,
+    columnNumber: 9
+  }, this);
+}
+
+/***/ }),
+
+/***/ 60927:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5153,24 +5276,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ InvestigateExamine)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9529);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(39529);
 /* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(7267);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5634);
-/* harmony import */ var _layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9685);
-/* harmony import */ var _outline_HierarchicalLeftNav__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(4678);
-/* harmony import */ var _UserRating__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7991);
-/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1359);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(7267);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55634);
+/* harmony import */ var _layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49685);
+/* harmony import */ var _outline_HierarchicalLeftNav__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(84678);
+/* harmony import */ var _UserRating__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(27991);
+/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(71359);
 /* harmony import */ var _ExamineForm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1967);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/InvestigateExamine.jsx";
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(24495);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/InvestigateExamine.jsx";
+
 
 
 
@@ -5188,19 +5313,15 @@ var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefi
 function InvestigateExamine() {
   const {
     stepPath
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.useParams)();
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.useParams)();
   const {
     enableNextSlide,
     getPathData,
-    // stepStepPathToPath,
     updateIdData,
     updatePathData,
-    // pathData,
     getSlideData,
-    // getUserRating, 
-    // setUserRating, 
-    // ieSummary, 
     ieOutline,
+    ieSummary,
     computeExpandedSlides
   } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_4__.useDebriefing)();
   const [sp, setSP] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
@@ -5211,6 +5332,9 @@ function InvestigateExamine() {
   const [examined, setExamined] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
   const [myData, setMyData] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
   const [mode, setMode] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
+  const [computeMode, setComputeMode] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+
+  const getMode = () => mode;
 
   const getRequiredSubActions = slide => slide.subActions.filter(a => ["header", "required"].includes(a.type.toLowerCase()));
 
@@ -5219,13 +5343,16 @@ function InvestigateExamine() {
     updatePathData("IE", stepPath, {
       rated: true
     });
+    setComputeMode(true);
   };
 
-  const onAnalysisComplete = () => {
+  const onAnalysisComplete = event => {
+    event.preventDefault();
     setAnalyzed(true);
     updatePathData("IE", stepPath, {
       analyzed: true
     });
+    setComputeMode(true);
   };
 
   const onExamineComplete = examineResponse => {
@@ -5236,132 +5363,155 @@ function InvestigateExamine() {
     updatePathData("IE", stepPath, {
       examined: true
     });
+    setComputeMode(true);
   };
 
-  const computeMode = (0,react__WEBPACK_IMPORTED_MODULE_3__.useCallback)(() => {
-    console.log("computingMode");
-    let newMode;
-
-    if (examined) {
-      newMode = "examine";
-      console.log("examined=true calling enableNextSlide()");
-      enableNextSlide("IE", stepPath);
-    } else if (analyzed) {
-      if (needToExamine) {
-        newMode = "examine";
-      } else {
-        newMode = "analysis";
-        console.log("analyed=true && !needToExamine calling enableNextSlide()");
-        enableNextSlide("IE", stepPath);
-      }
-    } else if (rated) {
-      newMode = "analysis";
-    } else {
-      newMode = "rate";
-    }
-
-    if (newMode !== mode) {
-      // console.log("changing mode to", newMode)
-      setMode(newMode);
-    } // else {
-    //   console.log("keeping mode", mode)
-    // }
-
-  }, [analyzed, examined, rated, mode, needToExamine, enableNextSlide, stepPath]);
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
     if (!sp || sp !== stepPath) {
-      setSP(stepPath);
-      console.log("stepPath set"); // setPath(stepStepPathToPath("IE", stepPath));
+      setSP(stepPath); // console.log("stepPath set")
+      // setPath(stepStepPathToPath("IE", stepPath));
 
       setExpandedSlides(computeExpandedSlides(stepPath));
       const slide = getSlideData("IE", stepPath); // console.log(slide)
 
-      const pd = getPathData("IE", stepPath);
-      console.log(pd);
+      setMyData(slide);
+      const need2props = {
+        exam: slide.examine,
+        examIfAbs: slide.examineIfAbsent,
+        absent: (0,_utils__WEBPACK_IMPORTED_MODULE_10__.isAbsent)(ieSummary, slide.id),
+        examIfErrs: slide.examineIfErrors,
+        errors: (0,_utils__WEBPACK_IMPORTED_MODULE_10__.hasError)(ieSummary, slide.id)
+      };
+      const need2 = need2props.exam || // need to keep this until all scenarios have been updated to have the following 2 fields instead
+      need2props.examIfAbs && need2props.absent || need2props.examIfErrs && need2props.errors;
+      console.log("need2Examine", need2props, need2);
+      setNeedToExamine(need2);
+      const pd = getPathData("IE", stepPath); // console.log(pd)
+
       const {
         rated: _rated,
         analyzed: _analyzed,
         examined: _examined
       } = pd;
-      setRated(_rated);
-      setAnalyzed(_analyzed);
       setExamined(_examined);
-      setMyData(slide);
-      setNeedToExamine(slide.examine);
+      setAnalyzed(_analyzed);
+      setRated(_rated);
+      setMode(null);
+      setComputeMode(true);
     }
   }, // eslint-disable-next-line react-hooks/exhaustive-deps
   [stepPath] //stepPath, sp, getSlideData, computeExpandedSlides, stepStepPathToPath]
   );
   (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
-    computeMode();
-  }, [analyzed, examined, rated, computeMode]);
+    if (!computeMode || rated === null || analyzed === null || examined === null) {// console.log(`skipping computation of mode: computeMode: ${computeMode} rated: ${rated} analyzed: ${analyzed} examined: ${examined}`)
+    } else {
+      // console.log(
+      //   `compututing mode: rated: ${rated} analyzed: ${analyzed} examined: ${examined}`
+      // );
+      let newMode;
+
+      if (examined) {
+        newMode = "examine"; // console.log("examined=true calling enableNextSlide()");
+
+        enableNextSlide("IE", stepPath);
+      } else if (analyzed) {
+        if (needToExamine) {
+          newMode = "examine";
+        } else {
+          newMode = "analysis"; // console.log(
+          //   "analyed=true && !needToExamine calling enableNextSlide()"
+          // );
+
+          enableNextSlide("IE", stepPath);
+        }
+      } else if (rated) {
+        // console.log("rated=true");
+        newMode = "analysis";
+      } else {
+        // console.log("rated=false");
+        newMode = "rate";
+      }
+
+      if (newMode !== getMode()) {
+        // console.log("changing mode to", newMode);
+        setMode(newMode);
+      } // else {
+      //   console.log("keeping mode", getMode());
+      // }
+
+
+      setComputeMode(false);
+    }
+  }, [computeMode, stepPath, rated, analyzed, examined, needToExamine, getMode, enableNextSlide]);
 
   if (!myData || !mode) {
-    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)("div", {
+    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)("div", {
       children: "loading..."
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 128,
+      lineNumber: 154,
       columnNumber: 12
     }, this);
   }
 
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(_layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(_layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_5__["default"], {
     currStep: "IE",
     currStepPath: stepPath,
-    outline: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(_outline_HierarchicalLeftNav__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    outline: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(_outline_HierarchicalLeftNav__WEBPACK_IMPORTED_MODULE_6__["default"], {
       currStep: "IE",
       currStepPath: stepPath,
       outline: ieOutline,
       expandedSlides: expandedSlides
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 137,
+      lineNumber: 163,
       columnNumber: 9
     }, this),
-    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)("div", {
-      className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_10__["default"]["feedback-block"],
-      children: myData.subActions.length > 0 && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.Fragment, {
-        children: ["rate" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(_UserRating__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)("div", {
+      className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_11__["default"]["feedback-block"],
+      children: myData.subActions.length > 0 && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.Fragment, {
+        children: ["rate" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(_UserRating__WEBPACK_IMPORTED_MODULE_7__["default"], {
           slide: myData,
           getRequiredSubActions: getRequiredSubActions,
           ratedHandler: onRatingComplete
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 149,
+          lineNumber: 175,
           columnNumber: 15
-        }, this), "analysis" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(_Analysis__WEBPACK_IMPORTED_MODULE_8__["default"], {
+        }, this), "analysis" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(_Analysis__WEBPACK_IMPORTED_MODULE_8__["default"], {
           slide: myData,
+          stepPath: stepPath,
           getRequiredSubActions: getRequiredSubActions,
           analyzedHandler: onAnalysisComplete
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 156,
+          lineNumber: 182,
           columnNumber: 15
-        }, this), "examine" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(_ExamineForm__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        }, this), "examine" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(_ExamineForm__WEBPACK_IMPORTED_MODULE_9__["default"], {
           slide: myData,
+          stepPath: stepPath,
           submitHandler: onExamineComplete
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 163,
+          lineNumber: 190,
           columnNumber: 15
         }, this)]
       }, void 0, true)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 145,
+      lineNumber: 171,
       columnNumber: 7
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 133,
+    lineNumber: 159,
     columnNumber: 5
   }, this);
 }
 
 /***/ }),
 
-/***/ 7991:
+/***/ 27991:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5371,11 +5521,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7122);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5634);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4495);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/UserRating.jsx";
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55634);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(24495);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/UserRating.jsx";
 
 
 
@@ -5473,7 +5623,7 @@ function UserRating({
 
 /***/ }),
 
-/***/ 2532:
+/***/ 72532:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5481,7 +5631,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "UnauthedLayout": () => (/* reexport safe */ _layouts__WEBPACK_IMPORTED_MODULE_0__.UnauthedLayout)
 /* harmony export */ });
-/* harmony import */ var _layouts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(565);
+/* harmony import */ var _layouts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(50565);
 // export {default as AnalyzeDebriefing} from "./AnalyzeDebriefing"
 // export {default as Card} from "./Card"
 // export {default as CardText} from "./CardText"
@@ -5498,7 +5648,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 6645:
+/***/ 26645:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5508,10 +5658,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _footer_NavButtons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2831);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/SingleColumnLayout.jsx";
+/* harmony import */ var _footer_NavButtons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(12831);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/SingleColumnLayout.jsx";
 
 
 
@@ -5549,7 +5699,7 @@ function SingleColumnLayout({
 
 /***/ }),
 
-/***/ 9685:
+/***/ 49685:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5559,12 +5709,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _footer_NavButtons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2831);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/TwoDivLayout.js";
+/* harmony import */ var _footer_NavButtons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12831);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/TwoDivLayout.js";
 
 
 
@@ -5620,7 +5770,7 @@ function TwoDivLayout({
 
 /***/ }),
 
-/***/ 2072:
+/***/ 12072:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5630,9 +5780,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5334);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/UnauthedLayout.js";
+/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55334);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/UnauthedLayout.js";
 
 
 
@@ -5654,7 +5804,7 @@ const UnauthedLayout = props => {
 
 /***/ }),
 
-/***/ 565:
+/***/ 50565:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5662,12 +5812,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "UnauthedLayout": () => (/* reexport safe */ _UnauthedLayout__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _UnauthedLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2072);
+/* harmony import */ var _UnauthedLayout__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(12072);
 
 
 /***/ }),
 
-/***/ 3292:
+/***/ 83292:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5677,10 +5827,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _OutlineButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3157);
-/* harmony import */ var _OutlineLabel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1448);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/FlatLeftNav.jsx";
+/* harmony import */ var _OutlineButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(23157);
+/* harmony import */ var _OutlineLabel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(71448);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/FlatLeftNav.jsx";
 
 
 
@@ -5700,7 +5850,7 @@ function FlatLeftNav({
       columnNumber: 9
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("ul", {
       style: {
-        paddingLeft: "10px",
+        paddingLeft: "4px",
         marginBottom: "4px"
       },
       children: outline.children.map((child, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("li", {
@@ -5737,7 +5887,7 @@ function FlatLeftNav({
 
 /***/ }),
 
-/***/ 4678:
+/***/ 84678:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5747,12 +5897,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5634);
-/* harmony import */ var _OutlineButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3157);
-/* harmony import */ var _OutlineLabel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1448);
-/* harmony import */ var _OutlineChildren__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(788);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/HierarchicalLeftNav.jsx";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55634);
+/* harmony import */ var _OutlineButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(23157);
+/* harmony import */ var _OutlineLabel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(71448);
+/* harmony import */ var _OutlineChildren__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10788);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/HierarchicalLeftNav.jsx";
 
 
 
@@ -5802,7 +5952,7 @@ function HierarchicalLeftNav({
 
 /***/ }),
 
-/***/ 3157:
+/***/ 23157:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5812,20 +5962,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5634);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4495);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineButton.jsx";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55634);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(24495);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineButton.jsx";
 
 
 
 
 
 
-const MAX_LENGTH = 42;
+const MAX_LENGTH = 40;
 function OutlineButton({
   node,
   currStep,
@@ -5860,7 +6010,7 @@ function OutlineButton({
 
 /***/ }),
 
-/***/ 788:
+/***/ 10788:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5870,11 +6020,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5634);
-/* harmony import */ var _OutlineButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3157);
-/* harmony import */ var _OutlineLabel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1448);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineChildren.js";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55634);
+/* harmony import */ var _OutlineButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(23157);
+/* harmony import */ var _OutlineLabel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(71448);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineChildren.js";
 
 
 
@@ -5952,7 +6102,7 @@ function OutlineChildren({
 
 /***/ }),
 
-/***/ 1448:
+/***/ 71448:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5962,13 +6112,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4495);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineLabel.jsx";
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(24495);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineLabel.jsx";
 
 
 
-const MAX_LENGTH = 42;
+const MAX_LENGTH = 38;
 function OutlineLabel({
   node,
   depth = 0
@@ -5984,7 +6134,7 @@ function OutlineLabel({
 
 /***/ }),
 
-/***/ 2266:
+/***/ 62266:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -5992,21 +6142,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Review)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(7267);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5634);
-/* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6645);
-/* harmony import */ var _Tooltip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1579);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/r/Review.jsx";
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55634);
+/* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(26645);
+/* harmony import */ var _Tooltip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(51579);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/r/Review.jsx";
 
 
 
@@ -6137,7 +6287,7 @@ function Review() {
 
 /***/ }),
 
-/***/ 1579:
+/***/ 51579:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6145,8 +6295,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Tooltip)
 /* harmony export */ });
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/r/Tooltip.js";
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/r/Tooltip.js";
 
 function Tooltip({
   text,
@@ -6190,7 +6340,7 @@ function Tooltip({
 
 /***/ }),
 
-/***/ 1768:
+/***/ 61768:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6198,32 +6348,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "computeDataStructures": () => (/* binding */ computeDataStructures)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3105);
-/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_array_flat_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7072);
-/* harmony import */ var core_js_modules_es_array_flat_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_flat_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7694);
-/* harmony import */ var core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4303);
+/* harmony import */ var _Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31461);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6886);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(43105);
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_array_flat_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(27072);
+/* harmony import */ var core_js_modules_es_array_flat_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_flat_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(67694);
+/* harmony import */ var core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(54303);
+
+const _excluded = ["id", "label", "type", "examine", "examineIfAbsent", "examineIfErrors", "prompts", "subActionsList"];
 
 
 
 
 
- // function expandNode(summary, nodeID) {
-//   console.log("expandNode()", nodeID)
-//   const {childIDs, ...rest} = summary[nodeID][0]
-//   const retVal = {
-//     ...rest,
-//     children: [childIDs.map(id => expandNode(summary, id))]
-//   }
-//   // console.log(retVal)
-//   return retVal
-// }
+
 
 function path2str(path) {
   return path.map(ind => String(ind + 1)).join(".");
@@ -6253,7 +6397,6 @@ function createIESlides(feedback, summaryObj) {
       label: currNode.label,
       stepPath: path2str(currPath),
       childIDs: currNode.subActions.map(sa => sa.id),
-      rated: false,
       depth: currDepth
     });
     currNode.subActions.forEach((subAction, index) => {
@@ -6266,6 +6409,46 @@ function createIESlides(feedback, summaryObj) {
   return slides;
 }
 
+function getIENodeData(node, expandChildren) {
+  const {
+    id,
+    label,
+    type,
+    examine = false,
+    examineIfAbsent = false,
+    examineIfErrors = false,
+    prompts,
+    subActionsList
+  } = node,
+        rest = (0,_Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(node, _excluded);
+
+  const other = {
+    feedbackAbsent: rest.feedbackAbsent.filter(e => e !== ""),
+    feedbackErrors: rest.feedbackErrors.filter(e => e !== ""),
+    feedbackOutOfOrder: rest.feedbackOutOfOrder.filter(e => e !== "")
+  };
+  let subActions;
+
+  if (!expandChildren) {
+    subActions = [];
+  } else {
+    subActions = [...rest.subActions.map(sa => getIENodeData(sa, false))];
+  }
+
+  const nodeData = Object.assign({
+    id,
+    label,
+    type,
+    examine,
+    examineIfAbsent,
+    examineIfErrors,
+    prompts,
+    subActionsList,
+    subActions
+  }, other);
+  return nodeData;
+}
+
 function createIESlidesData(feedback, summaryObj) {
   const slideData = {};
   const top = feedback.IE.Action;
@@ -6275,7 +6458,7 @@ function createIESlidesData(feedback, summaryObj) {
       return;
     }
 
-    slideData[currNode.id] = Object.assign({}, currNode);
+    slideData[currNode.id] = getIENodeData(currNode, true);
     currNode.subActions.forEach((subAction, index) => {
       const newPath = [...currPath, index];
       traverseDepthFirst(subAction, newPath, currDepth + 1);
@@ -6284,12 +6467,7 @@ function createIESlidesData(feedback, summaryObj) {
 
   traverseDepthFirst(top, [0], 0);
   return slideData;
-} // function exploreSummary(summary) {
-//   {
-//     top: expandNode(summary, "top")
-//   }
-// }
-
+}
 
 function buildBOutline(feedback, slides, slideData) {
   const outline = {
@@ -6385,28 +6563,7 @@ function computeSlideData(feedback, summaryObj) {
   });
   const ieSlideData = createIESlidesData(feedback, summaryObj);
   return Object.assign({}, obj, rSlidesData, bSlidesData, ieSlideData);
-} // function flattenIEFeedback(node) {
-//   const {subActions, ...rest} = node
-//   // set default values for missing fields
-//   const {
-//     id,
-//     label,
-//     type,
-//     feedbackAbsent = [],
-//     feedbackErrors = [],
-//     examine = false,
-//     prompts = "",
-//     subActionsList = false,
-//   } = rest;
-//   console.log(node.id)
-//   const nodeData = {id, label, type, feedbackAbsent, feedbackErrors, examine, prompts, subActionsList}
-//   const flattened = [
-//     rest,
-//     ...subActions.map(sa => flattenIEFeedback(sa))
-//   ]
-//   return flattened
-// }
-
+}
 
 function computeDataStructures(scenData, obsLogData, analysisData, debLogData, scenFeedBack) {
   console.log("scenario", scenData);
@@ -6414,7 +6571,7 @@ function computeDataStructures(scenData, obsLogData, analysisData, debLogData, s
   console.log("analysis", analysisData);
   console.log("debLog", debLogData);
   console.log("feedback", scenFeedBack);
-  const summary = (0,_meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_5__.summarizeAnalysis)(analysisData, scenFeedBack.IE); // console.log("summary", ieSummary);
+  const summary = (0,_meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_6__.summarizeAnalysis)(analysisData, scenFeedBack.IE); // console.log("summary", ieSummary);
 
   const flattenedSummary = Object.values(summary).flat();
   const summaryObj = {};
@@ -6431,14 +6588,25 @@ function computeDataStructures(scenData, obsLogData, analysisData, debLogData, s
   if (debLogData.pathData) {
     pthData = Object.assign({}, debLogData.pathData);
   } else {
-    stepSlides.forEach(rec => pthData[`${rec.step}/${rec.stepPath}`] = {
-      enabled: false,
-      step: rec.step,
-      stepPath: rec.stepPath,
-      id: rec.id,
-      rated: false,
-      analyzed: false,
-      examined: false
+    stepSlides.forEach(rec => {
+      const metaData = {
+        id: rec.id,
+        enabled: false,
+        completed: false,
+        step: rec.step,
+        stepPath: rec.stepPath
+      };
+      let ieData = {};
+
+      if (rec.step === "IE") {
+        ieData = {
+          analyzed: false,
+          examined: false,
+          rated: false
+        };
+      }
+
+      pthData[`${rec.step}/${rec.stepPath}`] = Object.assign({}, metaData, ieData);
     });
   }
 
@@ -6457,12 +6625,10 @@ function computeDataStructures(scenData, obsLogData, analysisData, debLogData, s
     idDat = {};
     stepSlides.filter(s => s.step === "IE").forEach(s => {
       idDat[s.id] = {
-        comments: "",
         examine: ""
       };
     });
     idDat['formalize'] = {
-      comments: "",
       response: ""
     };
   }
@@ -6506,7 +6672,7 @@ function computeDataStructures(scenData, obsLogData, analysisData, debLogData, s
 
 /***/ }),
 
-/***/ 6127:
+/***/ 36127:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6515,8 +6681,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "DebLog": () => (/* reexport safe */ _routes__WEBPACK_IMPORTED_MODULE_1__.DebLog),
 /* harmony export */   "UnauthedLayout": () => (/* reexport safe */ _components__WEBPACK_IMPORTED_MODULE_0__.UnauthedLayout)
 /* harmony export */ });
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2532);
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3896);
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72532);
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(43896);
  // {AnalyzeDebriefing, Card, CardText, ExamineForm,  Slide, SlideShow, Tables, Tooltip, TwoDivOutline, UnauthedLayout}
 // MainOutline, MDBNavBar,
 
@@ -6524,7 +6690,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 7091:
+/***/ 77091:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6532,33 +6698,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ DebLog)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7950);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(77950);
 /* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8319);
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48319);
 /* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9529);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(39529);
 /* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1235);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(31235);
 /* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3105);
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(43105);
 /* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3439);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(73439);
 /* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(7267);
-/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(9526);
-/* harmony import */ var _meddbriefer_scenario_data_index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(8913);
+/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(89526);
+/* harmony import */ var _meddbriefer_scenario_data_index__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(48913);
 /* harmony import */ var _meddbriefer_feedback_data__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(9205);
-/* harmony import */ var _dataStructureUtils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(1768);
-/* harmony import */ var _components_DebriefingContext__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(5634);
-/* harmony import */ var _components_Cond2Debriefing__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(8681);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/routes/DebLog.js";
+/* harmony import */ var _dataStructureUtils__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(61768);
+/* harmony import */ var _components_DebriefingContext__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(55634);
+/* harmony import */ var _components_Cond2Debriefing__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(38681);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/routes/DebLog.js";
 
 
 
@@ -6587,7 +6753,11 @@ function stepPathIsExpanded(stepPath, expandedSlides) {
   return expandedSlides.includes(stepPath);
 }
 
-function DebLog() {
+function DebLog({
+  computeTitle,
+  saveButtonLabel,
+  saveModal
+}) {
   const {
     db
   } = (0,_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_9__.useFirebase)();
@@ -6595,9 +6765,9 @@ function DebLog() {
   const {
     debriefingID
   } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__.useParams)();
-  const [debID, setDebID] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null); // eslint-disable-next-line @typescript-eslint/no-unused-vars
-
+  const [debID, setDebID] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [debLog, setDebLog] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
+  const [obsLog, setObsLog] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [scenario, setScenario] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [slides, setSlides] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [slideData, setSlideData] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
@@ -6608,13 +6778,13 @@ function DebLog() {
   const [bOutline, setBOutline] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [ieOutline, setIEOutline] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [loaded, setLoaded] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
+  const [allSlidesCompleted, setAllSlidesCompleted] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
+  const [done, setDone] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
 
   const getIdData = id => idData[id];
 
   const updateIdData = (id, newValue) => {
-    const newData = Object.assign({}, idData[id], {
-      newValue
-    });
+    const newData = Object.assign({}, idData[id], newValue);
     setIdData(prevState => Object.assign({}, prevState, {
       [id]: newData
     }));
@@ -6647,13 +6817,7 @@ function DebLog() {
   const getPathData = (step, stepPath) => {
     const path = stepStepPathToPath(step, stepPath);
     return Object.assign({}, pathData[path]);
-  }; // const updatePathState = (path, newPathData) => {
-  //   setPathData(prevState => ({
-  //     ...prevState,
-  //     [path]: newPathData
-  //   }))
-  // }
-
+  };
 
   const updatePathData = (step, stepPath, newData) => {
     const path = stepStepPathToPath(step, stepPath);
@@ -6661,25 +6825,20 @@ function DebLog() {
     setPathData(prevState => Object.assign({}, prevState, {
       [path]: updatedPathData
     }));
-  }; // const enableStepPath = (step, stepPath) => {
-  //   const path = stepStepPathToPath(step, stepPath)
-  //   const currPathData = getPathData(step, stepPath)
-  //   if (!currPathData.enabled) {
-  //     console.log(`enabling path ${path}`)
-  //     currPathData.enabled = true
-  //     updatePathState(path, currPathData)
-  //   } else {
-  //     console.log(`path ${path} already enabled`)
-  //   }
-  // }
-
+  };
 
   const enableStepPath = (step, stepPath) => updatePathData(step, stepPath, {
     enabled: true
   });
 
   const enableNextSlide = (currStep, currStepPath) => {
-    console.log(`enableNextSlide${currStep}, ${currStepPath}`);
+    console.log(`enableNextSlide${currStep}, ${currStepPath}`); // probably should a separate markAsCompleted(currStep, currStepPath), but I
+    // don't feel like doing this everywhere and I believe these would always be called
+    // together
+
+    updatePathData(currStep, currStepPath, {
+      completed: true
+    });
     const currSlideIdx = getSlideIndexForStepStepPath(currStep, currStepPath);
 
     if (currSlideIdx + 1 === slides.length) {
@@ -6712,8 +6871,7 @@ function DebLog() {
     } else {
       const nextSlide = slides[currSlideIdx + 1];
       haveNext = stepStepPathIsEnabled(nextSlide.step, nextSlide.stepPath);
-    } // console.log(`haveNextSlide(${currStep}, ${currStepPath}) =`, haveNext)
-
+    }
 
     return haveNext;
   };
@@ -6732,14 +6890,11 @@ function DebLog() {
 
   const stepIsEnabled = step => {
     const enabledStepPaths = Object.values(pathData).filter(e => e.step === step && e.enabled);
-    const someEnabled = enabledStepPaths.length > 0; // console.log("stepIsEnabled", step, enabledStepPaths, someEnabled)
-
+    const someEnabled = enabledStepPaths.length > 0;
     return someEnabled;
   };
 
   const stepStepPathIsEnabled = (step, stepPath) => {
-    // const slide = getSlideFromStepStepPath(step, stepPath)
-    // const path = `${slide.step}/${slide.stepPath}`
     const path = stepStepPathToPath(step, stepPath);
     return pathData[path].enabled;
   };
@@ -6761,6 +6916,10 @@ function DebLog() {
     } = (0,_dataStructureUtils__WEBPACK_IMPORTED_MODULE_12__.computeDataStructures)(scenData, obsLogData, analysisData, debLogData, scenFeedBack);
     setScenario(scenData);
     setDebLog(debLogData);
+    setObsLog(obsLogData); // state computed from logs. hopefully this will all be in the deblog in the
+    // future and computeDataStructures() will be called when creating the
+    // initial debLog, and these can merely be deconstructed from it
+
     setSlides(stepSlides);
     setSlideData(sData);
     setPathData(pthData);
@@ -6769,6 +6928,8 @@ function DebLog() {
     setBOutline(bOL);
     setIEOutline(ieOL);
     setLoaded(true);
+    setAllSlidesCompleted(idDat.formalize.response !== "");
+    setDone(false);
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_8__.useEffect)(() => {
@@ -6787,7 +6948,7 @@ function DebLog() {
       children: "Loading"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 223,
+      lineNumber: 217,
       columnNumber: 13
     }, this);
   }
@@ -6795,11 +6956,10 @@ function DebLog() {
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxDEV)(_components_DebriefingContext__WEBPACK_IMPORTED_MODULE_13__.DebriefingContext.Provider, {
     value: {
       debriefingID,
+      debLog,
+      obsLog,
       scenario,
-      // slides,
-      // slideData,
       getSlideData,
-      pathData,
       getPathData,
       updatePathData,
       getIdData,
@@ -6820,25 +6980,32 @@ function DebLog() {
       bOutline,
       ieOutline,
       computeExpandedSlides,
-      stepPathIsExpanded
+      stepPathIsExpanded,
+      allSlidesCompleted,
+      setAllSlidesCompleted,
+      done,
+      setDone
     },
     children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxDEV)(_components_Cond2Debriefing__WEBPACK_IMPORTED_MODULE_14__["default"], {
-      debriefingID: debriefingID
+      debriefingID: debriefingID,
+      computeTitle: computeTitle,
+      saveButtonLabel: saveButtonLabel,
+      saveModal: saveModal
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 258,
+      lineNumber: 255,
       columnNumber: 7
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 227,
+    lineNumber: 221,
     columnNumber: 5
   }, this);
 }
 
 /***/ }),
 
-/***/ 3896:
+/***/ 43896:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6846,12 +7013,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DebLog": () => (/* reexport safe */ _DebLog__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
-/* harmony import */ var _DebLog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7091);
+/* harmony import */ var _DebLog__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(77091);
 
 
 /***/ }),
 
-/***/ 4495:
+/***/ 24495:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6860,8 +7027,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "capitalizeFirstLetter": () => (/* binding */ capitalizeFirstLetter),
 /* harmony export */   "ellipsis": () => (/* binding */ ellipsis),
 /* harmony export */   "formatAsMinSecs": () => (/* binding */ formatAsMinSecs),
+/* harmony export */   "getStatus": () => (/* binding */ getStatus),
+/* harmony export */   "hasError": () => (/* binding */ hasError),
+/* harmony export */   "isAbsent": () => (/* binding */ isAbsent),
+/* harmony export */   "isGood": () => (/* binding */ isGood),
+/* harmony export */   "isOutOfOrder": () => (/* binding */ isOutOfOrder),
 /* harmony export */   "lowerCaseFirstLetter": () => (/* binding */ lowerCaseFirstLetter)
 /* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(39529);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0__);
+
 // import { useEffect } from "react"
 // unicode char for ellipsis (can't embed html entity directly in JSX)
 const ELLIPSIS = "\u2026";
@@ -6881,20 +7056,19 @@ function ellipsis(text, maxLength) {
     return `${text.slice(0, maxLength - 3)} ${ELLIPSIS}`;
   }
 }
-/**
- * Calls callback only on component mount
- * @param {function} callback Function to be called on component mount
- */
-// export const useInit = (callback) => {
-//     useEffect(() => {
-//         callback();
-//     // eslint-disable-next-line
-//     }, []);
-// }
+const getStatus = (ieSummary, id) => {
+  const sts = ieSummary[id].status; // console.log(`status for ${id}: ${sts}`)
+
+  return sts;
+};
+const isGood = (ieSummary, id) => "good" === getStatus(ieSummary, id);
+const isAbsent = (ieSummary, id) => "absent" === getStatus(ieSummary, id);
+const hasError = (ieSummary, id) => ["error", "errors", "misorderedError"].includes(getStatus(ieSummary, id));
+const isOutOfOrder = (ieSummary, id) => ["misordered", "misorderedError"].includes(getStatus(ieSummary, id));
 
 /***/ }),
 
-/***/ 1604:
+/***/ 91604:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -6902,11 +7076,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ AnalysesTable)
 /* harmony export */ });
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7122);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8428);
-/* harmony import */ var _AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5678);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysesTable.jsx";
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(77122);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(38428);
+/* harmony import */ var _AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15678);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysesTable.jsx";
 
 
 
@@ -7011,7 +7185,7 @@ function AnalysesTable({
 
 /***/ }),
 
-/***/ 2940:
+/***/ 92940:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7019,12 +7193,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ AnalysisDetails)
 /* harmony export */ });
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8428);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7122);
-/* harmony import */ var _AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5678);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(38428);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
+/* harmony import */ var _AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15678);
 /* harmony import */ var _DebriefingsTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3450);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysisDetails.jsx";
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysisDetails.jsx";
 
 
 
@@ -7153,7 +7327,7 @@ function AnalysisDetails({
 
 /***/ }),
 
-/***/ 5678:
+/***/ 15678:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7161,8 +7335,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ AnalysesTableHeader)
 /* harmony export */ });
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysisTableHeader.jsx";
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysisTableHeader.jsx";
 
 function AnalysesTableHeader() {
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("thead", {
@@ -7212,10 +7386,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ DebriefingsTable)
 /* harmony export */ });
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7122);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8428);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/components/DebriefingsTable.jsx";
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(77122);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(38428);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/DebriefingsTable.jsx";
 
 
 
@@ -7373,7 +7547,7 @@ function DebriefingsTable({
 
 /***/ }),
 
-/***/ 2603:
+/***/ 52603:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7381,12 +7555,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ObserverLogDetails)
 /* harmony export */ });
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8428);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7122);
-/* harmony import */ var _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1719);
-/* harmony import */ var _AnalysesTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1604);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogDetails.jsx";
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(38428);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
+/* harmony import */ var _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(51719);
+/* harmony import */ var _AnalysesTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(91604);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogDetails.jsx";
 
 
 
@@ -7495,7 +7669,7 @@ function ObserverLogDetails({
 
 /***/ }),
 
-/***/ 323:
+/***/ 30323:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7503,11 +7677,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ObserverLogTable)
 /* harmony export */ });
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8428);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7122);
-/* harmony import */ var _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1719);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogTable.jsx";
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(38428);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(77122);
+/* harmony import */ var _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(51719);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogTable.jsx";
 // import { Link, use } from "react-router-dom"
 
 
@@ -7603,7 +7777,7 @@ function ObserverLogTable({
 
 /***/ }),
 
-/***/ 1719:
+/***/ 51719:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7611,8 +7785,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ObserverLogTableHeader)
 /* harmony export */ });
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogTableHeader.jsx";
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogTableHeader.jsx";
 
 function ObserverLogTableHeader() {
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("thead", {
@@ -7662,7 +7836,7 @@ function ObserverLogTableHeader() {
 
 /***/ }),
 
-/***/ 8573:
+/***/ 48573:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7672,16 +7846,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ObserverLogTable": () => (/* reexport safe */ _ObserverLogTable__WEBPACK_IMPORTED_MODULE_1__["default"]),
 /* harmony export */   "ObserverLogTableHeader": () => (/* reexport safe */ _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_2__["default"])
 /* harmony export */ });
-/* harmony import */ var _ObserverLogDetails__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2603);
-/* harmony import */ var _ObserverLogTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(323);
-/* harmony import */ var _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1719);
+/* harmony import */ var _ObserverLogDetails__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(52603);
+/* harmony import */ var _ObserverLogTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(30323);
+/* harmony import */ var _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51719);
 
 
 
 
 /***/ }),
 
-/***/ 9834:
+/***/ 59834:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7694,8 +7868,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ObserverLogTable": () => (/* reexport safe */ _components__WEBPACK_IMPORTED_MODULE_1__.ObserverLogTable),
 /* harmony export */   "ObserverLogTableHeader": () => (/* reexport safe */ _components__WEBPACK_IMPORTED_MODULE_1__.ObserverLogTableHeader)
 /* harmony export */ });
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8080);
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8573);
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(18080);
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(48573);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3345);
 
 
@@ -7703,7 +7877,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 8429:
+/***/ 18429:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7711,18 +7885,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ Analysis)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7267);
-/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9526);
-/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8913);
-/* harmony import */ var _components_AnalysisDetails__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2940);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/routes/Analysis.jsx";
+/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(89526);
+/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(48913);
+/* harmony import */ var _components_AnalysisDetails__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(92940);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/routes/Analysis.jsx";
 
 
 
@@ -7783,7 +7957,7 @@ function Analysis({
 
 /***/ }),
 
-/***/ 2474:
+/***/ 42474:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7791,19 +7965,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ LogChooser)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3439);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(73439);
 /* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(7267);
-/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6011);
-/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9526);
-/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8913);
-/* harmony import */ var _ObserverLogList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4953);
-/* harmony import */ var _ObserverLog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5786);
-/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8429);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/routes/LogChooser.jsx";
+/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(36011);
+/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(89526);
+/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(48913);
+/* harmony import */ var _ObserverLogList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(34953);
+/* harmony import */ var _ObserverLog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(35786);
+/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(18429);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/routes/LogChooser.jsx";
 
 
 
@@ -7883,7 +8057,7 @@ function LogChooser({
 
 /***/ }),
 
-/***/ 5786:
+/***/ 35786:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -7891,22 +8065,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ObserverLog)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3439);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(73439);
 /* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(7267);
-/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9526);
-/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6011);
-/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8913);
-/* harmony import */ var _meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(4303);
-/* harmony import */ var _components_ObserverLogDetails__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2603);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/routes/ObserverLog.jsx";
+/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(89526);
+/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(36011);
+/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(48913);
+/* harmony import */ var _meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(54303);
+/* harmony import */ var _components_ObserverLogDetails__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(52603);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/routes/ObserverLog.jsx";
 
 
 
@@ -7999,7 +8173,7 @@ function ObserverLog() {
 
 /***/ }),
 
-/***/ 4953:
+/***/ 34953:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8007,18 +8181,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ObserverLogList)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7267);
-/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9526);
-/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8913);
-/* harmony import */ var _components_ObserverLogTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(323);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/debriefing/log-chooser/src/routes/ObserverLogList.jsx";
+/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(89526);
+/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(48913);
+/* harmony import */ var _components_ObserverLogTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(30323);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/routes/ObserverLogList.jsx";
 
 
 
@@ -8084,10 +8258,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ObserverLog": () => (/* reexport safe */ _ObserverLog__WEBPACK_IMPORTED_MODULE_1__["default"]),
 /* harmony export */   "ObserverLogList": () => (/* reexport safe */ _ObserverLogList__WEBPACK_IMPORTED_MODULE_2__["default"])
 /* harmony export */ });
-/* harmony import */ var _LogChooser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2474);
-/* harmony import */ var _ObserverLog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5786);
-/* harmony import */ var _ObserverLogList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4953);
-/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8429);
+/* harmony import */ var _LogChooser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(42474);
+/* harmony import */ var _ObserverLog__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(35786);
+/* harmony import */ var _ObserverLogList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(34953);
+/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(18429);
 
 
 
@@ -8095,7 +8269,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 8586:
+/***/ 78586:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8103,7 +8277,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "B4CA_PhaseDEBRF": () => (/* binding */ B4CA_PhaseDEBRF)
 /* harmony export */ });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4354);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(54354);
 // type Phase_D = {
 //     step:  string;
 //     title: string;
@@ -8250,7 +8424,7 @@ const B4CA_PhaseDEBRF = [{
 
 /***/ }),
 
-/***/ 827:
+/***/ 60827:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -8258,7 +8432,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "B4CA_PhaseIE": () => (/* binding */ B4CA_PhaseIE)
 /* harmony export */ });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(573);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(20573);
 /* Data for phase scenario B4CA for phase IE 
 This data structure holds all the information to create the slides to present during the IE phase.
 It mirrors the tree structure that is presented in the Excel file. All nodes in the tree are called actions whether 
@@ -9906,7 +10080,7 @@ const B4CA_PhaseIE = {
 
 /***/ }),
 
-/***/ 351:
+/***/ 40351:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -9914,7 +10088,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "B5CA_PhaseDEBRF": () => (/* binding */ B5CA_PhaseDEBRF)
 /* harmony export */ });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4354);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(54354);
 // type Phase_D = {
 //     step:  string;
 //     title: string;
@@ -10072,7 +10246,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "B5CA_PhaseIE": () => (/* binding */ B5CA_PhaseIE)
 /* harmony export */ });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(573);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(20573);
 /* Data for scenario C5CA phase IE 
 This data structure holds all the information to create the slides to present during the IE phase.
 It mirrors the tree structure that is presented in the Excel file. All nodes in the tree are called actions whether 
@@ -11719,7 +11893,7 @@ const B5CA_PhaseIE = {
 
 /***/ }),
 
-/***/ 9628:
+/***/ 19628:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11885,7 +12059,7 @@ const M2CA_PhaseIE = {
 
 /***/ }),
 
-/***/ 4077:
+/***/ 34077:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11893,7 +12067,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "C5CA_PhaseDEBRF": () => (/* binding */ C5CA_PhaseDEBRF)
 /* harmony export */ });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4354);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(54354);
 // type Phase_D = {
 //     step:  string;
 //     title: string;
@@ -12043,7 +12217,7 @@ const C5CA_PhaseDEBRF = [{
 
 /***/ }),
 
-/***/ 8547:
+/***/ 98547:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -12051,7 +12225,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "C5CA_PhaseIE": () => (/* binding */ C5CA_PhaseIE)
 /* harmony export */ });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(573);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(20573);
 /* Data for scenario C5CA phase IE 
 This data structure holds all the information to create the slides to present during the IE phase.
 It mirrors the tree structure that is presented in the Excel file. All nodes in the tree are called actions whether 
@@ -13708,7 +13882,7 @@ const C5CA_PhaseIE = {
 
 /***/ }),
 
-/***/ 1412:
+/***/ 91412:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13716,7 +13890,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SC8CP_PhaseDEBRF": () => (/* binding */ SC8CP_PhaseDEBRF)
 /* harmony export */ });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4354);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(54354);
 // type Phase_D = {
 //     step:  string;
 //     title: string;
@@ -13869,7 +14043,7 @@ const SC8CP_PhaseDEBRF = [{
 
 /***/ }),
 
-/***/ 7884:
+/***/ 67884:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -13877,7 +14051,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "SC8CP_PhaseIE": () => (/* binding */ SC8CP_PhaseIE)
 /* harmony export */ });
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(573);
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(20573);
 /* Data for scenario SC8CP phase IE 
 This data structure holds all the information to create the slides to present during the IE phase.
 It mirrors the tree structure that is presented in the Excel file. All nodes in the tree are called actions whether 
@@ -17855,7 +18029,7 @@ const interventions = ["intv-open-airway-method-head-tilt", "intv-open-airway-me
 
 /***/ }),
 
-/***/ 8680:
+/***/ 98680:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -17885,7 +18059,7 @@ const iconTypes = {
 
 const fbTemplatesDef = {
   // state: [categorization for feedback, feedback template for condition 1]
-  "contraindicated": ["Problem", "+bec Contraindicated intervention +eec +bos ?why +eos"],
+  "contraindicated": ["Problem", "+bec Incorrect intervention +eec +bos ?why +eos"],
   "irrelevant": ["Problem", "+bec Irrelevant intervention +eec +bos ?why +eos"],
   "unnecessary": ["Problem", "+bec Unnecessary intervention +eec +bos ?why +eos"],
   "redundant": ["Problem", "+bec Redundant intervention +eec +bos You already did an alternative to this: @redundantToFB +eos"],
@@ -17907,7 +18081,7 @@ const fbTemplatesDef = {
   "misOrdered-assessment": ["Problem", "+bec Mistimed assessment step +eec +bos @orderingFB +eos"],
   "misOrdered-assessment-option": ["Problem", "+bec Mistimed assessment step +eec +bos @orderingFB +eos"],
   "misOrdered-decision-option": ["Problem", "+bec Mistimed assessment step +eec +bos @orderingFB"],
-  "misOrdered-required-action": ["Problem", "+bec Mistimed assessment step +eec +bos @orderingFB"],
+  "misOrdered-required-action": ["Problem", "+bec Mistimed intervention +eec +bos @orderingFB"],
   "misOrdered-optional": ["Problem", "+bec Mistimed intervention +eec +bos @orderingFB"],
   "misOrdered-redundant": ["Problem", "+bec Redundant intervention +eec +bos You already did an alternative to this: @redundantToFB +eos"],
   //don't give additional feedback on redudant intervention
@@ -17934,28 +18108,28 @@ const fbTemplatesDef = {
   //currently any patient vital check that is done is fine
   "assessment-option-incorrect": ["Problem", "+bec Incorrect assessment step +eec +bos @incorrectAnswersFB +eos "],
   "decision-option-incorrect": ["Problem", "+bec Incorrect assessment step +eec +bos @incorrectAnswersFB +eos "],
-  "incorrect-answers": ["Problem", "+bec Incorrectly administered intervention +eec +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
-  "optional-incorrect-answers": ["Problem", "+bec Incorrectly administered intervention +eec +bos ?why +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
-  "redundant-incorrect-answers": ["Problem", "+bec Redundant and incorrectly administered intervention +eec +bos You already did an alternative to this: @redundantToFB +eos"],
+  "incorrect-answers": ["Problem", "+bec Incorrect intervention +eec +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
+  "optional-incorrect-answers": ["Problem", "+bec Incorrect intervention +eec +bos ?why +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
+  "redundant-incorrect-answers": ["Problem", "+bec Redundant intervention +eec +bos You already did an alternative to this: @redundantToFB +eos"],
   //minimal is no longer guaranteed to work so could remove these once verified by redesign of analysis software
-  "minimal-incorrect-answers": ["Problem", "+bec Incorrectly administered intervention and violated protocol +eec +bos ?minimalWhy +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
+  "minimal-incorrect-answers": ["Problem", "+bec Incorrect intervention and violated protocol +eec +bos ?minimalWhy +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
   "minimal": ["Caution", "+bec Violated protocol +eec +bos @minimalWhy +bos ?intvStatusFB +eos "],
   "misOrdered-assessment-option-incorrect": ["Problem", "+bec Incorrect, mistimed assessment step +eec +bos @orderingFB +bos @incorrectAnswersFB +eos "],
   "misOrdered-decision-option-incorrect": ["Problem", "+bec Incorrect, mistimed assessment step +eec +bos @orderingFB +bos @incorrectAnswersFB +eos "],
-  "misOrdered-incorrect-answers": ["Problem", "+bec Incorrectly administered, mistimed intervention +eec +bos @orderingFB +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
-  "misOrdered-optional-incorrect-answers": ["Problem", "+bec Incorrectly administerd, mistimed intervention  +eec +bos ?why +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
-  "misOrdered-redundant-incorrect-answers": ["Problem", "+bec Incorrectly administered, redundant intervention +eec +bos You already did an alternative to this: @redundantToFB +eos"],
+  "misOrdered-incorrect-answers": ["Problem", "+bec Incorrect, mistimed intervention +eec +bos @orderingFB +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
+  "misOrdered-optional-incorrect-answers": ["Problem", "+bec Incorrect, mistimed intervention  +eec +bos ?why +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
+  "misOrdered-redundant-incorrect-answers": ["Problem", "+bec Redundant intervention +eec +bos You already did an alternative to this: @redundantToFB +eos"],
   //minimal is no longer guaranteed to work so could remove these once verified during optimization of all design changes
-  "misOrdered-minimal-incorrect-answers": ["Problem", "+bec Incorrectly administered, mistimed intervention +eec +bos @orderingFB +bos @minimalWhy +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
-  "misOrdered-minimal": ["Problem", "+bec Incorrectly administered, mistimed intervention +eec +bos @orderingFB +bos @minimalWhy +bos ?intvStatusFB +eos"],
+  "misOrdered-minimal-incorrect-answers": ["Problem", "+bec Incorrect, mistimed intervention +eec +bos @orderingFB +bos @minimalWhy +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
+  "misOrdered-minimal": ["Problem", "+bec Incorrect, mistimed intervention +eec +bos @orderingFB +bos @minimalWhy +bos ?intvStatusFB +eos"],
   //once analysis software re-written to optimaize all design changes, this section can be eliminated
   //since we are no longer placing the phase feedback in the first item of a phase
   "misOrdered-phase-assessment-option-incorrect": ["Problem", "+bec Incorrect, mistimed assessment step +eec +bos @incorrectAnswersFB +bos @orderingFB +eos "],
   "misOrdered-phase-decision-option-incorrect": ["Problem", "+bec Incorrect, mistimed assessment step  +eec +bos @incorrectAnswersFB +bos @orderingFB +eos "],
-  "misOrdered-phase-incorrect-answers": ["Problem", "+bec Incorrectly administered, mistimed intervention +eec +bos @incorrectAnswersFB +bos @orderingFB +bos ?intvStatusFB +eos"],
-  "misOrdered-phase-optional-incorrect-answers": ["Problem", "+bec Incorrectly administered, mistimed intervention +eec +bos ?why +bos @incorrectAnswersFB +bos @orderingFB +bos ?intvStatusFB +eos"],
+  "misOrdered-phase-incorrect-answers": ["Problem", "+bec Incorrect, mistimed intervention +eec +bos @incorrectAnswersFB +bos @orderingFB +bos ?intvStatusFB +eos"],
+  "misOrdered-phase-optional-incorrect-answers": ["Problem", "+bec Incorrect, mistimed intervention +eec +bos ?why +bos @incorrectAnswersFB +bos @orderingFB +bos ?intvStatusFB +eos"],
   "misOrdered-phase-redundant-incorrect-answers": ["Problem", "+bec Redundant, mistimed intervention +eec +bos You already did an alternative to this: @redundantToFB +bos @orderingFB +eos"],
-  "misOrdered-phase-minimal-incorrect-answers": ["Problem", "+bec Incorrectly administered, mistimed intervention +eec +bos @orderingFB +bos ?minimalWhy +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
+  "misOrdered-phase-minimal-incorrect-answers": ["Problem", "+bec Incorrect, mistimed intervention +eec +bos @orderingFB +bos ?minimalWhy +bos @incorrectAnswersFB +bos ?intvStatusFB +eos"],
   "misOrdered-phase-minimal": ["Problem", "+bec Misordered +eec +bos @orderingFB +bos ?minimalWhy +bos ?intvStatusFB +eos"],
   "green": ["Good", ""],
   //just for headers
@@ -17970,7 +18144,7 @@ const fbTemplatesDef = {
 
 /***/ }),
 
-/***/ 1488:
+/***/ 21488:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18003,7 +18177,7 @@ const leafStatusList = {
 
 /***/ }),
 
-/***/ 573:
+/***/ 20573:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18058,15 +18232,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "vitalsCheckFeedbackID": () => (/* reexport safe */ _analysisData__WEBPACK_IMPORTED_MODULE_3__.vitalsCheckFeedbackID),
 /* harmony export */   "vitalsCheckFeedbackLabel": () => (/* reexport safe */ _analysisData__WEBPACK_IMPORTED_MODULE_3__.vitalsCheckFeedbackLabel)
 /* harmony export */ });
-/* harmony import */ var _mergeDataFiles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4290);
-/* harmony import */ var _c1Data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8680);
-/* harmony import */ var _c2Data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1488);
+/* harmony import */ var _mergeDataFiles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(24290);
+/* harmony import */ var _c1Data__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(98680);
+/* harmony import */ var _c2Data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(21488);
 /* harmony import */ var _analysisData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7686);
-/* harmony import */ var _SC8CP_data_PhaseIE__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7884);
-/* harmony import */ var _B4CA_data_PhaseIE__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(827);
+/* harmony import */ var _SC8CP_data_PhaseIE__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(67884);
+/* harmony import */ var _B4CA_data_PhaseIE__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(60827);
 /* harmony import */ var _B5CA_data_PhaseIE__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6220);
-/* harmony import */ var _C5CA_data_PhaseIE__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8547);
-/* harmony import */ var _Bogus_data_for_testingA__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9628);
+/* harmony import */ var _C5CA_data_PhaseIE__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(98547);
+/* harmony import */ var _Bogus_data_for_testingA__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(19628);
 //import if needed
 //export if needed
 //put accessors here or import them from another file
@@ -18082,7 +18256,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4290:
+/***/ 24290:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18090,14 +18264,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getScenarioFeedback": () => (/* binding */ getScenarioFeedback)
 /* harmony export */ });
-/* harmony import */ var _B4CA_data_PhaseDEBRF__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8586);
-/* harmony import */ var _B4CA_data_PhaseIE__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(827);
-/* harmony import */ var _B5CA_data_PhaseDEBRF__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(351);
+/* harmony import */ var _B4CA_data_PhaseDEBRF__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(78586);
+/* harmony import */ var _B4CA_data_PhaseIE__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(60827);
+/* harmony import */ var _B5CA_data_PhaseDEBRF__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(40351);
 /* harmony import */ var _B5CA_data_PhaseIE__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6220);
-/* harmony import */ var _C5CA_data_PhaseDEBRF__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4077);
-/* harmony import */ var _C5CA_data_PhaseIE__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8547);
-/* harmony import */ var _SC8CP_DEBR_Data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1412);
-/* harmony import */ var _SC8CP_data_PhaseIE__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7884);
+/* harmony import */ var _C5CA_data_PhaseDEBRF__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(34077);
+/* harmony import */ var _C5CA_data_PhaseIE__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(98547);
+/* harmony import */ var _SC8CP_DEBR_Data__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(91412);
+/* harmony import */ var _SC8CP_data_PhaseIE__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(67884);
 
 
 
@@ -18156,7 +18330,7 @@ function getScenarioFeedback(scenName) {
 
 /***/ }),
 
-/***/ 4354:
+/***/ 54354:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18184,7 +18358,7 @@ function para(...spans) {
 
 /***/ }),
 
-/***/ 6011:
+/***/ 36011:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18196,10 +18370,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "PrivateRoute": () => (/* reexport safe */ _lib_routes_PrivateRoute__WEBPACK_IMPORTED_MODULE_2__["default"]),
 /* harmony export */   "StaffRoute": () => (/* reexport safe */ _lib_routes_StaffRoute__WEBPACK_IMPORTED_MODULE_3__["default"])
 /* harmony export */ });
-/* harmony import */ var _lib_contexts_Auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5600);
+/* harmony import */ var _lib_contexts_Auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(25600);
 /* harmony import */ var _lib_components_AuthFlow__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2956);
-/* harmony import */ var _lib_routes_PrivateRoute__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9585);
-/* harmony import */ var _lib_routes_StaffRoute__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(609);
+/* harmony import */ var _lib_routes_PrivateRoute__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(39585);
+/* harmony import */ var _lib_routes_StaffRoute__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(90609);
 
 
 
@@ -18218,14 +18392,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5600);
-/* harmony import */ var _LoginForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9907);
-/* harmony import */ var _RegistrationForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5032);
-/* harmony import */ var _ForgotPasswordForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4516);
-/* harmony import */ var _EmailVerification__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7650);
-/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(4292);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-auth/src/lib/components/AuthFlow.js";
+/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(25600);
+/* harmony import */ var _LoginForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(59907);
+/* harmony import */ var _RegistrationForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(75032);
+/* harmony import */ var _ForgotPasswordForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(44516);
+/* harmony import */ var _EmailVerification__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(57650);
+/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(94292);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/AuthFlow.js";
 
 
 
@@ -18295,7 +18469,7 @@ const AuthFlow = ({
 
 /***/ }),
 
-/***/ 7650:
+/***/ 57650:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18305,11 +18479,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7122);
-/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4292);
-/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5600);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-auth/src/lib/components/EmailVerification.js";
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
+/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(94292);
+/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(25600);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/EmailVerification.js";
  // useCallback, 
 
  // import cn from "classnames"
@@ -18499,7 +18673,7 @@ const EmailVerification = () => {
 
 /***/ }),
 
-/***/ 4516:
+/***/ 44516:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18509,12 +18683,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5600);
-/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(4292);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-auth/src/lib/components/ForgotPasswordForm.js";
+/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(25600);
+/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(94292);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/ForgotPasswordForm.js";
 
 
 
@@ -18660,7 +18834,7 @@ const ForgotPasswordForm = () => {
 
 /***/ }),
 
-/***/ 9907:
+/***/ 59907:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18668,19 +18842,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5600);
-/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(4292);
-/* harmony import */ var _icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3391);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-auth/src/lib/components/LoginForm.js";
+/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(25600);
+/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(94292);
+/* harmony import */ var _icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(93391);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/LoginForm.js";
 
 
 
@@ -18886,7 +19060,7 @@ const LoginForm = () => {
 
 /***/ }),
 
-/***/ 5032:
+/***/ 75032:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -18894,19 +19068,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4292);
-/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5600);
-/* harmony import */ var _icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3391);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-auth/src/lib/components/RegistrationForm.js";
+/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(94292);
+/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(25600);
+/* harmony import */ var _icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(93391);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/RegistrationForm.js";
 
 
 
@@ -19162,7 +19336,7 @@ const RegistrationForm = () => {
 
 /***/ }),
 
-/***/ 3391:
+/***/ 93391:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19172,11 +19346,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4292);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-auth/src/lib/components/icons/PasswordVisibilityIcon.js";
+/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(94292);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/icons/PasswordVisibilityIcon.js";
 
 
 
@@ -19201,7 +19375,7 @@ const PasswordVisibilityIcon = ({
 
 /***/ }),
 
-/***/ 5600:
+/***/ 25600:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19211,17 +19385,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "AuthContext": () => (/* binding */ AuthContext),
 /* harmony export */   "AuthProvider": () => (/* binding */ AuthProvider)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3439);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(73439);
 /* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9526);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-auth/src/lib/contexts/Auth.js";
+/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(89526);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/contexts/Auth.js";
 
 
 
@@ -19465,7 +19639,7 @@ function AuthProvider({
 
 /***/ }),
 
-/***/ 9585:
+/***/ 39585:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19473,18 +19647,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Users_user_Projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1461);
-/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3105);
+/* harmony import */ var _Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31461);
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(43105);
 /* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7267);
-/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5600);
+/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(25600);
 /* harmony import */ var _components_AuthFlow__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2956);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9663);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
 
 const _excluded = ["component", "authFlowLayout"];
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-auth/src/lib/routes/PrivateRoute.js";
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/routes/PrivateRoute.js";
 
 
 /* eslint-disable no-extra-boolean-cast */
@@ -19499,7 +19673,7 @@ const PrivateRoute = _ref => {
     component: RouteComponent,
     authFlowLayout: Layout
   } = _ref,
-      rest = (0,_Users_user_Projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, _excluded);
+      rest = (0,_Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, _excluded);
 
   const {
     emailVerified
@@ -19565,7 +19739,7 @@ const PrivateRoute = _ref => {
 
 /***/ }),
 
-/***/ 609:
+/***/ 90609:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19573,18 +19747,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Users_user_Projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1461);
-/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3105);
+/* harmony import */ var _Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31461);
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(43105);
 /* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7267);
-/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5600);
+/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(25600);
 /* harmony import */ var _components_AuthFlow__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2956);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9663);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
 
 const _excluded = ["component", "authFlowLayout"];
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-auth/src/lib/routes/StaffRoute.js";
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/routes/StaffRoute.js";
 
 
 
@@ -19611,7 +19785,7 @@ const StaffRoute = _ref => {
     component: RouteComponent,
     authFlowLayout: Layout
   } = _ref,
-      rest = (0,_Users_user_Projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, _excluded);
+      rest = (0,_Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, _excluded);
 
   const {
     isAuthenticated,
@@ -19701,24 +19875,100 @@ const StaffRoute = _ref => {
 
 /***/ }),
 
-/***/ 5334:
+/***/ 55334:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MDBModal": () => (/* reexport safe */ _lib_modal__WEBPACK_IMPORTED_MODULE_2__.MDBModal),
 /* harmony export */   "MDBNavBar": () => (/* reexport safe */ _lib_navbar_MDBNavBar__WEBPACK_IMPORTED_MODULE_1__.MDBNavBar),
 /* harmony export */   "Snackbar": () => (/* reexport safe */ _lib_snackbar_Snackbar__WEBPACK_IMPORTED_MODULE_0__.Snackbar),
 /* harmony export */   "useSnackbar": () => (/* reexport safe */ _lib_snackbar_Snackbar__WEBPACK_IMPORTED_MODULE_0__.useSnackbar)
 /* harmony export */ });
-/* harmony import */ var _lib_snackbar_Snackbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(4106);
-/* harmony import */ var _lib_navbar_MDBNavBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3042);
+/* harmony import */ var _lib_snackbar_Snackbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(84106);
+/* harmony import */ var _lib_navbar_MDBNavBar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(13042);
+/* harmony import */ var _lib_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(36918);
+
 
 
 
 /***/ }),
 
-/***/ 3042:
+/***/ 20210:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MDBModal)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(19939);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(74278);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3743);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/modal/MDBModal.jsx";
+
+
+
+function MDBModal({
+  title,
+  show,
+  dismiss,
+  size = "xl",
+  children
+}) {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    isOpen: show,
+    toggle: dismiss,
+    size: size,
+    backdrop: "static",
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      toggle: dismiss,
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("span", {
+        className: "h2",
+        children: title
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 16,
+        columnNumber: 17
+      }, this)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 15,
+      columnNumber: 13
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      children: children
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 18,
+      columnNumber: 13
+    }, this)]
+  }, void 0, true, {
+    fileName: _jsxFileName,
+    lineNumber: 9,
+    columnNumber: 9
+  }, this);
+}
+
+/***/ }),
+
+/***/ 36918:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "MDBModal": () => (/* reexport safe */ _MDBModal__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _MDBModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(20210);
+
+
+/***/ }),
+
+/***/ 13042:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19729,14 +19979,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8259);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9876);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(39876);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2441);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6643);
-/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6011);
-/* harmony import */ var _UserDropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2495);
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2910);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-ui/src/lib/navbar/MDBNavBar.js";
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(47933);
+/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(36011);
+/* harmony import */ var _UserDropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(42495);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(92910);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/navbar/MDBNavBar.js";
 
 
 
@@ -19809,7 +20059,7 @@ function MDBNavBar({
 
 /***/ }),
 
-/***/ 2495:
+/***/ 42495:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19817,20 +20067,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ UserDropDown)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1711);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7772);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2845);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2664);
-/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6011);
-/* harmony import */ var _UserIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9220);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-ui/src/lib/navbar/UserDropDown.js";
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(21711);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(97772);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(52845);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(72664);
+/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(36011);
+/* harmony import */ var _UserIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(69220);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/navbar/UserDropDown.js";
 
 
 
@@ -19915,7 +20165,7 @@ function UserDropDown({
 
 /***/ }),
 
-/***/ 9220:
+/***/ 69220:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19925,8 +20175,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-ui/src/lib/navbar/UserIcon.js";
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/navbar/UserIcon.js";
 
 
 
@@ -19950,7 +20200,7 @@ const UserIcon = ({
 
 /***/ }),
 
-/***/ 4106:
+/***/ 84106:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19959,11 +20209,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "Snackbar": () => (/* binding */ Snackbar),
 /* harmony export */   "useSnackbar": () => (/* binding */ useSnackbar)
 /* harmony export */ });
-/* harmony import */ var zustand__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2467);
-/* harmony import */ var zustand_shallow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2414);
-/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2910);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9663);
-var _jsxFileName = "/Users/user/Projects/monorepo/libs/mdb-ui/src/lib/snackbar/Snackbar.js";
+/* harmony import */ var zustand__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(92467);
+/* harmony import */ var zustand_shallow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32414);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(92910);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/snackbar/Snackbar.js";
 
  // import classNames from "classnames";
 // import styles from "./Snackbar.module.css";
@@ -20009,7 +20259,7 @@ function Snackbar() {
 
 /***/ }),
 
-/***/ 580:
+/***/ 87988:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20036,23 +20286,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "processAssessmentAnswers": () => (/* binding */ processAssessmentAnswers),
 /* harmony export */   "processInterventionAnswers": () => (/* binding */ processInterventionAnswers)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9529);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(39529);
 /* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1235);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31235);
 /* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7950);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8319);
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var core_js_modules_es_string_trim_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(5794);
-/* harmony import */ var core_js_modules_es_string_trim_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_trim_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5735);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6886);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_6__);
-
-
-
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6886);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_3__);
 
 
 
@@ -20085,16 +20326,6 @@ function getAnswerIDs(scen) {
   }
 }
 
-function getPromptLabel(promptID) {
-  let prompt = prompts.find(e => e.id === promptID);
-
-  if (prompt) {
-    return prompt.abbrLabel || prompt.label;
-  } else {
-    return null;
-  }
-}
-
 function getPrescribedInvAnswers(interventionID, variantDef) {
   let intvEntry = scenario.interventionVariantAnswers[interventionID];
 
@@ -20116,20 +20347,17 @@ function processAssessmentAnswers(eventIn, eventOut, prescribedAnswers, errorSta
     let answerDetails;
     let correctAnswerLabel;
     let givenAnswerLabel;
-    let promptLabel;
     eventOut.answerCorrect = true;
     let promptID = eventIn.parentID;
     let answerID = eventIn.id;
     let correctAnswerIDs = prescribedAnswers[promptID];
     correctAnswerLabel = getAnswerLabels(correctAnswerIDs, "one-or-more");
     givenAnswerLabel = getAnswerLabel(answerID);
-    promptLabel = getPromptLabel(promptID);
 
     if (correctAnswerLabel && givenAnswerLabel) {
       let answerCorrect = correctAnswerIDs.includes(answerID); //store details of this answer and its grading
 
       answerDetails = {
-        "promptLabel": promptLabel,
         "correctAnswer": correctAnswerLabel,
         "givenAnswer": givenAnswerLabel,
         "correct": answerCorrect
@@ -20140,18 +20368,11 @@ function processAssessmentAnswers(eventIn, eventOut, prescribedAnswers, errorSta
       if (!answerCorrect) {
         eventOut.answerCorrect = false;
         eventOut.status = errorStatusVal;
-        let label = correctAnswerLabel.split(":", 1)[0];
-
-        if (label) {
-          label = label.trim().toLowerCase();
-        } else {
-          label = "";
-        }
 
         if (eventOut.incorrectAnswersFB) {
-          eventOut.incorrectAnswersFB = eventOut.incorrectAnswersFB + ", and " + label;
+          eventOut.incorrectAnswersFB = eventOut.incorrectAnswersFB + ", and " + correctAnswerLabel;
         } else {
-          eventOut.incorrectAnswersFB = label;
+          eventOut.incorrectAnswersFB = correctAnswerLabel;
         }
       }
     }
@@ -20160,11 +20381,6 @@ function processAssessmentAnswers(eventIn, eventOut, prescribedAnswers, errorSta
   eventOut.id = eventIn.parentID;
   eventOut.label = eventIn.parentLabel;
   eventOut.actionDescription = eventOut.label;
-
-  if (!eventOut.answerCorrect) {
-    eventOut.incorrectAnswersFB = "You were incorrect about " + eventOut.incorrectAnswersFB;
-  }
-
   return eventOut;
 } //eventIn is the observer log event and eventOut is the event
 //being annotated during analysis
@@ -20174,7 +20390,6 @@ function processInterventionAnswers(eventIn, eventOut, prescribedAnswers, errorS
     let answerDetails;
     let correctAnswerLabel;
     let givenAnswerLabel;
-    let promptLabel;
     eventOut.answerCorrect = true; // move through the given answers and compare to the prescribed answers
 
     for (const [promptID, answerEntry] of Object.entries(eventIn.answers)) {
@@ -20184,14 +20399,12 @@ function processInterventionAnswers(eventIn, eventOut, prescribedAnswers, errorS
       let correctAnswerIDs = prescribedAnswers[promptID];
       correctAnswerLabel = getAnswerLabels(correctAnswerIDs, answerType);
       givenAnswerLabel = getAnswerLabels(answerIDs, answerType);
-      promptLabel = getPromptLabel(promptID);
 
       if (correctAnswerLabel && givenAnswerLabel) {
         //need to extract answerType from somewhere
         let answerCorrectness = evalAnswers(answerIDs, correctAnswerIDs, answerType); //store details of this answer and its grading
 
         answerDetails = {
-          "promptLabel": promptLabel,
           "correctAnswer": correctAnswerLabel,
           "givenAnswer": givenAnswerLabel,
           "correct": answerCorrectness
@@ -20202,25 +20415,14 @@ function processInterventionAnswers(eventIn, eventOut, prescribedAnswers, errorS
         if (!answerCorrectness) {
           eventOut.answerCorrect = false;
           eventOut.status = errorStatusVal;
-          let label = correctAnswerLabel.split(":", 1)[0];
-
-          if (label) {
-            label = label.trim().toLowerCase();
-          } else {
-            label = "";
-          }
 
           if (eventOut.incorrectAnswersFB) {
-            eventOut.incorrectAnswersFB = eventOut.incorrectAnswersFB + ", and " + label;
+            eventOut.incorrectAnswersFB = eventOut.incorrectAnswersFB + ", and " + correctAnswerLabel;
           } else {
-            eventOut.incorrectAnswersFB = label;
+            eventOut.incorrectAnswersFB = correctAnswerLabel;
           }
         }
       }
-    }
-
-    if (!eventOut.answerCorrect) {
-      eventOut.incorrectAnswersFB = "You were incorrect about " + eventOut.incorrectAnswersFB;
     }
   }
 
@@ -20297,14 +20499,14 @@ const getAnswerLabels = (answerIDs, answerType) => {
 
 /***/ }),
 
-/***/ 9322:
+/***/ 89322:
 /***/ ((module) => {
 
-module.exports = [[module.id, "/* The snackbar - position it at the bottom and in the middle of the screen */\n#mdb-snackbar {\n    visibility: hidden;\n    /* Hidden by default. Visible on click */\n    /* min-width: 250px; */\n    width: 100%;\n    /* Set a default minimum width */\n    /* margin-left: -125px; */\n    /* margin-left: 0; */\n    /* Divide value of min-width by 2 */\n    background-color: #333;\n    /* Black background color */\n    color: #fff;\n    /* White text color */\n    text-align: center;\n    /* Centered text */\n    border-radius: 2px;\n    /* Rounded borders */\n    padding: 16px;\n    /* Padding */\n    position: fixed;\n    /* Sit on top of the screen */\n    z-index: 1;\n    /* Add a z-index if needed */\n    /* left: 50%; */\n    /* Center the snackbar */\n    bottom: 0px;\n    /* 30px from the bottom */\n}\n/* Show the snackbar when clicking on a button (class added with JavaScript) */\n#mdb-snackbar.show {\n    visibility: visible;\n    /* Show the snackbar */\n    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.\n  However, delay the fade out process for 2.5 seconds */\n    -webkit-animation: fadein 1.0s, fadeout 1.0s 2.5s;\n    animation: fadein 1.0s, fadeout 1.0s 2.5s;\n}\n/* Animations to fade the snackbar in and out */\n@-webkit-keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n@keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n@-webkit-keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30;\n        opacity: 0;\n    }\n}\n@keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30px;\n        opacity: 0;\n    }\n}\nnav.navbar {\n    margin-left: 0;\n    padding-left: 15px;\n    padding-top: 0;\n    padding-bottom: 0;\n    padding-right: 0;\n}\n.brand-wrapper {\n    padding: 0;\n}\n.brand {\n    color: #007bff;\n    font-size: 30px;\n    margin-right: 4px;\n    padding-right: 8px;\n}\n.mdb-title {\n    font-size: 24px;\n    padding-top: 11px;\n    padding-bottom: 5px;\n}\n.navbar-text {\n    margin-bottom: 0;\n}\n.nav button {\n    margin-left: 2px;\n    margin-right: 2px;\n}\n.navbar-btn {\n    text-transform: uppercase;\n    margin-top: 12px;\n    padding-top: 0;\n    padding-bottom: 0;\n    border: 0;\n    height: 25px;\n    margin-left: 7px !important;\n    margin-right: 7px !important;\n}", '', {"version":3,"sources":["/Users/user/Projects/monorepo/libs/mdb-ui/src/lib/index.css"],"names":[],"mappings":"AAAA,6EAA6E;AAC7E;IACI,kBAAkB;IAClB,wCAAwC;IACxC,sBAAsB;IACtB,WAAW;IACX,gCAAgC;IAChC,yBAAyB;IACzB,oBAAoB;IACpB,mCAAmC;IACnC,sBAAsB;IACtB,2BAA2B;IAC3B,WAAW;IACX,qBAAqB;IACrB,kBAAkB;IAClB,kBAAkB;IAClB,kBAAkB;IAClB,oBAAoB;IACpB,aAAa;IACb,YAAY;IACZ,eAAe;IACf,6BAA6B;IAC7B,UAAU;IACV,4BAA4B;IAC5B,eAAe;IACf,wBAAwB;IACxB,WAAW;IACX,yBAAyB;AAC7B;AAEA,8EAA8E;AAC9E;IACI,mBAAmB;IACnB,sBAAsB;IACtB;uDACmD;IACnD,iDAAiD;IACjD,yCAAyC;AAC7C;AAEA,+CAA+C;AAC/C;IACI;QACI,aAAa;QACb,UAAU;IACd;IACA;QACI,SAAS;QACT,UAAU;IACd;AACJ;AAEA;IACI;QACI,aAAa;QACb,UAAU;IACd;IACA;QACI,SAAS;QACT,UAAU;IACd;AACJ;AAEA;IACI;QACI,SAAS;QACT,UAAU;IACd;;IAEA;QACI,WAAW;QACX,UAAU;IACd;AACJ;AAEA;IACI;QACI,SAAS;QACT,UAAU;IACd;;IAEA;QACI,aAAa;QACb,UAAU;IACd;AACJ;AACA;IACI,cAAc;IACd,kBAAkB;IAClB,cAAc;IACd,iBAAiB;IACjB,gBAAgB;AACpB;AAEA;IACI,UAAU;AACd;AAEA;IACI,cAAc;IACd,eAAe;IACf,iBAAiB;IACjB,kBAAkB;AACtB;AAEA;IACI,eAAe;IACf,iBAAiB;IACjB,mBAAmB;AACvB;AAEA;IACI,gBAAgB;AACpB;AAEA;IACI,gBAAgB;IAChB,iBAAiB;AACrB;AAEA;IACI,yBAAyB;IACzB,gBAAgB;IAChB,cAAc;IACd,iBAAiB;IACjB,SAAS;IACT,YAAY;IACZ,2BAA2B;IAC3B,4BAA4B;AAChC","sourcesContent":["/* The snackbar - position it at the bottom and in the middle of the screen */\n#mdb-snackbar {\n    visibility: hidden;\n    /* Hidden by default. Visible on click */\n    /* min-width: 250px; */\n    width: 100%;\n    /* Set a default minimum width */\n    /* margin-left: -125px; */\n    /* margin-left: 0; */\n    /* Divide value of min-width by 2 */\n    background-color: #333;\n    /* Black background color */\n    color: #fff;\n    /* White text color */\n    text-align: center;\n    /* Centered text */\n    border-radius: 2px;\n    /* Rounded borders */\n    padding: 16px;\n    /* Padding */\n    position: fixed;\n    /* Sit on top of the screen */\n    z-index: 1;\n    /* Add a z-index if needed */\n    /* left: 50%; */\n    /* Center the snackbar */\n    bottom: 0px;\n    /* 30px from the bottom */\n}\n\n/* Show the snackbar when clicking on a button (class added with JavaScript) */\n#mdb-snackbar.show {\n    visibility: visible;\n    /* Show the snackbar */\n    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.\n  However, delay the fade out process for 2.5 seconds */\n    -webkit-animation: fadein 1.0s, fadeout 1.0s 2.5s;\n    animation: fadein 1.0s, fadeout 1.0s 2.5s;\n}\n\n/* Animations to fade the snackbar in and out */\n@-webkit-keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n\n@keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n\n@-webkit-keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30;\n        opacity: 0;\n    }\n}\n\n@keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30px;\n        opacity: 0;\n    }\n}\nnav.navbar {\n    margin-left: 0;\n    padding-left: 15px;\n    padding-top: 0;\n    padding-bottom: 0;\n    padding-right: 0;\n}\n\n.brand-wrapper {\n    padding: 0;\n}\n\n.brand {\n    color: #007bff;\n    font-size: 30px;\n    margin-right: 4px;\n    padding-right: 8px;\n}\n\n.mdb-title {\n    font-size: 24px;\n    padding-top: 11px;\n    padding-bottom: 5px;\n}\n\n.navbar-text {\n    margin-bottom: 0;\n}\n\n.nav button {\n    margin-left: 2px;\n    margin-right: 2px;\n}\n\n.navbar-btn {\n    text-transform: uppercase;\n    margin-top: 12px;\n    padding-top: 0;\n    padding-bottom: 0;\n    border: 0;\n    height: 25px;\n    margin-left: 7px !important;\n    margin-right: 7px !important;\n}"],"sourceRoot":""}]]
+module.exports = [[module.id, "/* The snackbar - position it at the bottom and in the middle of the screen */\n#mdb-snackbar {\n    visibility: hidden;\n    /* Hidden by default. Visible on click */\n    /* min-width: 250px; */\n    width: 100%;\n    /* Set a default minimum width */\n    /* margin-left: -125px; */\n    /* margin-left: 0; */\n    /* Divide value of min-width by 2 */\n    background-color: #333;\n    /* Black background color */\n    color: #fff;\n    /* White text color */\n    text-align: center;\n    /* Centered text */\n    border-radius: 2px;\n    /* Rounded borders */\n    padding: 16px;\n    /* Padding */\n    position: fixed;\n    /* Sit on top of the screen */\n    z-index: 1;\n    /* Add a z-index if needed */\n    /* left: 50%; */\n    /* Center the snackbar */\n    bottom: 0px;\n    /* 30px from the bottom */\n}\n/* Show the snackbar when clicking on a button (class added with JavaScript) */\n#mdb-snackbar.show {\n    visibility: visible;\n    /* Show the snackbar */\n    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.\n  However, delay the fade out process for 2.5 seconds */\n    -webkit-animation: fadein 1.0s, fadeout 1.0s 2.5s;\n    animation: fadein 1.0s, fadeout 1.0s 2.5s;\n}\n/* Animations to fade the snackbar in and out */\n@-webkit-keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n@keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n@-webkit-keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30;\n        opacity: 0;\n    }\n}\n@keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30px;\n        opacity: 0;\n    }\n}\nnav.navbar {\n    margin-left: 0;\n    padding-left: 15px;\n    padding-top: 0;\n    padding-bottom: 0;\n    padding-right: 0;\n}\n.brand-wrapper {\n    padding: 0;\n}\n.brand {\n    color: #007bff;\n    font-size: 30px;\n    margin-right: 4px;\n    padding-right: 8px;\n}\n.mdb-title {\n    font-size: 24px;\n    padding-top: 11px;\n    padding-bottom: 5px;\n}\n.navbar-text {\n    margin-bottom: 0;\n}\n.nav button {\n    margin-left: 2px;\n    margin-right: 2px;\n}\n.navbar-btn {\n    text-transform: uppercase;\n    margin-top: 12px;\n    padding-top: 0;\n    padding-bottom: 0;\n    border: 0;\n    height: 25px;\n    margin-left: 7px !important;\n    margin-right: 7px !important;\n}", '', {"version":3,"sources":["/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/index.css"],"names":[],"mappings":"AAAA,6EAA6E;AAC7E;IACI,kBAAkB;IAClB,wCAAwC;IACxC,sBAAsB;IACtB,WAAW;IACX,gCAAgC;IAChC,yBAAyB;IACzB,oBAAoB;IACpB,mCAAmC;IACnC,sBAAsB;IACtB,2BAA2B;IAC3B,WAAW;IACX,qBAAqB;IACrB,kBAAkB;IAClB,kBAAkB;IAClB,kBAAkB;IAClB,oBAAoB;IACpB,aAAa;IACb,YAAY;IACZ,eAAe;IACf,6BAA6B;IAC7B,UAAU;IACV,4BAA4B;IAC5B,eAAe;IACf,wBAAwB;IACxB,WAAW;IACX,yBAAyB;AAC7B;AAEA,8EAA8E;AAC9E;IACI,mBAAmB;IACnB,sBAAsB;IACtB;uDACmD;IACnD,iDAAiD;IACjD,yCAAyC;AAC7C;AAEA,+CAA+C;AAC/C;IACI;QACI,aAAa;QACb,UAAU;IACd;IACA;QACI,SAAS;QACT,UAAU;IACd;AACJ;AAEA;IACI;QACI,aAAa;QACb,UAAU;IACd;IACA;QACI,SAAS;QACT,UAAU;IACd;AACJ;AAEA;IACI;QACI,SAAS;QACT,UAAU;IACd;;IAEA;QACI,WAAW;QACX,UAAU;IACd;AACJ;AAEA;IACI;QACI,SAAS;QACT,UAAU;IACd;;IAEA;QACI,aAAa;QACb,UAAU;IACd;AACJ;AACA;IACI,cAAc;IACd,kBAAkB;IAClB,cAAc;IACd,iBAAiB;IACjB,gBAAgB;AACpB;AAEA;IACI,UAAU;AACd;AAEA;IACI,cAAc;IACd,eAAe;IACf,iBAAiB;IACjB,kBAAkB;AACtB;AAEA;IACI,eAAe;IACf,iBAAiB;IACjB,mBAAmB;AACvB;AAEA;IACI,gBAAgB;AACpB;AAEA;IACI,gBAAgB;IAChB,iBAAiB;AACrB;AAEA;IACI,yBAAyB;IACzB,gBAAgB;IAChB,cAAc;IACd,iBAAiB;IACjB,SAAS;IACT,YAAY;IACZ,2BAA2B;IAC3B,4BAA4B;AAChC","sourcesContent":["/* The snackbar - position it at the bottom and in the middle of the screen */\n#mdb-snackbar {\n    visibility: hidden;\n    /* Hidden by default. Visible on click */\n    /* min-width: 250px; */\n    width: 100%;\n    /* Set a default minimum width */\n    /* margin-left: -125px; */\n    /* margin-left: 0; */\n    /* Divide value of min-width by 2 */\n    background-color: #333;\n    /* Black background color */\n    color: #fff;\n    /* White text color */\n    text-align: center;\n    /* Centered text */\n    border-radius: 2px;\n    /* Rounded borders */\n    padding: 16px;\n    /* Padding */\n    position: fixed;\n    /* Sit on top of the screen */\n    z-index: 1;\n    /* Add a z-index if needed */\n    /* left: 50%; */\n    /* Center the snackbar */\n    bottom: 0px;\n    /* 30px from the bottom */\n}\n\n/* Show the snackbar when clicking on a button (class added with JavaScript) */\n#mdb-snackbar.show {\n    visibility: visible;\n    /* Show the snackbar */\n    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.\n  However, delay the fade out process for 2.5 seconds */\n    -webkit-animation: fadein 1.0s, fadeout 1.0s 2.5s;\n    animation: fadein 1.0s, fadeout 1.0s 2.5s;\n}\n\n/* Animations to fade the snackbar in and out */\n@-webkit-keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n\n@keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n\n@-webkit-keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30;\n        opacity: 0;\n    }\n}\n\n@keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30px;\n        opacity: 0;\n    }\n}\nnav.navbar {\n    margin-left: 0;\n    padding-left: 15px;\n    padding-top: 0;\n    padding-bottom: 0;\n    padding-right: 0;\n}\n\n.brand-wrapper {\n    padding: 0;\n}\n\n.brand {\n    color: #007bff;\n    font-size: 30px;\n    margin-right: 4px;\n    padding-right: 8px;\n}\n\n.mdb-title {\n    font-size: 24px;\n    padding-top: 11px;\n    padding-bottom: 5px;\n}\n\n.navbar-text {\n    margin-bottom: 0;\n}\n\n.nav button {\n    margin-left: 2px;\n    margin-right: 2px;\n}\n\n.navbar-btn {\n    text-transform: uppercase;\n    margin-top: 12px;\n    padding-top: 0;\n    padding-bottom: 0;\n    border: 0;\n    height: 25px;\n    margin-left: 7px !important;\n    margin-right: 7px !important;\n}"],"sourceRoot":""}]]
 
 /***/ }),
 
-/***/ 506:
+/***/ 20506:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20317,7 +20519,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 4292:
+/***/ 94292:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20330,7 +20532,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 5056:
+/***/ 55056:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20340,7 +20542,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 2910:
+/***/ 92910:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20348,19 +20550,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6062);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(46062);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4036);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(44036);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6793);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(96793);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7892);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(17892);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1173);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11173);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2464);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(42464);
 /* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _node_modules_nrwl_web_src_utils_webpack_plugins_raw_css_loader_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_3_oneOf_4_use_2_index_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9322);
+/* harmony import */ var _node_modules_nrwl_web_src_utils_webpack_plugins_raw_css_loader_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_3_oneOf_4_use_2_index_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(89322);
 /* harmony import */ var _node_modules_nrwl_web_src_utils_webpack_plugins_raw_css_loader_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_3_oneOf_4_use_2_index_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_node_modules_nrwl_web_src_utils_webpack_plugins_raw_css_loader_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_3_oneOf_4_use_2_index_css__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
 /* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_nrwl_web_src_utils_webpack_plugins_raw_css_loader_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_3_oneOf_4_use_2_index_css__WEBPACK_IMPORTED_MODULE_6__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_nrwl_web_src_utils_webpack_plugins_raw_css_loader_js_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_3_oneOf_4_use_2_index_css__WEBPACK_IMPORTED_MODULE_6__[__WEBPACK_IMPORT_KEY__]
@@ -20396,7 +20598,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 /***/ }),
 
-/***/ 9526:
+/***/ 89526:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20407,9 +20609,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "useFirebaseProject": () => (/* binding */ useFirebaseProject)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
-/* harmony import */ var firebase_compat_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9748);
-/* harmony import */ var firebase_compat_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2094);
-/* harmony import */ var firebase_compat_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8790);
+/* harmony import */ var firebase_compat_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49748);
+/* harmony import */ var firebase_compat_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(32094);
+/* harmony import */ var firebase_compat_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(78790);
 
 
 
@@ -20439,7 +20641,7 @@ function getProjectConfig(projectName) {
         appId: "1:447730403122:web:1727020dbac4ad4cf6f92b"
       };
 
-    case "MedDBrieferDev":
+    case "MedDBriefer-dev":
       return {
         apiKey: "AIzaSyBqnEMwEstp4D7Mvtbw9OTAiNJ7qza0Ses",
         authDomain: "meddbriefer-dev.firebaseapp.com",
@@ -20498,7 +20700,7 @@ const useFirebase = () => (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(Fire
 
 /***/ }),
 
-/***/ 5558:
+/***/ 95558:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20654,7 +20856,7 @@ const PROTOCOL_RELATIONSHIPS = Object.freeze({
 
 /***/ }),
 
-/***/ 8913:
+/***/ 48913:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -20720,15 +20922,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "verifyDocNameUniqueness": () => (/* binding */ verifyDocNameUniqueness),
 /* harmony export */   "verifyDocument": () => (/* binding */ verifyDocument)
 /* harmony export */ });
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6635);
-/* harmony import */ var json_stable_stringify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2117);
-/* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5558);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(76635);
+/* harmony import */ var json_stable_stringify__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(22117);
+/* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(95558);
 /* harmony import */ var _types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7237);
-/* harmony import */ var _intvs_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(4028);
-/* harmony import */ var _intvPrompts_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3836);
-/* harmony import */ var _intvPromptAnswers_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7246);
-/* harmony import */ var _intvMenusCats_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(6308);
-/* harmony import */ var _intvMenuItems_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1722);
+/* harmony import */ var _intvs_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(84028);
+/* harmony import */ var _intvPrompts_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(53836);
+/* harmony import */ var _intvPromptAnswers_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(37246);
+/* harmony import */ var _intvMenusCats_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(838);
+/* harmony import */ var _intvMenuItems_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(11722);
 
 
 
@@ -21430,7 +21632,7 @@ const intvVariant2JSON = intvVariant => {
 
 /***/ }),
 
-/***/ 1722:
+/***/ 11722:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -21849,7 +22051,7 @@ const INTV_MENU_ITEMS = [{
 
 /***/ }),
 
-/***/ 6308:
+/***/ 838:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -21902,7 +22104,7 @@ const INTV_MENU_CATS = [{
 
 /***/ }),
 
-/***/ 7246:
+/***/ 37246:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22414,7 +22616,7 @@ const INTV_PROMPT_ANSWERS = [{
 
 /***/ }),
 
-/***/ 3836:
+/***/ 53836:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22422,7 +22624,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(8913);
+/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(48913);
 
 const INTV_PROMPTS = [{
   "id": "prompt-wound-location",
@@ -22656,7 +22858,7 @@ const INTV_PROMPTS = [{
 
 /***/ }),
 
-/***/ 4028:
+/***/ 84028:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -22940,8 +23142,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "PublishedScenario": () => (/* binding */ PublishedScenario),
 /* harmony export */   "ScenarioType": () => (/* binding */ ScenarioType)
 /* harmony export */ });
-/* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5558);
-/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7414);
+/* harmony import */ var _constants_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(95558);
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(97414);
 
 
 class ScenarioType {
@@ -23503,7 +23705,7 @@ class PublishedScenario {
 
 /***/ }),
 
-/***/ 7414:
+/***/ 97414:
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -23538,7 +23740,7 @@ const groupByKey = (list, key) => list.reduce((hash, obj) => ({ ...hash,
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ __webpack_require__.O(0, ["vendor"], () => (__webpack_exec__(7645)));
+/******/ __webpack_require__.O(0, ["vendor"], () => (__webpack_exec__(57645)));
 /******/ var __webpack_exports__ = __webpack_require__.O();
 /******/ }
 ]);
