@@ -3493,45 +3493,39 @@ function determineStatusOfNotFound(id, promptIDarray) {
 
 function examineDups(events) {
   let newEvent;
-  let misordered = false;
-  let noError = false;
-  let interimEvent; // will eventually need to separate any with variants from under the same eventID as not being
+  /* let misordered = false
+  let noError = false
+  let interimEvent
+   // will eventually need to separate any with variants from under the same eventID as not being
   //duplicatea.  But for now we have no feedback for variants so can ignore variants for now.
-  //regularize status of each instance of event 
+   //regularize status of each instance of event 
   //if any of the dups of event is without an error then can say there
   //are no errors.
   //However, if any of the dups are misordered then can report it as
   //misOrdered in the summary
-
   for (const event of events) {
-    interimEvent = regularizeStatus(event);
-
-    if (!["error", "misOrderedError"].includes(interimEvent.status)) {
-      noError = true;
+    interimEvent = regularizeStatus(event)
+    if (!["error", "misOrderedError"].includes(interimEvent.status)){
+      noError = true
     }
-
-    if (["misOrdered", "misOrderedError"].includes(interimEvent.status)) {
-      misordered = true;
+    if (["misOrdered", "misOrderedError"].includes(interimEvent.status)){
+      misordered = true
     }
-
-    if (misordered && noError) {
-      break;
+    if (misordered && noError){
+      break
     }
-  }
+  } */
 
   newEvent = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.trimAction)(events[events.length - 1], summaryFields);
-
-  if (noError && !misordered) {
-    newEvent.status = "good";
+  /* if (noError && !misordered) {
+    newEvent.status = "good"
   }
-
-  if (misordered && noError) {
-    newEvent.status = "misOrdered";
+  if (misordered && noError){
+    newEvent.status = "misOrdered"
   }
-
-  if (misordered && !noError) {
-    newEvent.stuatus = "misorderedError";
-  }
+  if (misordered && !noError){
+    newEvent.stuatus = "misorderedError"
+  } */
 
   return newEvent;
 }
@@ -4136,7 +4130,9 @@ const DebriefingContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defaul
   allSlidesCompleted: undefined,
   setAllSlidesCompleted: undefined,
   done: undefined,
-  setDone: undefined
+  setDone: undefined,
+  stepTitle: undefined,
+  updateStepTitle: undefined
 });
 const useDebriefing = () => (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(DebriefingContext);
 
@@ -4656,59 +4652,129 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ StepTabs)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _TopButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(20103);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(77950);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(48319);
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2441);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(7267);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(55634);
+/* harmony import */ var _TopButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(20103);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/StepTabs.jsx";
 
 
 
 
+
+
+
+
+
+
+
 function StepTabs() {
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("header", {
-    className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_2__["default"]["main-nav"],
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      step: "D"
+  let location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useLocation)();
+  const {
+    stepTitle
+  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_5__.useDebriefing)();
+  const [currStep, setCurrStep] = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
+    setCurrStep(location.pathname.split("/")[3]);
+  }, [location]);
+
+  if (!currStep) {
+    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("span", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 22,
+      columnNumber: 14
+    }, this);
+  }
+
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("header", {
+    className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__["default"]["main-nav"],
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("div", {
+      style: {
+        display: "inline-block"
+      },
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+        pills: true,
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          step: "D",
+          currStep: currStep
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 33,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          step: "E",
+          currStep: currStep
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 34,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          step: "B",
+          currStep: currStep
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 35,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          step: "R",
+          currStep: currStep
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 36,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          step: "IE",
+          currStep: currStep
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 37,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          step: "F",
+          currStep: currStep
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 38,
+          columnNumber: 13
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 32,
+        columnNumber: 11
+      }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 10,
+      lineNumber: 27,
       columnNumber: 9
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      step: "E"
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("div", {
+      style: {
+        display: "inline-block",
+        paddingLeft: "100px",
+        textAlign: "center",
+        fontSize: "2em",
+        fontWeight: "bold"
+      },
+      children: stepTitle
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 11,
-      columnNumber: 9
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      step: "B"
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 12,
-      columnNumber: 9
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      step: "R"
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 13,
-      columnNumber: 9
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      step: "IE"
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 14,
-      columnNumber: 9
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      step: "F"
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 15,
+      lineNumber: 41,
       columnNumber: 9
     }, this)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 9,
+    lineNumber: 26,
     columnNumber: 7
   }, this);
 }
@@ -4723,62 +4789,97 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TopButton)
 /* harmony export */ });
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
-/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(77950);
-/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(48319);
-/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2784);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(7267);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(72779);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(55634);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(20506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(49663);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(21808);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(33015);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55634);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/TopButton.js";
+ // {useEffect, useState} 
+
+ // , Button
+// import { useLocation } from "react-router-dom";
 
 
-
-
-
-
-
-
+ // import styles from "../Cond2Debriefing.module.css";
 
 
 function TopButton({
-  step
+  step,
+  currStep
 }) {
-  let location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useLocation)();
+  // let location = useLocation()
   const {
-    stepIsEnabled,
-    goStepStepPath
-  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_6__.useDebriefing)();
-  const [isCurrStep, setIsCurrStep] = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false);
+    goStepStepPath,
+    stepIsEnabled
+  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_2__.useDebriefing)(); // const [isCurrStep, setIsCurrStep] = useState(null)
 
   const clickHandler = () => goStepStepPath(step, "1");
 
-  (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
-    setIsCurrStep(step === location.pathname.split('/')[3]);
-  }, [location, step]);
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("button", {
-    className: classnames__WEBPACK_IMPORTED_MODULE_5___default()(_Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__["default"].phaseTabs, isCurrStep && _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__["default"]["selected-btn"]),
-    type: "button",
-    style: {
-      filter: isCurrStep ? "brightness(100%)" : "brightness(75%)"
-    },
-    disabled: !stepIsEnabled(step),
-    onClick: clickHandler,
-    children: step
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      className: classnames__WEBPACK_IMPORTED_MODULE_1___default()({
+        active: step === currStep
+      }),
+      onClick: clickHandler,
+      disabled: !stepIsEnabled(step),
+      style: {
+        fontSize: "2.25em",
+        padding: "0 20px"
+      },
+      children: step
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 21,
+      columnNumber: 9
+    }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 22,
-    columnNumber: 9
-  }, this);
+    lineNumber: 20,
+    columnNumber: 7
+  }, this); // useEffect(
+  //     () => {
+  //       setIsCurrStep(step === location.pathname.split("/")[3])
+  //     }, [location, step]
+  // )
+  // if (null === isCurrStep) {
+  //   return <span></span>
+  // }
+  // return (
+  //   <Button
+  //     size="lg"
+  //     color={stepIsEnabled(step) ? "primary" : "default"}
+  //     // className={classNames(styles.phaseTabs, isCurrStep && styles['selected-btn'])}
+  //     // type="button"
+  //     // style={{
+  //     //
+  //     // }}
+  //     style={{
+  //       filter: isCurrStep ? "saturate(120%)" : "opacity(80%)",
+  //       fontSize: "2em",
+  //       paddingTop: "2px",
+  //       paddingBottom: "2px",
+  //       paddingRight: "24px",
+  //       paddingLeft: "24px",
+  //       borderTopLeftRadius: "10px",
+  //       borderTopRightRadius: "10px",
+  //       borderBottomRightRadius: 0,
+  //       borderBottomLeftRadius: 0,
+  //       borderStyle: isCurrStep ? "ridge" : "groove",
+  //       borderTopColor: isCurrStep ? "black" : "gray",
+  //       borderRightColor: isCurrStep ? "black" : "gray",
+  //       borderLeftColor: isCurrStep ? "black" : "gray",
+  //       borderBottomColor: isCurrStep ? "gray" : "black",
+  //     }}
+  //     disabled={!stepIsEnabled(step)}
+  //     onClick={clickHandler}
+  //   >
+  //     {step}
+  //   </Button>
+  // );
 }
 
 /***/ }),
@@ -4814,7 +4915,6 @@ var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debrie
 function Analysis({
   slide,
   stepPath,
-  getRequiredSubActions,
   analyzedHandler
 }) {
   const {
@@ -4828,12 +4928,12 @@ function Analysis({
         children: [" ", slide.label]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 21,
+        lineNumber: 20,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 19,
+      lineNumber: 18,
       columnNumber: 7
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("div", {
       className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_4__["default"]["feedback-list"],
@@ -4857,123 +4957,123 @@ function Analysis({
               children: "Action"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 40,
+              lineNumber: 39,
               columnNumber: 15
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("th", {
               children: "Your Rating"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 41,
+              lineNumber: 40,
               columnNumber: 15
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("th", {
               children: "System Rating"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 42,
+              lineNumber: 41,
               columnNumber: 15
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("th", {
               children: "Feedback"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 43,
+              lineNumber: 42,
               columnNumber: 15
             }, this)]
           }, void 0, true, {
             fileName: _jsxFileName,
-            lineNumber: 39,
+            lineNumber: 38,
             columnNumber: 13
           }, this)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 31,
+          lineNumber: 30,
           columnNumber: 11
         }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("tbody", {
-          children: getRequiredSubActions(slide).map((sa, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("tr", {
+          children: (0,_utils__WEBPACK_IMPORTED_MODULE_5__.getRequiredSubActions)(slide).map((sa, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("tr", {
             children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
               children: sa.label
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 49,
+              lineNumber: 48,
               columnNumber: 17
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
               children: [getUserRating(sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("i", {
                 className: "bi-check-lg"
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 51,
+                lineNumber: 50,
                 columnNumber: 44
               }, this), " "]
             }, void 0, true, {
               fileName: _jsxFileName,
-              lineNumber: 50,
+              lineNumber: 49,
               columnNumber: 17
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
               children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_FeedbackIcon__WEBPACK_IMPORTED_MODULE_3__["default"], {
                 isGood: (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isGood)(ieSummary, sa.id)
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 54,
+                lineNumber: 53,
                 columnNumber: 19
               }, this)
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 53,
+              lineNumber: 52,
               columnNumber: 17
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
               children: [(0,_utils__WEBPACK_IMPORTED_MODULE_5__.hasError)(ieSummary, sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_AnalysisMessages__WEBPACK_IMPORTED_MODULE_2__["default"], {
                 messages: sa.feedbackErrors
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 62,
+                lineNumber: 61,
                 columnNumber: 21
               }, this), (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isAbsent)(ieSummary, sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_AnalysisMessages__WEBPACK_IMPORTED_MODULE_2__["default"], {
                 messages: sa.feedbackAbsent
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 65,
+                lineNumber: 64,
                 columnNumber: 21
               }, this)]
             }, void 0, true, {
               fileName: _jsxFileName,
-              lineNumber: 56,
+              lineNumber: 55,
               columnNumber: 17
             }, this)]
           }, idx, true, {
             fileName: _jsxFileName,
-            lineNumber: 48,
+            lineNumber: 47,
             columnNumber: 15
           }, this))
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 46,
+          lineNumber: 45,
           columnNumber: 11
         }, this)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 30,
+        lineNumber: 29,
         columnNumber: 9
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 23,
+      lineNumber: 22,
       columnNumber: 7
     }, this), (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isOutOfOrder)(ieSummary, slide.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("div", {
       children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("h5", {
         children: "The following steps were performed out of order:"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 75,
+        lineNumber: 74,
         columnNumber: 11
       }, this), slide.feedbackOutOfOrder.map((para, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
         children: para
       }, idx, false, {
         fileName: _jsxFileName,
-        lineNumber: 77,
+        lineNumber: 76,
         columnNumber: 13
       }, this))]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 74,
+      lineNumber: 73,
       columnNumber: 9
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       size: "sm",
@@ -4983,7 +5083,7 @@ function Analysis({
       children: "Ok"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 81,
+      lineNumber: 80,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -5280,26 +5380,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(39529);
-/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2784);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(7267);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55634);
-/* harmony import */ var _layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49685);
-/* harmony import */ var _outline_HierarchicalLeftNav__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(84678);
-/* harmony import */ var _UserRating__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(27991);
-/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(71359);
-/* harmony import */ var _ExamineForm__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(1967);
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(24495);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(20506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(49663);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(7267);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(55634);
+/* harmony import */ var _layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49685);
+/* harmony import */ var _outline_HierarchicalLeftNav__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(84678);
+/* harmony import */ var _SequentialIEView__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7494);
+/* harmony import */ var _TabbedIEView__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(65119);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/InvestigateExamine.jsx";
-
-
-
-
-
 
 
 
@@ -5313,30 +5403,139 @@ var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debrie
 function InvestigateExamine() {
   const {
     stepPath
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_13__.useParams)();
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useParams)();
+  const {
+    getPathData,
+    getSlideData,
+    ieOutline,
+    computeExpandedSlides
+  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_3__.useDebriefing)();
+  const [sp, setSP] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [expandedSlides, setExpandedSlides] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [myData, setMyData] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [completed, setCompleted] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [examined, setExamined] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    if (!sp || sp !== stepPath) {
+      setSP(stepPath); // console.log("stepPath set")
+
+      setExpandedSlides(computeExpandedSlides(stepPath));
+      const slide = getSlideData("IE", stepPath); // console.log(slide)
+
+      setMyData(slide);
+      const {
+        completed: _completed,
+        examined: _examined
+      } = getPathData("IE", stepPath);
+      setExamined(_examined);
+      setCompleted(_completed);
+    }
+  }, // eslint-disable-next-line react-hooks/exhaustive-deps
+  [stepPath]);
+
+  if (!myData) {
+    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("div", {
+      children: "loading..."
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 43,
+      columnNumber: 12
+    }, this);
+  }
+
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    currStep: "IE",
+    currStepPath: stepPath,
+    outline: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_outline_HierarchicalLeftNav__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      currStep: "IE",
+      currStepPath: stepPath,
+      outline: ieOutline,
+      expandedSlides: expandedSlides
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 51,
+      columnNumber: 9
+    }, this),
+    children: completed ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TabbedIEView__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      myData: myData,
+      stepPath: stepPath,
+      examined: examined
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 61,
+      columnNumber: 9
+    }, this) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_SequentialIEView__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      myData: myData,
+      stepPath: stepPath,
+      setCompleted: setCompleted
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 63,
+      columnNumber: 9
+    }, this)
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 47,
+    columnNumber: 5
+  }, this);
+}
+
+/***/ }),
+
+/***/ 7494:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SequentialIEView)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(55634);
+/* harmony import */ var _UserRating__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(27991);
+/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(71359);
+/* harmony import */ var _ExamineForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1967);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(24495);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/SequentialIEView.jsx";
+
+
+
+
+
+
+
+
+
+
+
+function SequentialIEView({
+  myData,
+  stepPath,
+  setCompleted,
+  initialMode = "rate"
+}) {
   const {
     enableNextSlide,
     getPathData,
-    updateIdData,
-    updatePathData,
-    getSlideData,
-    ieOutline,
     ieSummary,
-    computeExpandedSlides
-  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_4__.useDebriefing)();
-  const [sp, setSP] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
-  const [expandedSlides, setExpandedSlides] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
-  const [needToExamine, setNeedToExamine] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
-  const [rated, setRated] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
-  const [analyzed, setAnalyzed] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
-  const [examined, setExamined] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
-  const [myData, setMyData] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
-  const [mode, setMode] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
-  const [computeMode, setComputeMode] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(false);
+    updateIdData,
+    updatePathData
+  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_3__.useDebriefing)();
+  const [needToExamine, setNeedToExamine] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [rated, setRated] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [analyzed, setAnalyzed] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [examined, setExamined] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [mode, setMode] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
+  const [computeMode, setComputeMode] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
 
   const getMode = () => mode;
-
-  const getRequiredSubActions = slide => slide.subActions.filter(a => ["header", "required"].includes(a.type.toLowerCase()));
 
   const onRatingComplete = () => {
     setRated(true);
@@ -5366,146 +5565,222 @@ function InvestigateExamine() {
     setComputeMode(true);
   };
 
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
-    if (!sp || sp !== stepPath) {
-      setSP(stepPath); // console.log("stepPath set")
-      // setPath(stepStepPathToPath("IE", stepPath));
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
+    const pd = getPathData("IE", stepPath); // console.log(pd)
 
-      setExpandedSlides(computeExpandedSlides(stepPath));
-      const slide = getSlideData("IE", stepPath); // console.log(slide)
-
-      setMyData(slide);
-      const need2props = {
-        exam: slide.examine,
-        examIfAbs: slide.examineIfAbsent,
-        absent: (0,_utils__WEBPACK_IMPORTED_MODULE_10__.isAbsent)(ieSummary, slide.id),
-        examIfErrs: slide.examineIfErrors,
-        errors: (0,_utils__WEBPACK_IMPORTED_MODULE_10__.hasError)(ieSummary, slide.id)
-      };
-      const need2 = need2props.exam || // need to keep this until all scenarios have been updated to have the following 2 fields instead
-      need2props.examIfAbs && need2props.absent || need2props.examIfErrs && need2props.errors;
-      console.log("need2Examine", need2props, need2);
-      setNeedToExamine(need2);
-      const pd = getPathData("IE", stepPath); // console.log(pd)
-
-      const {
-        rated: _rated,
-        analyzed: _analyzed,
-        examined: _examined
-      } = pd;
-      setExamined(_examined);
-      setAnalyzed(_analyzed);
-      setRated(_rated);
-      setMode(null);
-      setComputeMode(true);
-    }
-  }, // eslint-disable-next-line react-hooks/exhaustive-deps
-  [stepPath] //stepPath, sp, getSlideData, computeExpandedSlides, stepStepPathToPath]
-  );
-  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    const {
+      rated: _rated,
+      analyzed: _analyzed,
+      examined: _examined
+    } = pd;
+    const need2props = {
+      exam: myData.examine,
+      examIfAbs: myData.examineIfAbsent,
+      absent: (0,_utils__WEBPACK_IMPORTED_MODULE_7__.isAbsent)(ieSummary, myData.id),
+      examIfErrs: myData.examineIfErrors,
+      errors: (0,_utils__WEBPACK_IMPORTED_MODULE_7__.hasError)(ieSummary, myData.id)
+    };
+    const need2 = need2props.exam || // need to keep this until all scenarios have been updated to have the following 2 fields instead
+    need2props.examIfAbs && need2props.absent || need2props.examIfErrs && need2props.errors;
+    console.log("need2Examine", need2props, need2);
+    setNeedToExamine(need2);
+    setExamined(_examined);
+    setAnalyzed(_analyzed);
+    setRated(_rated);
+    setMode(initialMode);
+    setComputeMode(true);
+  }, [myData, stepPath, initialMode, ieSummary, getPathData]);
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
     if (!computeMode || rated === null || analyzed === null || examined === null) {// console.log(`skipping computation of mode: computeMode: ${computeMode} rated: ${rated} analyzed: ${analyzed} examined: ${examined}`)
     } else {
-      // console.log(
-      //   `compututing mode: rated: ${rated} analyzed: ${analyzed} examined: ${examined}`
-      // );
       let newMode;
 
       if (examined) {
-        newMode = "examine"; // console.log("examined=true calling enableNextSlide()");
-
+        newMode = "examine";
         enableNextSlide("IE", stepPath);
       } else if (analyzed) {
         if (needToExamine) {
           newMode = "examine";
         } else {
-          newMode = "analysis"; // console.log(
-          //   "analyed=true && !needToExamine calling enableNextSlide()"
-          // );
-
+          newMode = "analysis";
           enableNextSlide("IE", stepPath);
         }
       } else if (rated) {
-        // console.log("rated=true");
         newMode = "analysis";
       } else {
-        // console.log("rated=false");
         newMode = "rate";
       }
 
       if (newMode !== getMode()) {
-        // console.log("changing mode to", newMode);
         setMode(newMode);
-      } // else {
-      //   console.log("keeping mode", getMode());
-      // }
-
+      }
 
       setComputeMode(false);
     }
-  }, [computeMode, stepPath, rated, analyzed, examined, needToExamine, getMode, enableNextSlide]);
-
-  if (!myData || !mode) {
-    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)("div", {
-      children: "loading..."
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 154,
-      columnNumber: 12
-    }, this);
-  }
-
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(_layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    currStep: "IE",
-    currStepPath: stepPath,
-    outline: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(_outline_HierarchicalLeftNav__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      currStep: "IE",
-      currStepPath: stepPath,
-      outline: ieOutline,
-      expandedSlides: expandedSlides
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 163,
-      columnNumber: 9
-    }, this),
-    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)("div", {
-      className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_11__["default"]["feedback-block"],
-      children: myData.subActions.length > 0 && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.Fragment, {
-        children: ["rate" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(_UserRating__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          slide: myData,
-          getRequiredSubActions: getRequiredSubActions,
-          ratedHandler: onRatingComplete
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 175,
-          columnNumber: 15
-        }, this), "analysis" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(_Analysis__WEBPACK_IMPORTED_MODULE_8__["default"], {
-          slide: myData,
-          stepPath: stepPath,
-          getRequiredSubActions: getRequiredSubActions,
-          analyzedHandler: onAnalysisComplete
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 182,
-          columnNumber: 15
-        }, this), "examine" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_12__.jsxDEV)(_ExamineForm__WEBPACK_IMPORTED_MODULE_9__["default"], {
-          slide: myData,
-          stepPath: stepPath,
-          submitHandler: onExamineComplete
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 190,
-          columnNumber: 15
-        }, this)]
-      }, void 0, true)
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 171,
-      columnNumber: 7
-    }, this)
+  }, [computeMode, stepPath, rated, analyzed, examined, needToExamine, getMode, enableNextSlide, setCompleted]);
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)("div", {
+    className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_8__["default"]["feedback-block"],
+    children: myData.subActions.length > 0 && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.Fragment, {
+      children: ["rate" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(_UserRating__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        slide: myData,
+        ratedHandler: onRatingComplete
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 127,
+        columnNumber: 15
+      }, this), "analysis" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(_Analysis__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        slide: myData,
+        stepPath: stepPath,
+        analyzedHandler: onAnalysisComplete
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 133,
+        columnNumber: 15
+      }, this), "examine" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(_ExamineForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        slide: myData,
+        stepPath: stepPath,
+        submitHandler: onExamineComplete
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 140,
+        columnNumber: 15
+      }, this)]
+    }, void 0, true)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 159,
-    columnNumber: 5
+    lineNumber: 123,
+    columnNumber: 7
+  }, this);
+}
+
+/***/ }),
+
+/***/ 65119:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TabbedIEView)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2441);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(21808);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(33015);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(51255);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(7618);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(71359);
+/* harmony import */ var _ExamineForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1967);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/TabbedIEView.jsx";
+
+
+
+
+
+
+
+
+
+function TabbedIEView({
+  myData,
+  stepPath,
+  examined
+}) {
+  const [activeTab, setActiveTab] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("feedback");
+
+  const setTab = tabID => setActiveTab(tabID);
+
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
+    className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_6__["default"]["feedback-block"],
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+      tabs: true,
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+            active: activeTab === "feedback"
+          }),
+          onClick: () => setTab("feedback"),
+          children: "Feedback"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 19,
+          columnNumber: 21
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 18,
+        columnNumber: 17
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+          className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
+            active: activeTab === "examine"
+          }),
+          onClick: () => setTab("examine"),
+          disabled: !examined,
+          children: "Your Reflection"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 27,
+          columnNumber: 21
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 26,
+        columnNumber: 17
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 17,
+      columnNumber: 13
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+      activeTab: activeTab,
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        tabId: "feedback",
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_Analysis__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          slide: myData,
+          stepPath: stepPath
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 38,
+          columnNumber: 21
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 37,
+        columnNumber: 17
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+        tabId: "examine",
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_ExamineForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
+          slide: myData,
+          stepPath: stepPath
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 44,
+          columnNumber: 21
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 43,
+        columnNumber: 17
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 36,
+      columnNumber: 13
+    }, this)]
+  }, void 0, true, {
+    fileName: _jsxFileName,
+    lineNumber: 16,
+    columnNumber: 9
   }, this);
 }
 
@@ -5534,7 +5809,6 @@ var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debrie
 
 function UserRating({
   slide,
-  getRequiredSubActions,
   ratedHandler
 }) {
   const {
@@ -5560,20 +5834,20 @@ function UserRating({
           children: (0,_utils__WEBPACK_IMPORTED_MODULE_2__.lowerCaseFirstLetter)(slide.label)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 25,
+          lineNumber: 21,
           columnNumber: 19
         }, this), ", including:"]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 24,
+        lineNumber: 20,
         columnNumber: 9
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 23,
+      lineNumber: 19,
       columnNumber: 7
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
-      children: [getRequiredSubActions(slide).map((subAction, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
+      children: [(0,_utils__WEBPACK_IMPORTED_MODULE_2__.getRequiredSubActions)(slide).map((subAction, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
         children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("input", {
           type: "checkbox",
           id: subAction.id,
@@ -5581,7 +5855,7 @@ function UserRating({
           onChange: handleRatingChange
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 31,
+          lineNumber: 27,
           columnNumber: 13
         }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("label", {
           htmlFor: subAction.id,
@@ -5592,16 +5866,16 @@ function UserRating({
           children: (0,_utils__WEBPACK_IMPORTED_MODULE_2__.capitalizeFirstLetter)(subAction.label)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 37,
+          lineNumber: 33,
           columnNumber: 13
         }, this)]
       }, subAction.id, true, {
         fileName: _jsxFileName,
-        lineNumber: 30,
+        lineNumber: 26,
         columnNumber: 11
       }, this)), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("br", {}, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 48,
+        lineNumber: 44,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         size: "sm",
@@ -5610,12 +5884,12 @@ function UserRating({
         children: "Show Feedback"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 49,
+        lineNumber: 45,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 28,
+      lineNumber: 24,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -6360,8 +6634,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(67694);
 /* harmony import */ var core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_unscopables_flat_js__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(54303);
+/* harmony import */ var _meddbriefer_scenario_data_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(97414);
 
 const _excluded = ["id", "label", "type", "examine", "examineIfAbsent", "examineIfErrors", "prompts", "subActionsList"];
+
 
 
 
@@ -6412,20 +6688,20 @@ function createIESlides(feedback, summaryObj) {
 function getIENodeData(node, expandChildren) {
   const {
     id,
-    label,
-    type,
+    label = "",
+    type = "UNKNOWN",
     examine = false,
     examineIfAbsent = false,
     examineIfErrors = false,
-    prompts,
+    prompts = "",
     subActionsList
   } = node,
         rest = (0,_Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(node, _excluded);
 
   const other = {
-    feedbackAbsent: rest.feedbackAbsent.filter(e => e !== ""),
-    feedbackErrors: rest.feedbackErrors.filter(e => e !== ""),
-    feedbackOutOfOrder: rest.feedbackOutOfOrder.filter(e => e !== "")
+    feedbackAbsent: (rest.feedbackAbsent || []).filter(e => e !== ""),
+    feedbackErrors: (rest.feedbackErrors || []).filter(e => e !== ""),
+    feedbackOutOfOrder: (rest.feedbackOutOfOrder || []).filter(e => e !== "")
   };
   let subActions;
 
@@ -6445,7 +6721,9 @@ function getIENodeData(node, expandChildren) {
     prompts,
     subActionsList,
     subActions
-  }, other);
+  }, other); // console.log("BEFORE", node) 
+  // console.log("AFTER", nodeData);
+
   return nodeData;
 }
 
@@ -6571,15 +6849,20 @@ function computeDataStructures(scenData, obsLogData, analysisData, debLogData, s
   console.log("analysis", analysisData);
   console.log("debLog", debLogData);
   console.log("feedback", scenFeedBack);
-  const summary = (0,_meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_6__.summarizeAnalysis)(analysisData, scenFeedBack.IE); // console.log("summary", ieSummary);
-
+  const summary = (0,_meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_6__.summarizeAnalysis)(analysisData, scenFeedBack.IE);
+  console.log("summary", summary);
   const flattenedSummary = Object.values(summary).flat();
   const summaryObj = {};
   flattenedSummary.forEach(rec => {
     summaryObj[rec.id] = Object.assign({}, rec);
   }); // console.log("flattenedSummary", flattenedSummary);
 
-  console.log("summaryObj", summaryObj); // const flattenedFeedback = flattenIEFeedback(scenFeedBack.IE.Action).flat().flat().flat().flat().flat().flat()
+  console.log("summaryObj (flattened)", summaryObj);
+  const fullStatus = Object.values(summaryObj).filter(rec => undefined === rec.type || rec.type !== "header");
+  const status = (0,_meddbriefer_scenario_data_utils__WEBPACK_IMPORTED_MODULE_7__.groupByKey)(fullStatus, "status");
+  console.log("summary grouped by status", status); // const phaseOrderStatus = groupByKey(fullStatus, "phaseOrderStatus")
+  // console.log("summary grouped by phaseOrderStatus", phaseOrderStatus)
+  // const flattenedFeedback = flattenIEFeedback(scenFeedBack.IE.Action).flat().flat().flat().flat().flat().flat()
   // console.log("flattenedFeedback", flattenedFeedback);
 
   const stepSlides = computeSlides(scenFeedBack, summaryObj);
@@ -6753,6 +7036,14 @@ function stepPathIsExpanded(stepPath, expandedSlides) {
   return expandedSlides.includes(stepPath);
 }
 
+const STEP_TITLES = {
+  "D": "Define",
+  "E": "Explain",
+  "B": "Benchmarks",
+  "R": "Review",
+  "IE": "Identify and Explain",
+  "F": "Formalize"
+};
 function DebLog({
   computeTitle,
   saveButtonLabel,
@@ -6780,6 +7071,9 @@ function DebLog({
   const [loaded, setLoaded] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
   const [allSlidesCompleted, setAllSlidesCompleted] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
   const [done, setDone] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
+  const [stepTitle, setStepTitle] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(STEP_TITLES["D"]);
+
+  const updateStepTitle = step => setStepTitle(STEP_TITLES[step]);
 
   const getIdData = id => idData[id];
 
@@ -6836,9 +7130,12 @@ function DebLog({
     // don't feel like doing this everywhere and I believe these would always be called
     // together
 
-    updatePathData(currStep, currStepPath, {
-      completed: true
-    });
+    if (!getPathData(currStep, currStepPath).completed) {
+      updatePathData(currStep, currStepPath, {
+        completed: true
+      });
+    }
+
     const currSlideIdx = getSlideIndexForStepStepPath(currStep, currStepPath);
 
     if (currSlideIdx + 1 === slides.length) {
@@ -6884,6 +7181,7 @@ function DebLog({
 
   const goStepStepPath = (step, stepPath) => {
     const newURL = `/debriefing/${debriefingID}/${step}/${stepPath}`;
+    updateStepTitle(step);
     console.log("redirecting to", newURL);
     history.push(newURL);
   };
@@ -6948,7 +7246,7 @@ function DebLog({
       children: "Loading"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 217,
+      lineNumber: 232,
       columnNumber: 13
     }, this);
   }
@@ -6984,7 +7282,9 @@ function DebLog({
       allSlidesCompleted,
       setAllSlidesCompleted,
       done,
-      setDone
+      setDone,
+      stepTitle,
+      updateStepTitle
     },
     children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxDEV)(_components_Cond2Debriefing__WEBPACK_IMPORTED_MODULE_14__["default"], {
       debriefingID: debriefingID,
@@ -6993,12 +7293,12 @@ function DebLog({
       saveModal: saveModal
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 255,
+      lineNumber: 272,
       columnNumber: 7
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 221,
+    lineNumber: 236,
     columnNumber: 5
   }, this);
 }
@@ -7027,6 +7327,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "capitalizeFirstLetter": () => (/* binding */ capitalizeFirstLetter),
 /* harmony export */   "ellipsis": () => (/* binding */ ellipsis),
 /* harmony export */   "formatAsMinSecs": () => (/* binding */ formatAsMinSecs),
+/* harmony export */   "getRequiredSubActions": () => (/* binding */ getRequiredSubActions),
 /* harmony export */   "getStatus": () => (/* binding */ getStatus),
 /* harmony export */   "hasError": () => (/* binding */ hasError),
 /* harmony export */   "isAbsent": () => (/* binding */ isAbsent),
@@ -7065,6 +7366,7 @@ const isGood = (ieSummary, id) => "good" === getStatus(ieSummary, id);
 const isAbsent = (ieSummary, id) => "absent" === getStatus(ieSummary, id);
 const hasError = (ieSummary, id) => ["error", "errors", "misorderedError"].includes(getStatus(ieSummary, id));
 const isOutOfOrder = (ieSummary, id) => ["misordered", "misorderedError"].includes(getStatus(ieSummary, id));
+const getRequiredSubActions = slide => slide.subActions.filter(a => ["header", "required"].includes(a.type.toLowerCase()));
 
 /***/ }),
 
@@ -9824,7 +10126,7 @@ const B4CA_PhaseIE = {
       }]
     }, {
       id: "ongoing-mgmt-plan",
-      label: "Continue to provide adequate prehospital care until arriving at the receiving faciliaty",
+      label: "Continue to provide adequate prehospital care until arriving at the receiving facility",
       type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.REQ,
       feedbackAbsent: [""],
       feedbackOutOfOrder: [""],
@@ -11655,7 +11957,7 @@ const B5CA_PhaseIE = {
       }]
     }, {
       id: "ongoing-mgmt-plan",
-      label: "Continue to provide adequate prehospital care until arriving at the receiving faciliaty",
+      label: "Continue to provide adequate prehospital care until arriving at the receiving facility",
       type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.REQ,
       feedbackAbsent: ["It is important to reassess your patient after every intervention and every clinical change. This includes repeating the primary survey, secondary survey, and vital signs. A critically ill patient should be reassessed more frequently to ensure he or she is still stable--approximately every 5 minutes."],
       feedbackOutOfOrder: [""],
@@ -20515,7 +20817,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // extracted by mini-css-extract-plugin
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"cond2-wrapper":"Cond2Debriefing_cond2-wrapper__2MiIA","card":"Cond2Debriefing_card__3bRm7","hint-text":"Cond2Debriefing_hint-text__1-sJL","main-outline":"Cond2Debriefing_main-outline__1jENW","header-bar":"Cond2Debriefing_header-bar__1pPiM","title":"Cond2Debriefing_title__3fm9e","main-nav":"Cond2Debriefing_main-nav__1bx72","phaseTabs":"Cond2Debriefing_phaseTabs__2haDC","selected-btn":"Cond2Debriefing_selected-btn__1DrKi","controller-nav":"Cond2Debriefing_controller-nav__2xomm","prev":"Cond2Debriefing_prev__2nhFT","next":"Cond2Debriefing_next__1FRY1","nav-btn":"Cond2Debriefing_nav-btn__12UoL","main-view":"Cond2Debriefing_main-view__1R5Q7","card-body":"Cond2Debriefing_card-body__1glZ3","two-div-outline-container":"Cond2Debriefing_two-div-outline-container__1rQeb","outline":"Cond2Debriefing_outline__3aho0","btn-link":"Cond2Debriefing_btn-link__3SG8v","disabled":"Cond2Debriefing_disabled__3gbDw","active":"Cond2Debriefing_active__29Gr5","outline-rhs":"Cond2Debriefing_outline-rhs__1pcoY","feedback-block":"Cond2Debriefing_feedback-block__pP52I","table-sm":"Cond2Debriefing_table-sm__2Zp31","feedback-list":"Cond2Debriefing_feedback-list__3F4Nh","slideshow":"Cond2Debriefing_slideshow__1ym1r","benchmark":"Cond2Debriefing_benchmark__-i2Qq","save-btn":"Cond2Debriefing_save-btn__1k3TY"});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"cond2-wrapper":"Cond2Debriefing_cond2-wrapper__2MiIA","card":"Cond2Debriefing_card__3bRm7","hint-text":"Cond2Debriefing_hint-text__1-sJL","main-outline":"Cond2Debriefing_main-outline__1jENW","header-bar":"Cond2Debriefing_header-bar__1pPiM","title":"Cond2Debriefing_title__3fm9e","phaseTabs":"Cond2Debriefing_phaseTabs__2haDC","selected-btn":"Cond2Debriefing_selected-btn__1DrKi","controller-nav":"Cond2Debriefing_controller-nav__2xomm","prev":"Cond2Debriefing_prev__2nhFT","next":"Cond2Debriefing_next__1FRY1","nav-btn":"Cond2Debriefing_nav-btn__12UoL","main-view":"Cond2Debriefing_main-view__1R5Q7","card-body":"Cond2Debriefing_card-body__1glZ3","two-div-outline-container":"Cond2Debriefing_two-div-outline-container__1rQeb","outline":"Cond2Debriefing_outline__3aho0","btn-link":"Cond2Debriefing_btn-link__3SG8v","disabled":"Cond2Debriefing_disabled__3gbDw","active":"Cond2Debriefing_active__29Gr5","outline-rhs":"Cond2Debriefing_outline-rhs__1pcoY","feedback-block":"Cond2Debriefing_feedback-block__pP52I","table-sm":"Cond2Debriefing_table-sm__2Zp31","feedback-list":"Cond2Debriefing_feedback-list__3F4Nh","slideshow":"Cond2Debriefing_slideshow__1ym1r","benchmark":"Cond2Debriefing_benchmark__-i2Qq","save-btn":"Cond2Debriefing_save-btn__1k3TY"});
 
 /***/ }),
 

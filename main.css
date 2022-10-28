@@ -2478,8 +2478,8 @@ textarea {
 
 main {
     background-color: white;
-    height: calc(100% - 61px - 72px - 58px);
-    min-height: calc(100% - 61px - 72px - 58px);
+    height: calc(100% - 59px - 72px - 58px);
+    min-height: calc(100% - 59px - 72px - 58px);
     width: 100%;
     margin: auto !important;
 }
@@ -2504,25 +2504,24 @@ main {
     color: #3f3fbb;
 }
 
-.Cond2Debriefing_main-nav__1bx72 {
+/* .main-nav {
     margin: 0 auto;
     display: flex;
     gap: 2rem;
-    /* padding-top: 6px; */
     padding-bottom: 6px;
     padding-left: 1rem;
     padding-right: 1rem;
-}
+} */
 
 .Cond2Debriefing_phaseTabs__2haDC {
     background-color: var(--good-blue);
     font-weight: bold;
     font-size: 2em;
-    width: 2em;
-    height: 2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    /* width: 2em; */
+    /* height: 2em; */
+    /* display: flex; */
+    /* align-items: center;
+    justify-content: center; */
     border-radius: 0;
 }
 
