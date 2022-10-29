@@ -3493,6 +3493,60 @@ function determineStatusOfNotFound(id, promptIDarray) {
 
 function examineDups(events) {
   let newEvent;
+  let misordered = false;
+  let noError = false;
+  let interimEvent; // will eventually need to separate any with variants from under the same eventID as not being
+  //duplicatea.  But for now we have no feedback for variants so can ignore variants for now.
+  //regularize status of each instance of event 
+  //if any of the dups of event is without an error then can say there
+  //are no errors.
+  //However, if any of the dups are misordered then can report it as
+  //misOrdered in the summary
+
+  newEvent = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.trimAction)(events[events.length - 1], summaryFields);
+
+  if (events.length > 1) {
+    for (const event of events) {
+      interimEvent = regularizeStatus(event);
+
+      if (!["error", "misorderedError"].includes(interimEvent.status)) {
+        //absent can't happen because if dups then wouldn't insert it was absent
+        noError = true;
+      }
+
+      if (["misordered", "misorderedError"].includes(interimEvent.status)) {
+        misordered = true;
+      }
+
+      if (misordered && noError) {
+        break;
+      }
+    }
+
+    newEvent = regularizeStatus(newEvent);
+
+    if (!misordered) {
+      if (!noError) {
+        newEvent.status = "error";
+      } else {
+        newEvent.status = "good";
+      }
+    } else {
+      if (noError) {
+        newEvent.status = "misordered";
+      } else {
+        newEvent.status = "misorderedError";
+      }
+    }
+  } else {
+    newEvent = regularizeStatus(newEvent);
+  }
+
+  return newEvent;
+}
+
+function examineDupsPrior(events) {
+  let newEvent;
   /* let misordered = false
   let noError = false
   let interimEvent
@@ -3543,6 +3597,7 @@ function processNextLevel(summary, top, decisionPromptIDs) {
   };
 
   if (top.subActions.length === 0) {
+    //at a leaf node
     events = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.getEvents)(analysis, "id", top.id);
 
     if (events.length !== 0) {
@@ -7378,11 +7433,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ AnalysesTable)
 /* harmony export */ });
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(77122);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(38428);
-/* harmony import */ var _AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15678);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49663);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(38428);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(77122);
+/* harmony import */ var _AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15678);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(59031);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysesTable.jsx";
+
+
 
 
 
@@ -7392,94 +7452,84 @@ function AnalysesTable({
   onViewAnalysis,
   onAnalyze
 }) {
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(_AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_1__["default"], {}, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 14,
+        columnNumber: 11
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("tbody", {
+        className: "scroll",
+        children: analyses.length === 0 ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("tr", {
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("td", {
+            colSpan: 5,
+            children: "There aren't any existing analyses"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 18,
+            columnNumber: 17
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 17,
+          columnNumber: 15
+        }, this) : analyses.map(analysis => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("tr", {
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("td", {
+            children: analysis.id
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 23,
+            columnNumber: 19
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("td", {
+            children: analysis.analyzer
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 24,
+            columnNumber: 19
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("td", {
+            children: (0,_utils__WEBPACK_IMPORTED_MODULE_2__.stdDateTimeFormatToCustom)(analysis.timestamp)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 25,
+            columnNumber: 19
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("td", {
+            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
+              size: "sm",
+              color: "primary",
+              onClick: () => onViewAnalysis(analysis.id),
+              children: "View"
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 27,
+              columnNumber: 21
+            }, this)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 26,
+            columnNumber: 19
+          }, this)]
+        }, analysis.id, true, {
+          fileName: _jsxFileName,
+          lineNumber: 22,
+          columnNumber: 17
+        }, this))
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 15,
+        columnNumber: 11
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 13,
+      columnNumber: 9
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       size: "sm",
       color: "primary",
       onClick: () => onAnalyze(),
       children: "Create New Analysis"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 8,
-      columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("div", {
-      style: {
-        overflowY: "auto",
-        maxHeight: "500px"
-      },
-      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(_AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_0__["default"], {}, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 13,
-          columnNumber: 9
-        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("tbody", {
-          className: "scroll",
-          children: analyses.length === 0 ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("tr", {
-            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-              colSpan: 5,
-              children: "There aren't any existing analyses"
-            }, void 0, false, {
-              fileName: _jsxFileName,
-              lineNumber: 17,
-              columnNumber: 15
-            }, this)
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 16,
-            columnNumber: 13
-          }, this) : analyses.map(analysis => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-              children: analysis.id
-            }, void 0, false, {
-              fileName: _jsxFileName,
-              lineNumber: 22,
-              columnNumber: 17
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-              children: analysis.analyzer
-            }, void 0, false, {
-              fileName: _jsxFileName,
-              lineNumber: 23,
-              columnNumber: 17
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-              children: analysis.timestamp
-            }, void 0, false, {
-              fileName: _jsxFileName,
-              lineNumber: 24,
-              columnNumber: 17
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-              children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-                size: "sm",
-                color: "primary",
-                onClick: () => onViewAnalysis(analysis.id),
-                children: "View"
-              }, void 0, false, {
-                fileName: _jsxFileName,
-                lineNumber: 26,
-                columnNumber: 19
-              }, this)
-            }, void 0, false, {
-              fileName: _jsxFileName,
-              lineNumber: 25,
-              columnNumber: 17
-            }, this)]
-          }, analysis.id, true, {
-            fileName: _jsxFileName,
-            lineNumber: 21,
-            columnNumber: 15
-          }, this))
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 14,
-          columnNumber: 9
-        }, this)]
-      }, void 0, true, {
-        fileName: _jsxFileName,
-        lineNumber: 12,
-        columnNumber: 7
-      }, this)
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 11,
+      lineNumber: 41,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -7495,18 +7545,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ AnalysisDetails)
 /* harmony export */ });
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(38428);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
-/* harmony import */ var _AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(15678);
-/* harmony import */ var _DebriefingsTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3450);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(50768);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8668);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(38428);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(77122);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(47933);
+/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(55334);
+/* harmony import */ var _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(51719);
+/* harmony import */ var _AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(15678);
+/* harmony import */ var _DebriefingsTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3450);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(59031);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysisDetails.jsx";
 
 
 
 
 
+
+
+
+
 function AnalysisDetails({
+  scenario,
+  log,
   analysis,
   cond1Comments,
   cond2Debriefings,
@@ -7515,83 +7577,208 @@ function AnalysisDetails({
   onCond2StartReview,
   onCond2ContinueReview
 }) {
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("h2", {
-      children: "Analysis"
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_0__.MDBNavBar, {
+      leftNav: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("div", {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+              to: "/",
+              children: "Observer Logs"
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 31,
+              columnNumber: 17
+            }, this)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 30,
+            columnNumber: 15
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+              to: `/logs/${analysis.observerLogID}`,
+              children: "Details"
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 34,
+              columnNumber: 17
+            }, this)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 33,
+            columnNumber: 15
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+            active: true,
+            children: "Analysis"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 36,
+            columnNumber: 15
+          }, this)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 29,
+          columnNumber: 13
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 28,
+        columnNumber: 11
+      }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 17,
+      lineNumber: 26,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      striped: true,
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 42,
+      columnNumber: 7
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("h3", {
+      children: "Observer Log"
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 44,
+      columnNumber: 7
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       borderless: true,
       size: "sm",
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_0__["default"], {}, void 0, false, {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_1__["default"], {}, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 19,
+        lineNumber: 46,
         columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("tbody", {
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("tr", {
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
-            children: analysis.id
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("tbody", {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("tr", {
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: log.scenarioName
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 22,
+            lineNumber: 49,
             columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
-            children: analysis.analyzer
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: scenario.version
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 23,
+            lineNumber: 50,
             columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
-            children: analysis.timestamp
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: log.userName
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 24,
+            lineNumber: 51,
             columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
-            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: log.label
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 52,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: (0,_utils__WEBPACK_IMPORTED_MODULE_4__.stdDateTimeFormatToCustom)(log.timestamp)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 53,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
               size: "sm",
               color: "danger",
               children: "Delete"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 26,
+              lineNumber: 55,
               columnNumber: 15
             }, this)
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 25,
+            lineNumber: 54,
             columnNumber: 13
           }, this)]
         }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 21,
+          lineNumber: 48,
           columnNumber: 11
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 20,
+        lineNumber: 47,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 18,
+      lineNumber: 45,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("br", {}, void 0, false, {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("br", {}, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 33,
+      lineNumber: 63,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("br", {}, void 0, false, {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("h3", {
+      children: "Analysis"
+    }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 34,
+      lineNumber: 65,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("br", {}, void 0, false, {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      striped: true,
+      borderless: true,
+      size: "sm",
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_2__["default"], {}, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 67,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("tbody", {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("tr", {
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: analysis.id
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 70,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: analysis.analyzer
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 71,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: (0,_utils__WEBPACK_IMPORTED_MODULE_4__.stdDateTimeFormatToCustom)(analysis.timestamp)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 72,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+              size: "sm",
+              color: "danger",
+              children: "Delete"
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 74,
+              columnNumber: 15
+            }, this)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 73,
+            columnNumber: 13
+          }, this)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 69,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 68,
+        columnNumber: 9
+      }, this)]
+    }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 35,
+      lineNumber: 66,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_DebriefingsTable__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 83,
+      columnNumber: 7
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_DebriefingsTable__WEBPACK_IMPORTED_MODULE_3__["default"], {
       analysis: analysis,
       heading: "Condition 1 Debriefings/Comments",
       debriefings: cond1Comments,
@@ -7599,21 +7786,21 @@ function AnalysisDetails({
       onContinueReview: onCond1ContinueReview
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 36,
+      lineNumber: 85,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("br", {}, void 0, false, {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("br", {}, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 43,
+      lineNumber: 93,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("br", {}, void 0, false, {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("br", {}, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 44,
+      lineNumber: 94,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("br", {}, void 0, false, {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("br", {}, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 45,
+      lineNumber: 95,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_DebriefingsTable__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_DebriefingsTable__WEBPACK_IMPORTED_MODULE_3__["default"], {
       analysis: analysis,
       heading: "Condition 2 Debriefings/Comments",
       debriefings: cond2Debriefings,
@@ -7621,7 +7808,7 @@ function AnalysisDetails({
       onContinueReview: onCond2ContinueReview
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 46,
+      lineNumber: 97,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -7640,42 +7827,83 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysisTableHeader.jsx";
 
+
 function AnalysesTableHeader() {
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("thead", {
-    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("tr", {
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
-        children: "ID"
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("colgroup", {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("col", {
+        style: {
+          width: "20%"
+        }
       }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 5,
-        columnNumber: 17
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
-        children: "Analyzer"
+        columnNumber: 13
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("col", {
+        style: {
+          width: "10%"
+        }
       }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 6,
-        columnNumber: 17
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
-        children: "timestamp"
+        columnNumber: 13
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("col", {
+        style: {
+          width: "20%"
+        }
       }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 7,
-        columnNumber: 17
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {}, void 0, false, {
+        columnNumber: 13
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("col", {
+        style: {
+          width: "50%"
+        }
+      }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 8,
-        columnNumber: 17
+        columnNumber: 13
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
       lineNumber: 4,
-      columnNumber: 13
-    }, this)
-  }, void 0, false, {
-    fileName: _jsxFileName,
-    lineNumber: 3,
-    columnNumber: 9
-  }, this);
+      columnNumber: 9
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("thead", {
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("tr", {
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("th", {
+          children: "ID"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 12,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("th", {
+          children: "Analyzer"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 13,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("th", {
+          children: "Timestamp"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 14,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("th", {}, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 15,
+          columnNumber: 13
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 11,
+        columnNumber: 11
+      }, this)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 10,
+      columnNumber: 9
+    }, this)]
+  }, void 0, true);
 }
 
 /***/ }),
@@ -7688,10 +7916,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ DebriefingsTable)
 /* harmony export */ });
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(77122);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(38428);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(38428);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(59031);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/DebriefingsTable.jsx";
+
+
 
 
 
@@ -7702,104 +7935,132 @@ function DebriefingsTable({
   onStartReview,
   onContinueReview
 }) {
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("h3", {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("h3", {
       children: heading
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 12,
+      lineNumber: 15,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      size: "sm",
-      color: "primary",
-      disabled: !onContinueReview,
-      onClick: () => onStartReview(analysis),
-      children: "Start Review"
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 13,
-      columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("div", {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
       style: {
         overflowY: "auto",
         maxHeight: "200px"
       },
-      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
         striped: true,
         borderless: true,
         size: "sm",
         hover: true,
-        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("thead", {
-          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("tr", {
-            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("colgroup", {
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("col", {
+            style: {
+              width: "20%"
+            }
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 19,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("col", {
+            style: {
+              width: "10%"
+            }
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 20,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("col", {
+            style: {
+              width: "20%"
+            }
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 21,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("col", {
+            style: {
+              width: "50%"
+            }
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 22,
+            columnNumber: 13
+          }, this)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 18,
+          columnNumber: 11
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("thead", {
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("tr", {
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("th", {
               children: "Debriefing ID"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 25,
-              columnNumber: 13
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
+              lineNumber: 26,
+              columnNumber: 15
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("th", {
               children: "Reviewer"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 26,
-              columnNumber: 13
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
+              lineNumber: 27,
+              columnNumber: 15
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("th", {
               children: "Timestamp"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 27,
-              columnNumber: 13
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {}, void 0, false, {
-              fileName: _jsxFileName,
               lineNumber: 28,
-              columnNumber: 13
+              columnNumber: 15
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("th", {}, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 29,
+              columnNumber: 15
             }, this)]
           }, void 0, true, {
             fileName: _jsxFileName,
-            lineNumber: 24,
-            columnNumber: 11
+            lineNumber: 25,
+            columnNumber: 13
           }, this)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 23,
-          columnNumber: 9
-        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("tbody", {
+          lineNumber: 24,
+          columnNumber: 11
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("tbody", {
           className: "scroll",
-          children: debriefings.length === 0 ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("tr", {
-            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
+          children: debriefings.length === 0 ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("tr", {
+            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
               colSpan: "4",
               children: ["Currently, there aren't any ", heading.toLowerCase()]
             }, void 0, true, {
               fileName: _jsxFileName,
-              lineNumber: 34,
-              columnNumber: 15
+              lineNumber: 35,
+              columnNumber: 17
             }, this)
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 33,
-            columnNumber: 13
-          }, this) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-            children: debriefings.map(debrief => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("tr", {
-              children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
+            lineNumber: 34,
+            columnNumber: 15
+          }, this) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
+            children: debriefings.map(debrief => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("tr", {
+              children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
                 children: debrief.id
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 42,
-                columnNumber: 19
-              }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
+                lineNumber: 43,
+                columnNumber: 21
+              }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
                 children: debrief.reviewer
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 43,
-                columnNumber: 19
-              }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
-                children: debrief.timestamp
+                lineNumber: 44,
+                columnNumber: 21
+              }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
+                children: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.stdDateTimeFormatToCustom)(debrief.timestamp)
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 44,
-                columnNumber: 19
-              }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("td", {
-                children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                lineNumber: 45,
+                columnNumber: 21
+              }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
+                children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
                   size: "sm",
                   color: "primary",
                   disabled: !onContinueReview,
@@ -7807,41 +8068,51 @@ function DebriefingsTable({
                   children: "Continue Review"
                 }, void 0, false, {
                   fileName: _jsxFileName,
-                  lineNumber: 46,
-                  columnNumber: 21
-                }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                  lineNumber: 47,
+                  columnNumber: 23
+                }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
                   size: "sm",
                   color: "danger",
                   children: "Delete"
                 }, void 0, false, {
                   fileName: _jsxFileName,
-                  lineNumber: 54,
-                  columnNumber: 21
+                  lineNumber: 55,
+                  columnNumber: 23
                 }, this)]
               }, void 0, true, {
                 fileName: _jsxFileName,
-                lineNumber: 45,
-                columnNumber: 19
+                lineNumber: 46,
+                columnNumber: 21
               }, this)]
             }, debrief.id, true, {
               fileName: _jsxFileName,
-              lineNumber: 41,
-              columnNumber: 17
+              lineNumber: 42,
+              columnNumber: 19
             }, this))
           }, void 0, false)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 31,
-          columnNumber: 9
+          lineNumber: 32,
+          columnNumber: 11
         }, this)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 22,
-        columnNumber: 7
+        lineNumber: 17,
+        columnNumber: 9
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 21,
+      lineNumber: 16,
+      columnNumber: 7
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      size: "sm",
+      color: "primary",
+      disabled: !onContinueReview,
+      onClick: () => onStartReview(analysis),
+      children: "Create New Review"
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 66,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -7857,12 +8128,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ObserverLogDetails)
 /* harmony export */ });
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(38428);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
-/* harmony import */ var _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(51719);
-/* harmony import */ var _AnalysesTable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(91604);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(47933);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(50768);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(8668);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(38428);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(77122);
+/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55334);
+/* harmony import */ var _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(51719);
+/* harmony import */ var _AnalysesTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(91604);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(59031);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogDetails.jsx";
+
+
+
+
 
 
 
@@ -7875,95 +8157,130 @@ function ObserverLogDetails({
   onViewAnalysis,
   onAnalyze
 }) {
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("h1", {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__.MDBNavBar, {
+      leftNav: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Link, {
+            to: "/",
+            children: "Observer Logs"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 26,
+            columnNumber: 15
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 25,
+          columnNumber: 13
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          active: true,
+          children: "Details"
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 28,
+          columnNumber: 13
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 24,
+        columnNumber: 11
+      }, this)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 22,
+      columnNumber: 7
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("h3", {
       children: "Observer Log"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 16,
+      lineNumber: 33,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      striped: true,
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
       borderless: true,
       size: "sm",
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_0__["default"], {}, void 0, false, {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_2__["default"], {}, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 18,
+        lineNumber: 35,
         columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("tbody", {
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("tr", {
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("tbody", {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("tr", {
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
             children: log.scenarioName
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 21,
+            lineNumber: 38,
             columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
             children: scenario.version
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 22,
+            lineNumber: 39,
             columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
-            children: log.label
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 23,
-            columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
             children: log.userName
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 24,
+            lineNumber: 40,
             columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
-            children: log.timestamp
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: log.label
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 25,
+            lineNumber: 41,
             columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("td", {
-            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: (0,_utils__WEBPACK_IMPORTED_MODULE_4__.stdDateTimeFormatToCustom)(log.timestamp)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 42,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("td", {
+            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
               size: "sm",
               color: "danger",
               children: "Delete"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 27,
+              lineNumber: 44,
               columnNumber: 15
             }, this)
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 26,
+            lineNumber: 43,
             columnNumber: 13
           }, this)]
         }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 20,
+          lineNumber: 37,
           columnNumber: 11
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 19,
+        lineNumber: 36,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 17,
+      lineNumber: 34,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("h2", {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("br", {}, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 52,
+      columnNumber: 7
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)("h3", {
       children: "Analyses"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 34,
+      lineNumber: 54,
       columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_AnalysesTable__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(_AnalysesTable__WEBPACK_IMPORTED_MODULE_3__["default"], {
       analyses: analyses,
       onViewAnalysis: onViewAnalysis,
       onAnalyze: onAnalyze
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 35,
+      lineNumber: 55,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -7979,102 +8296,265 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ObserverLogTable)
 /* harmony export */ });
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(38428);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(77122);
-/* harmony import */ var _ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(51719);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49663);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(39529);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(31235);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(77950);
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(48319);
+/* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(43105);
+/* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(77122);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(50768);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(8668);
+/* harmony import */ var _handsontable_react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(99558);
+/* harmony import */ var handsontable_registry__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(8479);
+/* harmony import */ var handsontable_dist_handsontable_full_min_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(73006);
+/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(55334);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(59031);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogTable.jsx";
-// import { Link, use } from "react-router-dom"
 
 
+
+
+
+ // import { Link, use } from "react-router-dom"
+
+ // Table,
+// import ObserverLogTableHeader from "./ObserverLogTableHeader";
+// import strftime from "strftime";
+
+
+
+
+
+
+
+
+(0,handsontable_registry__WEBPACK_IMPORTED_MODULE_11__.registerAllModules)(); // function CustomDateRenderer({value}) {
+//   return strftime("%m/%d/%Y %I:%M:%S %p", new Date(value))
+// }
+
+function EmailFieldRenderer({
+  value
+}) {
+  return value.includes('@') ? value.split('@')[0] : value;
+}
+
+function ObsLogLinkRenderer({
+  value,
+  clickHandler
+}) {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+    size: "sm",
+    color: "primary",
+    onClick: () => clickHandler(value),
+    children: "View"
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 30,
+    columnNumber: 5
+  }, this);
+}
 
 function ObserverLogTable({
   logs,
   viewButtonHandler
 }) {
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("div", {
-    style: {
-      overflowY: "auto",
-      maxHeight: "700px"
-    },
-    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      striped: true,
-      borderless: true,
-      size: "sm",
-      hover: true,
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(_ObserverLogTableHeader__WEBPACK_IMPORTED_MODULE_0__["default"], {}, void 0, false, {
-        fileName: _jsxFileName,
-        lineNumber: 10,
-        columnNumber: 7
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("tbody", {
-        className: "scroll",
-        children: logs.map(log => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("tr", {
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-            children: log.scenario
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 14,
-            columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-            children: log.publishedVersion
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 15,
-            columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-            children: log.label
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 16,
-            columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-            children: log.userName
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 17,
-            columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-            children: log.timestamp
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 18,
-            columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)("td", {
-            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
-              size: "sm",
-              color: "success",
-              onClick: () => viewButtonHandler(log.id),
-              children: "View"
-            }, void 0, false, {
-              fileName: _jsxFileName,
-              lineNumber: 20,
-              columnNumber: 15
-            }, this)
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 19,
-            columnNumber: 13
-          }, this)]
-        }, log.id, true, {
+  // const data = logs.map(rec => ({
+  //   ...rec,
+  //   ...{timestamp: Date.parse(rec.timestamp)}
+  // }))
+  const data = logs.map(rec => Object.assign({}, rec, {
+    timestamp: (0,_utils__WEBPACK_IMPORTED_MODULE_9__.stdDateTimeFormatToCustom)(rec.timestamp)
+  }));
+  console.log(data);
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_8__.MDBNavBar, {
+      leftNav: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
+          active: true,
+          children: "Observer Logs"
+        }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 13,
-          columnNumber: 11
-        }, this))
+          lineNumber: 52,
+          columnNumber: 13
+        }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 11,
-        columnNumber: 7
+        lineNumber: 51,
+        columnNumber: 11
+      }, this)
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 49,
+      columnNumber: 7
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_handsontable_react__WEBPACK_IMPORTED_MODULE_6__.HotTable, {
+      data: data,
+      rowHeaders: false,
+      height: "calc(100% - 60px)",
+      width: "100%",
+      autoRowSize: false,
+      autoColumnSize: false,
+      hiddenColumns: [6],
+      filters: true,
+      dropdownMenu: true,
+      manualColumnResize: true,
+      columnSorting: {
+        sortEmptyCells: true,
+        indicator: true,
+        headerAction: true
+      },
+      licenseKey: "non-commercial-and-evaluation",
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_handsontable_react__WEBPACK_IMPORTED_MODULE_6__.HotColumn, {
+        data: "scenario",
+        title: "Scenario",
+        readOnly: true,
+        width: 120
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 76,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_handsontable_react__WEBPACK_IMPORTED_MODULE_6__.HotColumn, {
+        data: "publishedVersion",
+        title: "Version",
+        readOnly: true,
+        width: 170
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 82,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_handsontable_react__WEBPACK_IMPORTED_MODULE_6__.HotColumn, {
+        data: "userName",
+        title: "User",
+        readOnly: true,
+        width: 100,
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(EmailFieldRenderer, {
+          "hot-renderer": true
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 89,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 88,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_handsontable_react__WEBPACK_IMPORTED_MODULE_6__.HotColumn, {
+        data: "label",
+        title: "Observer/Label",
+        readOnly: true,
+        width: 310,
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(EmailFieldRenderer, {
+          "hot-renderer": true
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 97,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 91,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_handsontable_react__WEBPACK_IMPORTED_MODULE_6__.HotColumn, {
+        data: "classCode",
+        title: "Class Code",
+        readOnly: true,
+        width: 120
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 99,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_handsontable_react__WEBPACK_IMPORTED_MODULE_6__.HotColumn, {
+        data: "condition",
+        title: "Condition",
+        readOnly: true,
+        width: 120
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 105,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_handsontable_react__WEBPACK_IMPORTED_MODULE_6__.HotColumn, {
+        data: "timestamp",
+        title: "Timestamp",
+        readOnly: true,
+        width: 180,
+        columnSorting: {
+          compareFunctionFactory: (sortOrder, columnMeta) => {
+            return function comparator(value, nextValue) {
+              return Date.parse(value) - Date.parse(nextValue);
+            };
+          }
+        }
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 112,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_handsontable_react__WEBPACK_IMPORTED_MODULE_6__.HotColumn, {
+        data: "id",
+        title: "",
+        readOnly: true,
+        width: 60,
+        dropdownMenu: false,
+        filters: false,
+        columnSorting: {
+          indicator: true,
+          headerAction: true // compareFunctionFactory: (sortOrder, columnMeta) => {
+          //   return function comparator(value, nextValue) {
+          //     return 0;
+          //   };
+          // },
+
+        },
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(ObsLogLinkRenderer, {
+          "hot-renderer": true,
+          clickHandler: viewButtonHandler
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 142,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 125,
+        columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 9,
-      columnNumber: 5
-    }, this)
-  }, void 0, false, {
-    fileName: _jsxFileName,
-    lineNumber: 8,
-    columnNumber: 5
-  }, this);
+      lineNumber: 58,
+      columnNumber: 7
+    }, this)]
+  }, void 0, true); // return (
+  //   <div style={{ overflowY: "auto", maxHeight: "700px" }}>
+  //   <Table striped={true} borderless size="sm" hover>
+  //     <ObserverLogTableHeader />
+  //     <tbody className="scroll">
+  //       {logs.map((log) => (
+  //         <tr key={log.id}>
+  //           <td>{log.scenario}</td>
+  //           <td>{log.publishedVersion}</td>
+  //           <td>{log.label}</td>
+  //           <td>{log.userName}</td>
+  //           <td>{log.timestamp}</td>
+  //           <td>
+  //             <Button
+  //               size="sm"
+  //               color="success"
+  //               onClick={() => viewButtonHandler(log.id)}
+  //             >
+  //               View
+  //             </Button>
+  //           </td>
+  //         </tr>
+  //       ))}
+  //     </tbody>
+  //   </Table></div>
+  // );
 }
 
 /***/ }),
@@ -8098,41 +8578,41 @@ function ObserverLogTableHeader() {
       }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 5,
-        columnNumber: 21
+        columnNumber: 11
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("th", {
         children: "Published Version"
       }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 6,
-        columnNumber: 21
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("th", {
-        children: "Label"
-      }, void 0, false, {
-        fileName: _jsxFileName,
-        lineNumber: 7,
-        columnNumber: 21
+        columnNumber: 11
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("th", {
         children: "Username"
       }, void 0, false, {
         fileName: _jsxFileName,
+        lineNumber: 7,
+        columnNumber: 11
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("th", {
+        children: "Observer/Label"
+      }, void 0, false, {
+        fileName: _jsxFileName,
         lineNumber: 8,
-        columnNumber: 21
+        columnNumber: 11
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("th", {
         children: "Timestamp"
       }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 9,
-        columnNumber: 21
+        columnNumber: 11
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
       lineNumber: 4,
-      columnNumber: 17
+      columnNumber: 9
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
     lineNumber: 3,
-    columnNumber: 9
+    columnNumber: 7
   }, this);
 }
 
@@ -8191,19 +8671,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7267);
-/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(89526);
-/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(48913);
-/* harmony import */ var _components_AnalysisDetails__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(92940);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(73439);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7267);
+/* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(89526);
+/* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(48913);
+/* harmony import */ var _components_AnalysisDetails__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(92940);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/routes/Analysis.jsx";
 
 
 
 
- // import { AuthContext } from "@meddbriefer/mdb-auth";
+
 
 
 
@@ -8216,33 +8698,55 @@ function Analysis({
 }) {
   const {
     db
-  } = (0,_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_3__.useFirebase)();
+  } = (0,_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_4__.useFirebase)();
   const {
     logID,
     analysisID
-  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useParams)(); // const history = useHistory();
-  // const { userName } = useContext(AuthContext);
+  } = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useParams)();
+  const [log, setLog] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
+  const [analysis, setAnalysis] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
+  const [cond1DebLogs, setCond1DebLogs] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
+  const [cond2DebLogs, setCond2DebLogs] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
+  const [scenario, setScenario] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+    const fetchData = async () => {
+      const aData = await (0,_meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_5__.getAnalysisLog)(db, analysisID);
+      setAnalysis(aData);
+      const obsData = await (0,_meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_5__.getObserverLog)(db, logID);
+      setLog(obsData);
+      const comments = await (0,_meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_5__.getAnalysisCond1Comments)(db, analysisID);
+      setCond1DebLogs(comments);
+      const debriefings = await (0,_meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_5__.getAnalysisCond2Debriefings)(db, analysisID);
+      setCond2DebLogs(debriefings);
+      const scenData = await (0,_meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_5__.getPublishedScenarioObjectByID)(db, obsData.scenarioID);
+      setScenario(scenData);
+      return true; // .then((aData) => setAnalysis(aData))
+      // .then(() => getObserverLog(db, logID))
+      // .then((obsData) => setLog(obsData))
+      // .then(() => getAnalysisCond1Comments(db, analysisID))
+      // .then((comments) => setCond1DebLogs(comments))
+      // .then(() => getAnalysisCond2Debriefings(db, analysisID))
+      // .then((debriefings) => setCond2DebLogs(debriefings))
+    };
 
-  const [analysis, setAnalysis] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
-  const [cond1DebLogs, setCond1DebLogs] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
-  const [cond2DebLogs, setCond2DebLogs] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null);
-  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(() => {
     if (db && !analysis) {
-      (0,_meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__.getAnalysisLog)(db, analysisID).then(data => setAnalysis(data)).then(() => (0,_meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__.getAnalysisCond1Comments)(db, analysisID)).then(comments => setCond1DebLogs(comments)).then(() => (0,_meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__.getAnalysisCond2Debriefings)(db, analysisID)).then(debriefings => setCond2DebLogs(debriefings)).catch(error => console.error(error));
+      fetchData().then(() => true).catch(error => console.error(error));
     }
   }, [db, logID, analysisID, analysis]);
 
-  if (!(cond1DebLogs && cond2DebLogs)) {
-    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("div", {
+  if (!(cond1DebLogs && cond2DebLogs && scenario)) {
+    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
       children: "Loading..."
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 48,
+      lineNumber: 59,
       columnNumber: 12
     }, this);
   }
 
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_components_AnalysisDetails__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_components_AnalysisDetails__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    scenario: scenario,
+    log: log,
     analysis: analysis,
     cond1Comments: cond1DebLogs,
     cond2Debriefings: cond2DebLogs,
@@ -8252,7 +8756,7 @@ function Analysis({
     onCond2ContinueReview: onCond2ContinueReview
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 51,
+    lineNumber: 62,
     columnNumber: 5
   }, this);
 }
@@ -8503,7 +9007,6 @@ var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/
 
 
 
-
 function ObserverLogList() {
   const {
     db
@@ -8529,22 +9032,14 @@ function ObserverLogList() {
     }, this);
   }
 
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("h1", {
-      children: "Observer Logs"
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 28,
-      columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_components_ObserverLogTable__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      logs: obsLogs,
-      viewButtonHandler: viewObsLogHandler
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 29,
-      columnNumber: 7
-    }, this)]
-  }, void 0, true);
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_components_ObserverLogTable__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    logs: obsLogs,
+    viewButtonHandler: viewObsLogHandler
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 27,
+    columnNumber: 7
+  }, this);
 }
 
 /***/ }),
@@ -8568,6 +9063,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+/***/ }),
+
+/***/ 59031:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "stdDateTimeFormatToCustom": () => (/* binding */ stdDateTimeFormatToCustom)
+/* harmony export */ });
+/* harmony import */ var strftime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(80212);
+/* harmony import */ var strftime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(strftime__WEBPACK_IMPORTED_MODULE_0__);
+
+function stdDateTimeFormatToCustom(stdValue) {
+  return strftime__WEBPACK_IMPORTED_MODULE_0___default()("%m/%d/%Y %I:%M:%S %p", new Date(Date.parse(stdValue)));
+}
 
 /***/ }),
 
@@ -20844,6 +21356,304 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ 96616:
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var map = {
+	"./af": 95191,
+	"./af.js": 95191,
+	"./ar": 54358,
+	"./ar-dz": 71727,
+	"./ar-dz.js": 71727,
+	"./ar-kw": 98279,
+	"./ar-kw.js": 98279,
+	"./ar-ly": 87895,
+	"./ar-ly.js": 87895,
+	"./ar-ma": 11987,
+	"./ar-ma.js": 11987,
+	"./ar-sa": 52796,
+	"./ar-sa.js": 52796,
+	"./ar-tn": 12386,
+	"./ar-tn.js": 12386,
+	"./ar.js": 54358,
+	"./az": 57452,
+	"./az.js": 57452,
+	"./be": 79053,
+	"./be.js": 79053,
+	"./bg": 65428,
+	"./bg.js": 65428,
+	"./bm": 21569,
+	"./bm.js": 21569,
+	"./bn": 56212,
+	"./bn-bd": 24635,
+	"./bn-bd.js": 24635,
+	"./bn.js": 56212,
+	"./bo": 13667,
+	"./bo.js": 13667,
+	"./br": 192,
+	"./br.js": 192,
+	"./bs": 51802,
+	"./bs.js": 51802,
+	"./ca": 19118,
+	"./ca.js": 19118,
+	"./cs": 39990,
+	"./cs.js": 39990,
+	"./cv": 30557,
+	"./cv.js": 30557,
+	"./cy": 4227,
+	"./cy.js": 4227,
+	"./da": 95406,
+	"./da.js": 95406,
+	"./de": 87994,
+	"./de-at": 44139,
+	"./de-at.js": 44139,
+	"./de-ch": 86591,
+	"./de-ch.js": 86591,
+	"./de.js": 87994,
+	"./dv": 94649,
+	"./dv.js": 94649,
+	"./el": 14453,
+	"./el.js": 14453,
+	"./en-au": 48428,
+	"./en-au.js": 48428,
+	"./en-ca": 36972,
+	"./en-ca.js": 36972,
+	"./en-gb": 13224,
+	"./en-gb.js": 13224,
+	"./en-ie": 18843,
+	"./en-ie.js": 18843,
+	"./en-il": 32732,
+	"./en-il.js": 32732,
+	"./en-in": 76579,
+	"./en-in.js": 76579,
+	"./en-nz": 29851,
+	"./en-nz.js": 29851,
+	"./en-sg": 70442,
+	"./en-sg.js": 70442,
+	"./eo": 10654,
+	"./eo.js": 10654,
+	"./es": 63621,
+	"./es-do": 68791,
+	"./es-do.js": 68791,
+	"./es-mx": 67278,
+	"./es-mx.js": 67278,
+	"./es-us": 60717,
+	"./es-us.js": 60717,
+	"./es.js": 63621,
+	"./et": 72404,
+	"./et.js": 72404,
+	"./eu": 62944,
+	"./eu.js": 62944,
+	"./fa": 30496,
+	"./fa.js": 30496,
+	"./fi": 98137,
+	"./fi.js": 98137,
+	"./fil": 32872,
+	"./fil.js": 32872,
+	"./fo": 6545,
+	"./fo.js": 6545,
+	"./fr": 49090,
+	"./fr-ca": 13049,
+	"./fr-ca.js": 13049,
+	"./fr-ch": 12338,
+	"./fr-ch.js": 12338,
+	"./fr.js": 49090,
+	"./fy": 95088,
+	"./fy.js": 95088,
+	"./ga": 77812,
+	"./ga.js": 77812,
+	"./gd": 8374,
+	"./gd.js": 8374,
+	"./gl": 63649,
+	"./gl.js": 63649,
+	"./gom-deva": 52674,
+	"./gom-deva.js": 52674,
+	"./gom-latn": 44948,
+	"./gom-latn.js": 44948,
+	"./gu": 24033,
+	"./gu.js": 24033,
+	"./he": 10175,
+	"./he.js": 10175,
+	"./hi": 58055,
+	"./hi.js": 58055,
+	"./hr": 41678,
+	"./hr.js": 41678,
+	"./hu": 85111,
+	"./hu.js": 85111,
+	"./hy-am": 26530,
+	"./hy-am.js": 26530,
+	"./id": 19126,
+	"./id.js": 19126,
+	"./is": 11696,
+	"./is.js": 11696,
+	"./it": 98710,
+	"./it-ch": 38821,
+	"./it-ch.js": 38821,
+	"./it.js": 98710,
+	"./ja": 93974,
+	"./ja.js": 93974,
+	"./jv": 70648,
+	"./jv.js": 70648,
+	"./ka": 54731,
+	"./ka.js": 54731,
+	"./kk": 43501,
+	"./kk.js": 43501,
+	"./km": 84398,
+	"./km.js": 84398,
+	"./kn": 91825,
+	"./kn.js": 91825,
+	"./ko": 13729,
+	"./ko.js": 13729,
+	"./ku": 19670,
+	"./ku.js": 19670,
+	"./ky": 78797,
+	"./ky.js": 78797,
+	"./lb": 50627,
+	"./lb.js": 50627,
+	"./lo": 65859,
+	"./lo.js": 65859,
+	"./lt": 80355,
+	"./lt.js": 80355,
+	"./lv": 16594,
+	"./lv.js": 16594,
+	"./me": 45324,
+	"./me.js": 45324,
+	"./mi": 11689,
+	"./mi.js": 11689,
+	"./mk": 61308,
+	"./mk.js": 61308,
+	"./ml": 85241,
+	"./ml.js": 85241,
+	"./mn": 76320,
+	"./mn.js": 76320,
+	"./mr": 96771,
+	"./mr.js": 96771,
+	"./ms": 20503,
+	"./ms-my": 77748,
+	"./ms-my.js": 77748,
+	"./ms.js": 20503,
+	"./mt": 55534,
+	"./mt.js": 55534,
+	"./my": 62727,
+	"./my.js": 62727,
+	"./nb": 7550,
+	"./nb.js": 7550,
+	"./ne": 49899,
+	"./ne.js": 49899,
+	"./nl": 41228,
+	"./nl-be": 31225,
+	"./nl-be.js": 31225,
+	"./nl.js": 41228,
+	"./nn": 97130,
+	"./nn.js": 97130,
+	"./oc-lnc": 93130,
+	"./oc-lnc.js": 93130,
+	"./pa-in": 91282,
+	"./pa-in.js": 91282,
+	"./pl": 28190,
+	"./pl.js": 28190,
+	"./pt": 41549,
+	"./pt-br": 78135,
+	"./pt-br.js": 78135,
+	"./pt.js": 41549,
+	"./ro": 307,
+	"./ro.js": 307,
+	"./ru": 89272,
+	"./ru.js": 89272,
+	"./sd": 79248,
+	"./sd.js": 79248,
+	"./se": 74969,
+	"./se.js": 74969,
+	"./si": 65522,
+	"./si.js": 65522,
+	"./sk": 61581,
+	"./sk.js": 61581,
+	"./sl": 56428,
+	"./sl.js": 56428,
+	"./sq": 34611,
+	"./sq.js": 34611,
+	"./sr": 19821,
+	"./sr-cyrl": 20185,
+	"./sr-cyrl.js": 20185,
+	"./sr.js": 19821,
+	"./ss": 35029,
+	"./ss.js": 35029,
+	"./sv": 80939,
+	"./sv.js": 80939,
+	"./sw": 73107,
+	"./sw.js": 73107,
+	"./ta": 72304,
+	"./ta.js": 72304,
+	"./te": 72550,
+	"./te.js": 72550,
+	"./tet": 99717,
+	"./tet.js": 99717,
+	"./tg": 87669,
+	"./tg.js": 87669,
+	"./th": 94959,
+	"./th.js": 94959,
+	"./tk": 92661,
+	"./tk.js": 92661,
+	"./tl-ph": 52234,
+	"./tl-ph.js": 52234,
+	"./tlh": 94120,
+	"./tlh.js": 94120,
+	"./tr": 81111,
+	"./tr.js": 81111,
+	"./tzl": 53080,
+	"./tzl.js": 53080,
+	"./tzm": 88246,
+	"./tzm-latn": 25385,
+	"./tzm-latn.js": 25385,
+	"./tzm.js": 88246,
+	"./ug-cn": 48777,
+	"./ug-cn.js": 48777,
+	"./uk": 2014,
+	"./uk.js": 2014,
+	"./ur": 45953,
+	"./ur.js": 45953,
+	"./uz": 89716,
+	"./uz-latn": 87791,
+	"./uz-latn.js": 87791,
+	"./uz.js": 89716,
+	"./vi": 99816,
+	"./vi.js": 99816,
+	"./x-pseudo": 94450,
+	"./x-pseudo.js": 94450,
+	"./yo": 22556,
+	"./yo.js": 22556,
+	"./zh-cn": 7414,
+	"./zh-cn.js": 7414,
+	"./zh-hk": 50824,
+	"./zh-hk.js": 50824,
+	"./zh-mo": 88589,
+	"./zh-mo.js": 88589,
+	"./zh-tw": 63285,
+	"./zh-tw.js": 63285
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 96616;
+
+/***/ }),
+
 /***/ 92910:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -21646,7 +22456,9 @@ function exportObserverLogMetaData(doc) {
     scenario: data.scenarioName,
     scenarioID: data.scenarioID,
     userName: data.userName,
-    timestamp: data.timestamp
+    timestamp: data.timestamp,
+    classCode: data.classCode,
+    condition: data.condition
   };
 }
 
