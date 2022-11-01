@@ -5278,6 +5278,7 @@ var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debrie
 function ExamineForm({
   slide,
   stepPath,
+  prompts,
   submitHandler
 }) {
   var _slide$type;
@@ -5327,7 +5328,7 @@ function ExamineForm({
       fileName: _jsxFileName,
       lineNumber: 31,
       columnNumber: 9
-    }, this), slide.prompts && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
+    }, this), prompts && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
         children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("b", {
           children: "For example:"
@@ -5341,7 +5342,7 @@ function ExamineForm({
         lineNumber: 36,
         columnNumber: 11
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("ul", {
-        children: slide.prompts.split(";").map((prompt, i) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("li", {
+        children: prompts.split(";").map((prompt, i) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("li", {
           children: prompt
         }, i, false, {
           fileName: _jsxFileName,
@@ -5629,14 +5630,12 @@ function SequentialIEView({
       examined: _examined
     } = pd;
     const need2props = {
-      exam: myData.examine,
       examIfAbs: myData.examineIfAbsent,
       absent: (0,_utils__WEBPACK_IMPORTED_MODULE_7__.isAbsent)(ieSummary, myData.id),
       examIfErrs: myData.examineIfErrors,
       errors: (0,_utils__WEBPACK_IMPORTED_MODULE_7__.hasError)(ieSummary, myData.id)
     };
-    const need2 = need2props.exam || // need to keep this until all scenarios have been updated to have the following 2 fields instead
-    need2props.examIfAbs && need2props.absent || need2props.examIfErrs && need2props.errors;
+    const need2 = need2props.examIfAbs && need2props.absent || need2props.examIfErrs && need2props.errors;
     console.log("need2Examine", need2props, need2);
     setNeedToExamine(need2);
     setExamined(_examined);
@@ -5681,7 +5680,7 @@ function SequentialIEView({
         ratedHandler: onRatingComplete
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 127,
+        lineNumber: 125,
         columnNumber: 15
       }, this), "analysis" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(_Analysis__WEBPACK_IMPORTED_MODULE_5__["default"], {
         slide: myData,
@@ -5689,21 +5688,22 @@ function SequentialIEView({
         analyzedHandler: onAnalysisComplete
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 133,
+        lineNumber: 128,
         columnNumber: 15
       }, this), "examine" === mode && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(_ExamineForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
         slide: myData,
         stepPath: stepPath,
+        prompts: (0,_utils__WEBPACK_IMPORTED_MODULE_7__.isAbsent)(ieSummary, myData.id) ? myData.promptsIfAbsent : myData.promptsIfErrors,
         submitHandler: onExamineComplete
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 140,
+        lineNumber: 135,
         columnNumber: 15
       }, this)]
     }, void 0, true)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 123,
+    lineNumber: 121,
     columnNumber: 7
   }, this);
 }
@@ -5724,18 +5724,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2441);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(21808);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(33015);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(51255);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(7618);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2441);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(21808);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(33015);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(51255);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(7618);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(71359);
-/* harmony import */ var _ExamineForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1967);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(20506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55634);
+/* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(71359);
+/* harmony import */ var _ExamineForm__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1967);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(24495);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/TabbedIEView.jsx";
+
+
 
 
 
@@ -5750,16 +5754,19 @@ function TabbedIEView({
   stepPath,
   examined
 }) {
+  const {
+    ieSummary
+  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_4__.useDebriefing)();
   const [activeTab, setActiveTab] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)("feedback");
 
   const setTab = tabID => setActiveTab(tabID);
 
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-    className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_6__["default"]["feedback-block"],
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)("div", {
+    className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_8__["default"]["feedback-block"],
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
       tabs: true,
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
           className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
             active: activeTab === "feedback"
           }),
@@ -5767,15 +5774,15 @@ function TabbedIEView({
           children: "Feedback"
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 19,
+          lineNumber: 23,
           columnNumber: 21
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 18,
+        lineNumber: 22,
         columnNumber: 17
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
           className: classnames__WEBPACK_IMPORTED_MODULE_3___default()({
             active: activeTab === "examine"
           }),
@@ -5784,57 +5791,58 @@ function TabbedIEView({
           children: "Your Reflection"
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 27,
+          lineNumber: 31,
           columnNumber: 21
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 26,
+        lineNumber: 30,
         columnNumber: 17
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 17,
+      lineNumber: 21,
       columnNumber: 13
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_11__["default"], {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_13__["default"], {
       activeTab: activeTab,
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
         tabId: "feedback",
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_Analysis__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(_Analysis__WEBPACK_IMPORTED_MODULE_5__["default"], {
           slide: myData,
           stepPath: stepPath
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 38,
+          lineNumber: 42,
           columnNumber: 21
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 37,
+        lineNumber: 41,
         columnNumber: 17
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_14__["default"], {
         tabId: "examine",
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_ExamineForm__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxDEV)(_ExamineForm__WEBPACK_IMPORTED_MODULE_6__["default"], {
           slide: myData,
-          stepPath: stepPath
+          stepPath: stepPath,
+          prompts: (0,_utils__WEBPACK_IMPORTED_MODULE_7__.isAbsent)(ieSummary, myData.id) ? myData.promptsIfAbsent : myData.promptsIfErrors
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 44,
+          lineNumber: 48,
           columnNumber: 21
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 43,
+        lineNumber: 47,
         columnNumber: 17
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 36,
+      lineNumber: 40,
       columnNumber: 13
     }, this)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 16,
+    lineNumber: 20,
     columnNumber: 9
   }, this);
 }
@@ -6691,7 +6699,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(54303);
 /* harmony import */ var _meddbriefer_scenario_data_utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(97414);
 
-const _excluded = ["id", "label", "type", "examine", "examineIfAbsent", "examineIfErrors", "prompts", "subActionsList"];
+const _excluded = ["id", "label", "type", "examineIfAbsent", "examineIfErrors", "promptsIfAbsent", "promptsIfErrors", "subActionsList"];
 
 
 
@@ -6745,10 +6753,12 @@ function getIENodeData(node, expandChildren) {
     id,
     label = "",
     type = "UNKNOWN",
-    examine = false,
+    // examine = false,
     examineIfAbsent = false,
     examineIfErrors = false,
-    prompts = "",
+    // prompts = "",
+    promptsIfAbsent = "",
+    promptsIfErrors = "",
     subActionsList
   } = node,
         rest = (0,_Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(node, _excluded);
@@ -6770,10 +6780,12 @@ function getIENodeData(node, expandChildren) {
     id,
     label,
     type,
-    examine,
+    // examine,
     examineIfAbsent,
     examineIfErrors,
-    prompts,
+    // prompts,
+    promptsIfAbsent,
+    promptsIfErrors,
     subActionsList,
     subActions
   }, other); // console.log("BEFORE", node) 
@@ -20891,14 +20903,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6886);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72779);
-/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(94292);
-/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(25600);
-/* harmony import */ var _icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(93391);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(73439);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(39529);
+/* harmony import */ var core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_includes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(31235);
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(72779);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(94292);
+/* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(25600);
+/* harmony import */ var _icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(93391);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/RegistrationForm.js";
 
 
@@ -20909,100 +20927,137 @@ var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/compon
 
 
 
+
+
+
 const RegistrationForm = () => {
-  const [passwordVisible, setPasswordVisible] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false);
+  const [passwordVisible, setPasswordVisible] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(false);
+  const [validClassCode, setIsValidClassCode] = (0,react__WEBPACK_IMPORTED_MODULE_5__.useState)(true);
 
   const togglePasswordVisibility = () => setPasswordVisible(!passwordVisible);
 
   const toggleConfirmPasswordVisibility = () => setConfirmPasswordVisible(!confirmPasswordVisible);
 
   const {
+    getClassCodes,
     setCurrAuthComponent,
     registerErrorMsg,
     registerUserWithEmailAndPassword
-  } = (0,react__WEBPACK_IMPORTED_MODULE_2__.useContext)(_contexts_Auth__WEBPACK_IMPORTED_MODULE_5__.AuthContext);
+  } = (0,react__WEBPACK_IMPORTED_MODULE_5__.useContext)(_contexts_Auth__WEBPACK_IMPORTED_MODULE_8__.AuthContext);
 
   const alreadyHaveAccount = event => {
     event.preventDefault();
-    setCurrAuthComponent(_contexts_Auth__WEBPACK_IMPORTED_MODULE_5__.AUTH_FLOW_COMPONENTS.LOGIN); // console.log("I already have an account")
+    setCurrAuthComponent(_contexts_Auth__WEBPACK_IMPORTED_MODULE_8__.AUTH_FLOW_COMPONENTS.LOGIN); // console.log("I already have an account")
   };
 
-  const handleSignUp = event => {
+  const handleSignUp = async event => {
     event.preventDefault();
+    const validClassCodes = await getClassCodes();
     const {
       classCode,
       email,
       password
     } = event.target.elements;
-    registerUserWithEmailAndPassword(email.value, password.value, classCode.value);
+
+    if (validClassCodes.includes(classCode.value)) {
+      registerUserWithEmailAndPassword(email.value, password.value, classCode.value);
+    } else {
+      setIsValidClassCode(false);
+    }
   };
 
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("form", {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("form", {
       onSubmit: handleSignUp,
-      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-        className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].container,
-        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].row,
-          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("h3", {
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+        className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"].container,
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"].row,
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("h3", {
             children: "Sign up for MedDBriefer"
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 42,
+            lineNumber: 48,
             columnNumber: 25
           }, undefined)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 41,
+          lineNumber: 47,
           columnNumber: 21
-        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].row,
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("label", {
+        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"].row,
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("label", {
             htmlFor: "classCode",
-            className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-sm-3"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-form-label"]),
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-sm-3"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-form-label"]),
             children: "Class Code"
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 45,
-            columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-            className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-sm-9"],
-            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("input", {
-              className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["form-control"],
-              id: "classCode",
-              name: "classCode",
-              type: "text",
-              placeholder: "example: demo",
-              required: true
-            }, void 0, false, {
-              fileName: _jsxFileName,
-              lineNumber: 52,
-              columnNumber: 29
-            }, undefined)
           }, void 0, false, {
             fileName: _jsxFileName,
             lineNumber: 51,
             columnNumber: 25
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+            className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-sm-9"],
+            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("input", {
+              className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["form-control"],
+              id: "classCode",
+              name: "classCode",
+              type: "text",
+              placeholder: "example: demo",
+              autoComplete: "off",
+              onInput: () => setIsValidClassCode(true),
+              required: true
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 58,
+              columnNumber: 29
+            }, undefined)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 57,
+            columnNumber: 25
           }, undefined)]
         }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 44,
+          lineNumber: 50,
           columnNumber: 21
-        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].row,
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("label", {
+        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"].row,
+          style: {
+            display: validClassCode ? "none" : "block"
+          },
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+            className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-sm-12"],
+            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("span", {
+              className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["text-danger"],
+              children: "Invalid class code, if you are here for an experiment, type 'trial1', otherwise enter 'demo'"
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 72,
+              columnNumber: 29
+            }, undefined)
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 71,
+            columnNumber: 25
+          }, undefined)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 70,
+          columnNumber: 21
+        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+          className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"].row),
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("label", {
             htmlFor: "emailAddress",
-            className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-sm-3"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-form-label"]),
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-sm-3"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-form-label"]),
             children: "Email"
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 63,
+            lineNumber: 78,
             columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-            className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-sm-9"],
-            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("input", {
-              className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["form-control"],
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+            className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-sm-9"],
+            children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("input", {
+              className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["form-control"],
               id: "emailAddress",
               name: "email",
               type: "email",
@@ -21010,72 +21065,72 @@ const RegistrationForm = () => {
               required: true
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 70,
+              lineNumber: 85,
               columnNumber: 29
             }, undefined)
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 69,
+            lineNumber: 84,
             columnNumber: 25
           }, undefined)]
         }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 62,
+          lineNumber: 77,
           columnNumber: 21
-        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].row,
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("label", {
+        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"].row,
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("label", {
             htmlFor: "password",
-            className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-sm-3"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-form-label"]),
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-sm-3"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-form-label"]),
             children: "Password"
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 81,
+            lineNumber: 96,
             columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-            className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-sm-9"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["input-group"]),
-            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("input", {
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-sm-9"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["input-group"]),
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("input", {
               id: "password",
               name: "password",
               type: passwordVisible ? "text" : "password",
-              className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["form-control"],
+              className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["form-control"],
               placeholder: "Enter password",
               required: true
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 88,
+              lineNumber: 103,
               columnNumber: 29
-            }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_9__["default"], {
               visible: passwordVisible,
               stateToggler: togglePasswordVisibility
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 96,
+              lineNumber: 111,
               columnNumber: 29
             }, undefined)]
           }, void 0, true, {
             fileName: _jsxFileName,
-            lineNumber: 87,
+            lineNumber: 102,
             columnNumber: 25
           }, undefined)]
         }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 80,
+          lineNumber: 95,
           columnNumber: 21
-        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].row,
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("label", {
+        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"].row,
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("label", {
             htmlFor: "confirmPassword",
-            className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-sm-3"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-form-label"]),
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-sm-3"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-form-label"]),
             children: "Confirm Password"
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 103,
+            lineNumber: 118,
             columnNumber: 25
-          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-            className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["col-sm-9"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["input-group"]),
-            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("input", {
-              className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["form-control"],
+          }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+            className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["col-sm-9"], _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["input-group"]),
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("input", {
+              className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["form-control"],
               id: "confirmPassword",
               name: "confirmPassword",
               type: confirmPasswordVisible ? "text" : "password",
@@ -21083,70 +21138,70 @@ const RegistrationForm = () => {
               required: true
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 110,
+              lineNumber: 125,
               columnNumber: 29
-            }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)(_icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_9__["default"], {
               visible: confirmPasswordVisible,
               stateToggler: toggleConfirmPasswordVisibility
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 118,
+              lineNumber: 133,
               columnNumber: 29
             }, undefined)]
           }, void 0, true, {
             fileName: _jsxFileName,
-            lineNumber: 109,
+            lineNumber: 124,
             columnNumber: 25
           }, undefined)]
         }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 102,
+          lineNumber: 117,
           columnNumber: 21
-        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
-          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].row,
-          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("p", {
-            className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["text-danger"],
+        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("div", {
+          className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"].row,
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("p", {
+            className: _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["text-danger"],
             children: registerErrorMsg
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 125,
+            lineNumber: 140,
             columnNumber: 25
           }, undefined)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 124,
+          lineNumber: 139,
           columnNumber: 21
-        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("button", {
+        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("button", {
           type: "submit",
-          className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].btn, _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["btn-primary"]),
+          className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"].btn, _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["btn-primary"]),
           children: "Sign Up"
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 130,
+          lineNumber: 145,
           columnNumber: 21
-        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("button", {
+        }, undefined), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__.jsxDEV)("button", {
           type: "button",
-          className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"].btn, _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_4__["default"]["btn-link"]),
+          className: classnames__WEBPACK_IMPORTED_MODULE_6___default()(_styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"].btn, _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_7__["default"]["btn-link"]),
           onClick: alreadyHaveAccount,
           children: "I already have an account."
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 136,
+          lineNumber: 151,
           columnNumber: 21
         }, undefined)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 40,
+        lineNumber: 46,
         columnNumber: 17
       }, undefined)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 39,
+      lineNumber: 45,
       columnNumber: 13
     }, undefined)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 38,
+    lineNumber: 44,
     columnNumber: 9
   }, undefined);
 };
@@ -21420,6 +21475,15 @@ function AuthProvider({
     return data.data();
   };
 
+  const getClassCodes = async () => {
+    const ccSnapShot = await db.collection("class-codes").get();
+    const classCodes = ccSnapShot.docs.map(doc => {
+      const data = doc.data();
+      return data.name;
+    });
+    return classCodes;
+  };
+
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxDEV)(AuthContext.Provider, {
     value: {
       auth,
@@ -21446,12 +21510,13 @@ function AuthProvider({
       userPrefs,
       setUserPrefs,
       saveUserData,
-      getUserData
+      getUserData,
+      getClassCodes
     },
     children: children
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 218,
+    lineNumber: 227,
     columnNumber: 5
   }, this);
 }
