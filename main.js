@@ -9270,8 +9270,10 @@ feedbackAbsent: feedback given if the action was no performed
 feedbackOutOfOrder: feedback given if the action was done late (e.g., if the action is Scene size-up and it was done 
     after Primary Survey)
 feedbackErrors: feedback if the action was performed incorrectly (e.g., wrong ventilation rate)
-examine: boolean to indicate if this Action needs to be examined (phase E)
-prompts: prompts to be included in question headers in phase E, to hint on how to reflect
+examineIfAbsent: boolean to indicate if this Action needs to be examined when it is Absent (phase E)
+examineIfErrors: boolean to indicate if this Action needs to be examined when there are performance errors (phase E)
+promptsIfAbsent: prompts to be included in question headers in phase E, to hint on how to reflect when Action was Absent
+promptsIfErrors: prompts to be included in question headers in phase E, to hint on how to reflect when Action was performed incorrectly
 subActionsList: boolean that indicates whether the subActions need to be listed as bullet points on the slide. If they
     don't need to be listed it is usually because they have been grouped however, the subActions still need to be 
     included in the subActions field because they are used by the analysis to give a summary of their status.
@@ -9297,12 +9299,14 @@ const B4CA_PhaseIE = {
     feedbackErrors: [""]
     /*feedback if the action was performed incorrectly (e.g. wrong Ventilation rate)*/
     ,
-    examine: false
+    examineIfAbsent: false
     /* boolean to indicate if this Action needs to be examined (phase E) */
     ,
-    prompts: ""
+    examineIfErrors: false,
+    promptsIfAbsent: ""
     /* prompts to the included in question in phase E to hint on how to reflect */
     ,
+    promptsIfErrors: "",
     subActionsList: true
     /* boolean that indicates if subActions need to be listed as bullet points on slide */
     ,
@@ -9315,8 +9319,10 @@ const B4CA_PhaseIE = {
       feedbackAbsent: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself.", "Your scene size up gives you a big-picture view of what is going on before you even begin examining the patient and includes determining the mechanism of injury and number of patients, requesting additional help if necessary, and considering stabilization of the spine.", "In this case, you would have learned that this is a motorbike crash, which should have prompted you to think about a possible spinal cord injury and the need to secure the patient's spine immediately."],
       feedbackOutOfOrder: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself.", "Your scene size up also gives you a big-picture view of what is going on before you even begin examining the patient. This includes determining the mechanism of injury and number of patients, requesting additional help if necessary, and considering stabilization of spine."],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "required-action-BSI",
@@ -9325,8 +9331,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -9336,8 +9344,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -9347,8 +9357,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Knowing what caused the patient's injury or illness can allow you to start developing a plan of action before you even assess your patient.", "By determining the mechanism of injury, you would have learned that this is a motorbike accident, which should have prompted you to think about potential head or spinal injury, injuries to the extremities, and other blunt impact injuries to the chest and abdomen."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -9358,8 +9370,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Usually you will have one patient, but if there is more than one you will need to plan accordingly."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -9369,8 +9383,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Consider the need for extra help based on number of patients, mechanism of injury, and your patient's status.", "Although police and fire personnel were already on scene, you should have considered the need for additional ALS support."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -9380,8 +9396,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["All trauma patients are at risk for spinal injury, including those in high-speed accidents. Take this into consideration before initial contact with the patient to prevent unintentional injury."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
@@ -9392,8 +9410,10 @@ const B4CA_PhaseIE = {
       feedbackAbsent: ["The primary survey is an assessment of mental status, life-threats, and the patient's ABCs. It is where you will identify and address the patient's most serious injuries.", "In this case, the Primary Survey would have revealed a patient who is conscious with chest pain and shortness of breath. Your primary survey does not reveal any apparently life threats so you can move forward to the next step of your assessment."],
       feedbackOutOfOrder: ["You should have started your Primary Survey after the Scene Size-up and completed it before starting the Secondary Survey. Only interrupt your assessment to control life-threats: (1) Conditions that compromise a patent airway (2) Conditions that compromise breathing or respirations, such as a tension pneumothorax, (3) Conditions that compromise circulation, such as severe bleeding, (4) Cardiac arrest, and any  other potentially life threatening injuries or conditions.  Your patient's condition will deteriorate if these conditions are not addressed before continuing on with your assessment and history taking."],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "general-impression",
@@ -9402,8 +9422,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["You should have performed an Initial Assessment: gathered a general impression, identified any apparent life threats, and determined your patient's level of consciousness.  Your Initial Assessment  would have revealed a patient who is unconscious."],
         feedbackOutOfOrder: ["While you may be tempted to jump straight into your ABCs, apparent life threats (i.e. uncontrolled bleeding) should be addressed first, as they can cause a patient to deteriorate quickly. Also, be sure to assess the patient's mental status, as an unconscious patient will need a pulse check first, to ensure he or she does not require CPR."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assess-patient-condition",
@@ -9412,8 +9434,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Your general impression allows you to start developing a plan of action before you even assess your patient.", "In this case, your general impression would have been of a man thrown from a motor bike."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9423,8 +9447,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["The patient's level of consciousness alters how you progress through your assessment.", "The patient is conscious with a GCS of 15."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9434,8 +9460,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["If you had determined apparent life threats, you would have noticed that the patient was conscious without apparent immediate life threats."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -9446,8 +9474,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["This patient was thrown from a motorcycle and landed on his back, which could have caused a fracture of the spine and/or neck. You should have taken manual c-spine stabilization before performing your ABC assessment and maintained it throughout and applied an appropriately sized cervical collar."],
         feedbackOutOfOrder: ["Managing the cervical spine is one of the first things you should do for any trauma patient, as you must ensure you do not cause any further injury during the remainder of your assessment and management."],
         feedbackErrors: [""],
-        examine: true,
-        prompts: "Did not consider risk for cervical spine injury; Considered cervical spine injury but did not think the mechanism necessitated spinal stabilization",
+        examineIfAbsent: true,
+        examineIfErrors: false,
+        promptsIfAbsent: "Did not consider risk for cervical spine injury; Considered cervical spine injury but did not think the mechanism necessitated spinal stabilization",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "intv-spinal-immobilization-technique-manual-c-spine",
@@ -9456,8 +9486,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Part of managing a head and/or spinal injury includes manual stabilization of the cervical spine before beginning your assessment, as movement may further injure the patient. When you arrive, this patient is helmeted, but the helmet should be removed while maintaining c-spine stability, even if this requires additional people."],
           feedbackOutOfOrder: ["During trauma situations it is necessary to stabilize the c-spine before continuing as not doing so may cause further injury to the patient."],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9467,8 +9499,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["A cervical collar will help you maintain stability while you continue with your exam."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -9479,8 +9513,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Be sure to assess the airway for patency and intact physical structures.", "You would have found this patient's airway to be patent, as evidenced by the fact that he can speak to you."],
         feedbackOutOfOrder: ["If your patient is conscious, you should examine the airway before breathing and circulation. If a patient is unconscious, you should assess the pulse first to evaluate for possible cardiac arrest, then go through your ABCs."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "airway-is-open",
@@ -9489,8 +9525,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["The first step of your airway assessment is to see if the patient's airway is open. If the patient is speaking normally, like in this patient, it is open. Signs like stridor or gasping may indicate an airway obstruction."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9500,8 +9538,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Though this patient did not have any facial trauma, be sure to look for injuries such as gun-shot wounds or facial fractures, as these may affect what basic or advanced airways you can use.  Avoid using a nasopharyngeal airway in patients with a suspected basilar skull fracture or nasal injury."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9513,8 +9553,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's airway is patent, as is evident by the fact that he is talking--for example, complaining about pain and difficulty breathing.  If his condition deteriorates and you have reason to suspect  that his airway may be compromised, you should check the  airway using a modified jaw thrust maneuver instead of a head tilt chin lift."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9526,8 +9568,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's airway is patent, as is evident by the fact that he is talking--for example, complaining about pain and difficulty breathing.  If his condition deteriorates and you have reason to suspect  that his airway may be compromised, you should check the  airway using a modified jaw thrust maneuver instead of a head tilt chin lift."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9539,8 +9583,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["If there is a visible foreign body in the mouth, it should be removed. However, a blind finger sweep is contraindicated as it could lodge a foreign body deeper into the airway. Further, there is no evidence of foreign body in this patient's mouth."],
-          examine: true,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9552,8 +9598,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["If there is a visible foreign body in the mouth, it should be removed. However, there is no evidence of a foreign body in this patient's mouth."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9565,8 +9613,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["You have no evidence the patient is choking on an object so the Heimlich maneuver is not appropriate at this time."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9578,8 +9628,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["You have no evidence the patient is choking on an object so back blows and chest thrusts are not appropriate at this time."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9591,8 +9643,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient requires only a nasal canula or non-rebreather mask. An airway adjunct is unnecessary and would likely be refused by this conscious patient."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9604,8 +9658,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient requires only a nasal canula or non-rebreather mask. An airway adjunct is unnecessary and would likely be refused by this conscious patient."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9617,8 +9673,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with oxygen administered via a nasal canula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -9630,8 +9688,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with oxygen administered via a nasal canula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -9643,8 +9703,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with oxygen administered via a nasal canula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -9656,8 +9718,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["RSI is not in the paramedic's scope of practice in Pennsylvania. This patient's respiratory status can be stabilized with oxygen administered via a nasal canula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -9669,8 +9733,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with oxygen administered via a nasal canula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -9682,8 +9748,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["A cricothrotomy is indicated when there is an upper airway obstruction that cannot be removed. This patient has a patent airway."],
-          examine: true,
-          prompts: "thought the patient had an upper airway obstruction",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "thought the patient had an upper airway obstruction",
           subActionsList: false,
           subActions: []
         }, {
@@ -9695,8 +9763,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["A cricothyrotomy is indicated when there is an upper airway obstruction that cannot be removed. This patient has a patent airway."],
-          examine: true,
-          prompts: "thought the patient had an upper airway obstruction",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "thought the patient had an upper airway obstruction",
           subActionsList: false,
           subActions: []
         }]
@@ -9707,8 +9777,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["After assessing the patient's airway, assess their breathing by listening for breath sounds and observing their respiratory rate, rhythm, and effort.", "You would have found tachypnea with diminished sounds on the left, suggesting possible pneumothorax or hemothorax."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "breathing-checks-rate",
@@ -9717,8 +9789,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["A significantly elevated or depressed respiratory rate can suggest impending respiratory failure.", "This patient's tachypnea suggests the need for some respiratory support."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9728,8 +9802,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Although not found in this case, a patient who is breathing irregularly needs ventilatory support."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9739,8 +9815,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Sounds like stridor, crackles, or wheezing will help you diagnose and manage your patient's respiratory problems.", "This patient had diminished sounds on the left with crepitus, suggesting a possible pneumothorax."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -9751,8 +9829,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["The patient is taking rapid, shallow breaths. He is diminished on the L with an SpO2 of 88%. These are signs that this patient has a pneumothorax, possibly even a tension pneumothorax, and requires respiratory support."],
         feedbackOutOfOrder: ["Problems with ventilation and oxygenation are life threatening and should be addressed before you move on to your secondary survey. Repeat your exam and check vitals to ensure your interventions have worked as you expected. If not, your patient may deteriorate as you continue on with your examination."],
         feedbackErrors: [""],
-        examine: true,
-        prompts: "Didn't realize that the patient's respiratory status was threatened; Didn't know the best way to support this patient's breathing",
+        examineIfAbsent: true,
+        examineIfErrors: false,
+        promptsIfAbsent: "Didn't realize that the patient's respiratory status was threatened; Didn't know the best way to support this patient's breathing",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "intv-non-rebreather-mask-or-nasal-cannula",
@@ -9761,8 +9841,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["The patient's respiratory rate is fast, but he is ventilating adequately. His SpO2, however, is low, suggesting inadequate oxygenation. You can use either a nasal canula or non-rebreather mask to help with oxygenation. Note that you are not assisting the patient with ventilation. In the case of a pneumothorax, you should avoid positive pressure ventilation, if possible, as this could increase the amount of air outside of the lungs, turning a pneumothorax into a tension pneumothorax."],
           feedbackOutOfOrder: ["Oxygen administration should be performed during the primary survey as this intervention falls under 'Breathing' in the ABC's."],
           feedbackErrors: ["This patient should be allowed to breathe independently. O2 flow rate should be adjusted to achieve an SpO2 between 95 and 99%."],
-          examine: true,
-          prompts: "Didn't realize that the patient's respiratory status was threatened; thought this patient needed ventilatory support; did not recognize the possibility of a pneumothorax",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "Didn't realize that the patient's respiratory status was threatened; thought this patient needed ventilatory support; did not recognize the possibility of a pneumothorax",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "intv-supplemental-oxygen-device-non-rebreather-mask",
@@ -9787,8 +9869,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["When you decide your patient needs a treatment, you must ensure your treatment had the intended outcomes. In this case, after applying oxygen, you want to check to make sure his SpO2 and RR have improved. If not, you will want to reflect on why you did not see the expected improvements? Did you select an incorrect intervention? Do you need to escalate your therapies? Are you performing the intervention correctly?", "For example, you may need to recheck your BVM seal, reposition the patient's head or jaw to ensure the airway is open, or place an oropharyngeal or nasopharyngeal airway if not already done."],
           feedbackOutOfOrder: ["Problems with ventilation and oxygenation are life threatening and should be addressed before you move on to your secondary survey. Repeat your exam and check vitals (SpO2) to ensure your interventions have worked as you expected. If not, your patient may deteriorate as you continue on with your examination."],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "request-vitals-R",
@@ -9797,8 +9881,10 @@ const B4CA_PhaseIE = {
             feedbackAbsent: ["You should have checked R"],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -9808,8 +9894,10 @@ const B4CA_PhaseIE = {
             feedbackAbsent: ["You should have checked Spo2"],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -9822,8 +9910,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with oxygen administered via a nasal cannula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed ventilatory support in addition to oxygenation",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed ventilatory support in addition to oxygenation",
           subActionsList: false,
           subActions: []
         }, {
@@ -9835,8 +9925,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["The patient did not have a penetrating chest wound."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -9848,8 +9940,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient had a pneumothorax but did not have a tension pneumothorax. Specifically, he had no signs of cardiac obstruction (hypotension, hypoperfusion of the extremities, JVD). While a tension pneumothorax requires needle decompression to treat and prevent obstruction shock, a simple pneumothorax does not. The patient should be continuously monitored, because a simple pneumothorax has the potential to turn into a tension pneumothorax."],
-          examine: true,
-          prompts: "Thought a simple pneumothorax requires needle decompression; Thought the patient had a tension pneumothorax",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought a simple pneumothorax requires needle decompression; Thought the patient had a tension pneumothorax",
           subActionsList: false,
           subActions: []
         }]
@@ -9860,8 +9954,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Evaluate the patient's pulse and skin to assess the patient for shock.  With an unconscious patient, be sure to check the carotid pulse first, or simultaneously with the radial pulse, to determine if CPR is necessary. Be sure to also perform a gross blood sweep.", "You would have noticed that your patient had a strong, regular pulse and mild tachycardia."],
         feedbackOutOfOrder: ["All unconscious patients should have a pulse check before starting the ABCs. If the patient is pulseless, you will start high-quality CPR immediately."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "pulse-checks",
@@ -9870,8 +9966,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["First check for a radial pulse. However, if you don't feel one, you want to check a carotid pulse.", "This patient's radial pulses were absent, but he did have a weak carotid pulse, which would prompt you to worry about shock.", "Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure.", "While this patient's heart had a regular rhythm, remember that an irregular rhythm can suggest impending cardiac arrest or arrhythmia.", "A patient in shock may have weak or absent pulses distally, such as this patient, suggestive of shock."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: true,
           subActions: [{
             id: "prompt-to-specify-pulse",
@@ -9880,8 +9978,10 @@ const B4CA_PhaseIE = {
             feedbackAbsent: ["First check for a radial pulse. However, if you don't feel one, you want to check a carotid pulse.", "This patient's radial pulses were absent, but he did have a weak carotid pulse, which would prompt you to worry about shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: ["First check for a radial pulse. However, if you don't feel one, you want to check a carotid pulse.", "This patient's radial pulses were absent, but he did have a weak carotid pulse, which would prompt you to worry about shock."],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -9891,8 +9991,10 @@ const B4CA_PhaseIE = {
             feedbackAbsent: ["Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure.", "While this patient's heart had a regular rhythm, remember that an irregular rhythm can suggest impending cardiac arrest or arrhythmia.", "A patient in shock may have weak or absent pulses distally, such as this patient, suggestive of shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: [{
               id: "checks-pulse-rate",
@@ -9901,8 +10003,10 @@ const B4CA_PhaseIE = {
               feedbackAbsent: ["Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure."],
               feedbackOutOfOrder: [""],
               feedbackErrors: [""],
-              examine: false,
-              prompts: "",
+              examineIfAbsent: false,
+              examineIfErrors: false,
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -9912,8 +10016,10 @@ const B4CA_PhaseIE = {
               feedbackAbsent: ["While this patient's heart had a regular rhythm, remember that an irregular rhythm can suggest impending cardiac arrest or arrhythmia."],
               feedbackOutOfOrder: [""],
               feedbackErrors: [""],
-              examine: false,
-              prompts: "",
+              examineIfAbsent: false,
+              examineIfErrors: false,
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -9923,8 +10029,10 @@ const B4CA_PhaseIE = {
               feedbackAbsent: ["A patient in shock may have weak or absent pulses distally, such as this patient, suggestive of shock."],
               feedbackOutOfOrder: [""],
               feedbackErrors: [""],
-              examine: false,
-              prompts: "",
+              examineIfAbsent: false,
+              examineIfErrors: false,
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }]
@@ -9936,8 +10044,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Pallor and cyanosis are signs of inadequate oxygenation and may be caused by shock or respiratory failure. This patient had pink skin.", "While cold skin suggests decompensated shock, a patient with warm skin, like this patient, may be hemodynamically stable or they may be in compensated shock.", "This patient had diaphoretic skin, which in this case is non-specific, but should prompt you to think about shock."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: true,
           subActions: [{
             id: "checks-skin-color",
@@ -9946,8 +10056,10 @@ const B4CA_PhaseIE = {
             feedbackAbsent: ["Pallor and cyanosis are signs of inadequate oxygenation and may be caused by shock or respiratory failure. This patient had pink skin."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -9957,8 +10069,10 @@ const B4CA_PhaseIE = {
             feedbackAbsent: ["While cold skin suggests decompensated shock, a patient with warm skin, like this patient, may be hemodynamically stable or they may be in compensated shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -9968,8 +10082,10 @@ const B4CA_PhaseIE = {
             feedbackAbsent: ["This patient had diaphoretic skin, which in this case is non-specific, but should prompt you to think about shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -9980,8 +10096,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["A gross blood sweep, which was negative in this patient, will help you identify any life-threatening bleeding you may have missed earlier when forming your general impression."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -9994,8 +10112,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have significant bleeding."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10007,8 +10127,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have significant bleeding."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10020,8 +10142,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have significant bleeding."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10033,8 +10157,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have significant bleeding."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10046,8 +10172,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have significant bleeding."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10059,8 +10187,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have significant bleeding."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10070,8 +10200,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Your ABCs and evaluation for life threats and level of consciousness will dictate where you transfer your patient.", "Because of the patient's tachypnea and mechanism of injury, you choose to transfer the patient to the nearby Level 1 trauma center."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "decision-is-load-and-go",
@@ -10080,8 +10212,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["This patient has a pneumothorax and is requiring O2 to maintain a normal SpO2. This is a patient who could deteriorate quickly so you want to make sure he gets to a hospital quickly."],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient has a pneumothorax and is requiring O2 to maintain a normal SpO2. This is a patient who could deteriorate quickly so you want to make sure he gets to a hospital quickly."],
-          examine: true,
-          prompts: "didn't realize this was a critically ill patient; felt this patient should be further stabilized on site prior to transfer",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "didn't realize this was a critically ill patient; felt this patient should be further stabilized on site prior to transfer",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10093,8 +10227,10 @@ const B4CA_PhaseIE = {
           feedbackErrors: [""
           /*This patient should be evaluated at the Level I trauma center that is 12 minutes away, where they can provide definitive care for his injuries. The need for a Level 1 trauma center is indicated by the mechanism of injury--namely, a motorcycle crash > 20 mph and fall after a 15-ft jump.*/
           ],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10106,8 +10242,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["Air ambulance was not available."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -10118,8 +10256,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Exposure is necessary to properly inspect the patient for injuries. Only the area being inspected should be uncovered and then recovered to prevent heat loss and hypothermia."],
         feedbackOutOfOrder: ["It is important expose your patient to ensure that your secondary survey can be performed efficiently -- especially in trauma scenarios where there may be more unknown injuries. Exposing the patient allows the provider to more carefully examine the patient during assessment."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: [{
           id: "exposes-body-parts",
@@ -10128,8 +10268,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Exposure is necessary to properly inspect the patient for injuries. Only the area being inspected should be uncovered and then recovered to prevent heat loss and hypothermia."],
           feedbackOutOfOrder: ["It is important expose your patient to ensure that your secondary survey can be performed efficiently -- especially in trauma scenarios where there may be more unknown injuries. Exposing the patient allows the provider to more carefully examine the patient during assessment."],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -10141,8 +10283,10 @@ const B4CA_PhaseIE = {
       feedbackAbsent: ["Vital signs will help you decide how to manage your patient, as will a history. Even if you cannot obtain a history from the patient directly, you should still try to get as much information as you can (e.g., from a bystander)."],
       feedbackOutOfOrder: [""],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "required-action-obtains-vitals",
@@ -10151,8 +10295,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Baseline vitals are critical; they will help you assess, manage, and continue to monitor your patient.", "You would have found that this patient was tachycardic, tachypneic, and hypoxic on room air, prompting you to think about possible causes for these symptoms (such as pain, pneumothorax, hemothorax, shock)."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10162,8 +10308,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Take an efficient but thorough history from the patient or the witnesses: symptoms, allergies, medications, past medical history, last oral intake, events preceding.", "You would have learned that the patient was thrown from his bike after landing a 15-foot jump, landing on his back 20 feet away. You also learn that he has a history of a right forearm fracture 2 years ago but otherwise has no significant past medical history."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10173,8 +10321,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Assess the patient's pain: in this case the patient reports 9/10 pain in his right wrist and in his left chest and shoulder. That started when he was thrown from his bike."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
@@ -10185,8 +10335,10 @@ const B4CA_PhaseIE = {
       feedbackAbsent: ["The Secondary Survey is a thorough exam of your patient to ensure you have a complete understanding of what is going on and how you need to manage your patient."],
       feedbackOutOfOrder: [""],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "head",
@@ -10195,8 +10347,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-inspects-skull",
@@ -10205,8 +10359,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10216,8 +10372,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Inspecting the face for bruising and palpating for facial deformity may indicate facial fractures."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10227,8 +10385,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Abnormal eye movement or pupils, which this patient fortunately did not have, suggest intracranial injury and should prompt you to rapidly transfer your patient to a trauma center.", "Additionally, bruising around the eyes may be caused by basilar skull fracture, though this aspect of the exam was normal in this patient."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [
           /* subActions used for analysis but not for listing as bullet points
@@ -10250,8 +10410,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Although not found in this case, bleeding from the ear may be indicative of a basilar skull fracture and bruising behind the ear suggests a basilar skull fracture (Battle's sign)."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-ears-blood",
@@ -10269,8 +10431,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["This patient had no drainage from the nose but consider CSF leak from a basilar skull fracture if you see clear drainage."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10280,8 +10444,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["If the patient had had secretions or blood in the mouth, you would have needed to apply suction to clear the airway.", "Any visualized foreign bodies in the mouth should be removed. A blind finger sweep is never indicated, as you could lodge a foreign body deeper into the airway. There were no obstructions in this patient’s mouth."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [
             /*{
@@ -10307,8 +10473,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-neck-injury",
@@ -10317,8 +10485,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10328,8 +10498,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["This patient's neck exam was normal, but remember, tracheal deviation suggests unequal intrathoracic pressure (for example, a pneumothorax). The trachea will be deviated away from the side with increased pressure."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10339,8 +10511,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["This patient's neck exam was normal, but remember,  JVD suggests that the heart is not adequately pushing out blood. Consider obstructive processes like a tension pneumothorax or hemothorax."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10350,8 +10524,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["This patient's neck exam was normal, but remember, a palpable step-off suggests a fracture."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -10362,8 +10538,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-check-breath-sounds",
@@ -10372,8 +10550,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["The presence and quality of breath sounds can clue you into underlying problems (e.g., pneumothorax, asthma, fluid build-up in the lungs).", "This patient had diminished sounds on the left with crepitus, suggesting pneumothorax."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10383,8 +10563,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Inspecting the shoulders for discoloration symmetry or deformity may identify dislocation or fracture of the shoulder (ex. humerus and scapula). This patient had pain with movement of the left shoulder."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10394,8 +10576,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["The clavicles should be inspected for any evidence of fractures. Though rare, clavicle fractures can cause a pneumothorax. This patient’s clavicles were normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10405,8 +10589,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["The patient had some left-sided crepitus, suggesting that there is air under the skin, likely from an underlying lung injury, namely a pneumothorax.", "The patient had symmetric movement of his chest. Recall that paradoxical chest wall motion suggests flail chest, where multiple rib fractures lead to an unstable portion of the chest wall."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-chest-injury",
@@ -10429,8 +10615,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-abdomen-injury",
@@ -10439,8 +10627,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10450,8 +10640,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["A distended abdomen suggests trauma and internal bleeding. Fortunately, the patient's abdominal exam was normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10461,8 +10653,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["A rigid abdomen suggests trauma and internal bleeding. Fortunately, the patient's abdominal exam was normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -10473,8 +10667,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Be sure to do a thorough exam of the pelvis as the pelvis can be a source of life-threatening bleeding. The presence of blood or other fluids may indicate urethral, vaginal or rectal injury. Your exam of this patient’s pelvis and genitalia would have been normal."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-checks-pelvis",
@@ -10483,8 +10679,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Be sure to do a thorough exam of the pelvis as the pelvis can be a source of life-threatening bleeding. Fortunately, the patient's pelvis exam was normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10494,8 +10692,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["The presence of blood or other fluids may indicate urethral, vaginal or rectal injury. Your exam of this patient’s pelvis and genitalia would have been normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -10506,8 +10706,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-extremities-injury",
@@ -10516,8 +10718,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-injury",
@@ -10539,8 +10743,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Extremity pulses may be weak or non-palpable if your patient is in shock. This patient had normal extremity pulses"],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-pulse",
@@ -10566,8 +10772,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Diminished or absent mobility may suggest spinal cord or other nervous system injury. This patient was moving his extremities normally."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-motor-ability",
@@ -10593,8 +10801,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Diminished or absent sensation may suggest spinal cord or other nervous system injury. This patient's sensation was intact in his extremities."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-sensory-function",
@@ -10621,8 +10831,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["You will need a partner to help you roll the patient safely in order to do a thorough exam of the posterior thorax, lumbar, and buttocks for injury and step-offs. A palpable step-off, which the patient did not have, would suggest a fracture."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-posterior-other-injury",
@@ -10643,8 +10855,10 @@ const B4CA_PhaseIE = {
       feedbackAbsent: [""],
       feedbackOutOfOrder: [""],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "Manage non-life-threatening injuries",
@@ -10653,8 +10867,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Splint the patient's wrist and apply a sling to his injured shoulder before transferring him to an immobilization device."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: [{
           id: "intv-splint-fracture",
@@ -10672,8 +10888,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["An immobilization device (e.g., long backboard, vacuum mattress) maintains spinal alignment for transfer to the stretcher. This patient requires full spinal immobilization due to his mechanism of injury.  Failure to fully immobilize this patient could lead to further spinal injury."],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["Full spinal immobilization is required and should be maintained throughout transfer to the ambulance and transport to the care facility, due to the mechanism of injury and high likelihood of spinal injury."],
-        examine: true,
-        prompts: "Thought cervical collar was adequate; Did not know how to transfer patient while maintaining spinal stability",
+        examineIfAbsent: true,
+        examineIfErrors: false,
+        promptsIfAbsent: "Thought cervical collar was adequate; Did not know how to transfer patient while maintaining spinal stability",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10683,8 +10901,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["Once the patient is transferred onto a long backboard or other spinal immobilization device, the CID should be utilized to maintain cervical spine precautions. This will reduce cervical motion and prevent further injury."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10694,8 +10914,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["It is important to reassess your patient after every intervention and every clinical change. This includes repeating the primary survey, secondary survey, and vital signs. A critically ill patient should be reassessed more frequently to ensure he or she is still stable--approximately every 5 minutes."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "reassess-vitals-plus-frequency",
@@ -10704,8 +10926,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["Vitals should be reassessed after every intervention and every clinical change, and a critically ill patient should be reassessed every 5 minutes since their condition could deteriorate rapidly."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "reassess-vital-signs",
@@ -10714,8 +10938,10 @@ const B4CA_PhaseIE = {
             feedbackAbsent: ["Vitals should be reassessed after every intervention and every clinical change, and a critically ill patient should be reassessed more frequently to ensure he or she is still stable."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -10725,8 +10951,10 @@ const B4CA_PhaseIE = {
             feedbackAbsent: ["Critical patients' vital signs should be reassessed every 5 minutes, since their condition could deteriorate rapidly."],
             feedbackOutOfOrder: [""],
             feedbackErrors: ["Critical patients' vital signs should be reassessed every 5 minutes, since their condition could deteriorate rapidly."],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -10737,8 +10965,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["It is important to reassess your patient after every intervention and every clinical change, which includes the primary survey. For example, a patient with a neck injury whose breathing was initially non-labored may develop stridor as the airway becomes swollen."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -10748,8 +10978,10 @@ const B4CA_PhaseIE = {
           feedbackAbsent: ["It is important to reassess your patient after every intervention and every clinical change, which includes your secondary survey. For example, a patient may lose their pulses if you initially failed to notice and treat a source of hemorrhage."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -10762,8 +10994,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["This patient is hypotensive with a fast heart rate, suggesting possible shock. Patients in shock have trouble maintaining their body temperatures, so they should be kept warm. It is important to keep this patient warm because hypothermia can cause additional problems or worsening of the patient's current problems, including worsening hypotension, arrhythmias, or even cardiac arrest."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10773,8 +11007,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["All trauma patient should have at least one, ideally two, large-bore IVs placed, even if they do not require fluid resuscitation."],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["With a critical patient, you should ideally establish two large bore IV's while en route to the receiving facility, so as not to delay transfer to definitive care.  While this patient does not require fluid resuscitation at this time, you want to ensure you are prepared should this change."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10807,8 +11043,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10818,8 +11056,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: ["The hospital requires notification for all incoming patients 5 -15 prior to arrival, which is especially important for critical patients as the receiving team needs time to prepare equipment and space."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10831,8 +11071,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["This patient requires full spinal immobilization due to his mechanism of injury."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10844,8 +11086,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["This patient requires full spinal immobilization due to his mechanism of injury."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10857,8 +11101,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["This patient is not hypotensive and does not require fluid resuscitation. You should establish IV access, however, and should this change, you would be prepared to start fluids."],
-        examine: true,
-        prompts: "thought that hypotension should be treated with fluid boluses regardless of etiology",
+        examineIfAbsent: false,
+        examineIfErrors: true,
+        promptsIfAbsent: "",
+        promptsIfErrors: "thought that hypotension should be treated with fluid boluses regardless of etiology",
         subActionsList: false,
         subActions: []
       }, {
@@ -10870,8 +11116,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have any signifcant injuries to the skin."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -10883,8 +11131,10 @@ const B4CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have an amputation."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
@@ -11084,8 +11334,10 @@ feedbackAbsent: feedback given if the action was no performed
 feedbackOutOfOrder: feedback given if the action was done late (e.g., if the action is Scene size-up and it was done 
     after Primary Survey)
 feedbackErrors: feedback if the action was performed incorrectly (e.g., wrong ventilation rate)
-examine: boolean to indicate if this Action needs to be examined (phase E)
-prompts: prompts to be included in question headers in phase E, to hint on how to reflect
+examineIfAbsent: boolean to indicate if this Action needs to be examined when it is Absent (phase E)
+examineIfErrors: boolean to indicate if this Action needs to be examined when there are performance errors (phase E)
+promptsIfAbsent: prompts to be included in question headers in phase E, to hint on how to reflect when Action was Absent
+promptsIfErrors: prompts to be included in question headers in phase E, to hint on how to reflect when Action was performed incorrectly
 subActionsList: boolean that indicates whether the subActions need to be listed as bullet points on the slide. If they
     don't need to be listed it is usually because they have been grouped however, the subActions still need to be 
     included in the subActions field because they are used by the analysis to give a summary of their status.
@@ -11111,12 +11363,14 @@ const B5CA_PhaseIE = {
     feedbackErrors: [""],
 
     /*feedback if the action was performed incorrectly (e.g. wrong Ventilation rate)*/
-    examine: false,
+    examineIfAbsent: false,
 
     /* boolean to indicate if this Action needs to be examined (phase E) */
-    prompts: "",
+    examineIfErrors: false,
+    promptsIfAbsent: "",
 
     /* prompts to the included in question in phase E to hint on how to reflect */
+    promptsIfErrors: "",
     subActionsList: true,
 
     /* boolean that indicates if subActions need to be listed as bullet points on slide */
@@ -11129,8 +11383,10 @@ const B5CA_PhaseIE = {
       feedbackAbsent: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself.", "Your scene size up gives you a big-picture view of what is going on before you even begin examining the patient and includes determining the mechanism of injury and number of patients, requesting additional help if necessary, and considering stabilization of the spine.", "In this case, you would have learned that this patient was involved in a bar fight and stabbed in the chest with a knife, which should prompt you to think about potential intrathoracic injuries, such as a pneumothorax or an injury to the aorta or other major vessel."],
       feedbackOutOfOrder: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself.", "Your scene size up also gives you a big-picture view of what is going on before you even begin examining the patient. This includes determining the mechanism of injury and number of patients, requesting additional help if necessary, and considering stabilization of spine."],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "required-action-BSI",
@@ -11139,8 +11395,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -11150,8 +11408,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -11161,8 +11421,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Knowing what caused the patient's injury or illness can allow you to start developing a plan of action before you even assess your patient.", "In this case, you would have learned that this patient was involved in a bar fight and stabbed in the chest with a knife, which should prompt you to think about potential intrathoracic injuries, such as a pneumothorax or an injury to the aorta or other major vessel."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -11172,8 +11434,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Usually you will have one patient, but if there is more than one you will need to plan accordingly."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -11183,8 +11447,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Consider extra help based on number of patients, mechanism of injury, or your patient's status."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -11194,8 +11460,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["All trauma patients are at risk for spinal injury. Take this into consideration before initial contact with the patient to prevent unintentional injury. While a stab wound to the chest may not be high-risk, if you don't know everything that happened during the altercation, you should have erred on the side of caution."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
@@ -11206,8 +11474,10 @@ const B5CA_PhaseIE = {
       feedbackAbsent: ["The primary survey is an assessment of mental status, life-threats, and the patient's ABCs. It is where you will identify and address the patient's most serious injuries.", "In this case, the Primary Survey would have revealed a patient who is conscious but is having trouble breathing. Your primary survey does not reveal any apparently life threats so you can move forward to the next step of your assessment."],
       feedbackOutOfOrder: ["You should have started your Primary Survey after the Scene Size-up and completed it before starting the Secondary Survey. Only interrupt your assessment to control life-threats: (1) Conditions that comprimise a patent airway (2) Conditions that compromise breathing or respirations, such as a tension pneumothorax, (3) Conditions that compromise circulation, such as severe bleeding, (4) Cardiac arrest, and any  other potentially life threatening injuries or conditions.  Your patient's condition will deteriorate if these conditions are not addressed before continuing on with your assessment and history taking."],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "general-impression",
@@ -11216,8 +11486,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["You should have performed an Initial Assessment: gathered a general impression, identified any apparent life threats, and determined your patient's level of consciousness.  Your Initial Assessment would have revealed a patient who is conscious but having respiratory distress."],
         feedbackOutOfOrder: ["While you may be tempted to jump straight into your ABCs, apparent life threats (i.e., uncontrolled bleeding) should be addressed first, as they can cause a patient to deteriorate quickly. Also, be sure to assess the patient's level of consciousness as an unconscious patient will need a pulse check first to ensure he or she does not require CPR."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assess-patient-condition",
@@ -11226,8 +11498,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Your general impression allows you to start developing a plan of action before you even assess your patient.", "In this case, your general impression would have been of a man stabbed in the chest with a knife."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11237,8 +11511,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["The patient's level of consciousness alters how you progress through your assessment.", "The patient is conscious, but with a GCS of 13 (eyes closed, responds to verbal stimuli)."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11248,8 +11524,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["If you had determined apparent life threats, you would have noticed that the patient was conscious without apparent immediate life threats."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -11260,8 +11538,11 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Part of managing a head and/or spinal injury includes manual stabilization of the cervical spine before beginning your assessment, as movement may further injure the patient. While this patient may not have an obvious injury to the head or spine, you want to always stabilize the spine before you begin your assessment. As you continue your assessment, you may decide he no longer needs spinal stabilization, but you will never be wrong to err on the side of caution. A cervical collar will help you maintain stability while you continue with your exam."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: true,
-        prompts: "",
+        examineIfAbsent: true,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "intv-spinal-immobilization-technique-manual-c-spine",
@@ -11270,8 +11551,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Part of managing a head and/or spinal injury includes manual stabilization of the cervical spine before beginning your assessment, as movement may further injure the patient. While this patient may not have an obvious injury to the head or spine, you want to always stabilize the spine before you begin your assessment. As you continue your assessment, you may decide he no longer needs spinal stabilization, but you will never be wrong to err on the side of caution."],
           feedbackOutOfOrder: ["During trauma situations it is necessary to stabilize the c-spine before continuing as not doing so may cause further injury to the patient."],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11281,8 +11564,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["A cervical collar will help you maintain stability while you continue with your exam."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -11293,8 +11578,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Be sure to assess the airway for patency and intact physical structures.", "You would have found this patient's airway to be patent, as evidenced by the fact that he can speak to you."],
         feedbackOutOfOrder: ["If your patient is conscious, you should examine the airway before breathing and circulation. If a patient is unconscious, you should assess the pulse first to evaluate for possible cardiac arrest, then go through your ABCs."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "airway-is-open",
@@ -11303,8 +11590,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["The first step of your airway assessment is to see if the patient's airway is open. If the patient is speaking normally, like in this patient, it is open. Signs like stridor or gasping may indicate an airway obstruction."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11314,8 +11603,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Though this patient did not have any facial trauma, be sure to look for injuries such as gun-shot wounds or facial fractures, as these may affect what basic or advanced airways you can use.  Avoid using a nasopharyngeal airway in patients with a suspected basilar skull fracture or nasal injury."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11327,8 +11618,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's airway is patent, as is evident by the fact that he is talking--for example, complaining about pain and difficulty breathing.  If his condition deteriorates and you have reason to suspect that his airway may be compromised, you should check the  airway while maintaining the cervical spine: use a modified jaw thrust maneuver instead of a head tilt chin lift."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11340,8 +11633,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's airway is patent, as is evident by the fact that he is talking--for example, complaining about pain and difficulty breathing.  If his condition deteriorates and you have reason to suspect that his airway may be compromised, you should check the  airway while maintaining the cervical spine: use a modified jaw thrust maneuver instead of a head tilt chin lift."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11353,8 +11648,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's airway was patent. There is no need to suction."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11366,8 +11663,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["If there is a visible foreign body in the mouth, it should be removed. However, a blind finger sweep is contraindicated as it could lodge a foreign body deeper into the airway. Further, there is no evidence of foreign body in this patient's mouth."],
-          examine: true,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11379,8 +11678,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["If there is a visible foreign body in the mouth, it should be removed. However, there is no evidence of a foreign body in this patient's mouth."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11392,8 +11693,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["You have no evidence the patient is choking on an object so the Heimlich maneuver is not appropriate at this time."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11405,8 +11708,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["You have no evidence the patient is choking on an object so back blows and chest thrusts are not appropriate at this time."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11418,21 +11723,25 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient requires only a nasal canula or non-rebreather mask. An airway adjunct is unnecessary and would likely be refused by this conscious patient."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
           id: "intv-nasopharyngeal-airway",
 
           /* contraindicated intervention */
-          label: "Sasopharyngeal airway (NPA)",
+          label: "Nasopharyngeal airway (NPA)",
           type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.CONTRA,
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient requires only a nasal canula or non-rebreather mask. An airway adjunct is unnecessary and would likely be refused by this conscious patient."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11444,8 +11753,11 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with oxygen administered via a nasal canula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -11457,8 +11769,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with oxygen administered via a nasal canula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -11470,8 +11784,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with oxygen administered via a nasal canula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          examineIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -11483,8 +11799,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["RSI is not in the paramedic's scope of practice in Pennsylvania. This patient's respiratory status can be stabilized with oxygen administered via a nasal canula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -11496,8 +11814,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with oxygen administered via a nasal canula or non-rebreather mask. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -11509,8 +11829,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["A cricothrotomy is indicated when there is an upper airway obstruction that cannot be removed. This patient has a patent airway."],
-          examine: true,
-          prompts: "thought the patient had an upper airway obstruction",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "thought the patient had an upper airway obstruction",
           subActionsList: false,
           subActions: []
         }, {
@@ -11522,8 +11844,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["A cricothyrotomy is indicated when there is an upper airway obstruction that cannot be removed. This patient has a patent airway."],
-          examine: true,
-          prompts: "thought the patient had an upper airway obstruction",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "thought the patient had an upper airway obstruction",
           subActionsList: false,
           subActions: []
         }]
@@ -11534,8 +11858,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["After assessing the patient's airway, assess their breathing by listening for breath sounds and observing their respiratory rate, rhythm, and effort.", "You would have found tachypnea, shallow breaths, with absent sounds on the right, suggesting possible pneumothorax or hemothorax."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "breathing-checks-rate",
@@ -11544,8 +11870,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["A significantly elevated or depressed respiratory rate can suggest impending respiratory failure.", "This patient's tachypnea suggests the need for some respiratory support."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11555,8 +11883,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Although not found in this case, a patient who is breathing irregularly needs ventilatory support."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11566,8 +11896,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Sounds like stridor, crackles, or wheezing will help you diagnose and manage your patient's respiratory problems.", "This patient had absent breath sounds on the right, suggesting a possible pneumothorax or hemothorax."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -11578,8 +11910,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["The patient is taking rapid, shallow breaths. He is diminished on the L with an SpO2 of 88%. These are signs that this patient has a pneumothorax, possibly even a tension pneumothorax, and requires respiratory support."],
         feedbackOutOfOrder: ["Problems with ventilation and oxygenation are life threatening and should be addressed before you move on to your secondary survey. Repeat your exam and check vitals to ensure your interventions have worked as you expected. If not, your patient may deteriorate as you continue on with your examination."],
         feedbackErrors: [""],
-        examine: true,
-        prompts: "thought the patient had a simple pneumothora; didn't realize the patient had a pneumothorax; didn't know the best way to manage the patient's tension pneumothorax",
+        examineIfAbsent: true,
+        examineIfErrors: false,
+        promptsIfAbsent: "thought the patient had a simple pneumothora; didn't realize the patient had a pneumothorax; didn't know the best way to manage the patient's tension pneumothorax",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "intv-non-rebreather-mask-or-nasal-cannula",
@@ -11588,8 +11922,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["The patient's respiratory rate is fast, but he is ventilating adequately. His SpO2, however, is low, suggesting inadequate oxygenation. You can use either a nasal canula or non-rebreather mask to help with oxygenation. Note that you are not assisting the patient with ventilation. In the case of a pneumothorax, you should avoid positive pressure ventilation, if possible, as this could increase the amount of air outside of the lungs, turning a pneumothorax into a tension pneumothorax."],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient should be allowed to breathe independently. O2 flow rate should be adjusted to achieve an SpO2 between 95 and 99%."],
-          examine: true,
-          prompts: "didn't realize that the patient's respiratory status was threatened; thought this patient needed ventilatory support; did not recognize the possibility of a pneumothorax",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "didn't realize that the patient's respiratory status was threatened; thought this patient needed ventilatory support; did not recognize the possibility of a pneumothorax",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "intv-supplemental-oxygen-device-non-rebreather-mask",
@@ -11598,8 +11934,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["The patient's respiratory rate is fast, but he is ventilating adequately. His SpO2, however, is low, suggesting inadequate oxygenation. You can use either a nasal canula or non-rebreather mask to help with oxygenation. Note that you are not assisting the patient with ventilation. In the case of a pneumothorax, you should avoid positive pressure ventilation, if possible, as this could increase the amount of air outside of the lungs, turning a pneumothorax into a tension pneumothorax."],
             feedbackOutOfOrder: [""],
             feedbackErrors: ["This patient should be allowed to breathe independently. O2 flow rate should be adjusted to achieve an SpO2 between 95 and 99%."],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -11609,8 +11947,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["The patient's respiratory rate is fast, but he is ventilating adequately. His SpO2, however, is low, suggesting inadequate oxygenation. You can use either a nasal canula or non-rebreather mask to help with oxygenation. Note that you are not assisting the patient with ventilation. In the case of a pneumothorax, you should avoid positive pressure ventilation, if possible, as this could increase the amount of air outside of the lungs, turning a pneumothorax into a tension pneumothorax."],
             feedbackOutOfOrder: [""],
             feedbackErrors: ["This patient should be allowed to breathe independently. O2 flow rate should be adjusted to achieve an SpO2 between 95 and 99%."],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -11621,8 +11961,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["This patient had absent breath sounds after being stabbed with a knife to the chest. Your differential diagnosis includes pneumothorax or hemothorax. The patient also has signs of diminished cardiac output, including his hypotension and poor perfusion (pale, diaphoretic skin, and weak distal pulses) suggest that he may have a tension pneumothorax, which necessitates needle decompression. Other signs of a tension pneumothorax, which this patient did not have, include JVD or tracheal deviation."],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["Once you have identified a tension pneumothorax, decompression is the appropriate next step. You should use a large-bore needle (ideally 14 or 16 gauge and at least 2 inches in length) and insert it into either:", "- the 2nd or 3rd intercostal space at the mid-clavicular line", "- the 4th or 5th intercostal space at the mid-axillary line", "Remember to insert the needle above the rib, not below, because there is a neurovascular bundle that runs below each rib you want to avoid damaging."],
-          examine: true,
-          prompts: "thought the patient had a simple pneumothorax; didn't realize the patient had a pneumothorax; didn't know the best way to manage the patient's tension pneumothorax",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "thought the patient had a simple pneumothorax; didn't realize the patient had a pneumothorax; didn't know the best way to manage the patient's tension pneumothorax",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11632,8 +11974,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["An open chest wound, such as one caused by a stab-wound after the object has been pulled out, may lead to a worsening tension pneumothorax. As the patient inhales, creating negative intrathoracic pressure, air may be sucked in through the wound and collect in the intrapleural cavity. An occlusive dressing, taped on 3 sides to allow air to escape, will protect against this."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: true,
-          prompts: "didn't realize the patient had a pneumothorax; didn't know the best way to manage the patient's tension pneumothorax; thought that needle decompression would suffice",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "didn't realize the patient had a pneumothorax; didn't know the best way to manage the patient's tension pneumothorax; thought that needle decompression would suffice",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11643,8 +11987,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["When you decide your patient needs a treatment, you must ensure your treatment had the intended outcomes. In this case, after performing a needle decompression, you will listen for a rush of air and look for improvement in the patient's exam: is he breathing more comfortably, do you hear breath sounds bilaterally? You will also assess his vitals: how do his HR, RR, and BP look? If your intervention does not yield the expected results, ask yourself: was my diagnosis correct? Was my intervention correct? What else should I consider?"],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "request-vitals-BP",
@@ -11653,8 +11999,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["You should have checked BP"],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -11664,8 +12012,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["You should have checked Spo2"],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -11675,8 +12025,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["You should have checked R"],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -11686,8 +12038,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["You should have checked P"],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -11700,8 +12054,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with oxygen administered via a nasal cannula or non-rebreather mask. More invasive airway support is unnecessary and dangerous, unless the patient refuses a mask or it is ineffective."],
-          examine: true,
-          prompts: "thought this patient needed ventilatory support in addition to oxygenation",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "thought this patient needed ventilatory support in addition to oxygenation",
           subActionsList: false,
           subActions: []
         }]
@@ -11712,8 +12068,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Evaluate the patient's pulse and skin to assess the patient for shock.  Be sure to also perform a gross blood sweep.", "You would have noticed that your patient had a very weak radial pulse, suggesting that he may be in shock."],
         feedbackOutOfOrder: ["All unconscious patients should have a pulse check before starting the ABCs. If the patient is pulseless, you will start high-quality CPR immediately."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "pulse-checks",
@@ -11722,8 +12080,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["First check for a radial pulse. However, if you don't feel one, you want to check a carotid pulse.", "This patient's radial pulses were absent, but he did have a weak carotid pulse, which would prompt you to worry about shock.", "Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure.", "While this patient's heart had a regular rhythm, remember that an irregular rhythm can suggest impending cardiac arrest or arrhythmia.", "A patient in shock may have weak or absent pulses distally, such as this patient, suggestive of shock."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: true,
           subActions: [{
             id: "prompt-to-specify-pulse",
@@ -11732,8 +12092,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["When checking for a pulse, check distally first. If you don't detect distal pulses (for example, a radial pulse), check centrally next.", "If you checked his radial pulses, you would have appreciated a pulse, though it was weak."],
             feedbackOutOfOrder: [""],
             feedbackErrors: ["When checking for a pulse, check distally first. If you don't detect distal pulses (for example, a radial pulse), check centrally next.", "If you checked his radial pulses, you would have appreciated a pulse, though it was weak."],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -11743,8 +12105,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure.", "While this patient's heart had a regular rhythm, remember that an irregular rhythm can suggest impending cardiac arrest or arrhythmia.", "A patient in shock may have weak or absent pulses distally, such as this patient, suggestive of shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: [{
               id: "checks-pulse-rate",
@@ -11753,8 +12117,10 @@ const B5CA_PhaseIE = {
               feedbackAbsent: ["Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure."],
               feedbackOutOfOrder: [""],
               feedbackErrors: [""],
-              examine: false,
-              prompts: "",
+              examineIfAbsent: false,
+              examineIfErrors: false,
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -11764,8 +12130,10 @@ const B5CA_PhaseIE = {
               feedbackAbsent: ["While this patient's heart had a regular rhythm, remember that an irregular rhythm can suggest impending cardiac arrest or arrhythmia."],
               feedbackOutOfOrder: [""],
               feedbackErrors: [""],
-              examine: false,
-              prompts: "",
+              examineIfAbsent: false,
+              examineIfErrors: false,
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -11775,8 +12143,10 @@ const B5CA_PhaseIE = {
               feedbackAbsent: ["A patient in shock may have weak or absent pulses distally, such as this patient, suggestive of shock."],
               feedbackOutOfOrder: [""],
               feedbackErrors: [""],
-              examine: false,
-              prompts: "",
+              examineIfAbsent: false,
+              examineIfErrors: false,
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }]
@@ -11788,8 +12158,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Pallor, which this patient had, and cyanosis are signs of inadequate oxygenation and may be caused by shock or respiratory failure.", "While cold skin suggests decompensated shock, a patient with warm skin, like this patient, may be hemodynamically stable or they may be in compensated shock.", "This patient had diaphoretic skin, which in this case is non-specific, but should prompt you to think about shock."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: true,
           subActions: [{
             id: "checks-skin-color",
@@ -11798,8 +12170,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["Pallor, which this patient had, and cyanosis are signs of inadequate oxygenation and may be caused by shock or respiratory failure."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -11809,8 +12183,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["While cold skin suggests decompensated shock, a patient with warm skin, like this patient, may be hemodynamically stable or they may be in compensated shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -11820,8 +12196,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["This patient had diaphoretic skin, which in this case is non-specific, but should prompt you to think about shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -11832,8 +12210,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["A gross blood sweep, which was negative in this patient, will help you identify any life-threatening bleeding you may have missed earlier when forming your general impression."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11845,8 +12225,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["The patient did not have significant bleeding."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11858,8 +12240,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["The patient did not have significant bleeding."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11871,8 +12255,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["The patient did not have significant bleeding."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11884,8 +12270,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["The patient did not have significant bleeding."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11897,8 +12285,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["The patient did not have significant bleeding."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11910,8 +12300,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["The patient did not have significant bleeding."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -11922,8 +12314,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Your ABCs and evaluation for life threats and level of consciousness will dictate where you transfer your patient.", "Because of the patient's respiratory distress and weak pulses, you decide to transfer the patient immediately to the nearby level II trauma center."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "decision-is-load-and-go",
@@ -11932,8 +12326,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["This patient has a tension pneumothorax with hypotension and a penetrating chest injury. This is a patient who could deteriorate quickly so you want to make sure he gets to a hospital as soon as possible."],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient has a tension pneumothorax with hypotension and a penetrating chest injury. This is a patient who could deteriorate quickly so you want to make sure he gets to a hospital as soon as possible."],
-          examine: true,
-          prompts: "didn't realize this was a critically ill patient; felt this patient should be further stabilized on site prior to transfer",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "didn't realize this was a critically ill patient; felt this patient should be further stabilized on site prior to transfer",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11943,8 +12339,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["This patient should be evaluated at the level II trauma center 7 minutes away. He should be transported by ambulance."],
           feedbackOutOfOrder: ["Initial transport decisions should be made following the 'Primary Survey' (ABCs) because that is when the provider decides whether the patient can be further stabilized on scene or taken directly to a hospital in a 'load and go' scenario. The secondary assessment is only performed on scene if the situation is NOT a 'load and go.' Making transport decisions early is especially important if you are calling for an air ambulance to account for the time it takes for them to arrive."],
           feedbackErrors: ["This patient should be evaluated at the level II trauma center 7 minutes away. He should be transported by ambulance."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -11956,8 +12354,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["Air ambulance was not available."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -11968,8 +12368,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Exposure is necessary to properly inspect the patient for injuries. Only the area being inspected should be uncovered and then recovered to prevent heat loss and hypothermia."],
         feedbackOutOfOrder: ["It is important expose your patient to ensure that your secondary survey can be performed efficiently -- especially in trauma scenarios where there may be more unknown injuries. Exposing the patient allows the provider to more carefully examine the patient during assessment."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: [{
           id: "exposes-body-parts",
@@ -11978,8 +12380,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Exposure is necessary to properly inspect the patient for injuries. Only the area being inspected should be uncovered and then recovered to prevent heat loss and hypothermia."],
           feedbackOutOfOrder: ["It is important expose your patient to ensure that your secondary survey can be performed efficiently -- especially in trauma scenarios where there may be more unknown injuries. Exposing the patient allows the provider to more carefully examine the patient during assessment."],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -11991,8 +12395,10 @@ const B5CA_PhaseIE = {
       feedbackAbsent: ["Vital signs will help you decide how to manage your patient, as will a history. Even if you cannot obtain a history from the patient directly, you should still try to get as much information as you can (e.g., from a bystander)."],
       feedbackOutOfOrder: [""],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "required-action-obtains-vitals",
@@ -12001,8 +12407,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Baseline vitals are critical; they will help you assess, manage, and continue to monitor your patient.", "You would have found that this patient was tachycardic, tachypneic, and hypoxic on room air, prompting you to think about possible causes for these symptoms (such as pain, pneumothorax, hemothorax, shock)."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12012,8 +12420,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Take an efficient but thorough history from the patient or the witnesses: symptoms, allergies, medications, past medical history, last oral intake, events preceding.", "You would have learned that the patient was stabbed in the R chest after having had beer, most recently 20 minutes ago."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12023,8 +12433,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Assess the patient's pain: in this case the patient is not able to tell you, but you should have considered getting more information from bystanders if necessary."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
@@ -12035,8 +12447,10 @@ const B5CA_PhaseIE = {
       feedbackAbsent: ["The Secondary Survey is a thorough exam of your patient to ensure you have a complete understanding of what is going on and how you need to manage your patient."],
       feedbackOutOfOrder: [""],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "head",
@@ -12045,8 +12459,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["You would have noted a 1.5 inch laceration on the R side of the patient's head, above his ear.", "Inspecting the face for bruising and palpating for facial deformity may indicate facial fractures.", "Abnormal eye movement or pupils, which this patient fortunately did not have, suggest intracranial injury and should prompt you to rapidly transfer your patient to a trauma center. Additionally, bruising around the eyes may be caused by basilar skull fracture, though this aspect of the exam was normal in this patient.", "Bleeding or CF from the ear may be indicative of a basilar skull fracture. Additionally, although not found in this case, bruising behind the ear suggests a basilar skull fracture (Battle's sign).", "This patient had no drainage from the nose but consider CSF leak from a basilar skull fracture if you see clear drainage.", "If the patient had had secretions or blood in the mouth, you would have needed to apply suction to clear the airway. Additionally, any visualized foreign bodies in the mouth should be removed. A blind finger sweep is never indicated, as you could lodge a foreign body deeper into the airway. There were no obstructions in this patient’s mouth."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-inspects-skull",
@@ -12055,8 +12471,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["You would have noted a 1.5 inch laceration on the R side of the patient's head, above his ear."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12066,8 +12484,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Inspecting the face for bruising and palpating for facial deformity may indicate facial fractures."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12077,8 +12497,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Abnormal eye movement or pupils, which this patient fortunately did not have, suggest intracranial injury and should prompt you to rapidly transfer your patient to a trauma center. Additionally, bruising around the eyes may be caused by basilar skull fracture, though this aspect of the exam was normal in this patient."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-eyes-PERRLA",
@@ -12096,8 +12518,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Bleeding or CF from the ear may be indicative of a basilar skull fracture. Additionally, although not found in this case, bruising behind the ear suggests a basilar skull fracture (Battle's sign)."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-ears-blood",
@@ -12115,8 +12539,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["This patient had no drainage from the nose but consider CSF leak from a basilar skull fracture if you see clear drainage."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12126,8 +12552,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["If the patient had had secretions or blood in the mouth, you would have needed to apply suction to clear the airway.", "Additionally, any visualized foreign bodies in the mouth should be removed. A blind finger sweep is never indicated, as you could lodge a foreign body deeper into the airway. There were no obstructions in this patient’s mouth."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -12138,8 +12566,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["This patient's neck exam was normal, but remember, tracheal deviation suggests unequal intrathoracic pressure (for example, a pneumothorax). The trachea will be deviated away from the side with increased pressure.", "This patient's neck exam was normal, but remember, JVD suggests that the heart is not adequately pushing out blood. Consider obstructive processes like a tension pneumothorax or hemothorax.", "This patient's neck exam was normal, but remember, a palpable step-off suggests a fracture."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-neck-injury",
@@ -12148,8 +12578,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12159,8 +12591,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["This patient's neck exam was normal, but remember, tracheal deviation suggests unequal intrathoracic pressure (for example, a pneumothorax). The trachea will be deviated away from the side with increased pressure."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12170,8 +12604,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["This patient's neck exam was normal, but remember, JVD suggests that the heart is not adequately pushing out blood. Consider obstructive processes like a tension pneumothorax or hemothorax."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12181,8 +12617,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["This patient's neck exam was normal, but remember, a palpable step-off suggests a fracture."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -12193,8 +12631,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["The presence and quality of breath sounds can clue you into underlying problems (e.g., pneumothorax, asthma, fluid build-up in the lungs). Additionally, this patient had diminished sounds on the right, suggesting a possible pneumothorax or hemothorax.", "Inspecting the shoulders for discoloration symmetry or deformity may identify dislocation or fracture of the shoulder (clavicle, humerus and scapula).", "This patient had a 1 inch wound to the R chest at the sixth intercostal space with minor external bleeding."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-check-breath-sounds",
@@ -12203,8 +12643,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["The presence and quality of breath sounds can clue you into underlying problems (e.g., pneumothorax, asthma, fluid build-up in the lungs).", "This patient had diminished sounds on the right, suggesting a possible pneumothorax or hemothorax."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12214,8 +12656,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Inspecting the shoulders for discoloration symmetry or deformity may identify dislocation or fracture of the shoulder (clavicle, humerus and scapula)"],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12225,8 +12669,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["The clavicles should be inspected for any evidence of fractures. Though rare, clavicle fractures can cause a pneumothorax. This patient’s clavicles were normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12236,8 +12682,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["This patient had a 1 inch wound to the R chest at the sixth intercostal space with minor external bleeding.", "If the patient had had anterior thorax and rib crepitation, you should suspect air outside of the lungs, which would raise your suspicion for a pneumothorax.", "Recall that paradoxical chest wall motion suggests flail chest, where multiple rib fractures lead to an unstable portion of the chest wall."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-chest-injury",
@@ -12260,8 +12708,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["A distended or rigit abdomen suggests trauma and internal bleeding. Fortunately, the patient's abdominal exam was normal."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-abdomen-injury",
@@ -12270,8 +12720,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12281,8 +12733,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["A distended abdomen suggests trauma and internal bleeding. Fortunately, the patient's abdominal exam was normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12292,8 +12746,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["A rigid abdomen suggests trauma and internal bleeding. Fortunately, the patient's abdominal exam was normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -12304,8 +12760,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Be sure to do a thorough exam of the pelvis as the pelvis can be a source of life-threatening bleeding. The presence of blood or other fluids may indicate urethral, vaginal or rectal injury.Fortunately, the patient's pelvis exam was normal."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-checks-pelvis",
@@ -12314,8 +12772,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Be sure to do a thorough exam of the pelvis as the pelvis can be a source of life-threatening bleeding. Fortunately, the patient's pelvis exam was normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12325,8 +12785,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["The presence of blood or other fluids may indicate urethral, vaginal or rectal injury."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -12337,8 +12799,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Extremity pulses may be weak or non-palpable if your patient is in shock. This patient had normal extremity pulses.", "Diminished or absent mobility may suggest spinal cord or other nervous system injury. This patient was moving his extremities normally.", "Diminished or absent sensation may suggest spinal cord or other nervous system injury. This patient's sensation was intact in his extremities."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-extremities-injury",
@@ -12347,8 +12811,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["You would have observed superficial lacerations to the hands."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-injury",
@@ -12372,8 +12838,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Extremity pulses may be weak or non-palpable if your patient is in shock. This patient had normal extremity pulses"],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-pulse",
@@ -12399,8 +12867,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Diminished or absent mobility may suggest spinal cord or other nervous system injury. This patient was moving his extremities normally."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-motor-ability",
@@ -12426,8 +12896,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Diminished or absent sensation may suggest spinal cord or other nervous system injury. This patient's sensation was intact in his extremities."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-sensory-function",
@@ -12454,8 +12926,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["You will need a partner to help you roll the patient safely in order to do a thorough exam of the posterior thorax, lumbar, and buttocks for injury and step-offs. A palpable step-off, which the patient did not have, would suggest a fracture."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-posterior-other-injury",
@@ -12474,8 +12948,10 @@ const B5CA_PhaseIE = {
       feedbackAbsent: ["It is important to reassess your patient after every intervention and every clinical change. This includes repeating the primary survey, secondary survey, and vital signs. A critically ill patient should be reassessed more frequently to ensure he or she is still stable--approximately every 5 minutes."],
       feedbackOutOfOrder: [""],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "intv-apply-sterile-dressings",
@@ -12484,8 +12960,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Once the patient has been stabilized, dress his superficial wounds with sterile dressings."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12495,8 +12973,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Since this patient has a penetrating chest wound, you need to be careful while strapping him onto a transfer or immobilization device, since doing so may cause further injury.  A scoop stretcher would be an appropriate way to safely transfer the patient.  If unavailable, a longboard or other device could be used (with straps carefully placed) and then removed once the patient is on the stretcher."],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["Since this patient has a penetrating chest wound, you need to be careful while strapping him onto a transfer or immobilization device, since doing so may cause further injury.  A scoop stretcher would be an appropriate way to safely transfer the patient.  If unavailable, a longboard or other device could be used (with straps carefully placed) and then removed once the patient is on the stretcher.", "In addition, this patient should be kept in a supine position. Remember that shock occurs when the body is unable to adequately perfuse the body's vital organs and periphery. When a patient is kept upright while in shock, cerebral perfusion is further hindered by gravity. Lying the patient down takes gravity out of the equation."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12506,8 +12986,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["Once the patient is transferred to a scoop stretcher (or another immobilization device), padding should be utilized to maintain cervical spine precautions. This will reduce cervical motion and prevent further injury."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12517,8 +12999,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "reassess-vitals-plus-frequency",
@@ -12527,8 +13011,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["Vitals should be reassessed after every intervention and every clinical change, and a critically ill patient should be reassessed every 5 minutes since their condition could deteriorate rapidly."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "reassess-vital-signs",
@@ -12537,8 +13023,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["Vitals should be reassessed after every intervention and every clinical change, and a critically ill patient should be reassessed more frequently to ensure he or she is still stable."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -12548,8 +13036,10 @@ const B5CA_PhaseIE = {
             feedbackAbsent: ["Critical patients' vital signs should be reassessed every 5 minutes, since their condition could deteriorate rapidly."],
             feedbackOutOfOrder: [""],
             feedbackErrors: ["Critical patients' vital signs should be reassessed every 5 minutes, since their condition could deteriorate rapidly."],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -12560,8 +13050,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["It is important to reassess your patient after every intervention and every clinical change, which includes the primary survey. For example, a patient with a neck injury whose breathing was initially non-labored may develop stridor as the airway becomes swollen."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -12571,8 +13063,10 @@ const B5CA_PhaseIE = {
           feedbackAbsent: ["It is important to reassess your patient after every intervention and every clinical change, which includes your secondary survey. For example, a patient may lose their pulses if you initially failed to notice and treat a source of hemorrhage."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -12583,8 +13077,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["This patient is hypotensive with a fast heart rate, suggesting possible shock. Patients in shock have trouble maintaining their body temperatures, so they should be kept warm. It is important to keep this patient warm because hypothermia can cause additional problems or worsening of the patient's current problems, including worsening hypotension, arrhythmias, or even cardiac arrest."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12594,8 +13090,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["All trauma patients should have at least one, ideally two, large-bore IVs placed, even if they do not require fluid resuscitation."],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["With a critical patient, you should ideally establish two large bore IV's while en route to the receiving facility, so as not to delay transfer to definitive care.  While this patient does not require fluid resuscitation at this time, you want to ensure you are prepared should this change."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12605,8 +13103,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: ["The hospital requires notification for all incoming patients 5 -15 prior to arrival, which is especially important for critical patients as the receiving team needs time to prepare equipment and space."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12618,8 +13118,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["While it is true the patient was hypotensive, the reason for his hypotension was because of obstructive shock, not hypovolemia. Appropriate management of the patient's tension pneumothorax would allow resumption of adequate cardiac output, resulting in an improved BP and exam. This patient does have a penetrating chest wound, however, so should he remain hypotensive after you successfully treated his tension pneumothorax, you should consider hemorrhagic shock; at this point, fluid resuscitation may be appropriate."],
-        examine: true,
-        prompts: "Thought that hypotension should be treated with fluid boluses regardless of etiology",
+        examineIfAbsent: false,
+        examineIfErrors: true,
+        promptsIfAbsent: "",
+        promptsIfErrors: "Thought that hypotension should be treated with fluid boluses regardless of etiology",
         subActionsList: false,
         subActions: []
       }, {
@@ -12631,8 +13133,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["This patient should be transferred with a device given his altered mental status, hypotension and penetrating chest wound."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12644,8 +13148,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["This patient should be transferred given his altered mental status, hypotension and penetrating chest wound."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12657,8 +13163,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have any fractures."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12670,8 +13178,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["This patient did not have any injuries to the upper extremities."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12683,8 +13193,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have an amputation."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -12696,8 +13208,10 @@ const B5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["A pain level for this patient is not available, and there is no evidence of nausea, vomiting, or need for sedation."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
@@ -13063,8 +13577,10 @@ feedbackAbsent: feedback given if the action was no performed
 feedbackOutOfOrder: feedback given if the action was done late (e.g., if the action is Scene size-up and it was done 
     after Primary Survey)
 feedbackErrors: feedback if the action was performed incorrectly (e.g., wrong ventilation rate)
-examine: boolean to indicate if this Action needs to be examined (phase E)
-prompts: prompts to be included in question headers in phase E, to hint on how to reflect
+examineIfAbsent: boolean to indicate if this Action needs to be examined when it is Absent (phase E)
+examineIfErrors: boolean to indicate if this Action needs to be examined when there are performance errors (phase E)
+promptsIfAbsent: prompts to be included in question headers in phase E, to hint on how to reflect when Action was Absent
+promptsIfErrors: prompts to be included in question headers in phase E, to hint on how to reflect when Action was performed incorrectly
 subActionsList: boolean that indicates whether the subActions need to be listed as bullet points on the slide. If they
     don't need to be listed it is usually because they have been grouped however, the subActions still need to be 
     included in the subActions field because they are used by the analysis to give a summary of their status.
@@ -13090,12 +13606,14 @@ const C5CA_PhaseIE = {
     feedbackErrors: [""],
 
     /*feedback if the action was performed incorrectly (e.g. wrong Ventilation rate)*/
-    examine: false,
+    examineIfAbsent: false,
 
     /* boolean to indicate if this Action needs to be examined (phase E) */
-    prompts: "",
+    examineIfErrors: false,
+    promptsIfAbsent: "",
 
     /* prompts to the included in question in phase E to hint on how to reflect */
+    promptsIfErrors: "",
     subActionsList: true,
 
     /* boolean that indicates if subActions need to be listed as bullet points on slide */
@@ -13108,8 +13626,10 @@ const C5CA_PhaseIE = {
       feedbackAbsent: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself.", "Your scene size up gives you a big-picture view of what is going on before you even begin examining the patient and includes determining the mechanism of injury and number of patients, requesting additional help if necessary, and considering stabilization of the spine.", "In this case, you would have learned that your patient has been shot multiple times, so you know that controlling bleeding will be one of your top priorities."],
       feedbackOutOfOrder: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself.", "Your scene size up also gives you a big-picture view of what is going on before you even begin examining the patient. This includes determining the mechanism of injury and number of patients, requesting additional help if necessary, and considering stabilization of spine."],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "required-action-BSI",
@@ -13118,8 +13638,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -13129,8 +13651,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Your first steps should have been to don your protective wear, including eye protection, and to ensure the scene is safe. You cannot assist a patient if you are not safe yourself."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -13140,8 +13664,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Knowing what caused the patient's injury or illness can allow you to start developing a plan of action before you even assess your patient.", "By determining the mechanism of injury, you would have learned that your patient has been shot multiple times, so you know that controlling bleeding will be one of your top priorities."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -13151,8 +13677,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Usually you will have one patient, but if there is more than one you will need to plan accordingly."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -13162,8 +13690,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Consider the need for extra help based on number of patients, mechanism of injury, and your patient's status."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -13173,8 +13703,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Be sure to consider the need for spinal immobilization in this trauma patient. In this case, you have a low level of concern for a spinal injury; further, know that spinal stabilization is contraindicated in patients with penetrating abdominal wounds."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
@@ -13185,8 +13717,10 @@ const C5CA_PhaseIE = {
       feedbackAbsent: ["The primary survey is an assessment of mental status, life-threats, and the patient's ABCs. It is where you will identify and address the patient's most serious injuries.", "In this case, the Primary Survey would have revealed a patient who is lethargic, bleeding profusely from the L upper leg, and breathing rapidly."],
       feedbackOutOfOrder: ["You should have started your Primary Survey after the Scene Size-up and completed it before starting the Secondary Survey. Only interrupt your assessment to control life-threats: (1) Conditions that compromise a patent airway (2) Conditions that compromise breathing or respirations, such as a tension pneumothorax, (3) Conditions that compromise circulation, such as severe bleeding, (4) Cardiac arrest, and any  other potentially life threatening injuries or conditions.  Your patient's condition will deteriorate if these conditions are not addressed before continuing on with your assessment and history taking."],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "general-impression",
@@ -13195,8 +13729,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["You should have performed an Initial Assessment: gathered a general impression, identified any apparent life threats, and determined your patient's level of consciousness.  Your Initial assessment would have revealed a patient who is lethargic and bleeding profusely from the L leg."],
         feedbackOutOfOrder: ["While you may be tempted to jump straight into your ABCs, apparent life threats (i.e., uncontrolled bleeding) should be addressed first, as they can cause a patient to deteriorate quickly. Also, be sure to assess the patient's level of consciousness as an unconscious patient will need a pulse check first to ensure he or she does not require CPR."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assess-patient-condition",
@@ -13205,8 +13741,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Your general impression allows you to start developing a plan of action before you even assess your patient.", "In this case, your general impression would have been of a man with multiple gunshot wounds."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13216,8 +13754,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["The patient's level of consciousness alters how you progress through your assessment.", "The patient is lethargic with a GCS of 12. This rules out the need for immediate CPR, so you would start your primary survey with an assessment of the patient's airway."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13227,8 +13767,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["If you had determined apparent life threats, you would have noticed that the patient had life-threatening bleeding from his leg that should be addressed immediately."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -13239,8 +13781,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["This patient has been shot in the abdomen and leg. While this may not directly suggest an injury to the spine, if you are unable to definitively rule out the possibility of a spinal injury (e.g., could he have fallen and hit his head after being shot?), you should have taken manual c-spine stabilization. You should have maintained it throughout until you were able to definitively rule out an injury to the spine."],
         feedbackOutOfOrder: ["During trauma situations it is necessary to stabilize the c-spine before continuing as not doing so may cause further injury to the patient."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -13250,8 +13794,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["This patient has severe bleeding from his left upper thigh. There are large vessels in the leg (including the femoral artery) that can bleed rapidly and quickly lead to hemorrhagic shock and death. Remember, that even if you don't see significant bleeding, any significant injury to the upper leg (ex. GSW, femur fracture) has the potential to lead to hemorrhagic shock."],
         feedbackOutOfOrder: ["Severe bleeding is a life threatening injury that should be considered and dealt with prior to the rest of the ABCs. For extremity injuries, this means a tourniquet is likely needed while other injuries may require direct pressure and bandaging or an occlusive dressing (e.g., for a severe neck bleed)."],
         feedbackErrors: [""],
-        examine: true,
-        prompts: "Didn't realize that the patient's bleeding could be life-threatening; didn't know the best way to manage the patient's bleeding",
+        examineIfAbsent: true,
+        examineIfErrors: false,
+        promptsIfAbsent: "Didn't realize that the patient's bleeding could be life-threatening; didn't know the best way to manage the patient's bleeding",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "intv-control-bleeding-direct-pressure-and-tourniquet",
@@ -13260,8 +13806,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["When you recognize the patient's life-threatening bleed, the first thing you should do is apply direct pressure or direct someone else to do so.", "While the ultimate management of this patient's life-threatening bleed is surgical, it is critical that you stop the bleeding as soon as possible. To do this, you should use a tourniquet and place it as far proximally as possible."],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["Be sure to place the tourniquet as far proximally to the wound as possible."],
-          examine: true,
-          prompts: "Didn't realize that the patient's bleeding could be life-threatening; didn't know the best way to manage the patient's bleeding was with a tourniquet",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "Didn't realize that the patient's bleeding could be life-threatening; didn't know the best way to manage the patient's bleeding was with a tourniquet",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "intv-control-severe-bleeding-technique-direct-pressure",
@@ -13270,8 +13818,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["When you recognize the patient's life-threatening bleed, the first thing you should do is apply direct pressure or direct someone else to do so. In instances of limb injury with significant bleeding a tourniquet may be appropriate first-line management is apply direct pressure or direct someone else to do so."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -13281,8 +13831,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["While the ultimate management of this patient's life-threatening bleed is surgical, it is critical that you stop the bleeding as soon as possible. To do this, you should use a tourniquet and place it as far proximally as possible."],
             feedbackOutOfOrder: [""],
             feedbackErrors: ["Be sure to place the tourniquet as far proximally to the wound as possible."],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -13293,8 +13845,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["After you apply direct pressure and place your tourniquet, you should ensure that the bleeding has stopped and check to ensure that pulses are absent. If this is not the cause, you may need a second tourniquet."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: true,
-          prompts: "Thought that one tourniquet was enough; did not realize a second tourniquet could be used if necessary",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "Thought that one tourniquet was enough; did not realize a second tourniquet could be used if necessary",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "request-intervention-status-intv-control-severe-bleeding-technique-direct-pressure",
@@ -13303,8 +13857,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["After you apply direct pressure and place your tourniquet, you should ensure that the bleeding has stopped and check to ensure that pulses are absent. If this is not the cause, you may need a second tourniquet."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -13314,8 +13870,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["After you place your tourniquet, you should ensure that the bleeding has stopped"],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -13328,8 +13886,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["You achieved hemostasis with the first tourniquet; a second tourniquet is not necessary."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13341,8 +13901,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's gun shot wounds to the abdomen and thigh are shallow and therefore can't be packed with gauze."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13354,8 +13916,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["After dressing the patient's GSWs, a pressure dressing could be placed to maintain bleeding control."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13367,8 +13931,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["You achieved hemostasis with the first tourniquet."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -13379,8 +13945,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Be sure to assess the airway for patency and intact physical structures.", "You would have found this patient's airway to be patent, as evidenced by the fact that you hear him moaning in pain."],
         feedbackOutOfOrder: ["If your patient is conscious, you should examine the airway before breathing and circulation. If a patient is unconscious, you should assess the pulse first to evaluate for possible cardiac arrest, then go through your ABCs."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "airway-is-open",
@@ -13389,8 +13957,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["The first step of your airway assessment is to see if the patient's airway is open. This patient's moaning indicates he has an open airway. Signs like stridor or gasping may indicate an airway obstruction."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13400,8 +13970,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Though this patient did not have any facial trauma, be sure to look for injuries such as gun-shot wounds or facial fractures, as these may affect what basic or advanced airways you can use.  Avoid using a nasopharyngeal airway in patients with a suspected basilar skull fracture or nasal injury."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13412,8 +13984,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["A modified jaw thrust could make it easier to perform bag-valve mask ventilation, since it opens the airway.  However, doing so is not always necessary.  In this case, the patient's airway was patent."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13425,8 +13999,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["If there is a visible foreign body in the mouth, it should be removed. However, a blind finger sweep is contraindicated as it could lodge a foreign body deeper into the airway. Further, there is no evidence of foreign body in this patient's mouth."],
-          examine: true,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13438,8 +14014,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["If there is a visible foreign body in the mouth, it should be removed. However, there is no evidence of a foreign body in this patient's mouth."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13451,8 +14029,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["You have no evidence the patient is choking on an object so the Heimlich maneuver is not appropriate at this time."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13464,8 +14044,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["You have no evidence the patient is choking on an object so back blows and chest thrusts are not appropriate at this time."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13477,8 +14059,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["While an airway adjunct may be helpful in this case, the patient is conscious and he would likely refuse an oral airway."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13490,8 +14074,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with a BVM. There is no airway injury or lung injury and the patient's GCS is 12. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -13503,8 +14089,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with a BVM. There is no airway injury or lung injury and the patient's GCS is 12. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -13516,8 +14104,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with a BVM. There is no airway injury or lung injury and the patient's GCS is 12. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -13529,8 +14119,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["RSI is not in the paramedic's scope of practice in Pennsylvania. This patient's respiratory status can be stabilized with a BVM. There is no airway injury or lung injury and the patient's GCS is 12. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -13542,8 +14134,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient's respiratory status can be stabilized with a BVM. There is no airway injury or lung injury and the patient's GCS is 12. More invasive airway support is unnecessary and dangerous."],
-          examine: true,
-          prompts: "Thought this patient needed to be intubated",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "Thought this patient needed to be intubated",
           subActionsList: false,
           subActions: []
         }, {
@@ -13555,8 +14149,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["A cricothyrotomy is indicated when there is an upper airway obstruction that cannot be removed. This patient has a patent airway."],
-          examine: true,
-          prompts: "thought the patient had an upper airway obstruction",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "thought the patient had an upper airway obstruction",
           subActionsList: false,
           subActions: []
         }, {
@@ -13568,8 +14164,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["A cricothyrotomy is indicated when there is an upper airway obstruction that cannot be removed. This patient has a patent airway."],
-          examine: true,
-          prompts: "thought the patient had an upper airway obstruction",
+          examineIfAbsent: false,
+          examineIfErrors: true,
+          promptsIfAbsent: "",
+          promptsIfErrors: "thought the patient had an upper airway obstruction",
           subActionsList: false,
           subActions: []
         }]
@@ -13580,8 +14178,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["After assessing the patient's airway, assess their breathing by listening for breath sounds and observing their respiratory rate, rhythm, and effort.", "You would have found shallow and rapid breaths, but with clear and equal bilateral lungs sounds."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "breathing-checks-rate",
@@ -13590,8 +14190,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["A significantly elevated or depressed respiratory rate can suggest impending respiratory failure.", "This patient's tachypnea suggests the need for some respiratory support."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13601,8 +14203,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Although not found in this case, a patient who is breathing irregularly needs ventilatory support."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13612,9 +14216,12 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Sounds like stridor, crackles, or wheezing will help you diagnose and manage your patient's respiratory problems.", "This patient had rapid breathing but had clear lung sounds, suggesting that his lungs were likely uninjured."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
+          examineIfErrors: false,
           subActions: []
         }]
       }, {
@@ -13624,8 +14231,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Despite not being able to detect an SpO2 when obtaining vitals, your primary survey would have revealed a patient in respiratory distress with rapid, shallow breaths. This patient requires help with both ventilation and oxygenation."],
         feedbackOutOfOrder: ["Problems with ventilation and oxygenation are life threatening and should be addressed before you move on to your secondary survey. Repeat your exam and check vitals to ensure your interventions have worked as you expected. If not, your patient may deteriorate as you continue on with your examination.", "Additionally, problems with ventilation and oxygenation are life threatening and should be addressed by oxygen administration and BVM ventilation before you move on to your secondary survey. Repeat your exam and check vitals to ensure your interventions have worked as you expected. If not, your patient may deteriorate as you continue on with your examination."],
         feedbackErrors: [""],
-        examine: true,
-        prompts: "Didn't realize that the patient's respiratory status was threatened; didn't know the best way to support this patient's breathing",
+        examineIfAbsent: true,
+        examineIfErrors: false,
+        promptsIfAbsent: "Didn't realize that the patient's respiratory status was threatened; didn't know the best way to support this patient's breathing",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "intv-manage-breathing-NPA-and-BVM",
@@ -13634,8 +14243,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["This patient requires respiratory support and responds by groaning in pain. This is a patient who may benefit from an NPA to help you best oxygenate and ventilate him. He has a gag reflex, so you would want to avoid an OPA.", "When you are assessing the patient's airway and breathing, you should have noticed that the patient's respiratory rate is fast and shallow, and his mental status is waning (GCS 12). This patient would benefit from ventilatory support, not just oxygenation. Further, this patient is in hemorrhagic shock. Remember that shock is the inadequate delivery of oxygen, so a key part of the management of shock includes administration of oxygen regardless of the patient's SpO2 or respiratory exam."],
           feedbackOutOfOrder: ["In the event of a potentially compromised airway (including patients who are unconscious), the patient needs to have an airway adjunct for airway support prior to the secondary survey.", "Additionally, problems with ventilation and oxygenation are life threatening and should be addressed by oxygen administration and BVM ventilation before you move on to your secondary survey. Repeat your exam and check vitals to ensure your interventions have worked as you expected. If not, your patient may deteriorate as you continue on with your examination."],
           feedbackErrors: ["This patient should be ventilated using a BVM hooked up to O2, turned up to 15LPM."],
-          examine: true,
-          prompts: "Didn't realize that the patient's respiratory status was threatened; thought this patient only needed oxygenation; didn't remember that oxygen was part of the management of shock",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "Didn't realize that the patient's respiratory status was threatened; thought this patient only needed oxygenation; didn't remember that oxygen was part of the management of shock",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "intv-nasopharyngeal-airway",
@@ -13644,8 +14255,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["This patient requires respiratory support and responds by groaning in pain. This is a patient who may benefit from an NPA to help you best oxygenate and ventilate him. He has a gag reflex, so you would want to avoid an OPA."],
             feedbackOutOfOrder: ["In the event of a potentially compromised airway (including patients who are unconscious), the patient needs to have an airway adjunct for airway support prior to the secondary survey."],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -13655,8 +14268,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["When you are assessing the patient's airway and breathing, you should have noticed that the patient's respiratory rate is fast and shallow, and his mental status is waning (GCS 12). This patient would benefit from ventilatory support, not just oxygenation. Further, this patient is in hemorrhagic shock. Remember that shock is the inadequate delivery of oxygen, so a key part of the management of shock includes administration of oxygen regardless of the patient's SpO2 or respiratory exam."],
             feedbackOutOfOrder: ["Problems with ventilation and oxygenation are life threatening and should be addressed by oxygen administration and BVM ventilation before you move on to your secondary survey. Repeat your exam and check vitals to ensure your interventions have worked as you expected. If not, your patient may deteriorate as you continue on with your examination."],
             feedbackErrors: ["This patient should be ventilated using a BVM hooked up to O2, turned up to 15LPM."],
-            examine: true,
-            prompts: "Didn't realize that the patient's respiratory status was threatened; thought this patient only needed oxygenation; didn't remember that oxygen was part of the management of shock",
+            examineIfAbsent: true,
+            examineIfErrors: false,
+            promptsIfAbsent: "Didn't realize that the patient's respiratory status was threatened; thought this patient only needed oxygenation; didn't remember that oxygen was part of the management of shock",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -13667,8 +14282,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["When you decide your patient needs a treatment, you must ensure your treatment had the intended outcomes. In this case, after performing a needle decompression, you will listen for a rush of air and look for improvement in the patient's exam: is he breathing more comfortably, do you hear breath sounds bilaterally? You will also assess his vitals: how do his HR, RR, and BP look? If your intervention does not yield the expected results, ask yourself: was my diagnosis correct? Was my intervention correct? What else should I consider?"],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "request-vitals-Spo2",
@@ -13677,8 +14294,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["You should have checked Spo2"],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -13691,8 +14310,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["This patient was tachypneic and taking shallow breaths. Paired with your inability to capture his SpO2, this suggests that he needs assistance with both ventilation and oxygenation. While the use of nasal canula would help with oxygenation, it would have been more effective to move directly toward BVM ventilation."],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient was tachypneic and taking shallow breaths. Paired with your inability to capture his SpO2, this suggests that he needs assistance with both ventilation and oxygenation. While the use of nasal canula would help with oxygenation, it would have been more effective to move directly toward BVM ventilation."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13704,8 +14325,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["This patient was tachypneic and taking shallow breaths. Paired with your inability to capture his SpO2, this suggests that he needs assistance with both ventilation and oxygenation. While the use of a non-rebreather mask would help with oxygenation, it would have been more effective to move directly toward BVM ventilation."],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient was tachypneic and taking shallow breaths. Paired with your inability to capture his SpO2, this suggests that he needs assistance with both ventilation and oxygenation. While the use of a non-rebreather mask would help with oxygenation, it would have been more effective to move directly toward BVM ventilation."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13717,8 +14340,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["The patient did not have a penetrating chest wound."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13730,8 +14355,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["The patient did not have a penetrating chest wound."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -13742,8 +14369,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Evaluate the patient's pulse and skin to assess the patient for shock.  Be sure to also perform a gross blood sweep.", "You would have noticed that your patient had absent radial pulses and a rapid, weak central pulse, concerning for poor peripheral perfusion and shock."],
         feedbackOutOfOrder: ["All unconscious patients should have a pulse check before starting the ABCs. If the patient is pulseless, you will start high-quality CPR immediately."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "pulse-checks",
@@ -13752,8 +14381,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["First check for a radial pulse. However, if you don't feel one, you want to check a carotid pulse.", "This patient's radial pulses were absent, but he did have a weak carotid pulse, which would prompt you to worry about shock.", "Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure.", "While this patient's heart had a regular rhythm, remember that an irregular rhythm can suggest impending cardiac arrest or arrhythmia.", "A patient in shock may have weak or absent pulses distally, such as this patient, suggestive of shock."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: true,
           subActions: [{
             id: "prompt-to-specify-pulse",
@@ -13762,8 +14393,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["First check for a radial pulse. However, if you don't feel one, you want to check a carotid pulse.", "This patient's radial pulses were absent, but he did have a weak carotid pulse, which would prompt you to worry about shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: ["First check for a radial pulse. However, if you don't feel one, you want to check a carotid pulse.", "This patient's radial pulses were absent, but he did have a weak carotid pulse, which would prompt you to worry about shock."],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -13773,8 +14406,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure.", "While this patient's heart had a regular rhythm, remember that an irregular rhythm can suggest impending cardiac arrest or arrhythmia.", "A patient in shock may have weak or absent pulses distally, such as this patient, suggestive of shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: [{
               id: "checks-pulse-rate",
@@ -13783,8 +14418,10 @@ const C5CA_PhaseIE = {
               feedbackAbsent: ["Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure."],
               feedbackOutOfOrder: [""],
               feedbackErrors: [""],
-              examine: false,
-              prompts: "",
+              examineIfAbsent: false,
+              examineIfErrors: false,
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -13794,8 +14431,10 @@ const C5CA_PhaseIE = {
               feedbackAbsent: ["While this patient's heart had a regular rhythm, remember that an irregular rhythm can suggest impending cardiac arrest or arrhythmia."],
               feedbackOutOfOrder: [""],
               feedbackErrors: [""],
-              examine: false,
-              prompts: "",
+              examineIfAbsent: false,
+              examineIfErrors: false,
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -13805,8 +14444,10 @@ const C5CA_PhaseIE = {
               feedbackAbsent: ["A patient in shock may have weak or absent pulses distally, such as this patient, suggestive of shock."],
               feedbackOutOfOrder: [""],
               feedbackErrors: [""],
-              examine: false,
-              prompts: "",
+              examineIfAbsent: false,
+              examineIfErrors: false,
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }]
@@ -13818,8 +14459,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Pallor, which you would have noted on this patient, is a sign of inadequate oxygenation and may be caused by shock or respiratory failure. Additionally, this patient's cold skin suggests decompensated shock. Moreover, this patient had diaphoretic skin, which in this case is non-specific, but should prompt you to think about shock."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: true,
           subActions: [{
             id: "checks-skin-color",
@@ -13828,8 +14471,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["Pallor, which you would have noted on this patient, is a sign of inadequate oxygenation and may be caused by shock or respiratory failure."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -13839,8 +14484,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["This patient's cold skin suggests decompensated shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -13850,8 +14497,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["This patient had diaphoretic skin, which in this case is non-specific, but should prompt you to think about shock."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -13862,8 +14511,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["A gross blood sweep, which was negative in this patient, will help you identify any life-threatening bleeding you may have missed earlier when forming your general impression.", "Beyond the life-threatening bleeding from his left leg, the patient also has minor bleeding from his left upper abdomen."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -13874,8 +14525,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Your ABCs and evaluation for life threats and level of consciousness will dictate where you transfer your patient.", "Because of the patient's life-threatening bleeding, he should be quickly transferred to the level II trauma center for definitive management."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "decision-is-load-and-go",
@@ -13884,8 +14537,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["This patient is in hemorrhagic shock and needs to get to definitive management as soon as possible. You will not be able to fix him in the field."],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["This patient is in hemorrhagic shock and needs to get to definitive management as soon as possible. You will not be able to fix him in the field."],
-          examine: true,
-          prompts: "Didn't realize this was a critically ill patient; felt this patient should be further stabilized on site prior to transfer",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "Didn't realize this was a critically ill patient; felt this patient should be further stabilized on site prior to transfer",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13895,8 +14550,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["This patient should be evaluated at the level II trauma center that is 18 minutes away, where they can provide definitive care for his injuries. He should be taken by ambulance with lights and sirens."],
           feedbackOutOfOrder: ["Initial transport decisions should be made following the 'Primary Survey' (ABCs) because that is when the provider decides whether the patient can be further stabilized on scene or taken directly to a hospital in a 'load and go' scenario. The secondary assessment is only performed on scene if the situation is NOT a 'load and go.' Making transport decisions early is especially important if you are calling for an air ambulance to account for the time it takes for them to arrive."],
           feedbackErrors: ["This patient should be evaluated at the level II trauma center that is 18 minutes away, where they can provide definitive care for his injuries. He should be taken by ambulance with lights and sirens."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -13908,8 +14565,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["Air ambulance was not available."],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -13920,8 +14579,9 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Exposure is necessary to properly inspect the patient for injuries. Only the area being inspected should be uncovered and then recovered to prevent heat loss and hypothermia."],
         feedbackOutOfOrder: ["It is important expose your patient to ensure that your secondary survey can be performed efficiently -- especially in trauma scenarios where there may be more unknown injuries. Exposing the patient allows the provider to more carefully examine the patient during assessment."],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
         subActionsList: false,
         subActions: [{
           id: "exposes-body-parts",
@@ -13930,8 +14590,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Exposure is necessary to properly inspect the patient for injuries. Only the area being inspected should be uncovered and then recovered to prevent heat loss and hypothermia."],
           feedbackOutOfOrder: ["It is important expose your patient to ensure that your secondary survey can be performed efficiently -- especially in trauma scenarios where there may be more unknown injuries. Exposing the patient allows the provider to more carefully examine the patient during assessment."],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -13943,8 +14605,10 @@ const C5CA_PhaseIE = {
       feedbackAbsent: ["Vital signs will help you decide how to manage your patient, as will a history. Even if you cannot obtain a history from the patient directly, you should still try to get as much information as you can (e.g., from a bystander)."],
       feedbackOutOfOrder: [""],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "required-action-obtains-vitals",
@@ -13953,8 +14617,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Baseline vitals are critical; they will help you assess, manage, and continue to monitor your patient.", "You would have found that this patient was tachycardic, tachypneic and hypotensive, prompting you to worry about shock, most likely hemorrhagic given the rapid bleeding from the leg."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -13964,8 +14630,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Take an efficient but thorough history from the patient or the witnesses: symptoms, allergies, medications, past medical history, last oral intake, events preceding.", "You would have learned that the patient was shot in his abdomen and leg while arguing with a group of people."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -13975,8 +14643,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["In this case the patient is unable to tell you about his pain. Instead, you should ask bystanders for any information they have."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
@@ -13987,8 +14657,10 @@ const C5CA_PhaseIE = {
       feedbackAbsent: ["The Secondary Survey is a thorough exam of your patient to ensure you have a complete understanding of what is going on and how you need to manage your patient."],
       feedbackOutOfOrder: [""],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "head",
@@ -13997,8 +14669,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Inspecting the face for bruising and palpating for facial deformity may indicate facial fractures.", "Abnormal eye movement or pupils, which this patient fortunately did not have, suggest intracranial injury and should prompt you to rapidly transfer your patient to a trauma center. Additionally, bruising around the eyes may be caused by basilar skull fracture, though this aspect of the exam was normal in this patient.", "Although not found in this case, bleeding from the ear may be indicative of a basilar skull fracture and bruising behind the ear suggests a basilar skull fracture (Battle's sign).", "This patient had no drainage from the nose but consider CSF leak from a basilar skull fracture if you see clear drainage.", "If the patient had had secretions or blood in the mouth, you would have needed to apply suction to clear the airway. Additionally, any visualized foreign bodies in the mouth should be removed. A blind finger sweep is never indicated, as you could lodge a foreign body deeper into the airway. There were no obstructions in this patient’s mouth."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-inspects-skull",
@@ -14007,8 +14681,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14018,8 +14694,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Inspecting the face for bruising and palpating for facial deformity may indicate facial fractures."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14029,8 +14707,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Abnormal eye movement or pupils, which this patient fortunately did not have, suggest intracranial injury and should prompt you to rapidly transfer your patient to a trauma center.", "Additionally, bruising around the eyes may be caused by basilar skull fracture, though this aspect of the exam was normal in this patient."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-eyes-PERRLA",
@@ -14048,8 +14728,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Although not found in this case, bleeding from the ear may be indicative of a basilar skull fracture and bruising behind the ear suggests a basilar skull fracture (Battle's sign)."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-ears-blood",
@@ -14067,8 +14749,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["This patient had no drainage from the nose but consider CSF leak from a basilar skull fracture if you see clear drainage."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14078,8 +14762,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["If the patient had had secretions or blood in the mouth, you would have needed to apply suction to clear the airway.", "Additionally, any visualized foreign bodies in the mouth should be removed. A blind finger sweep is never indicated, as you could lodge a foreign body deeper into the airway. There were no obstructions in this patient’s mouth."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -14090,8 +14776,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["This patient's neck exam was normal, but remember, tracheal deviation suggests unequal intrathoracic pressure (for example, a pneumothorax). The trachea will be deviated away from the side with increased pressure."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-neck-injury",
@@ -14100,8 +14788,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14111,8 +14801,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["This patient's neck exam was normal, but remember, tracheal deviation suggests unequal intrathoracic pressure (for example, a pneumothorax). The trachea will be deviated away from the side with increased pressure. Additionally, a palpable step-off suggests a fracture."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14122,8 +14814,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["This patient's neck exam was normal, but remember, JVD suggests that the heart is not adequately pushing out blood. Consider obstructive processes like a tension pneumothorax or hemothorax."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14133,8 +14827,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["This patient's neck exam was normal, but remember, a palpable step-off suggests a fracture."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -14145,8 +14841,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["The presence and quality of breath sounds can clue you into underlying problems (e.g., pneumothorax, asthma). This patient's breath sounds were normal and equal bilaterally.", "Inspecting the shoulders for discoloration symmetry or deformity may identify dislocation or fracture of the shoulder (clavicle, humerus and scapula).  This patient's shoulders were normal.", "The clavicles should be inspected for any evidence of fractures. Though rare, clavicle fractures can cause a pneumothorax. This patient’s clavicles were normal.", "If the patient had had anterior thorax and rib crepitation, you should suspect air outside of the lungs, which would raise your suspicion for a pneumothorax. The patient had symmetric movement of his chest. Recall that paradoxical chest wall motion suggests flail chest, where multiple rib fractures lead to an unstable portion of the chest wall."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-check-breath-sounds",
@@ -14155,8 +14853,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["The presence and quality of breath sounds can clue you into underlying problems (e.g., pneumothorax, asthma). This patient's breath sounds were normal and equal bilaterally."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14166,8 +14866,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Inspecting the shoulders for discoloration symmetry or deformity may identify dislocation or fracture of the shoulder (clavicle, humerus and scapula).  This patient's shoulders were normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14177,8 +14879,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["The clavicles should be inspected for any evidence of fractures. Though rare, clavicle fractures can cause a pneumothorax. This patient’s clavicles were normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14188,8 +14892,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["If the patient had had anterior thorax and rib crepitation, you should suspect air outside of the lungs, which would raise your suspicion for a pneumothorax.", "The patient had symmetric movement of his chest. Recall that paradoxical chest wall motion suggests flail chest, where multiple rib fractures lead to an unstable portion of the chest wall."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-chest-injury",
@@ -14212,8 +14918,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["You should have noticed two gunshot wounds with minimal external bleeding in the left upper quadrant. Despite minimal external bleeding, penetrating abdominal wounds can have significant internal bleeding.", "Additionally, on palpation, you should have noticed that the patient's abdomen was rigid, suggesting intra-abdominal blood, likely related to the gunshot wounds.", "Finally, a distended abdomen suggests trauma and internal bleeding. Fortunately, the patient's abdomen was non-distended."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-abdomen-injury",
@@ -14222,8 +14930,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["You should have noticed two gunshot wounds with minimal external bleeding in the left upper quadrant. Despite minimal external bleeding, penetrating abdominal wounds can have significant internal bleeding."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14233,8 +14943,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["A distended abdomen suggests trauma and internal bleeding. Fortunately, the patient's abdomen was non-distended."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14244,8 +14956,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["On palpation, you should have noticed that the patient's abdomen was rigid, suggesting intra-abdominal blood, likely related to the gunshot wounds."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -14256,8 +14970,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Be sure to do a thorough exam of the pelvis as the pelvis can be a source of life-threatening bleeding. The presence of blood or other fluids may indicate urethral, vaginal or rectal injury. Fortunately, your exam of this patient’s pelvis and genitalia would have been normal."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-checks-pelvis",
@@ -14266,8 +14982,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Be sure to do a thorough exam of the pelvis as the pelvis can be a source of life-threatening bleeding. Fortunately, the patient's pelvis exam was normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14277,8 +14995,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["The presence of blood or other fluids may indicate urethral, vaginal or rectal injury.", "Your exam of this patient’s pelvis and genitalia would have been normal."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -14289,8 +15009,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Because the patient was in shock, you would have been unable to appreciate any distal pulses.", "Diminished or absent mobility may suggest spinal cord or other nervous system injury. The patient was shot in the left leg. You may have noted an abnormal motor exam related to either pain or neurovascular injury.", "Diminished or absent sensation may suggest spinal cord or other nervous system injury. This patient's sensation was intact in his extremities."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-extremities-injury",
@@ -14299,8 +15021,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: [""],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-injury",
@@ -14326,8 +15050,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Because the patient was in shock, you would have been unable to appreciate any distal pulses."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-pulse",
@@ -14353,8 +15079,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Diminished or absent mobility may suggest spinal cord or other nervous system injury. The patient was shot in the left leg. You may have noted an abnormal motor exam related to either pain or neurovascular injury."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-motor-ability",
@@ -14380,8 +15108,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Diminished or absent sensation may suggest spinal cord or other nervous system injury. This patient's sensation was intact in his extremities."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-sensory-function",
@@ -14408,8 +15138,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["A palpable step-off, which the patient did not have, would suggest a fracture."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-posterior-other-injury",
@@ -14428,8 +15160,10 @@ const C5CA_PhaseIE = {
       feedbackAbsent: ["Full spinal immobilization on a longboard is contraindicated for a patient such as this, with a penetrating abdominal injury.  It would be best to transfer him with a scoop stretcher, or carefully strap him onto a longboard and then move him to the ambulance gurney.", "Even if you don't place a collar on this patient, he needs padding in place to protect his head and neck during transfer, and allow for release of manual c-spine stabilization.", "Even if you had no imminent plans to administer fluids, it is beneficial to preemptively place IVs in case your patient were to deteriorate. Keep in mind that if your patient is bleeding and becoming more and more hypotensive, inserting an IV will become increasingly difficult.", "This patient is in shock as evidenced by his lack of peripheral pulses, pale and diaphoretic skin exam, waning mental status, and hypotension. The mostly likely cause of this is the GSW to the leg. Stopping the bleeding and restoring his intravascular volume will help get him to definitive management: surgery."],
       feedbackOutOfOrder: [""],
       feedbackErrors: [""],
-      examine: false,
-      prompts: "",
+      examineIfAbsent: false,
+      examineIfErrors: false,
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "intv-place-on-immobilization-device",
@@ -14438,8 +15172,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Full spinal immobilization on a longboard is contraindicated for a patient such as this, with a penetrating abdominal injury.  It would be best to transfer him with a scoop stretcher, or carefully strap him onto a longboard and then move him to the ambulance gurney."],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["Full spinal immobilization on a longboard is contraindicated for a patient such as this, with a penetrating abdominal injury.  It would be best to transfer him with a scoop stretcher, or carefully strap him onto a longboard and then move him to the ambulance gurney."],
-        examine: true,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14449,8 +15185,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Even if you don't place a collar on this patient, he needs padding in place to protect his head and neck during transfer, and allow for release of manual c-spine stabilization."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14460,8 +15198,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["Even if you had no imminent plans to administer fluids, it is beneficial to preemptively place IVs in case your patient were to deteriorate. Keep in mind that if your patient is bleeding and becoming more and more hypotensive, inserting an IV will become increasingly difficult."],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["Even if you had no imminent plans to administer fluids, it is beneficial to preemptively place IVs in case your patient were to deteriorate. Keep in mind that if your patient is bleeding and becoming more and more hypotensive, inserting an IV will become increasingly difficult."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14471,8 +15211,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["This patient is in shock as evidenced by his lack of peripheral pulses, pale and diaphoretic skin exam, waning mental status, and hypotension. The mostly likely cause of this is the GSW to the leg. Stopping the bleeding and restoring his intravascular volume will help get him to definitive management: surgery."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: true,
-        prompts: "didn't recognize hemorrhagic shock; didn't remember all the steps in the management of hemorrhagic shock",
+        examineIfAbsent: true,
+        examineIfErrors: false,
+        promptsIfAbsent: "didn't recognize hemorrhagic shock; didn't remember all the steps in the management of hemorrhagic shock",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "intv-control-shock-technique-administer-iv-boluses",
@@ -14481,8 +15223,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["This patient has been bleeding and requires intravascular support to restore and maintain his blood pressure. Administer an isotonic fluid as rapidly as possible (maximizing the size and number of IVs will help you with this) to a goal BP of 90 systolic."],
           feedbackOutOfOrder: [""],
           feedbackErrors: ["You want to establish at least 2 IVs as soon as possible. As your patient deteriorates and his blood pressure drops further, IV placement becomes more difficult.", "You should use as large of an IV as possible; this will allow you to administer fluids rapidly. Remember that the pressure of the flow of a fluid is inversely proportional to the radius to the 4th power.", "Always use an isotonic fluid without dextrose for volume resuscitation. This can be either normal saline or Lactated Ringers.  Given this patient's weight, you could titrate 1360 mL of fluids.", "Your goal of fluid administration is to re-establish an adequate, if not normal BP to ensure adequate oxygenation to the patient's end-organs. If you give too much fluid, you risk creating new problems, such as pulmonary edema."],
-          examine: true,
-          prompts: "Didn't know how much fluid to give; didn't know what kind of fluid to give",
+          examineIfAbsent: true,
+          examineIfErrors: false,
+          promptsIfAbsent: "Didn't know how much fluid to give; didn't know what kind of fluid to give",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14492,8 +15236,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["It is important to keep this patient warm because hypothermia can cause additional problems or worsening of the patient's current problems, including hypotension, arrhythmias, or even cardiac arrest."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14503,8 +15249,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["When you keep a patient in a supine position, you make it easier for the heart to pump blood to the brain. A patient in shock is already not delivering adequate oxygen to the brain; fighting gravity will not make this any easier."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14514,8 +15262,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["When you decide your patient needs a treatment, you must ensure your treatment had the intended outcomes. In this case, after bolusing fluids, you should check to see if the patient's blood pressure and HR have improved. If not, you will want to reflect on why you did not see the expected improvements? Did you select an incorrect intervention? Do you need to escalate your therapies?"],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "request-vitals-BP",
@@ -14524,8 +15274,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["You should have checked BP"],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -14535,8 +15287,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["You should have checked P"],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -14548,8 +15302,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["This patient has GSWs to the LUQ of his abdomen, which should be dressed once the patient is stabilized."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14559,8 +15315,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["It is important to reassess your patient after every intervention and every clinical change. This includes repeating the primary survey, secondary survey, and vital signs. A critically ill patient should be reassessed more frequently to ensure he or she is still stable--approximately every 5 minutes."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "reassess-vitals-plus-frequency",
@@ -14569,8 +15327,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["Vitals should be reassessed after every intervention and every clinical change, and a critically ill patient should be reassessed every 5 minutes since their condition could deteriorate rapidly."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "reassess-vital-signs",
@@ -14579,8 +15339,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["Vitals should be reassessed after every intervention and every clinical change, and a critically ill patient should be reassessed more frequently to ensure he or she is still stable."],
             feedbackOutOfOrder: [""],
             feedbackErrors: [""],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -14590,8 +15352,10 @@ const C5CA_PhaseIE = {
             feedbackAbsent: ["Critical patients' vital signs should be reassessed every 5 minutes, since their condition could deteriorate rapidly."],
             feedbackOutOfOrder: [""],
             feedbackErrors: ["Critical patients' vital signs should be reassessed every 5 minutes, since their condition could deteriorate rapidly."],
-            examine: false,
-            prompts: "",
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -14602,8 +15366,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["It is important to reassess your patient after every intervention and every clinical change, which includes the primary survey. For example, a patient with a neck injury whose breathing was initially non-labored may develop stridor as the airway becomes swollen."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -14613,8 +15379,10 @@ const C5CA_PhaseIE = {
           feedbackAbsent: ["It is important to reassess your patient after every intervention and every clinical change, which includes your secondary survey. For example, a patient may lose their pulses if you initially failed to notice and treat a source of hemorrhage."],
           feedbackOutOfOrder: [""],
           feedbackErrors: [""],
-          examine: false,
-          prompts: "",
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -14625,8 +15393,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: ["The hospital requires notification for all incoming patients 5 -15 prior to arrival, which is especially important for critical patients as the receiving team needs time to prepare equipment and space."],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14638,8 +15408,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have any fractures."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14651,8 +15423,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have any injuries requiring a sling."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14664,8 +15438,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["The patient did not have an amputation."],
-        examine: false,
-        prompts: "",
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14677,6 +15453,10 @@ const C5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: ["You are unable to assess pain or nausea in this patient so he should not be given any medicines. Instead, you should focus on stabilizing the patient."],
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14688,6 +15468,11 @@ const C5CA_PhaseIE = {
         feedbackAbsent: [""],
         feedbackOutOfOrder: [""],
         feedbackErrors: [""],
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
+        subActionsList: false,
         subActions: []
       }]
     }]
@@ -14890,7 +15675,8 @@ feedbackOutOfOrder: feedback given if the action was done late (e.g., if the act
 feedbackErrors: feedback if the action was performed incorrectly (e.g., wrong ventilation rate)
 examineIfAbsent: boolean to indicate if this Action needs to be examined when it is Absent (phase E)
 examineIfErrors: boolean to indicate if this Action needs to be examined when there are performance errors (phase E)
-prompts: prompts to be included in question headers in phase E, to hint on how to reflect
+promptsIfAbsent: prompts to be included in question headers in phase E, to hint on how to reflect when Action was Absent
+promptsIfErrors: prompts to be included in question headers in phase E, to hint on how to reflect when Action was performed incorrectly
 subActionsList: boolean that indicates whether the subActions need to be listed as bullet points on the slide. If they
     don't need to be listed it is usually because they have been grouped however, the subActions still need to be 
     included in the subActions field because they are used by the analysis to give a summary of their status.
@@ -14922,9 +15708,10 @@ const SC8CP_PhaseIE = {
     examineIfErrors: false,
 
     /* boolean to indicate if this Action needs to be examined when there are performance errors */
-    prompts: "",
+    promptsIfAbsent: "",
 
     /* prompts to the included in question in phase E to hint on how to reflect */
+    promptsIfErrors: "",
     subActionsList: true,
 
     /* boolean that indicates if subActions need to be listed as bullet points on slide */
@@ -14939,7 +15726,8 @@ const SC8CP_PhaseIE = {
       feedbackErrors: [""],
       examineIfAbsent: false,
       examineIfErrors: false,
-      prompts: "",
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "required-action-BSI",
@@ -14950,7 +15738,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14962,7 +15751,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14974,7 +15764,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14986,7 +15777,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -14998,7 +15790,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -15010,7 +15803,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
@@ -15023,7 +15817,8 @@ const SC8CP_PhaseIE = {
       feedbackErrors: [""],
       examineIfAbsent: false,
       examineIfErrors: false,
-      prompts: "",
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "general-impression",
@@ -15034,7 +15829,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assess-patient-condition",
@@ -15045,7 +15841,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15057,7 +15854,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15069,7 +15867,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -15082,7 +15881,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "pulse-checks",
@@ -15093,7 +15893,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: true,
           subActions: [{
             id: "prompt-to-specify-pulse",
@@ -15104,7 +15905,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: [""],
             examineIfAbsent: false,
             examineIfErrors: false,
-            prompts: "",
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -15116,7 +15918,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: [""],
             examineIfAbsent: false,
             examineIfErrors: false,
-            prompts: "",
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: [{
               id: "checks-pulse-rate",
@@ -15127,7 +15930,8 @@ const SC8CP_PhaseIE = {
               feedbackErrors: [""],
               examineIfAbsent: false,
               examineIfErrors: false,
-              prompts: "",
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -15139,7 +15943,8 @@ const SC8CP_PhaseIE = {
               feedbackErrors: [""],
               examineIfAbsent: false,
               examineIfErrors: false,
-              prompts: "",
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -15151,7 +15956,8 @@ const SC8CP_PhaseIE = {
               feedbackErrors: [""],
               examineIfAbsent: false,
               examineIfErrors: false,
-              prompts: "",
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }]
@@ -15165,7 +15971,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: true,
           subActions: [{
             id: "checks-skin-color",
@@ -15176,7 +15983,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: [""],
             examineIfAbsent: false,
             examineIfErrors: false,
-            prompts: "",
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -15188,7 +15996,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: [""],
             examineIfAbsent: false,
             examineIfErrors: false,
-            prompts: "",
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -15200,7 +16009,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: [""],
             examineIfAbsent: false,
             examineIfErrors: false,
-            prompts: "",
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -15213,7 +16023,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -15226,7 +16037,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: true,
         examineIfErrors: false,
-        prompts: "didn't recall that spinal injury should be considered in every near drowning incident; did not consider risk for cervical spine injury based on provided information",
+        promptsIfAbsent: "didn't recall that spinal injury should be considered in every near drowning incident; did not consider risk for cervical spine injury based on provided information",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "intv-spinal-immobilization-technique-manual-c-spine",
@@ -15237,7 +16049,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15249,7 +16062,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -15262,7 +16076,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "airway-is-open",
@@ -15273,7 +16088,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15285,7 +16101,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -15298,7 +16115,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: true,
         examineIfErrors: false,
-        prompts: "didn't recognize that being unconscious was an indication for intubation; didn't recognize that the patient's airway was obstructed and needed suctioning",
+        promptsIfAbsent: "didn't recognize that being unconscious was an indication for intubation; didn't recognize that the patient's airway was obstructed and needed suctioning",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "intv-open-airway-method-modified-jaw-thrust",
@@ -15309,7 +16127,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15321,7 +16140,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["Both Yankauer (rigid) and Long multi-use catheters are appropriate for oral suctioning; however, Yankauer would be more effective for suctioning large volumes of blood, vomit, etc.  A soft tip suction catheter should be used for deep suctioning with the ET tube."],
           examineIfAbsent: true,
           examineIfErrors: false,
-          prompts: "didn't ensure the airway was clear; did not think the vomit or water needed to be suctioned prior to intubation",
+          promptsIfAbsent: "didn't ensure the airway was clear; did not think the vomit or water needed to be suctioned prior to intubation",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15333,7 +16153,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15345,7 +16166,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "intv-oropharyngeal-airway",
@@ -15353,6 +16175,10 @@ const SC8CP_PhaseIE = {
             type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.REQ,
             feedbackAbsent: ["Remember: 'basic before advanced'. This patient is unconscious and therefore unable to maintain his airway (e.g. without an OPA, the tongue could obstruct the airway.)  Insert a basic airway adjunct to maintain airway patency and allow you to pre-oxygenate the patient prior to intubation."],
             feedbackOutOfOrder: ["In the event of a potentially compromised airway (including patients who are unconscious), the patient needs to have an airway adjunct for airway support prior to the secondary survey."],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -15362,6 +16188,10 @@ const SC8CP_PhaseIE = {
             alternativeToIntv: "intv-oropharyngeal-airway",
             feedbackAbsent: ["Remember: 'basic before advanced'. This patient is unconscious and therefore unable to maintain his airway (e.g. without an OPA, the tongue could obstruct the airway.)  Insert a basic airway adjunct to maintain airway patency and allow you to pre-oxygenate the patient prior to intubation."],
             feedbackOutOfOrder: ["In the event of a potentially compromised airway (including patients who are unconscious), the patient needs to have an airway adjunct for airway support prior to the secondary survey."],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -15374,7 +16204,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "request-intervention-status-intv-nasopharyngeal-airway",
@@ -15382,6 +16213,10 @@ const SC8CP_PhaseIE = {
             type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.REQ,
             feedbackAbsent: ["Remember: 'basic before advanced'. This patient is unconscious and therefore unable to maintain his airway (e.g. without an OPA, the tongue could obstruct the airway.)  Insert a basic airway adjunct to maintain airway patency and allow you to pre-oxygenate the patient prior to intubation."],
             feedbackOutOfOrder: ["In the event of a potentially compromised airway (including patients who are unconscious), the patient needs to have an airway adjunct for airway support prior to the secondary survey."],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -15391,6 +16226,10 @@ const SC8CP_PhaseIE = {
             alternativeToIntv: "request-intervention-status-intv-nasopharyngeal-airway",
             feedbackAbsent: ["Remember: 'basic before advanced'. This patient is unconscious and therefore unable to maintain his airway (e.g. without an OPA, the tongue could obstruct the airway.)  Insert a basic airway adjunct to maintain airway patency and allow you to pre-oxygenate the patient prior to intubation."],
             feedbackOutOfOrder: ["In the event of a potentially compromised airway (including patients who are unconscious), the patient needs to have an airway adjunct for airway support prior to the secondary survey."],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -15409,7 +16248,8 @@ const SC8CP_PhaseIE = {
           /* feedback taken from intv-oro-intubation-or-advanced-airway */
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: true,
           subActions: [{
             id: "intv-preoxygenation",
@@ -15420,7 +16260,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: ["Use a bag-valve mask or NRM attached to 15LPM O2 or greater to preoxygenate the patient prior to intubation. Alternatively, 25 LPM of O2 via nasal cannula while simultaneously performing BVM ventilations with high-flow oxygen could be used for pre-oxygenation."],
             examineIfAbsent: true,
             examineIfErrors: false,
-            prompts: "Didn't realize the patient needed ventilatory support; Didn't think the patient needed bagging before intubation",
+            promptsIfAbsent: "Didn't realize the patient needed ventilatory support; Didn't think the patient needed bagging before intubation",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: [{
               id: "intv-supplemental-oxygen-device-non-rebreather-mask",
@@ -15431,7 +16272,8 @@ const SC8CP_PhaseIE = {
               feedbackErrors: ["Use a bag-valve mask or NRM attached to 15LPM O2 or greater to preoxygenate the patient prior to intubation. Alternatively, 25 LPM of O2 via nasal cannula while simultaneously performing BVM ventilations with high-flow oxygen could be used for pre-oxygenation."],
               examineIfAbsent: false,
               examineIfErrors: false,
-              prompts: "",
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -15444,7 +16286,8 @@ const SC8CP_PhaseIE = {
               feedbackErrors: ["Use a bag-valve mask or NRM attached to 15LPM O2 or greater to preoxygenate the patient prior to intubation. Alternatively, 25 LPM of O2 via nasal cannula while simultaneously performing BVM ventilations with high-flow oxygen could be used for pre-oxygenation."],
               examineIfAbsent: false,
               examineIfErrors: false,
-              prompts: "",
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -15457,7 +16300,8 @@ const SC8CP_PhaseIE = {
               feedbackErrors: ["Use a bag-valve mask or NRM attached to 15LPM O2 or greater to preoxygenate the patient prior to intubation. Alternatively, 25 LPM of O2 via nasal cannula while simultaneously performing BVM ventilations with high-flow oxygen could be used for pre-oxygenation."],
               examineIfAbsent: false,
               examineIfErrors: false,
-              prompts: "",
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: [{
                 id: "intv-ventilation-technique-bag-valve-mask",
@@ -15468,7 +16312,8 @@ const SC8CP_PhaseIE = {
                 feedbackErrors: ["Use a bag-valve mask attached to 15LPM O2 or greater to preoxygenate the patient prior to intubation. Alternatively, 25 LPM of O2 via nasal cannula while simultaneously performing BVM ventilations with high-flow oxygen could be used for pre-oxygenation."],
                 examineIfAbsent: false,
                 examineIfErrors: false,
-                prompts: "",
+                promptsIfAbsent: "",
+                promptsIfErrors: "",
                 subActionsList: false,
                 subActions: []
               }, {
@@ -15480,7 +16325,8 @@ const SC8CP_PhaseIE = {
                 feedbackErrors: ["Use a bag-valve mask attached to 15LPM O2 or greater to preoxygenate the patient prior to intubation. Alternatively, 25 LPM of O2 via nasal cannula while simultaneously performing BVM ventilations with high-flow oxygen could be used for pre-oxygenation."],
                 examineIfAbsent: false,
                 examineIfErrors: false,
-                prompts: "",
+                promptsIfAbsent: "",
+                promptsIfErrors: "",
                 subActionsList: false,
                 subActions: []
               }]
@@ -15494,7 +16340,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: ["Inserting an appropriately sized endotracheal tube (ETT) is the most appropriate method of securing this patient's airway, since he lacks a gag reflex.  An advanced airway would be indicated if the airway cannot be secured with an ET tube due to difficulty intubating the patient.", "Calculate the appropriate size ET tube for a child with the equation age/4 +1. This is the correct size for an uncuffed tube; go down by .5 for a cuffed tube. This child needed a 4.5 cuffed or 5.0 uncuffed tube.  The insertion depth for children is 3cm * (tube size), so about 15cm.", "If using an advanced/rescue airway, reference the Broslow Tape for the acceptable size, but remember that Combitubes are not sized for children."],
             examineIfAbsent: false,
             examineIfErrors: true,
-            prompts: "Didn't recall how to calculate the size of an ET tube for a child; Didn't recall how to calculate the depth of an ET tube for a child",
+            promptsIfAbsent: "",
+            promptsIfErrors: "Didn't recall how to calculate the size of an ET tube for a child; Didn't recall how to calculate the depth of an ET tube for a child",
             subActionsList: false,
             subActions: [{
               id: "intv-orotracheal-intubation",
@@ -15505,7 +16352,8 @@ const SC8CP_PhaseIE = {
               feedbackErrors: ["Inserting an appropriately sized endotracheal tube (ETT) is the most appropriate method of securing this patient's airway, since he lacks a gag reflex.  An advanced airway would be indicated if the airway cannot be secured with an ET tube due to difficulty intubating the patient.", "Calculate the appropriate size ET tube for a child with the equation age/4 +1. This is the correct size for an uncuffed tube; go down by .5 for a cuffed tube. This child needed a 4.5 cuffed or 5.0 uncuffed tube.  The insertion depth for children is 3cm * (tube size), so about 15cm.", "If using an advanced/rescue airway, reference the Broslow Tape for the acceptable size, but remember that Combitubes are not sized for children."],
               examineIfAbsent: false,
               examineIfErrors: false,
-              prompts: "",
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }, {
@@ -15518,7 +16366,8 @@ const SC8CP_PhaseIE = {
               feedbackErrors: ["Inserting an appropriately sized endotracheal tube (ETT) is the most appropriate method of securing this patient's airway, since he lacks a gag reflex.  An advanced airway would be indicated if the airway cannot be secured with an ET tube due to difficulty intubating the patient.", "Calculate the appropriate size ET tube for a child with the equation age/4 +1. This is the correct size for an uncuffed tube; go down by .5 for a cuffed tube. This child needed a 4.5 cuffed or 5.0 uncuffed tube.  The insertion depth for children is 3cm * (tube size), so about 15cm.", "If using an advanced/rescue airway, reference the Broslow Tape for the acceptable size, but remember that Combitubes are not sized for children."],
               examineIfAbsent: false,
               examineIfErrors: false,
-              prompts: "",
+              promptsIfAbsent: "",
+              promptsIfErrors: "",
               subActionsList: false,
               subActions: []
             }]
@@ -15532,7 +16381,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15546,7 +16396,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["A head-tilt chin lift is contraindicated for a patient with suspected c-spine injury as tilting the head could cause further damage to the neck. You should have used a modified jaw thrust to check this patient's airway."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15560,7 +16411,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["If there is a visible foreign body in the mouth, it should be removed. However, a blind finger sweep is contraindicated as it could lodge a foreign body deeper into the airway."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15574,7 +16426,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["If there is a visible foreign body in the mouth, it should be removed. However, there is no evidence of a foreign body in this patient's mouth."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15588,7 +16441,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["You have no evidence the patient is choking on an object, so the Heimlich maneuver is not appropriate at this time."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15602,7 +16456,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["You have no evidence the patient is choking on an object, so the Heimlich maneuver is not appropriate at this time."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15616,7 +16471,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["Nasotracheal intubation is only indicated for specific scenarios where access via the mouth is limited, such as profuse angioedema or trismus. It is a blind procedure and much more difficult than orotracheal intubation so in this patient who has a patent and intact oral airway, orotracheal intubation is preferred."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15630,7 +16486,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["RSI is not in the paramedic's scope of practice in Pennsylvania"],
           examineIfAbsent: false,
           examineIfErrors: true,
-          prompts: "didn't know what type of intubation can be performed in pediatric patients in PA.",
+          promptsIfAbsent: "",
+          promptsIfErrors: "didn't know what type of intubation can be performed in pediatric patients in PA.",
           subActionsList: false,
           subActions: []
         }, {
@@ -15644,7 +16501,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["Sedation assisted intubation is contraindicated for pediatric patients in PA.  Since this patient is unconscious, orotracheal intubation would be the best option for securing the patient's airway."],
           examineIfAbsent: false,
           examineIfErrors: true,
-          prompts: "didn't know what type of intubation can be performed in pediatric patients in PA.",
+          promptsIfAbsent: "",
+          promptsIfErrors: "didn't know what type of intubation can be performed in pediatric patients in PA.",
           subActionsList: false,
           subActions: []
         }, {
@@ -15658,7 +16516,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["A cricothyrotomy is indicated when there is an upper airway obstruction that cannot be removed. This patient has a patent airway."],
           examineIfAbsent: false,
           examineIfErrors: true,
-          prompts: "thought the patient had an upper airway obstruction",
+          promptsIfAbsent: "",
+          promptsIfErrors: "thought the patient had an upper airway obstruction",
           subActionsList: false,
           subActions: []
         }, {
@@ -15672,7 +16531,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["A cricothyrotomy is indicated when there is an upper airway obstruction that cannot be removed. This patient has a patent airway."],
           examineIfAbsent: false,
           examineIfErrors: true,
-          prompts: "thought the patient had an upper airway obstruction",
+          promptsIfAbsent: "",
+          promptsIfErrors: "thought the patient had an upper airway obstruction",
           subActionsList: false,
           subActions: []
         }]
@@ -15685,7 +16545,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "breathing-checks-rate",
@@ -15696,7 +16557,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15708,7 +16570,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15720,7 +16583,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -15733,7 +16597,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: true,
         examineIfErrors: false,
-        prompts: "didn't realize that the patient's respiratory status was threatened ",
+        promptsIfAbsent: "didn't realize that the patient's respiratory status was threatened ",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "intv-ventilation-technique-bag-valve-mask",
@@ -15744,7 +16609,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["This patient should have been ventilated at a rate of 20 breaths per minute, which is the recommended rate for a child aged 2-12. When performing BVM ventilation, you use 15LPM O2 in order to both oxygenate and ventilate the patient to a target SpO2 >90%."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15756,7 +16622,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "request-vitals-BP",
@@ -15767,7 +16634,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: [""],
             examineIfAbsent: false,
             examineIfErrors: false,
-            prompts: "",
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -15779,7 +16647,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: [""],
             examineIfAbsent: false,
             examineIfErrors: false,
-            prompts: "",
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -15791,7 +16660,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: [""],
             examineIfAbsent: false,
             examineIfErrors: false,
-            prompts: "",
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -15805,7 +16675,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["This patient was unresponsive with slow, gurgling breaths, indicating need for ventilation, not just oxygenation. O2 delivery via a non-rebreather mask would not be adequate in this case, as it assists with oxygenation but does not assist with ventilation."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [],
         },*/
@@ -15820,7 +16691,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["The patient did not have a penetrating chest wound."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15834,7 +16706,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["The patient did not have a tension pneumothorax. Notice that the patient had equal lung sounds bilaterally and improved after intubation."],
           examineIfAbsent: false,
           examineIfErrors: true,
-          prompts: "thought the child had a tension pneumothorax",
+          promptsIfAbsent: "",
+          promptsIfErrors: "thought the child had a tension pneumothorax",
           subActionsList: false,
           subActions: []
         }]
@@ -15849,7 +16722,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have significant bleeding."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -15863,7 +16737,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have significant bleeding."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -15877,7 +16752,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have significant bleeding."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -15891,7 +16767,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have significant bleeding."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -15905,7 +16782,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have significant bleeding."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -15919,7 +16797,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have significant bleeding."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -15931,7 +16810,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "decision-is-load-and-go",
@@ -15942,7 +16822,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["This patient is unconscious and needs ventilatory support. This patient should be considered critical."],
           examineIfAbsent: true,
           examineIfErrors: false,
-          prompts: "didn't realize this was a critically ill patient; felt this patient should be further stabilized on site prior to transfer",
+          promptsIfAbsent: "didn't realize this was a critically ill patient; felt this patient should be further stabilized on site prior to transfer",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -15954,7 +16835,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["This patient requires a pediatric trauma center because of age and physiological criteria. The physiological criteria indicating that the patient requires this type of facility are respiratory rate of less than 10 and GCS <5 (not following commands)"],
           examineIfAbsent: false,
           examineIfErrors: true,
-          prompts: "did not realize patient requires higher level of service than level II adult facility",
+          promptsIfAbsent: "",
+          promptsIfErrors: "did not realize patient requires higher level of service than level II adult facility",
           subActionsList: false,
           subActions: []
         }, {
@@ -15966,7 +16848,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -15979,7 +16862,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: [{
           id: "exposes-body-parts",
@@ -15990,7 +16874,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -16004,7 +16889,8 @@ const SC8CP_PhaseIE = {
       feedbackErrors: [""],
       examineIfAbsent: false,
       examineIfErrors: false,
-      prompts: "",
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "required-action-obtains-vitals",
@@ -16015,7 +16901,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16027,7 +16914,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16039,7 +16927,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
@@ -16052,7 +16941,8 @@ const SC8CP_PhaseIE = {
       feedbackErrors: [""],
       examineIfAbsent: false,
       examineIfErrors: false,
-      prompts: "",
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "head",
@@ -16063,7 +16953,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-inspects-skull",
@@ -16074,7 +16965,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16086,7 +16978,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16098,17 +16991,32 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: true,
           subActions: [{
             id: "inspects-eyes-PERRLA",
             label: "for PERRLA",
             feedbackAbsent: ["Checking for PERRLA would have revealed that the patient's pupils were equal but sluggish, suggesting possible intracranial injury and a critically ill patient who needed rapid transfer to a trauma center."],
+            feedbackOutOfOrder: [""],
+            feedbackErrors: [""],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
+            subActionsList: false,
             subActions: []
           }, {
             id: "inspects-eyes-racoon",
             label: "for bruising ('raccoon eyes')",
             feedbackAbsent: ["This aspect of the exam was normal in this patient but bruising around the eyes may be caused by basilar skull fracture."],
+            feedbackOutOfOrder: [""],
+            feedbackErrors: [""],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
+            subActionsList: false,
             subActions: []
           }]
         }, {
@@ -16120,15 +17028,30 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-ears-blood",
             feedbackAbsent: ["Although not found in this case, bleeding or CF from the ear may be indicative of a basilar skull fracture."],
+            feedbackOutOfOrder: [""],
+            feedbackErrors: [""],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
+            subActionsList: false,
             subActions: []
           }, {
             id: "inspects-ears-bruising",
             feedbackAbsent: ["Although not found in this case, bruising behind the ear suggests a basilar skull fracture (Battle's sign)."],
+            feedbackOutOfOrder: [""],
+            feedbackErrors: [""],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
+            subActionsList: false,
             subActions: []
           }]
         }, {
@@ -16140,7 +17063,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16152,7 +17076,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -16165,7 +17090,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-neck-injury",
@@ -16176,7 +17102,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16188,7 +17115,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16200,7 +17128,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16212,7 +17141,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -16225,7 +17155,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-check-breath-sounds",
@@ -16236,7 +17167,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16248,7 +17180,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16260,7 +17193,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16272,21 +17206,43 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-chest-injury",
             feedbackAbsent: [""],
 
             /* no feedback on excel sheet */
+            feedbackOutOfOrder: [""],
+            feedbackErrors: [""],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
+            subActionsList: false,
             subActions: []
           }, {
             id: "inspects-palpates-anterior-thorax-crepitation",
             feedbackAbsent: ["If the patient had had anterior thorax and rib crepitation, you should suspect air outside of the lungs, which would raise your suspicion for a pneumothorax."],
+            feedbackOutOfOrder: [""],
+            feedbackErrors: [""],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
+            subActionsList: false,
             subActions: []
           }, {
             id: "inspects-anterior-thorax-paradoxical-motion",
             feedbackAbsent: ["The patient had symmetric movement of his chest. Recall that paradoxical chest wall motion suggests flail chest, where multiple rib fractures lead to an unstable portion of the chest wall."],
+            feedbackOutOfOrder: [""],
+            feedbackErrors: [""],
+            examineIfAbsent: false,
+            examineIfErrors: false,
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
+            subActionsList: false,
             subActions: []
           }]
         }]
@@ -16299,7 +17255,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-abdomen-injury",
@@ -16312,7 +17269,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16324,7 +17282,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16336,7 +17295,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -16349,7 +17309,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "assessment-checks-pelvis",
@@ -16360,7 +17321,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16372,7 +17334,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -16385,7 +17348,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-extremities-injury",
@@ -16398,7 +17362,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-injury",
@@ -16422,7 +17387,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-pulse",
@@ -16450,7 +17416,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-motor-ability",
@@ -16478,7 +17445,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "inspects-right-arm-sensory-function",
@@ -16507,17 +17475,32 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "inspects-posterior-other-injury",
           feedbackAbsent: [""],
 
           /* no feedback in excel sheet */
+          feedbackOutOfOrder: [""],
+          feedbackErrors: [""],
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
+          subActionsList: false,
           subActions: []
         }, {
           id: "inspects-posterior-step-offs",
           feedbackAbsent: ["A palpable step-off, which the patient did not have, would suggest a fracture."],
+          feedbackOutOfOrder: [""],
+          feedbackErrors: [""],
+          examineIfAbsent: false,
+          examineIfErrors: false,
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
+          subActionsList: false,
           subActions: []
         }]
       }]
@@ -16530,7 +17513,8 @@ const SC8CP_PhaseIE = {
       feedbackErrors: ["How to transfer your patient to the stretcher depends on your level of concern for spinal injury but you should do so with minimal movement to the spine", "Given the low concern for further spinal injury (i.e. the patient was unlikely to have been diving), you could carefully place him directly on the stretcher, with manual c-spine stabilization and a c-collar in place. Alternately, you could use a backboard, scoop stretcher, vacuum mattress, or other device which could be removed after placing the patient on the stretcher.", "Supine position will be required for this patient as he is intubated and in order to properly position the airway."],
       examineIfAbsent: false,
       examineIfErrors: false,
-      prompts: "",
+      promptsIfAbsent: "",
+      promptsIfErrors: "",
       subActionsList: true,
       subActions: [{
         id: "intv-place-on-stretcher-OR-immob-device",
@@ -16541,7 +17525,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["How to transfer your patient to the stretcher depends on your level of concern for spinal injury but you should do so with minimal movement to the spine", "Given the low concern for further spinal injury (i.e. the patient was unlikely to have been diving), you could carefully place him directly on the stretcher, with manual c-spine stabilization and a c-collar in place. Alternately, you could use a backboard, scoop stretcher, vacuum mattress, or other device which could be removed after placing the patient on the stretcher.", "Supine position will be required for this patient as he is intubated and in order to properly position the airway."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: [{
           id: "intv-place-directly-on-stretcher",
@@ -16552,7 +17537,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["How to transfer your patient to the stretcher depends on your level of concern for spinal injury but you should do so with minimal movement to the spine", "Given the low concern for further spinal injury (i.e. the patient was unlikely to have been diving), you could carefully place him directly on the stretcher, with manual c-spine stabilization and a c-collar in place. Alternately, you could use a backboard, scoop stretcher, vacuum mattress, or other device which could be removed after placing the patient on the stretcher.", "Supine position will be required for this patient as he is intubated and in order to properly position the airway."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16565,7 +17551,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: ["How to transfer your patient to the stretcher depends on your level of concern for spinal injury but you should do so with minimal movement to the spine", "Given the low concern for further spinal injury (i.e. the patient was unlikely to have been diving), you could carefully place him directly on the stretcher, with manual c-spine stabilization and a c-collar in place. Alternately, you could use a backboard, scoop stretcher, vacuum mattress, or other device which could be removed after placing the patient on the stretcher.", "Supine position will be required for this patient as he is intubated and in order to properly position the airway."],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -16580,7 +17567,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["This near-drowning patient who had an unwitnessed event needs cervical spine stabilization and a cervical collar. However, further spinal immobilization is optional, given the low concern for further spinal injury (i.e. the patient was unlikely to have been diving)."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16594,7 +17582,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["This near-drowning patient who had an unwitnessed event needs cervical spine stabilization and a cervical collar. However, further spinal immobilization is optional, given the low concern for further spinal injury (i.e. the patient was unlikely to have been diving)."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16606,7 +17595,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
           id: "reassess-vitals-plus-frequency",
@@ -16617,7 +17607,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: [{
             id: "reassess-vital-signs",
@@ -16628,7 +17619,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: [""],
             examineIfAbsent: false,
             examineIfErrors: false,
-            prompts: "",
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }, {
@@ -16640,7 +17632,8 @@ const SC8CP_PhaseIE = {
             feedbackErrors: ["Vitals should be reassessed after every intervention and every clinical change, and a critically ill patient should be reassessed every 5 minutes since their condition could deteriorate rapidly."],
             examineIfAbsent: false,
             examineIfErrors: false,
-            prompts: "",
+            promptsIfAbsent: "",
+            promptsIfErrors: "",
             subActionsList: false,
             subActions: []
           }]
@@ -16653,7 +17646,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }, {
@@ -16665,7 +17659,8 @@ const SC8CP_PhaseIE = {
           feedbackErrors: [""],
           examineIfAbsent: false,
           examineIfErrors: false,
-          prompts: "",
+          promptsIfAbsent: "",
+          promptsIfErrors: "",
           subActionsList: false,
           subActions: []
         }]
@@ -16680,7 +17675,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["You could keep the patient warm by removing his wet swimsuit, applying blankets, applying heat packs to his armpits or groin, and turning up the heat in the air ambulance."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16692,7 +17688,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16704,7 +17701,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["With a critical patient, you should ideally establish two large bore IV's while en route to the receiving facility, so as not to delay transfer to definitive care.  Establish as large an IV as possible. With pediatric patients, this will likely be 18-, 20-, or 22- gauge IVs."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16718,7 +17716,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["While it is true the patient was hypotensive, the reason for his hypotension was his respiratory failure, not hypovolemia. Appropriate management of the patient's airway and breathing would have improved his hypotension without the need for IV fluids. In fact, you should be conservative about fluid resuscitation in a near drowning patient because pulmonary edema would further hinder the patient's respiratory status. In general, when administering fluids to children, you should bolus 20ml/kg at a time to guard against fluid overload."],
         examineIfAbsent: false,
         examineIfErrors: true,
-        prompts: "thought that hypotension should be treated with fluid boluses regardless of etiology",
+        promptsIfAbsent: "",
+        promptsIfErrors: "thought that hypotension should be treated with fluid boluses regardless of etiology",
         subActionsList: false,
         subActions: []
       }, {
@@ -16732,7 +17731,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have any signifcant injuries to the skin."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16746,7 +17746,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have any penetrating injuries."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16760,7 +17761,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have any fractures."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16774,7 +17776,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have any injuries of the upper extremities."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16788,7 +17791,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["The patient did not have an amputation."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }, {
@@ -16802,7 +17806,8 @@ const SC8CP_PhaseIE = {
         feedbackErrors: ["This patient is unconscious. Management of life-threatening problems takes precedence, and you should not delay addressing these to manage pain, nausea, vomiting, etc."],
         examineIfAbsent: false,
         examineIfErrors: false,
-        prompts: "",
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
         subActionsList: false,
         subActions: []
       }]
