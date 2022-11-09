@@ -8,212 +8,88 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ App)
 /* harmony export */ });
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7267);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7267);
 /* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(89526);
 /* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(36011);
 /* harmony import */ var _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(36127);
 /* harmony import */ var _meddbriefer_log_chooser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(59834);
-/* harmony import */ var _SaveModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(91929);
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(55056);
-/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(53015);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55056);
+/* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(53015);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/apps/debriefer2/src/App.js";
 
 
 
 
+ // import SaveModal from "./SaveModal";
 
 
 
-
-
-
-const computeTitle = (obsLog, scenario) => {
-  return `${scenario.name} / ${obsLog.userName} / ${obsLog.label}`;
-};
 
 function App() {
   const {
     auth,
     db
-  } = (0,_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__.useFirebaseProject)(_environments_environment__WEBPACK_IMPORTED_MODULE_6__.environment.firebaseProject);
-  let history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useHistory)();
+  } = (0,_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__.useFirebaseProject)(_environments_environment__WEBPACK_IMPORTED_MODULE_5__.environment.firebaseProject);
+  let history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useHistory)();
   window.db = db;
 
   function redirectToCond2Debriefing(debriefID) {
-    const newURL = `/debriefing/${debriefID}`;
+    const newURL = `/debriefing2/${debriefID}`;
     history.push(newURL);
   }
 
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__.FirebaseContext.Provider, {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_0__.FirebaseContext.Provider, {
     value: {
       auth,
       db
     },
-    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.AuthProvider, {
-      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Switch, {
-        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
-          path: "/debriefing/:debriefingID",
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.AuthProvider, {
+      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.Switch, {
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
+          path: "/debriefing2/:debriefingID",
           authFlowLayout: _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.UnauthedLayout,
-          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.DebLog, {
-            computeTitle: computeTitle,
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.DebLog, {
+            computeTitle: _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.computeReviewTitle,
             saveButtonLabel: "Save",
-            saveModal: _SaveModal__WEBPACK_IMPORTED_MODULE_4__["default"]
+            saveModal: _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.SaveReviewModal
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 46,
+            lineNumber: 42,
             columnNumber: 15
           }, this)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 42,
+          lineNumber: 38,
           columnNumber: 13
-        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_1__.PrivateRoute, {
           authFlowLayout: _meddbriefer_cond2_debriefing_ui__WEBPACK_IMPORTED_MODULE_2__.UnauthedLayout,
-          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_log_chooser__WEBPACK_IMPORTED_MODULE_3__.LogChooser, {
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_meddbriefer_log_chooser__WEBPACK_IMPORTED_MODULE_3__.LogChooser, {
             redirectToCond2Debriefing: redirectToCond2Debriefing
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 54,
+            lineNumber: 50,
             columnNumber: 15
           }, this)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 53,
+          lineNumber: 49,
           columnNumber: 13
         }, this)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 41,
+        lineNumber: 37,
         columnNumber: 11
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 40,
+      lineNumber: 36,
       columnNumber: 9
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 34,
+    lineNumber: 30,
     columnNumber: 7
-  }, this);
-}
-
-/***/ }),
-
-/***/ 91929:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ SaveModal)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7267);
-/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55334);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/apps/debriefer2/src/SaveModal.jsx";
-
-
-
-
-
-function SaveModal({
-  show,
-  dismiss
-}) {
-  let history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
-
-  const submitHandler = event => {
-    event.preventDefault();
-    console.log("I'm done clicked");
-    history.push("/");
-  };
-
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__.MDBModal, {
-    title: "Are you finished with this debriefing?",
-    show: show,
-    dismiss: dismiss,
-    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
-      className: "container",
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
-        className: "row",
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
-          className: "col-12",
-          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("p", {
-            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("span", {
-              className: "text-danger",
-              children: "WARNING: "
-            }, void 0, false, {
-              fileName: _jsxFileName,
-              lineNumber: 25,
-              columnNumber: 15
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("span", {
-              children: "Clicking \"I'm Done\" will not allow you to view the debriefing any longer. Don't click on it unless you are truly done with this debriefing."
-            }, void 0, false, {
-              fileName: _jsxFileName,
-              lineNumber: 26,
-              columnNumber: 15
-            }, this)]
-          }, void 0, true, {
-            fileName: _jsxFileName,
-            lineNumber: 24,
-            columnNumber: 13
-          }, this)
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 23,
-          columnNumber: 11
-        }, this)
-      }, void 0, false, {
-        fileName: _jsxFileName,
-        lineNumber: 22,
-        columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
-        className: "row",
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
-          className: "col-12",
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            color: "danger",
-            size: "lg",
-            onClick: submitHandler,
-            children: "I'm Done"
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 36,
-            columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            color: "primary",
-            size: "lg",
-            onClick: dismiss,
-            children: "Cancel"
-          }, void 0, false, {
-            fileName: _jsxFileName,
-            lineNumber: 39,
-            columnNumber: 13
-          }, this)]
-        }, void 0, true, {
-          fileName: _jsxFileName,
-          lineNumber: 35,
-          columnNumber: 11
-        }, this)
-      }, void 0, false, {
-        fileName: _jsxFileName,
-        lineNumber: 34,
-        columnNumber: 9
-      }, this)]
-    }, void 0, true, {
-      fileName: _jsxFileName,
-      lineNumber: 21,
-      columnNumber: 7
-    }, this)
-  }, void 0, false, {
-    fileName: _jsxFileName,
-    lineNumber: 16,
-    columnNumber: 5
   }, this);
 }
 
@@ -543,7 +419,7 @@ var itemByLabel; // sts 1/23/22 - added as global
 let checklistHierarchy;
 let training; // analysisFields to include in output
 
-let analysisFields = ["numericalID", "actionDescription", "id", "type", "label", "labelID", "answerDetails", "vital", "vitalType", "value", "subPhase", "finding", "intvStatus", "vitalsNotDoneTwice", "vitalsDoneTwice", "probLabel", "feedback", "phFeedback", "why", "orderingFB", "vitalsFB", "incorrectAnswersFB", "intvStatusFB", "redundantToFB", "minimalWhy", "timestamp", "status", "displayColor", "comment"];
+let analysisFields = ["numericalID", "actionDescription", "id", "type", "label", "labelID", "answerDetails", "vital", "vitalType", "value", "subPhase", "finding", "intvStatus", "vitalsNotDoneTwice", "vitalsDoneTwice", "probLabel", "feedback", "phFeedback", "phaseOrderStatus", "why", "orderingFB", "vitalsFB", "incorrectAnswersFB", "intvStatusFB", "redundantToFB", "minimalWhy", "timestamp", "status", "displayColor", "comment"];
 
 function initGlobals(scen) {
   problemStates = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_1__.getStatesForStatus)("Problem", _meddbriefer_feedback_data__WEBPACK_IMPORTED_MODULE_8__.fbTemplatesDef);
@@ -2247,6 +2123,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "getStatesForStatus": () => (/* binding */ getStatesForStatus),
 /* harmony export */   "getTimestamp": () => (/* binding */ getTimestamp),
 /* harmony export */   "initializeConstraints": () => (/* binding */ initializeConstraints),
+/* harmony export */   "intersects": () => (/* binding */ intersects),
 /* harmony export */   "pushNew": () => (/* binding */ pushNew),
 /* harmony export */   "saveAnalysisLog": () => (/* binding */ saveAnalysisLog),
 /* harmony export */   "saveCommentLog": () => (/* binding */ saveCommentLog),
@@ -2276,6 +2153,15 @@ const scenarios = {
 const pushNew = (elt, array) => {
   if (!array.includes(elt)) {
     array.push(elt);
+  }
+};
+const intersects = (arr1, arr2) => {
+  let result = arr1.filter(x => arr2.indexOf(x) !== -1);
+
+  if (result.length > 0) {
+    return true;
+  } else {
+    return false;
   }
 }; // Not yet tested.  May not need these two
 
@@ -2324,10 +2210,13 @@ const getPhaseStatus = statuses => {
 
 
   statuses.forEach(status => {
-    pushNew(status, itemStatuses);
+    if (status !== "notFound") {
+      pushNew(status, itemStatuses);
+    }
     /* if (!itemStatuses.includes(status)){
             itemStatuses.push(status)
         } */
+
   }); //turn the item status values into phase level status values
 
   let res;
@@ -2341,10 +2230,22 @@ const getPhaseStatus = statuses => {
   }
 
   if (phaseStatuses.length === 1) {
-    return phaseStatuses[0];
-  } // to be absent or good, all entries must be good or absent
+    if (phaseStatuses[0] === "error") {
+      return "errors";
+    } else {
+      return phaseStatuses[0];
+    }
+  } // to be absent or good, all entries must be that value 
   else {
-    return "errors";
+    if (phaseStatuses.length === 2 && phaseStatuses.includes("good") && intersects(phaseStatuses, ["misordered", "misOrdered"])) {
+      return "misordered";
+    } else {
+      if (intersects(phaseStatuses, ["misordered", "misorderedErrors", "misorderedError"]) && intersects(phaseStatuses, ["error", "errors", "absent"])) {
+        return "misorderedErrors";
+      } else {
+        return "errors";
+      }
+    }
   } //otherwise they are not all good to that translates to errors
 
 }; // functions that extract info from above or create the feedback from the above
@@ -3243,6 +3144,12 @@ const organizeLogDisplay = (phaseNames, phases, requiredPhaseNames, problemState
       subheader.labelID = localPhaseItem.id;
       subheader.status = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.getPhaseStatus)(subPhaseStatuses);
       subheader.displayColor = subPhaseColor;
+
+      if (!!phaseFB[subheader.label]) {
+        subheader.phaseOrderStatus = "misOrdered";
+        subheader.phFeedback = phaseFB[subheader.label];
+      }
+
       let highLevelPhase = subPhases[localPhaseName];
       let highLevelPhaseItem = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.getItem)(highLevelPhase, itemByID, itemByLabel);
       subheader.phaseID = highLevelPhaseItem.id; //Note that the inserted headers will have their own numerical id and
@@ -3503,7 +3410,8 @@ function examineDups(events) {
   //However, if any of the dups are misordered then can report it as
   //misOrdered in the summary
 
-  newEvent = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.trimAction)(events[events.length - 1], summaryFields);
+  let lastEvent = events[events.length - 1];
+  newEvent = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.trimAction)(lastEvent, summaryFields);
 
   if (events.length > 1) {
     for (const event of events) {
@@ -3541,45 +3449,6 @@ function examineDups(events) {
   } else {
     newEvent = regularizeStatus(newEvent);
   }
-
-  return newEvent;
-}
-
-function examineDupsPrior(events) {
-  let newEvent;
-  /* let misordered = false
-  let noError = false
-  let interimEvent
-   // will eventually need to separate any with variants from under the same eventID as not being
-  //duplicatea.  But for now we have no feedback for variants so can ignore variants for now.
-   //regularize status of each instance of event 
-  //if any of the dups of event is without an error then can say there
-  //are no errors.
-  //However, if any of the dups are misordered then can report it as
-  //misOrdered in the summary
-  for (const event of events) {
-    interimEvent = regularizeStatus(event)
-    if (!["error", "misOrderedError"].includes(interimEvent.status)){
-      noError = true
-    }
-    if (["misOrdered", "misOrderedError"].includes(interimEvent.status)){
-      misordered = true
-    }
-    if (misordered && noError){
-      break
-    }
-  } */
-
-  newEvent = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.trimAction)(events[events.length - 1], summaryFields);
-  /* if (noError && !misordered) {
-    newEvent.status = "good"
-  }
-  if (misordered && noError){
-    newEvent.status = "misOrdered"
-  }
-  if (misordered && !noError){
-    newEvent.stuatus = "misorderedError"
-  } */
 
   return newEvent;
 }
@@ -3630,12 +3499,25 @@ function processNextLevel(summary, top, decisionPromptIDs) {
       phaseOrderStatus: "good",
       type: "header"
     };
+    let event = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.getEvents)(analysis, "labelID", top.id)[0];
+    let headerStatus = "";
+
+    if (!!event && !!event.phaseOrderStatus) {
+      headerStatus = event.phaseOrderStatus;
+      header.phaseOrderStatus = headerStatus;
+    }
+
     top.subActions.forEach(action => {
       results = processNextLevel(summary, action, decisionPromptIDs);
       header.children = header.children.concat(results[0]);
       header.childIDs = header.childIDs.concat(results[1]);
       statuses = statuses.concat(results[2]);
     });
+
+    if (headerStatus !== "" && headerStatus !== "good") {
+      statuses = statuses.concat(headerStatus);
+    }
+
     header.status = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_0__.getPhaseStatus)(statuses);
     summary[top.id] = [header].concat(header.children);
     delete header.children;
@@ -3647,6 +3529,8 @@ let idsNotFound;
 let itemsByID = undefined; // main entry point (should be the only thing which needs to be exported)
 
 function summarizeAnalysis(analysisData, scenIEFeedback, itemByIDArray = undefined) {
+  //if optional arg itemByIDArray is passed then will report leaf ids that were not found that are
+  //used in the condition 2 data structure
   idsNotFound = [];
 
   if (!!itemByIDArray) {
@@ -3655,84 +3539,16 @@ function summarizeAnalysis(analysisData, scenIEFeedback, itemByIDArray = undefin
 
   const {
     events: finalActions,
-    constraintsViolated,
     decisionPromptIDs
   } = analysisData;
   let summary = {}; //holds results for condition 2
-
-  let childLookup = {}; //holds parent info for each leaf node
 
   analysis = finalActions; //work through the condition 2 DS and create entries for it and summarize status of children for the current level
   // if (scenarios[scen.name]) {
 
   let ds = scenIEFeedback.Action; //scenarios[scen.name].Action;
 
-  processNextLevel(summary, ds, decisionPromptIDs); //create a child lookup for summary in order to modify the summary in the
-  //appropriate place in next section of code
-
-  for (const [parentKey, entry] of Object.entries(summary)) {
-    let children = entry[0].childIDs;
-    children.forEach(child => {
-      if (!summary[child]) {
-        childLookup[child] = parentKey;
-      }
-    });
-  } // store phase level contraint feedback at the header level for condition 2
-  // (Note that for condition 1 it was stored during the analysis at the phase
-  // header 
-
-
-  let entryToModify;
-  let firstAction;
-  let origAction;
-  let section;
-  let childSection;
-  constraintsViolated.forEach(constraint => {
-    firstAction = finalActions.filter(e => !!e.labelID && e.labelID === constraint.arg1.id || e.id === constraint.arg1.id);
-
-    if (firstAction.length !== 0) {
-      origAction = firstAction[0];
-      let secLabel = origAction.labelID; //labelID is only for phase / subphase
-
-      section = summary[secLabel];
-
-      if (!section) {
-        childSection = childLookup[origAction.id];
-        section = summary[childSection];
-      }
-    } else {
-      console.log("unable to find event in which to report constraint violation: ", constraint);
-    }
-
-    if (!!section) {
-      if (constraint.type === "phase") {
-        entryToModify = section[0];
-        entryToModify.phaseOrderStatus = "misOrdered";
-
-        if (!entryToModify.arg2) {
-          entryToModify.arg2 = [constraint.arg2.id];
-        } else {
-          entryToModify.arg2 = entryToModify.arg2.concat([constraint.arg2.id]);
-        }
-      } else {
-        entryToModify = section.filter(e => e.id === origAction.id)[0];
-
-        if (entryToModify.status === "error") {
-          entryToModify.status = "misorderedError";
-        } else {
-          entryToModify.status = "misOrdered";
-        }
-
-        if (!entryToModify.arg2) {
-          entryToModify.arg2 = [constraint.arg2.id];
-        } else {
-          entryToModify.arg2 = entryToModify.arg2.concat([constraint.arg2.id]);
-        }
-      }
-    } else {
-      console.log("unable to find find summary section with entry to contain constraint violation report: ", firstAction, constraint);
-    }
-  }); // }
+  processNextLevel(summary, ds, decisionPromptIDs);
 
   if (idsNotFound.length !== 0) {
     console.log("idsNotFound: ", idsNotFound);
@@ -4024,6 +3840,7 @@ function SaveButton({
 
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_12__["default"], {
     color: "primary",
+    size: "sm",
     disabled: !allSlidesCompleted,
     onClick: clickHandler,
     children: label
@@ -4055,88 +3872,88 @@ function Cond2Debriefing({
         label: saveButtonLabel
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 48,
+        lineNumber: 49,
         columnNumber: 18
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 46,
+      lineNumber: 47,
       columnNumber: 7
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(_header_StepTabs__WEBPACK_IMPORTED_MODULE_3__["default"], {}, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 50,
+      lineNumber: 51,
       columnNumber: 7
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Switch, {
       children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
-        path: "/debriefing/:debriefingID/D/:stepPath",
+        path: "/debriefing2/:debriefingID/D/:stepPath",
         component: _d_Define__WEBPACK_IMPORTED_MODULE_4__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 52,
+        lineNumber: 53,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
-        path: "/debriefing/:debriefingID/E/:stepPath",
+        path: "/debriefing2/:debriefingID/E/:stepPath",
         component: _e_Explain__WEBPACK_IMPORTED_MODULE_5__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 56,
+        lineNumber: 57,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
-        path: "/debriefing/:debriefingID/B/:stepPath",
+        path: "/debriefing2/:debriefingID/B/:stepPath",
         component: _b_Benchmarks__WEBPACK_IMPORTED_MODULE_6__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 60,
+        lineNumber: 61,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
-        path: "/debriefing/:debriefingID/R/:stepPath",
+        path: "/debriefing2/:debriefingID/R/:stepPath",
         component: _r_Review__WEBPACK_IMPORTED_MODULE_7__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 64,
+        lineNumber: 65,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
-        path: "/debriefing/:debriefingID/IE/:stepPath",
+        path: "/debriefing2/:debriefingID/IE/:stepPath",
         component: _ie_InvestigateExamine__WEBPACK_IMPORTED_MODULE_8__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 68,
+        lineNumber: 69,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
-        path: "/debriefing/:debriefingID/F/:stepPath",
+        path: "/debriefing2/:debriefingID/F/:stepPath",
         component: _f_Formalize__WEBPACK_IMPORTED_MODULE_9__["default"]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 72,
+        lineNumber: 73,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Route, {
         children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(react_router_dom__WEBPACK_IMPORTED_MODULE_13__.Redirect, {
-          to: `/debriefing/${debriefingID}/D/1`
+          to: `/debriefing2/${debriefingID}/D/1`
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 77,
+          lineNumber: 78,
           columnNumber: 11
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 76,
+        lineNumber: 77,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 51,
+      lineNumber: 52,
       columnNumber: 7
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__.jsxDEV)(SaveModal, {
       show: done,
       dismiss: () => setDone(false)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 80,
+      lineNumber: 81,
       columnNumber: 7
     }, this)]
   }, void 0, true, {
     fileName: _jsxFileName,
-    lineNumber: 45,
+    lineNumber: 46,
     columnNumber: 5
   }, this);
 }
@@ -4186,8 +4003,8 @@ const DebriefingContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defaul
   setAllSlidesCompleted: undefined,
   done: undefined,
   setDone: undefined,
-  stepTitle: undefined,
-  updateStepTitle: undefined
+  saveDebriefing: undefined,
+  nextURL: undefined
 });
 const useDebriefing = () => (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(DebriefingContext);
 
@@ -4498,6 +4315,133 @@ function Explain() {
 
 /***/ }),
 
+/***/ 1597:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SaveDebriefingModal)
+/* harmony export */ });
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(73439);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(77122);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7267);
+/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55334);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(55634);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/experiment/SaveDebriefingModal.jsx";
+
+
+
+
+
+
+
+function SaveDebriefingModal({
+  show,
+  dismiss
+}) {
+  let history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useHistory)();
+  const {
+    saveDebriefing,
+    nextURL
+  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_3__.useDebriefing)();
+
+  const submitHandler = async event => {
+    event.preventDefault();
+    await saveDebriefing();
+    history.push(nextURL);
+  };
+
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_2__.MDBModal, {
+    title: "Are you finished with this debriefing?",
+    show: show,
+    dismiss: dismiss,
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("div", {
+      className: "container",
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("div", {
+        className: "row",
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("div", {
+          className: "col-12",
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("span", {
+              className: "text-danger",
+              children: "WARNING: "
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 29,
+              columnNumber: 15
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("span", {
+              children: "Clicking \"I'm Done\" will not allow you to view the debriefing any longer. Do not click on it unless you are truly done with this debriefing."
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 30,
+              columnNumber: 15
+            }, this)]
+          }, void 0, true, {
+            fileName: _jsxFileName,
+            lineNumber: 28,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 27,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 26,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("div", {
+        className: "row",
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("div", {
+          className: "col-12",
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            color: "danger",
+            size: "lg",
+            onClick: submitHandler,
+            children: "I'm Done"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 40,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+            color: "primary",
+            size: "lg",
+            onClick: dismiss,
+            children: "Cancel"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 43,
+            columnNumber: 13
+          }, this)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 39,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 38,
+        columnNumber: 9
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 25,
+      columnNumber: 7
+    }, this)
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 20,
+    columnNumber: 5
+  }, this);
+}
+
+/***/ }),
+
 /***/ 11454:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -4650,12 +4594,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(77122);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(72779);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55634);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/footer/NavButtons.jsx";
+
 
 
 
@@ -4673,25 +4619,27 @@ function NavButtons({
     prevSlide
   } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_2__.useDebriefing)();
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("button", {
+    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       disabled: !havePrevSlide(currStep, currStepPath),
-      type: "button",
+      color: "primary",
+      size: "sm",
       className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(_Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__["default"].prev, _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__["default"]["nav-btn"]),
       onClick: () => prevSlide(currStep, currStepPath),
       children: "Back"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 12,
+      lineNumber: 13,
       columnNumber: 9
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("button", {
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_5__["default"], {
       disabled: !haveNextSlide(currStep, currStepPath),
-      type: "button",
+      color: "primary",
+      size: "sm",
       className: classnames__WEBPACK_IMPORTED_MODULE_1___default()(_Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__["default"].next, _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__["default"]["nav-btn"]),
       onClick: () => nextSlide(currStep, currStepPath),
       children: "Next"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 20,
+      lineNumber: 22,
       columnNumber: 9
     }, this)]
   }, void 0, true);
@@ -4717,12 +4665,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_split_js__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2441);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(7267);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(55634);
-/* harmony import */ var _TopButton__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(20103);
-/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(20506);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(49663);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2441);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7267);
+/* harmony import */ var _TopButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(20103);
+/* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(20506);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/StepTabs.jsx";
 
 
@@ -4734,102 +4681,82 @@ var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debrie
 
 
 
-
 function StepTabs() {
-  let location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_9__.useLocation)();
-  const {
-    stepTitle
-  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_5__.useDebriefing)();
+  let location = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useLocation)();
   const [currStep, setCurrStep] = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(null);
   (0,react__WEBPACK_IMPORTED_MODULE_4__.useEffect)(() => {
     setCurrStep(location.pathname.split("/")[3]);
   }, [location]);
 
   if (!currStep) {
-    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("span", {}, void 0, false, {
+    return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("span", {}, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 22,
+      lineNumber: 20,
       columnNumber: 14
     }, this);
   }
 
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("header", {
-    className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__["default"]["main-nav"],
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("div", {
-      style: {
-        display: "inline-block"
-      },
-      children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
-        pills: true,
-        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          step: "D",
-          currStep: currStep
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 33,
-          columnNumber: 13
-        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          step: "E",
-          currStep: currStep
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 34,
-          columnNumber: 13
-        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          step: "B",
-          currStep: currStep
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 35,
-          columnNumber: 13
-        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          step: "R",
-          currStep: currStep
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 36,
-          columnNumber: 13
-        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          step: "IE",
-          currStep: currStep
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 37,
-          columnNumber: 13
-        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_6__["default"], {
-          step: "F",
-          currStep: currStep
-        }, void 0, false, {
-          fileName: _jsxFileName,
-          lineNumber: 38,
-          columnNumber: 13
-        }, this)]
-      }, void 0, true, {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("header", {
+    className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_6__["default"]["main-nav"],
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+      pills: true,
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        step: "D",
+        currStep: currStep,
+        label: "D"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 26,
+        columnNumber: 13
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        step: "E",
+        currStep: currStep,
+        label: "Learning Objectives"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 27,
+        columnNumber: 13
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        step: "B",
+        currStep: currStep,
+        label: "Expected Actions"
+      }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 32,
-        columnNumber: 11
-      }, this)
-    }, void 0, false, {
+        columnNumber: 13
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        step: "R",
+        currStep: currStep,
+        label: "Expected Story"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 33,
+        columnNumber: 13
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        step: "IE",
+        currStep: currStep,
+        label: "What did Happen"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 34,
+        columnNumber: 13
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        step: "F",
+        currStep: currStep,
+        label: "Take Home Points"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 35,
+        columnNumber: 13
+      }, this)]
+    }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 27,
-      columnNumber: 9
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("div", {
-      style: {
-        display: "inline-block",
-        paddingLeft: "100px",
-        textAlign: "center",
-        fontSize: "2em",
-        fontWeight: "bold"
-      },
-      children: stepTitle
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 41,
-      columnNumber: 9
-    }, this)]
-  }, void 0, true, {
+      lineNumber: 25,
+      columnNumber: 11
+    }, this)
+  }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 26,
+    lineNumber: 24,
     columnNumber: 7
   }, this);
 }
@@ -4853,24 +4780,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55634);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
 var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/TopButton.js";
- // {useEffect, useState} 
-
- // , Button
-// import { useLocation } from "react-router-dom";
 
 
- // import styles from "../Cond2Debriefing.module.css";
+
 
 
 function TopButton({
   step,
-  currStep
+  currStep,
+  label
 }) {
-  // let location = useLocation()
   const {
     goStepStepPath,
     stepIsEnabled
-  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_2__.useDebriefing)(); // const [isCurrStep, setIsCurrStep] = useState(null)
+  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_2__.useDebriefing)();
 
   const clickHandler = () => goStepStepPath(step, "1");
 
@@ -4880,61 +4803,22 @@ function TopButton({
         active: step === currStep
       }),
       onClick: clickHandler,
-      disabled: !stepIsEnabled(step),
-      style: {
-        fontSize: "2.25em",
-        padding: "0 20px"
-      },
-      children: step
+      disabled: !stepIsEnabled(step) // style={{
+      //   fontSize: "2.25em",
+      //   padding: "0 20px"
+      // }}
+      ,
+      children: label
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 21,
+      lineNumber: 15,
       columnNumber: 9
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 20,
+    lineNumber: 14,
     columnNumber: 7
-  }, this); // useEffect(
-  //     () => {
-  //       setIsCurrStep(step === location.pathname.split("/")[3])
-  //     }, [location, step]
-  // )
-  // if (null === isCurrStep) {
-  //   return <span></span>
-  // }
-  // return (
-  //   <Button
-  //     size="lg"
-  //     color={stepIsEnabled(step) ? "primary" : "default"}
-  //     // className={classNames(styles.phaseTabs, isCurrStep && styles['selected-btn'])}
-  //     // type="button"
-  //     // style={{
-  //     //
-  //     // }}
-  //     style={{
-  //       filter: isCurrStep ? "saturate(120%)" : "opacity(80%)",
-  //       fontSize: "2em",
-  //       paddingTop: "2px",
-  //       paddingBottom: "2px",
-  //       paddingRight: "24px",
-  //       paddingLeft: "24px",
-  //       borderTopLeftRadius: "10px",
-  //       borderTopRightRadius: "10px",
-  //       borderBottomRightRadius: 0,
-  //       borderBottomLeftRadius: 0,
-  //       borderStyle: isCurrStep ? "ridge" : "groove",
-  //       borderTopColor: isCurrStep ? "black" : "gray",
-  //       borderRightColor: isCurrStep ? "black" : "gray",
-  //       borderLeftColor: isCurrStep ? "black" : "gray",
-  //       borderBottomColor: isCurrStep ? "gray" : "black",
-  //     }}
-  //     disabled={!stepIsEnabled(step)}
-  //     onClick={clickHandler}
-  //   >
-  //     {step}
-  //   </Button>
-  // );
+  }, this);
 }
 
 /***/ }),
@@ -4977,18 +4861,27 @@ function Analysis({
     getUserRating,
     ieSummary
   } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_1__.useDebriefing)();
+
+  const nonRequiredActions = () => {
+    return slide.subActions.filter(e => {
+      var _e$type;
+
+      return ((_e$type = e.type) == null ? void 0 : _e$type.toLowerCase()) !== "required" && e.log_status && e.log_status !== "notFound";
+    });
+  };
+
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("h4", {
       children: ["Feedback based on your recorded actions:", /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("i", {
         children: [" ", slide.label]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 20,
+        lineNumber: 28,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 18,
+      lineNumber: 26,
       columnNumber: 7
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("div", {
       className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_4__["default"]["feedback-list"],
@@ -5012,35 +4905,35 @@ function Analysis({
               children: "Action"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 39,
+              lineNumber: 47,
               columnNumber: 15
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("th", {
               children: "Your Rating"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 40,
+              lineNumber: 48,
               columnNumber: 15
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("th", {
               children: "System Rating"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 41,
+              lineNumber: 49,
               columnNumber: 15
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("th", {
               children: "Feedback"
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 42,
+              lineNumber: 50,
               columnNumber: 15
             }, this)]
           }, void 0, true, {
             fileName: _jsxFileName,
-            lineNumber: 38,
+            lineNumber: 46,
             columnNumber: 13
           }, this)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 30,
+          lineNumber: 38,
           columnNumber: 11
         }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("tbody", {
           children: (0,_utils__WEBPACK_IMPORTED_MODULE_5__.getRequiredSubActions)(slide).map((sa, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("tr", {
@@ -5048,87 +4941,105 @@ function Analysis({
               children: sa.label
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 48,
+              lineNumber: 56,
               columnNumber: 17
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
               children: [getUserRating(sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("i", {
                 className: "bi-check-lg"
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 50,
+                lineNumber: 58,
                 columnNumber: 44
               }, this), " "]
             }, void 0, true, {
               fileName: _jsxFileName,
-              lineNumber: 49,
+              lineNumber: 57,
               columnNumber: 17
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
               children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_FeedbackIcon__WEBPACK_IMPORTED_MODULE_3__["default"], {
                 isGood: (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isGood)(ieSummary, sa.id)
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 53,
+                lineNumber: 61,
                 columnNumber: 19
               }, this)
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 52,
+              lineNumber: 60,
               columnNumber: 17
             }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("td", {
               children: [(0,_utils__WEBPACK_IMPORTED_MODULE_5__.hasError)(ieSummary, sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_AnalysisMessages__WEBPACK_IMPORTED_MODULE_2__["default"], {
                 messages: sa.feedbackErrors
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 61,
+                lineNumber: 68,
                 columnNumber: 21
               }, this), (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isAbsent)(ieSummary, sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_AnalysisMessages__WEBPACK_IMPORTED_MODULE_2__["default"], {
                 messages: sa.feedbackAbsent
               }, void 0, false, {
                 fileName: _jsxFileName,
-                lineNumber: 64,
+                lineNumber: 71,
                 columnNumber: 21
               }, this)]
             }, void 0, true, {
               fileName: _jsxFileName,
-              lineNumber: 55,
+              lineNumber: 63,
               columnNumber: 17
             }, this)]
           }, idx, true, {
             fileName: _jsxFileName,
-            lineNumber: 47,
+            lineNumber: 55,
             columnNumber: 15
           }, this))
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 45,
+          lineNumber: 53,
           columnNumber: 11
         }, this)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 29,
+        lineNumber: 37,
         columnNumber: 9
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 22,
+      lineNumber: 30,
       columnNumber: 7
+    }, this), nonRequiredActions().length > 0 && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("h5", {
+        children: "The following steps were not indicated"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 81,
+        columnNumber: 11
+      }, this), nonRequiredActions().map(nra => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
+        children: nra.feedbackErrors
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 83,
+        columnNumber: 11
+      }, this))]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 80,
+      columnNumber: 9
     }, this), (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isOutOfOrder)(ieSummary, slide.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("div", {
       children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("h5", {
         children: "The following steps were performed out of order:"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 74,
+        lineNumber: 91,
         columnNumber: 11
       }, this), slide.feedbackOutOfOrder.map((para, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
         children: para
       }, idx, false, {
         fileName: _jsxFileName,
-        lineNumber: 76,
+        lineNumber: 93,
         columnNumber: 13
       }, this))]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 73,
+      lineNumber: 90,
       columnNumber: 9
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       size: "sm",
@@ -5138,7 +5049,7 @@ function Analysis({
       children: "Ok"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 80,
+      lineNumber: 97,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -5187,59 +5098,70 @@ function AnalysisMessages({
       children: "calculating"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 23,
-      columnNumber: 16
+      lineNumber: 20,
+      columnNumber: 12
     }, this);
   }
 
   if (msgs.length === 0) {
     return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("span", {}, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 26,
-      columnNumber: 16
+      lineNumber: 23,
+      columnNumber: 12
     }, this);
   }
 
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
     children: showLess ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("p", {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
         children: msgs[0]
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 33,
-        columnNumber: 15
+        lineNumber: 29,
+        columnNumber: 11
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         color: "link",
         size: "sm",
         onClick: () => setShowLess(false),
+        style: {
+          border: 0,
+          padding: 0
+        },
         children: "show more"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 36,
-        columnNumber: 15
+        lineNumber: 30,
+        columnNumber: 11
       }, this)]
     }, void 0, true) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
       children: [msgs.map((msg, i) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("p", {
+        style: {
+          marginBottom: "8px"
+        },
         children: msg
       }, i, false, {
         fileName: _jsxFileName,
-        lineNumber: 48,
-        columnNumber: 19
+        lineNumber: 45,
+        columnNumber: 13
       }, this)), msgs.length > 1 && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         color: "link",
         size: "sm",
         onClick: () => setShowLess(true),
+        style: {
+          border: 0,
+          padding: 0
+        },
         children: "show less"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 53,
-        columnNumber: 15
+        lineNumber: 55,
+        columnNumber: 13
       }, this)]
     }, void 0, true)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 29,
-    columnNumber: 9
+    lineNumber: 26,
+    columnNumber: 5
   }, this);
 }
 
@@ -5892,22 +5814,28 @@ function UserRating({
       style: {
         fontSize: "1rem"
       },
+      children: "Click on what you think you completed successfully."
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 19,
+      columnNumber: 7
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("p", {
       children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("b", {
         children: ["Did you ", /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("i", {
           children: (0,_utils__WEBPACK_IMPORTED_MODULE_2__.lowerCaseFirstLetter)(slide.label)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 21,
+          lineNumber: 24,
           columnNumber: 19
         }, this), ", including:"]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 20,
+        lineNumber: 23,
         columnNumber: 9
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 19,
+      lineNumber: 22,
       columnNumber: 7
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
       children: [(0,_utils__WEBPACK_IMPORTED_MODULE_2__.getRequiredSubActions)(slide).map((subAction, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
@@ -5918,7 +5846,7 @@ function UserRating({
           onChange: handleRatingChange
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 27,
+          lineNumber: 30,
           columnNumber: 13
         }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("label", {
           htmlFor: subAction.id,
@@ -5929,16 +5857,16 @@ function UserRating({
           children: (0,_utils__WEBPACK_IMPORTED_MODULE_2__.capitalizeFirstLetter)(subAction.label)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 33,
+          lineNumber: 36,
           columnNumber: 13
         }, this)]
       }, subAction.id, true, {
         fileName: _jsxFileName,
-        lineNumber: 26,
+        lineNumber: 29,
         columnNumber: 11
       }, this)), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("br", {}, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 44,
+        lineNumber: 47,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         size: "sm",
@@ -5947,12 +5875,12 @@ function UserRating({
         children: "Show Feedback"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 45,
+        lineNumber: 48,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 24,
+      lineNumber: 27,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -5966,9 +5894,13 @@ function UserRating({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "UnauthedLayout": () => (/* reexport safe */ _layouts__WEBPACK_IMPORTED_MODULE_0__.UnauthedLayout)
+/* harmony export */   "SaveDebriefingModal": () => (/* reexport safe */ _experiment_SaveDebriefingModal__WEBPACK_IMPORTED_MODULE_1__["default"]),
+/* harmony export */   "SaveReviewModal": () => (/* reexport safe */ _review_SaveReviewModal__WEBPACK_IMPORTED_MODULE_0__["default"]),
+/* harmony export */   "UnauthedLayout": () => (/* reexport safe */ _layouts__WEBPACK_IMPORTED_MODULE_2__.UnauthedLayout)
 /* harmony export */ });
-/* harmony import */ var _layouts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(50565);
+/* harmony import */ var _review_SaveReviewModal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(36406);
+/* harmony import */ var _experiment_SaveDebriefingModal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1597);
+/* harmony import */ var _layouts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(50565);
 // export {default as AnalyzeDebriefing} from "./AnalyzeDebriefing"
 // export {default as Card} from "./Card"
 // export {default as CardText} from "./CardText"
@@ -5981,6 +5913,8 @@ __webpack_require__.r(__webpack_exports__);
 // export {default as Tooltip} from "./Tooltip"
 // export {default as TwoDivOutline} from "./TwoDivOutline"
 // export {default as UnauthedLayout} from "./UnauthedLayout"
+
+
 
 
 /***/ }),
@@ -6312,7 +6246,6 @@ var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debrie
 
 
 
-const MAX_LENGTH = 40;
 function OutlineButton({
   node,
   currStep,
@@ -6333,14 +6266,13 @@ function OutlineButton({
       paddingRight: 0,
       paddingTop: "2px",
       paddingBottom: "2px",
-      border: 0,
-      textOverflow: "ellipsis"
+      border: 0
     },
     onClick: () => goStepStepPath(node.step, node.stepPath),
-    children: (0,_utils__WEBPACK_IMPORTED_MODULE_3__.ellipsis)((0,_utils__WEBPACK_IMPORTED_MODULE_3__.capitalizeFirstLetter)(node.label), MAX_LENGTH - depth * 3)
+    children: (0,_utils__WEBPACK_IMPORTED_MODULE_3__.capitalizeFirstLetter)(node.label)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 16,
+    lineNumber: 15,
     columnNumber: 5
   }, this);
 }
@@ -6375,35 +6307,32 @@ function OutlineChildren({
   depth = 0
 }) {
   const {
+    getPathData,
     stepPathIsExpanded
   } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_1__.useDebriefing)();
 
   const expandChildren = node => {
-    const shouldExpand = node.children.length > 0 && stepPathIsExpanded(node.stepPath, expandedSlides); // if () {
-    //   shouldExpand = false
-    // } else {
-    //   shouldExpand = 
-    // }
-    // console.log(`expandChildren() stepPath: ${node.stepPath}, #children ${node.children.length} , expandedSlides: ${JSON.stringify(expandedSlides, null, 0)}, shouldExpand: ${expand}`)
-
+    const shouldExpand = node.children.length > 0 && stepPathIsExpanded(node.stepPath, expandedSlides) && getPathData(node.step, node.stepPath).rated;
     return shouldExpand;
   };
 
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("ul", {
     style: {
-      paddingLeft: "10px",
+      paddingLeft: "12px",
+      paddingRight: "4px",
       listStyle: "none"
     },
     children: node.children.map(child => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("li", {
       style: {
-        marginBottom: "2px"
+        marginBottom: "2px",
+        lineHeight: "0.95em"
       },
       children: [currStepPath === child.stepPath ? /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_OutlineLabel__WEBPACK_IMPORTED_MODULE_3__["default"], {
         node: child,
         depth: depth
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 38,
+        lineNumber: 37,
         columnNumber: 13
       }, this) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_OutlineButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
         node: child,
@@ -6412,7 +6341,7 @@ function OutlineChildren({
         depth: depth
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 39,
+        lineNumber: 38,
         columnNumber: 13
       }, this), expandChildren(child) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(OutlineChildren, {
         currStep: currStep,
@@ -6422,17 +6351,17 @@ function OutlineChildren({
         depth: depth + 1
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 43,
+        lineNumber: 42,
         columnNumber: 13
       }, this)]
     }, child.id, true, {
       fileName: _jsxFileName,
-      lineNumber: 31,
+      lineNumber: 29,
       columnNumber: 9
     }, this))
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 24,
+    lineNumber: 21,
     columnNumber: 5
   }, this);
 }
@@ -6455,17 +6384,20 @@ var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debrie
 
 
 
-const MAX_LENGTH = 38;
 function OutlineLabel({
   node,
   depth = 0
 }) {
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("b", {
-    children: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.ellipsis)((0,_utils__WEBPACK_IMPORTED_MODULE_1__.capitalizeFirstLetter)(node.label), MAX_LENGTH - depth * 3)
+    style: {
+      fontSize: "1.2em",
+      lineHeight: "1.2em"
+    },
+    children: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.capitalizeFirstLetter)(node.label)
   }, void 0, false, {
     fileName: _jsxFileName,
     lineNumber: 8,
-    columnNumber: 10
+    columnNumber: 5
   }, this);
 }
 
@@ -6671,6 +6603,124 @@ function Tooltip({
   }, void 0, true, {
     fileName: _jsxFileName,
     lineNumber: 8,
+    columnNumber: 5
+  }, this);
+}
+
+/***/ }),
+
+/***/ 36406:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SaveModal)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7267);
+/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55334);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
+var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/review/SaveReviewModal.jsx";
+
+
+
+
+
+function SaveModal({
+  show,
+  dismiss
+}) {
+  let history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_3__.useHistory)();
+
+  const submitHandler = event => {
+    event.preventDefault();
+    console.log("I'm done clicked");
+    history.push("/");
+  };
+
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(_meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__.MDBModal, {
+    title: "Are you finished with this debriefing?",
+    show: show,
+    dismiss: dismiss,
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
+      className: "container",
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
+        className: "row",
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
+          className: "col-12",
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("span", {
+              className: "text-danger",
+              children: "WARNING: "
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 25,
+              columnNumber: 15
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("span", {
+              children: "Clicking \"I'm Done\" will not allow you to view the debriefing any longer. Don't click on it unless you are truly done with this debriefing."
+            }, void 0, false, {
+              fileName: _jsxFileName,
+              lineNumber: 26,
+              columnNumber: 15
+            }, this)]
+          }, void 0, true, {
+            fileName: _jsxFileName,
+            lineNumber: 24,
+            columnNumber: 13
+          }, this)
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 23,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 22,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
+        className: "row",
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("div", {
+          className: "col-12",
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            color: "danger",
+            size: "lg",
+            onClick: submitHandler,
+            children: "I'm Done"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 36,
+            columnNumber: 13
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            color: "primary",
+            size: "lg",
+            onClick: dismiss,
+            children: "Cancel"
+          }, void 0, false, {
+            fileName: _jsxFileName,
+            lineNumber: 39,
+            columnNumber: 13
+          }, this)]
+        }, void 0, true, {
+          fileName: _jsxFileName,
+          lineNumber: 35,
+          columnNumber: 11
+        }, this)
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 34,
+        columnNumber: 9
+      }, this)]
+    }, void 0, true, {
+      fileName: _jsxFileName,
+      lineNumber: 21,
+      columnNumber: 7
+    }, this)
+  }, void 0, false, {
+    fileName: _jsxFileName,
+    lineNumber: 16,
     columnNumber: 5
   }, this);
 }
@@ -6917,22 +6967,28 @@ function computeDataStructures(scenData, obsLogData, analysisData, debLogData, s
   console.log("debLog", debLogData);
   console.log("feedback", scenFeedBack);
   const summary = (0,_meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_6__.summarizeAnalysis)(analysisData, scenFeedBack.IE);
-  console.log("summary", summary);
+  console.log("summary (raw)", summary);
   const flattenedSummary = Object.values(summary).flat();
   const summaryObj = {};
   flattenedSummary.forEach(rec => {
     summaryObj[rec.id] = Object.assign({}, rec);
   }); // console.log("flattenedSummary", flattenedSummary);
 
-  console.log("summaryObj (flattened)", summaryObj);
-  const fullStatus = Object.values(summaryObj).filter(rec => undefined === rec.type || rec.type !== "header");
-  const status = (0,_meddbriefer_scenario_data_utils__WEBPACK_IMPORTED_MODULE_7__.groupByKey)(fullStatus, "status");
-  console.log("summary grouped by status", status); // const phaseOrderStatus = groupByKey(fullStatus, "phaseOrderStatus")
+  console.log("summary (flattened)", summaryObj); // const fullStatus = Object.values(summaryObj).filter(rec => undefined === rec.type || rec.type !== "header")
+  // const status = groupByKey(fullStatus, "status")
+  // console.log("summary grouped by status", status)
+  // const phaseOrderStatus = groupByKey(fullStatus, "phaseOrderStatus")
   // console.log("summary grouped by phaseOrderStatus", phaseOrderStatus)
   // const flattenedFeedback = flattenIEFeedback(scenFeedBack.IE.Action).flat().flat().flat().flat().flat().flat()
   // console.log("flattenedFeedback", flattenedFeedback);
 
   const stepSlides = computeSlides(scenFeedBack, summaryObj);
+  let usrRatings = {};
+
+  if (debLogData.userRatings) {
+    usrRatings = Object.assign({}, debLogData.userRatings);
+  }
+
   let pthData = {};
 
   if (debLogData.pathData) {
@@ -6988,30 +7044,11 @@ function computeDataStructures(scenData, obsLogData, analysisData, debLogData, s
   console.log("bOutline", bOL);
   const ieOL = buildIEOutline(stepSlides.find(rec => rec.id === "top"), stepSlides, sData);
   ieOL.heading = stepSlides.find(rec => rec.id === "top").label;
-  console.log("ieOutline", ieOL); // const {ieSlideIndex, ieSlideData} = createNavIndex(scenFeedBack);
-  // console.log("slideIndex", ieSlideIndex);
-  // console.log("slideData", ieSlideData);
-  // const newSlideIndex =  ieSlideIndex.map(ieSlide => {
-  //   const slideSummary = flattenedSummary.find(rec => rec.id === ieSlide.id)
-  //   return Object.assign(ieSlide, {navigicable: slideSummary.status !== "good"})
-  // })
-  // console.log("newSlideIndex", newSlideIndex)
-  // Object.keys(ieSlideData).forEach(slideID => {
-  //   const slide = ieSlideData[slideID]
-  //   const slideSummary = flattenedSummary.find(rec => rec.id === slideID)
-  //   ieSlideData[slideID] = Object.assign(slide, slideSummary)
-  // })
-  // const slideIDs = Object.keys(ieSlideData)
-  // const slideStatus = {}
-  // slideIDs.forEach(slideID => {
-  //   slideStatus[slideID] = ieSlideData.find(e => e.id === slideID)
-  // })
-  // console.log("slideStatus", slideStatus)
-  // console.log("slideData", ieSlideData)
-
+  console.log("ieOutline", ieOL);
   return {
     stepSlides,
     sData,
+    usrRatings,
     pthData,
     idDat,
     summaryObj,
@@ -7029,12 +7066,18 @@ function computeDataStructures(scenData, obsLogData, analysisData, debLogData, s
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "DebLog": () => (/* reexport safe */ _routes__WEBPACK_IMPORTED_MODULE_1__.DebLog),
-/* harmony export */   "UnauthedLayout": () => (/* reexport safe */ _components__WEBPACK_IMPORTED_MODULE_0__.UnauthedLayout)
+/* harmony export */   "SaveDebriefingModal": () => (/* reexport safe */ _components__WEBPACK_IMPORTED_MODULE_0__.SaveDebriefingModal),
+/* harmony export */   "SaveReviewModal": () => (/* reexport safe */ _components__WEBPACK_IMPORTED_MODULE_0__.SaveReviewModal),
+/* harmony export */   "UnauthedLayout": () => (/* reexport safe */ _components__WEBPACK_IMPORTED_MODULE_0__.UnauthedLayout),
+/* harmony export */   "computeDebriefingTitle": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_2__.computeDebriefingTitle),
+/* harmony export */   "computeReviewTitle": () => (/* reexport safe */ _utils__WEBPACK_IMPORTED_MODULE_2__.computeReviewTitle)
 /* harmony export */ });
 /* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(72532);
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(43896);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(24495);
  // {AnalyzeDebriefing, Card, CardText, ExamineForm,  Slide, SlideShow, Tables, Tooltip, TwoDivOutline, UnauthedLayout}
 // MainOutline, MDBNavBar,
+
 
 
 
@@ -7103,18 +7146,11 @@ function stepPathIsExpanded(stepPath, expandedSlides) {
   return expandedSlides.includes(stepPath);
 }
 
-const STEP_TITLES = {
-  "D": "Define",
-  "E": "Explain",
-  "B": "Benchmarks",
-  "R": "Review",
-  "IE": "Identify and Explain",
-  "F": "Formalize"
-};
 function DebLog({
   computeTitle,
   saveButtonLabel,
-  saveModal
+  saveModal,
+  next = "/"
 }) {
   const {
     db
@@ -7131,16 +7167,24 @@ function DebLog({
   const [slideData, setSlideData] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [pathData, setPathData] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [idData, setIdData] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
-  const [userRatings, setUserRatings] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)({});
+  const [userRatings, setUserRatings] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [ieSummary, setIESummary] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [bOutline, setBOutline] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [ieOutline, setIEOutline] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
   const [loaded, setLoaded] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
   const [allSlidesCompleted, setAllSlidesCompleted] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
   const [done, setDone] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
-  const [stepTitle, setStepTitle] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(STEP_TITLES["D"]);
+  const [nextURL, setNextURL] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
 
-  const updateStepTitle = step => setStepTitle(STEP_TITLES[step]);
+  const saveDebriefing = () => {
+    const newData = Object.assign({}, debLog, {
+      userRatings: userRatings,
+      idData: idData,
+      pathData: pathData
+    });
+    console.log("newData", newData);
+    return (0,_meddbriefer_scenario_data_index__WEBPACK_IMPORTED_MODULE_10__.saveDocument)(db, "cond2-debriefings", newData);
+  };
 
   const getIdData = id => idData[id];
 
@@ -7177,7 +7221,9 @@ function DebLog({
 
   const getPathData = (step, stepPath) => {
     const path = stepStepPathToPath(step, stepPath);
-    return Object.assign({}, pathData[path]);
+    const data = Object.assign({}, pathData[path]); // console.log(`data for ${path}`, data)
+
+    return data;
   };
 
   const updatePathData = (step, stepPath, newData) => {
@@ -7247,8 +7293,7 @@ function DebLog({
   };
 
   const goStepStepPath = (step, stepPath) => {
-    const newURL = `/debriefing/${debriefingID}/${step}/${stepPath}`;
-    updateStepTitle(step);
+    const newURL = `/debriefing2/${debriefingID}/${step}/${stepPath}`;
     console.log("redirecting to", newURL);
     history.push(newURL);
   };
@@ -7273,6 +7318,7 @@ function DebLog({
     const {
       stepSlides,
       sData,
+      usrRatings,
       pthData,
       idDat,
       summaryObj,
@@ -7287,6 +7333,7 @@ function DebLog({
 
     setSlides(stepSlides);
     setSlideData(sData);
+    setUserRatings(usrRatings);
     setPathData(pthData);
     setIdData(idDat);
     setIESummary(summaryObj);
@@ -7295,6 +7342,7 @@ function DebLog({
     setLoaded(true);
     setAllSlidesCompleted(idDat.formalize.response !== "");
     setDone(false);
+    setNextURL(next);
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_8__.useEffect)(() => {
@@ -7313,7 +7361,7 @@ function DebLog({
       children: "Loading"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 232,
+      lineNumber: 236,
       columnNumber: 13
     }, this);
   }
@@ -7350,8 +7398,8 @@ function DebLog({
       setAllSlidesCompleted,
       done,
       setDone,
-      stepTitle,
-      updateStepTitle
+      saveDebriefing,
+      nextURL
     },
     children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxDEV)(_components_Cond2Debriefing__WEBPACK_IMPORTED_MODULE_14__["default"], {
       debriefingID: debriefingID,
@@ -7360,12 +7408,12 @@ function DebLog({
       saveModal: saveModal
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 272,
+      lineNumber: 276,
       columnNumber: 7
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 236,
+    lineNumber: 240,
     columnNumber: 5
   }, this);
 }
@@ -7392,7 +7440,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "capitalizeFirstLetter": () => (/* binding */ capitalizeFirstLetter),
-/* harmony export */   "ellipsis": () => (/* binding */ ellipsis),
+/* harmony export */   "computeDebriefingTitle": () => (/* binding */ computeDebriefingTitle),
+/* harmony export */   "computeReviewTitle": () => (/* binding */ computeReviewTitle),
 /* harmony export */   "formatAsMinSecs": () => (/* binding */ formatAsMinSecs),
 /* harmony export */   "getRequiredSubActions": () => (/* binding */ getRequiredSubActions),
 /* harmony export */   "getStatus": () => (/* binding */ getStatus),
@@ -7407,7 +7456,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // import { useEffect } from "react"
 // unicode char for ellipsis (can't embed html entity directly in JSX)
-const ELLIPSIS = "\u2026";
+// const ELLIPSIS = "\u2026"
 const formatAsMinSecs = seconds => {
   return new Date(seconds * 1000).toISOString().substr(14, 5);
 };
@@ -7416,14 +7465,14 @@ function capitalizeFirstLetter(str) {
 }
 function lowerCaseFirstLetter(str) {
   return `${str[0].toLowerCase()}${str.slice(1)}`;
-}
-function ellipsis(text, maxLength) {
-  if (text.length < maxLength) {
-    return text;
-  } else {
-    return `${text.slice(0, maxLength - 3)} ${ELLIPSIS}`;
-  }
-}
+} // export function ellipsis(text, maxLength) {
+//   // if (text.length < maxLength) {
+//     return text;
+//   // } else {
+//     // return `${text.slice(0, (maxLength-3))} ${ELLIPSIS}`;
+//   // }
+// }
+
 const getStatus = (ieSummary, id) => {
   const sts = ieSummary[id].status; // console.log(`status for ${id}: ${sts}`)
 
@@ -7434,6 +7483,12 @@ const isAbsent = (ieSummary, id) => "absent" === getStatus(ieSummary, id);
 const hasError = (ieSummary, id) => ["error", "errors", "misorderedError"].includes(getStatus(ieSummary, id));
 const isOutOfOrder = (ieSummary, id) => ["misordered", "misorderedError"].includes(getStatus(ieSummary, id));
 const getRequiredSubActions = slide => slide.subActions.filter(a => ["header", "required"].includes(a.type.toLowerCase()));
+const computeReviewTitle = (obsLog, scenario) => {
+  return `${scenario.name} / ${obsLog.userName} / ${obsLog.label}`;
+};
+const computeDebriefingTitle = (obsLog, scenario) => {
+  return `${scenario.name}`;
+};
 
 /***/ }),
 
@@ -12942,13 +12997,15 @@ const B5CA_PhaseIE = {
         examineIfErrors: false,
         promptsIfAbsent: "",
         promptsIfErrors: "",
-        subActionsList: true,
+        subActionsList: false,
         subActions: [{
           id: "inspects-posterior-other-injury",
+          label: "injury",
           feedbackAbsent: [""],
           subActions: []
         }, {
           id: "inspects-posterior-step-offs",
+          labe: "step-offs",
           feedbackAbsent: ["A palpable step-off, which the patient did not have, would suggest a fracture."],
           subActions: []
         }]
@@ -15886,10 +15943,10 @@ const SC8CP_PhaseIE = {
         }]
       }, {
         id: "circulation",
-        label: "follow a 'CAB' protocol, givent that this patient is unconscious, and first assess the patient's pulse, followed by other aspects of circulation",
+        label: "follow a 'CAB' protocol, given that this patient is unconscious, and first assess the patient's pulse, followed by other aspects of circulation",
         type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.REQ,
         feedbackAbsent: ["Since this patient is unconscious, be sure to check the carotid pulse first, or simultaneously with the radial pulse, to determine if CPR is needed.  Also assess the skin to check for shock and be sure to perform a gross blood sweep.", "You would have noticed that your patient had weak slow pulses and dry cyanotic skin, indicating impending respiratory failure."],
-        feedbackOutOfOrder: ["All unconscious patients should have a pulse check before starting the ABCs. However, paramedics often check breathing while doing a pulse check.  If the patient is pulseless, you will start high-quality CPR immediately.", "An acronym used by some providers for unconscious patients is CABC, which refers to a pulse check (while simultaneously feeling for breathing) before the assessment of the rest of the ABCs.)"],
+        feedbackOutOfOrder: [""],
         feedbackErrors: [""],
         examineIfAbsent: false,
         examineIfErrors: false,
@@ -15913,8 +15970,8 @@ const SC8CP_PhaseIE = {
             label: "check the appropriate pulse(s)",
             type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.REQ,
             feedbackAbsent: ["First check for a radial pulse. However, if you don't feel one, you want to check a carotid pulse.", "This patient's radial pulses were absent, but he did have a weak carotid pulse, which would prompt you to worry about shock."],
-            feedbackOutOfOrder: ["First check for a radial pulse. However, if you don't feel one, you want to check a carotid pulse.", "This patient's radial pulses were absent, but he did have a weak carotid pulse, which would prompt you to worry about shock."],
-            feedbackErrors: [""],
+            feedbackOutOfOrder: ["All unconscious patients should have a pulse check before starting the ABCs. However, paramedics often check breathing while doing a pulse check.  If the patient is pulseless, you will start high-quality CPR immediately.", "An acronym used by some providers for unconscious patients is CABC, which refers to a pulse check (while simultaneously feeling for breathing) before the assessment of the rest of the ABCs.)"],
+            feedbackErrors: ["First check for a radial pulse. However, if you don't feel one, you want to check a carotid pulse.", "This patient's radial pulses were absent, but he did have a weak carotid pulse, which would prompt you to worry about shock."],
             examineIfAbsent: false,
             examineIfErrors: false,
             promptsIfAbsent: "",
@@ -15926,7 +15983,7 @@ const SC8CP_PhaseIE = {
             label: "check pulse rate, rhythm, and quality",
             type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.REQ,
             feedbackAbsent: ["Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure.", "While this patient's heart had a regular rhythm, remember that an irregular rhythm can suggest impending cardiac arrest or arrhythmia.", "A patient in shock may have weak or absent pulses distally, such as this patient, suggestive of shock."],
-            feedbackOutOfOrder: [""],
+            feedbackOutOfOrder: ["All unconscious patients should have a pulse check before starting the ABCs. However, paramedics often check breathing while doing a pulse check.  If the patient is pulseless, you will start high-quality CPR immediately.", "An acronym used by some providers for unconscious patients is CABC, which refers to a pulse check (while simultaneously feeling for breathing) before the assessment of the rest of the ABCs.)"],
             feedbackErrors: [""],
             examineIfAbsent: false,
             examineIfErrors: false,
@@ -15938,7 +15995,7 @@ const SC8CP_PhaseIE = {
               label: "rate",
               type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.REQ,
               feedbackAbsent: ["Checking this patient's pulse rate would have revealed that he was tachycardic. A significantly elevated or depressed pulse rate can suggest shock or respiratory failure."],
-              feedbackOutOfOrder: [""],
+              feedbackOutOfOrder: ["All unconscious patients should have a pulse check before starting the ABCs. However, paramedics often check breathing while doing a pulse check.  If the patient is pulseless, you will start high-quality CPR immediately.", "An acronym used by some providers for unconscious patients is CABC, which refers to a pulse check (while simultaneously feeling for breathing) before the assessment of the rest of the ABCs.)"],
               feedbackErrors: [""],
               examineIfAbsent: false,
               examineIfErrors: false,
@@ -19986,24 +20043,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const phaseStatusList = {
   absent: ["absent", "missingMinimal", "missingRequired", "missingRequiredAssessment"],
-  errors: ["redundant", "misOrdered-redundant", "redundant-incorrect-answers", "misOrdered-redundant-incorrect-answers", "misOrdered-assessment", "misOrdered-assessment-option", "misOrdered-decision-option", "misOrdered-required-action", "misOrdered-goodIntv", "assessment-option-incorrect", "decision-option-incorrect", "incorrect-answers", "minimal-incorrect-answers", //"minimal", 
-  "misOrdered-assessment-option-incorrect", "misOrdered-decision-option-incorrect", "misOrdered-incorrect-answers", "misOrdered-minimal-incorrect-answers", "misOrdered-minimal", "irrelevant", "unnecessary", "contraindicated", "errors", "misOrdered-irrelevant", "misOrdered-alternative", "misOrdered-unnecessary", "midOrdered-contraindicated", "error", "misordered", "misordered-error", "misOrdered-phase-assessment-option-incorrect", "misOrdered-phase-decision-option-incorrect", "misOrdered-phase-incorrect-answers", "misOrdered-phase-minimal-incorrect-answers"],
+  errors: ["redundant-incorrect-answers", "assessment-option-incorrect", "decision-option-incorrect", "incorrect-answers", "minimal-incorrect-answers", "irrelevant", "unnecessary", "contraindicated", "errors", "error"],
+  misordered: ["misordered", "misOrdered", "misOrdered-redundant", "misOrdered-minimal", "misOrdered-alternative", "misOrdered-assessment", "misOrdered-assessment-option", "misOrdered-decision-option", "misOrdered-required-action", "misOrdered-goodIntv", "misOrdered-phase-minimal", "misOrdered-phase-assessment", "misOrdered-phase-assessment-option", "misOrdered-phase-decision-option", "misOrdered-phase-required-action", "misOrdered-phase-goodIntv"],
+  misorderedErrors: ["misorderedErrors", "misorderedError", "midOrdered-contraindicated", "misordered-error", "misOrdered-unnecessary", "misOrdered-redundant-incorrect-answers", "misOrdered-assessment-option-incorrect", "misOrdered-decision-option-incorrect", "misOrdered-incorrect-answers", "misOrdered-minimal-incorrect-answers", "misOrdered-irrelevant", "misOrdered-phase-assessment-option-incorrect", "misOrdered-phase-decision-option-incorrect", "misOrdered-phase-incorrect-answers", "misOrdered-phase-minimal-incorrect-answers"],
   good: ["good", "assessment", "assessment-option", "decision-option", "required-action", "goodIntv", "optional", //condition 2 does not address these so put them in the good category
   "patientIntvCheck", "patientVitalCheck", "notNecessary", "notFound", "intvCheckWNoIntvFound", "unexpectedPatientIntvCheck", "default", "not-graded", //condition 2 does not need to address minimal as an error nor misordered-phase as that error appears as misordered at the phase or subphase level
-  //condition 1 uses misOrdered-Phase as that error feedback goes on the first line in the phase/subphase
-  //so without misOrdered-phase and/or minimal, these are good status values
-  "minimal", "misOrdered-phase-minimal", "misOrdered-phase-assessment", "misOrdered-phase-assessment-option", "misOrdered-phase-decision-option", "misOrdered-phase-required-action", "misOrdered-phase-goodIntv"]
+  //condition 1 uses misOrdered-Phase as that error feedback goes on the first line in the phase/subphase 
+  "minimal", "redundant"]
 };
 const leafStatusList = {
   absent: ["missingMinimal", "missingRequired", "missingRequiredAssessment", "absent"],
-  misordered: ["misOrdered-assessment", "misOrdered-assessment-option", "misOrdered-decision-option", "misOrdered-required-action", "misOrdered-goodIntv", "misOrdered-minimal"],
-  misorderedError: ["misOrdered-assessment-option-incorrect", "misOrdered-decision-option-incorrect", "misOrdered-incorrect-answers", "misOrdered-minimal-incorrect-answers", "misOrdered-phase-assessment-option-incorrect", "misOrdered-phase-decision-option-incorrect", "misOrdered-phase-incorrect-answers", "misOrdered-phase-minimal-incorrect-answers"],
-  error: ["assessment-option-incorrect", "decision-option-incorrect", "incorrect-answers", "minimal-incorrect-answers", "contraindicated", "irrelevant", "unnecessary", "redundant", "redundant-incorrect-answers", "misOrdered-redundant", "misOrdered-redundant-incorrect-answers"],
+  misordered: ["misOrdered-assessment", "misOrdered", "misOrdered-assessment-option", "misOrdered-decision-option", "misOrdered-required-action", "misOrdered-goodIntv", "misOrdered-minimal", "misOrdered-redundant", "misOrdered-phase-minimal", "misOrdered-phase-assessment", "misOrdered-phase-assessment-option", "misOrdered-phase-decision-option", "misOrdered-phase-required-action", "misOrdered-phase-goodIntv"],
+  misorderedError: ["misOrdered-assessment-option-incorrect", "misOrdered-decision-option-incorrect", "misOrdered-incorrect-answers", "misOrdered-minimal-incorrect-answers", "misOrdered-redundant-incorrect-answers", "misOrdered-phase-assessment-option-incorrect", "misOrdered-phase-decision-option-incorrect", "misOrdered-phase-incorrect-answers", "misOrdered-phase-minimal-incorrect-answers"],
+  error: ["assessment-option-incorrect", "decision-option-incorrect", "incorrect-answers", "minimal-incorrect-answers", "contraindicated", "irrelevant", "unnecessary", "redundant-incorrect-answers"],
   good: ["assessment", "assessment-option", "decision-option", "required-action", "goodIntv", "optional", "patientVitalCheck", "patientIntvCheck", //condition 2 does not address these so put them in the good category
-  "notNecessary", "not-graded", "intvCheckWNoIntvFound", "unexpectedPatientIntvCheck", "default", //condition 2 does not need to address minimal as an error nor misordered-phase as that error appears as misordered at the phase or subphase level
-  //condition 1 uses misOrdered-Phase as that error feedback goes on the first line in the phase/subphase
-  //so without misOrdered-phase and/or minimal, these are good status values
-  "minimal", "misOrdered-phase-minimal", "misOrdered-phase-assessment", "misOrdered-phase-assessment-option", "misOrdered-phase-decision-option", "misOrdered-phase-required-action", "misOrdered-phase-goodIntv"]
+  "notNecessary", "not-graded", "minimal", "intvCheckWNoIntvFound", "unexpectedPatientIntvCheck", "default", "alternative", "redundant"]
 };
 
 /***/ }),
@@ -22399,7 +22453,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // extracted by mini-css-extract-plugin
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"cond2-wrapper":"Cond2Debriefing_cond2-wrapper__2MiIA","card":"Cond2Debriefing_card__3bRm7","hint-text":"Cond2Debriefing_hint-text__1-sJL","main-outline":"Cond2Debriefing_main-outline__1jENW","header-bar":"Cond2Debriefing_header-bar__1pPiM","title":"Cond2Debriefing_title__3fm9e","phaseTabs":"Cond2Debriefing_phaseTabs__2haDC","selected-btn":"Cond2Debriefing_selected-btn__1DrKi","controller-nav":"Cond2Debriefing_controller-nav__2xomm","prev":"Cond2Debriefing_prev__2nhFT","next":"Cond2Debriefing_next__1FRY1","nav-btn":"Cond2Debriefing_nav-btn__12UoL","main-view":"Cond2Debriefing_main-view__1R5Q7","card-body":"Cond2Debriefing_card-body__1glZ3","two-div-outline-container":"Cond2Debriefing_two-div-outline-container__1rQeb","outline":"Cond2Debriefing_outline__3aho0","btn-link":"Cond2Debriefing_btn-link__3SG8v","disabled":"Cond2Debriefing_disabled__3gbDw","active":"Cond2Debriefing_active__29Gr5","outline-rhs":"Cond2Debriefing_outline-rhs__1pcoY","feedback-block":"Cond2Debriefing_feedback-block__pP52I","table-sm":"Cond2Debriefing_table-sm__2Zp31","feedback-list":"Cond2Debriefing_feedback-list__3F4Nh","slideshow":"Cond2Debriefing_slideshow__1ym1r","benchmark":"Cond2Debriefing_benchmark__-i2Qq","save-btn":"Cond2Debriefing_save-btn__1k3TY"});
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({"cond2-wrapper":"Cond2Debriefing_cond2-wrapper__2MiIA","card":"Cond2Debriefing_card__3bRm7","hint-text":"Cond2Debriefing_hint-text__1-sJL","main-outline":"Cond2Debriefing_main-outline__1jENW","header-bar":"Cond2Debriefing_header-bar__1pPiM","title":"Cond2Debriefing_title__3fm9e","phaseTabs":"Cond2Debriefing_phaseTabs__2haDC","selected-btn":"Cond2Debriefing_selected-btn__1DrKi","controller-nav":"Cond2Debriefing_controller-nav__2xomm","prev":"Cond2Debriefing_prev__2nhFT","next":"Cond2Debriefing_next__1FRY1","main-view":"Cond2Debriefing_main-view__1R5Q7","card-body":"Cond2Debriefing_card-body__1glZ3","two-div-outline-container":"Cond2Debriefing_two-div-outline-container__1rQeb","outline":"Cond2Debriefing_outline__3aho0","btn-link":"Cond2Debriefing_btn-link__3SG8v","disabled":"Cond2Debriefing_disabled__3gbDw","active":"Cond2Debriefing_active__29Gr5","outline-rhs":"Cond2Debriefing_outline-rhs__1pcoY","feedback-block":"Cond2Debriefing_feedback-block__pP52I","table-sm":"Cond2Debriefing_table-sm__2Zp31","feedback-list":"Cond2Debriefing_feedback-list__3F4Nh","slideshow":"Cond2Debriefing_slideshow__1ym1r","benchmark":"Cond2Debriefing_benchmark__-i2Qq","save-btn":"Cond2Debriefing_save-btn__1k3TY"});
 
 /***/ }),
 
