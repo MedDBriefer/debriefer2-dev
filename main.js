@@ -16,7 +16,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55056);
 /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(53015);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/apps/debriefer2/src/App.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/apps/debriefer2/src/App.js";
 
 
 
@@ -107,7 +107,7 @@ __webpack_require__.r(__webpack_exports__);
 // When building for production, this file is replaced with `environment.prod.ts`.
 const environment = {
   production: false,
-  firebaseProject: "ScottDev" || 0
+  firebaseProject: ({"NODE_ENV":"development","NX_CLI_SET":"true","NX_WORKSPACE_ROOT":"/home/pitt/projects/monorepo","NX_TERMINAL_OUTPUT_PATH":"/home/pitt/projects/monorepo/node_modules/.cache/nx/terminalOutputs/a3cef862e8d403524e8bd8a1d3cb00f0f3edfe48003f1ff238f5e9163bbb6deb","NX_STREAM_OUTPUT":"true","NX_TASK_TARGET_PROJECT":"debriefer2","NX_TASK_HASH":"a3cef862e8d403524e8bd8a1d3cb00f0f3edfe48003f1ff238f5e9163bbb6deb"}).NX_FIREBASE_PROJECT || "MedDBriefer"
 };
 
 /***/ }),
@@ -123,7 +123,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(47933);
 /* harmony import */ var _App__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(37295);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/apps/debriefer2/src/main.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/apps/debriefer2/src/main.js";
 
 
 
@@ -419,7 +419,7 @@ var itemByLabel; // sts 1/23/22 - added as global
 let checklistHierarchy;
 let training; // analysisFields to include in output
 
-let analysisFields = ["numericalID", "actionDescription", "id", "type", "label", "labelID", "answerDetails", "vital", "vitalType", "value", "subPhase", "finding", "intvStatus", "vitalsNotDoneTwice", "vitalsDoneTwice", "probLabel", "feedback", "phFeedback", "phaseOrderStatus", "why", "orderingFB", "vitalsFB", "incorrectAnswersFB", "intvStatusFB", "redundantToFB", "minimalWhy", "timestamp", "status", "displayColor", "comment"];
+let analysisFields = ["numericalID", "actionDescription", "id", "type", "label", "labelID", "answerDetails", "vital", "vitalType", "value", "subPhase", "finding", "intvStatus", "vitalsNotDoneTwice", "vitalsDoneTwice", "probLabel", "feedback", "phFeedback", "phaseOrderStatus", "lateRelativeTo", "why", "orderingFB", "vitalsFB", "incorrectAnswersFB", "intvStatusFB", "redundantToFB", "minimalWhy", "timestamp", "status", "displayColor", "comment"];
 
 function initGlobals(scen) {
   problemStates = (0,_debriefingUtils__WEBPACK_IMPORTED_MODULE_1__.getStatesForStatus)("Problem", _meddbriefer_feedback_data__WEBPACK_IMPORTED_MODULE_8__.fbTemplatesDef);
@@ -1778,7 +1778,7 @@ const findObjByNumerialID = (numericalID, phases, phaseNames, checklistHierarchy
   }
 };
 
-const storeMisOrderedArgs = (numericalID, arg2, phases, phaseNames, checklistHierarchy) => {
+const storeMisOrderedArgs = (numericalID, lateArg, phases, phaseNames, checklistHierarchy) => {
   let result = findObjByNumerialID(numericalID, phases, phaseNames, checklistHierarchy);
   let objToModify = result[0];
 
@@ -1786,15 +1786,15 @@ const storeMisOrderedArgs = (numericalID, arg2, phases, phaseNames, checklistHie
     console.log("no object found for numericalID = ", numericalID);
   } //just for debugging
   else {
-    if (!objToModify.arg2) {
-      objToModify.arg2 = [arg2.id];
+    if (!objToModify.lateRelativeTo) {
+      objToModify.lateRelativeTo = [lateArg.id];
     } else {
-      objToModify.arg2 = objToModify.arg2.concat([arg2.id]);
+      objToModify.lateRelativeTo = objToModify.lateRelativeTo.concat([lateArg.id]);
     }
   }
 };
 
-const storeMisOrderedFB = (numericalID, lateArg, FB, constraintType, phases, phaseNames, checklistHierarchy, phaseFB) => {
+const storeMisOrderedFB = (numericalID, lateArg, otherArg, FB, constraintType, phases, phaseNames, checklistHierarchy, phaseFB) => {
   let result = findObjByNumerialID(numericalID, phases, phaseNames, checklistHierarchy);
   let objToModify = result[0];
 
@@ -1819,9 +1819,12 @@ const storeMisOrderedFB = (numericalID, lateArg, FB, constraintType, phases, pha
     }
   } else {
     if (!!phaseFB[lateArg]) {
-      phaseFB[lateArg] = phaseFB[lateArg] + ".  " + FB;
+      phaseFB[lateArg].arg2 = phaseFB[lateArg].arg2.concat([otherArg]);
+      phaseFB[lateArg].feedback = phaseFB[lateArg].feedback + ".  " + FB;
     } else {
-      phaseFB[lateArg] = FB;
+      phaseFB[lateArg] = {};
+      phaseFB[lateArg].arg2 = [otherArg];
+      phaseFB[lateArg].feedback = FB;
     }
   }
 }; //flattens out the phases and phaseNames data structures so that all phase and subphase
@@ -1882,9 +1885,9 @@ const saveFailedConstraint = (lateArg, otherArg, constraintID, constraintsViolat
 
   constraintsViolated.push({
     constraintID: constraintID,
-    arg1: lateArg,
+    arg1: lateArg.id,
     op: "before",
-    arg2: otherArg,
+    arg2: otherArg.id,
     type: type
   });
   return type;
@@ -1913,6 +1916,7 @@ const checkAgainst2ndArgs = (arg1st, args2nd, op, direction, constraintID, entry
   let par2PhFB = "";
   let repeating;
   let constraintType;
+  let otherLabel;
 
   if (args2nd.length > 0) {
     let counter = 0;
@@ -1983,6 +1987,7 @@ const checkAgainst2ndArgs = (arg1st, args2nd, op, direction, constraintID, entry
 
                 storeMisOrderedArgs(startNum1st, arg2nd, phases, phaseNames, checklistHierarchy);
                 constraintType = saveFailedConstraint(arg1st, arg2nd, constraintID, constraintsViolated);
+                otherLabel = arg2nd.label;
               } else {
                 if (op === "or") {
                   return;
@@ -2041,6 +2046,7 @@ const checkAgainst2ndArgs = (arg1st, args2nd, op, direction, constraintID, entry
                 storeMisOrderedArgs(startNum2nd, arg1st, phases, phaseNames, checklistHierarchy); //feedback for phase
 
                 constraintType = saveFailedConstraint(arg2nd, arg1st, constraintID);
+                otherLabel = arg1st.label;
               } else {
                 if (op === "or") {
                   return;
@@ -2060,7 +2066,7 @@ const checkAgainst2ndArgs = (arg1st, args2nd, op, direction, constraintID, entry
 
     if (phFB !== "") {
       phFB = phFB + ".";
-      storeMisOrderedFB(startNum1st, label1st, phFB, constraintType, phases, phaseNames, checklistHierarchy, phaseFB);
+      storeMisOrderedFB(startNum1st, label1st, otherLabel, phFB, constraintType, phases, phaseNames, checklistHierarchy, phaseFB);
     }
   }
 };
@@ -3147,7 +3153,8 @@ const organizeLogDisplay = (phaseNames, phases, requiredPhaseNames, problemState
 
       if (!!phaseFB[subheader.label]) {
         subheader.phaseOrderStatus = "misOrdered";
-        subheader.phFeedback = phaseFB[subheader.label];
+        subheader.phFeedback = phaseFB[subheader.label].feedback;
+        subheader.lateRelativeTo = phaseFB[subheader.label].arg2;
       }
 
       let highLevelPhase = subPhases[localPhaseName];
@@ -3177,7 +3184,8 @@ const organizeLogDisplay = (phaseNames, phases, requiredPhaseNames, problemState
 
           if (!!phaseFB[header.label]) {
             header.phaseOrderStatus = "misOrdered";
-            header.phFeedback = phaseFB[header.label];
+            header.phFeedback = phaseFB[header.label].feedback;
+            header.lateRelativeTo = phaseFB[header.label].arg2;
           }
 
           displayObjects.push(header);
@@ -3215,7 +3223,8 @@ const organizeLogDisplay = (phaseNames, phases, requiredPhaseNames, problemState
 
           if (!!phaseFB[header.label]) {
             header.phaseOrderStatus = "misOrdered";
-            header.phFeedback = phaseFB[header.label];
+            header.phFeedback = phaseFB[header.label].feedback;
+            header.lateRelativeTo = phaseFB[header.label].arg2;
           }
 
           phaseStatuses = [];
@@ -3353,7 +3362,7 @@ __webpack_require__.r(__webpack_exports__);
 
  // constants
 
-const summaryFields = ["label", "status", "phaseOrderStatus", "phase", "subPhase", "labelID", "phaseID", "probLabel", "answerCorrect", "answerDetails", "timestamp", "type"]; // globals
+const summaryFields = ["label", "status", "phaseOrderStatus", "lateRelativeTo", "phase", "subPhase", "labelID", "phaseID", "probLabel", "answerCorrect", "answerDetails", "timestamp", "type"]; // globals
 
 let analysis; // helper functions
 //regularize status values, by examining status values grouped into categories
@@ -3505,6 +3514,10 @@ function processNextLevel(summary, top, decisionPromptIDs) {
     if (!!event && !!event.phaseOrderStatus) {
       headerStatus = event.phaseOrderStatus;
       header.phaseOrderStatus = headerStatus;
+
+      if (!!event.lateRelativeTo && event.lateRelativeTo.length >= 1) {
+        header.lateRelativeTo = event.lateRelativeTo;
+      }
     }
 
     top.subActions.forEach(action => {
@@ -3729,7 +3742,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/Card.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/Card.js";
 
 
 
@@ -3807,7 +3820,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _f_Formalize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(11454);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/Cond2Debriefing.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/Cond2Debriefing.jsx";
 
 
  // import { AuthContext } from "@meddbriefer/mdb-auth";
@@ -4004,7 +4017,8 @@ const DebriefingContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___defaul
   done: undefined,
   setDone: undefined,
   saveDebriefing: undefined,
-  nextURL: undefined
+  nextURL: undefined,
+  startTime: undefined
 });
 const useDebriefing = () => (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(DebriefingContext);
 
@@ -4029,7 +4043,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_TwoDivLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49685);
 /* harmony import */ var _outline_FlatLeftNav__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(83292);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/b/Benchmarks.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/b/Benchmarks.jsx";
 
 
 
@@ -4083,13 +4097,7 @@ function Benchmarks() {
       lineNumber: 38,
       columnNumber: 11
     }, this),
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("h4", {
-      children: myData.expectationText
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 41,
-      columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("ol", {
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("ol", {
       style: {
         lineHeight: "1.15",
         paddingLeft: "24px"
@@ -4102,7 +4110,7 @@ function Benchmarks() {
           children: bm.benchmarkText
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 50,
+          lineNumber: 49,
           columnNumber: 13
         }, this), bm.subBenchmarks.length > 0 && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("ol", {
           style: {
@@ -4116,25 +4124,25 @@ function Benchmarks() {
             children: sbm
           }, sbmIdx, false, {
             fileName: _jsxFileName,
-            lineNumber: 59,
+            lineNumber: 58,
             columnNumber: 21
           }, this))
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 52,
+          lineNumber: 51,
           columnNumber: 15
         }, this)]
       }, bmIdx, true, {
         fileName: _jsxFileName,
-        lineNumber: 49,
+        lineNumber: 48,
         columnNumber: 11
       }, this))
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 42,
+      lineNumber: 41,
       columnNumber: 7
-    }, this)]
-  }, void 0, true, {
+    }, this)
+  }, void 0, false, {
     fileName: _jsxFileName,
     lineNumber: 34,
     columnNumber: 5
@@ -4162,7 +4170,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(26645);
 /* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(36950);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/d/Define.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/d/Define.jsx";
 
 
 
@@ -4201,15 +4209,57 @@ function Define() {
     currStep: "D",
     currStepPath: stepPath,
     children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_Card__WEBPACK_IMPORTED_MODULE_5__["default"], {
-      title: myData.title,
-      children: myData.text.map((para, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
-        children: para
-      }, idx, false, {
+      title: "DEBRIEF OVERVIEW",
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
+        children: "The purpose of this debriefing is to guide you in reflecting on the scenario you have just completed, in order to improve your skills as a paramedic. It does not assess your overall ability as a paramedic."
+      }, void 0, false, {
         fileName: _jsxFileName,
         lineNumber: 31,
-        columnNumber: 11
-      }, this))
-    }, void 0, false, {
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
+        children: "This debriefing consists of the following components:"
+      }, void 0, false, {
+        fileName: _jsxFileName,
+        lineNumber: 34,
+        columnNumber: 9
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("ul", {
+        children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("li", {
+          children: "Learning Objectives: View the clinical skills this scenario was designed to exercise."
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 38,
+          columnNumber: 11
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("li", {
+          children: "Expected Actions: View the actions you should have performed, to thoroughly assess and treat this patient."
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 41,
+          columnNumber: 11
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("li", {
+          children: "Sample Good Scenario: Step through an example of effective performance."
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 44,
+          columnNumber: 11
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("li", {
+          children: "What Happened & Why: Critique and reflect on your actions."
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 47,
+          columnNumber: 11
+        }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("li", {
+          children: "Take Home Points: Summarize what you learned from this debriefing."
+        }, void 0, false, {
+          fileName: _jsxFileName,
+          lineNumber: 50,
+          columnNumber: 11
+        }, this)]
+      }, void 0, true, {
+        fileName: _jsxFileName,
+        lineNumber: 37,
+        columnNumber: 9
+      }, this)]
+    }, void 0, true, {
       fileName: _jsxFileName,
       lineNumber: 29,
       columnNumber: 7
@@ -4244,7 +4294,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(26645);
 /* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(36950);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/e/Explain.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/e/Explain.jsx";
 
 
 
@@ -4286,7 +4336,6 @@ function Explain() {
     currStep: "E",
     currStepPath: stepPath,
     children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_Card__WEBPACK_IMPORTED_MODULE_6__["default"], {
-      title: myData.title,
       desc: myData.description,
       children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("ul", {
         children: (_myData$text = myData.text) == null ? void 0 : _myData$text.map((item, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("li", {
@@ -4325,14 +4374,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(73439);
 /* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2784);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(77122);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7267);
-/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55334);
-/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(55634);
-/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/experiment/SaveDebriefingModal.jsx";
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15735);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6886);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2784);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(77122);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7267);
+/* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(36011);
+/* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(55334);
+/* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(55634);
+/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/experiment/SaveDebriefingModal.jsx";
+
+
+
 
 
 
@@ -4344,98 +4401,114 @@ function SaveDebriefingModal({
   show,
   dismiss
 }) {
-  let history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useHistory)();
   const {
+    saveUserData,
+    getUserData
+  } = (0,react__WEBPACK_IMPORTED_MODULE_3__.useContext)(_meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_4__.AuthContext);
+  let history = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_8__.useHistory)();
+  const {
+    nextURL,
     saveDebriefing,
-    nextURL
-  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_3__.useDebriefing)();
+    scenario,
+    startTime
+  } = (0,_DebriefingContext__WEBPACK_IMPORTED_MODULE_6__.useDebriefing)();
 
   const submitHandler = async event => {
     event.preventDefault();
     await saveDebriefing();
+    const userData = await getUserData();
+    const timeOnTask = userData.timeOnTask ? [...userData.timeOnTask] : [];
+    timeOnTask.push({
+      scenario: scenario.name,
+      task: "debriefing",
+      startTime: startTime,
+      endTime: Date.now()
+    });
+    console.table("timeOnTask", timeOnTask);
+    await saveUserData("timeOnTask", timeOnTask);
     history.push(nextURL);
   };
 
-  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(_meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_2__.MDBModal, {
+  return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_5__.MDBModal, {
     title: "Are you finished with this debriefing?",
     show: show,
     dismiss: dismiss,
-    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("div", {
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
       className: "container",
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("div", {
+      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
         className: "row",
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("div", {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
           className: "col-12",
-          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("p", {
-            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("span", {
+          children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("span", {
               className: "text-danger",
               children: "WARNING: "
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 29,
+              lineNumber: 43,
               columnNumber: 15
-            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("span", {
+            }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("span", {
               children: "Clicking \"I'm Done\" will not allow you to view the debriefing any longer. Do not click on it unless you are truly done with this debriefing."
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 30,
+              lineNumber: 44,
               columnNumber: 15
             }, this)]
           }, void 0, true, {
             fileName: _jsxFileName,
-            lineNumber: 28,
+            lineNumber: 42,
             columnNumber: 13
           }, this)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 27,
+          lineNumber: 41,
           columnNumber: 11
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 26,
+        lineNumber: 40,
         columnNumber: 9
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("div", {
+      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
         className: "row",
-        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)("div", {
+        children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("div", {
           className: "col-12",
-          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
             color: "danger",
             size: "lg",
             onClick: submitHandler,
             children: "I'm Done"
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 40,
+            lineNumber: 54,
             columnNumber: 13
-          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
             color: "primary",
             size: "lg",
             onClick: dismiss,
             children: "Cancel"
           }, void 0, false, {
             fileName: _jsxFileName,
-            lineNumber: 43,
+            lineNumber: 57,
             columnNumber: 13
           }, this)]
         }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 39,
+          lineNumber: 53,
           columnNumber: 11
         }, this)
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 38,
+        lineNumber: 52,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 25,
+      lineNumber: 39,
       columnNumber: 7
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 20,
+    lineNumber: 34,
     columnNumber: 5
   }, this);
 }
@@ -4462,7 +4535,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(26645);
 /* harmony import */ var _Card__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(36950);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/f/Formalize.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/f/Formalize.jsx";
 
 
 
@@ -4600,7 +4673,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55634);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/footer/NavButtons.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/footer/NavButtons.jsx";
 
 
 
@@ -4670,7 +4743,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _TopButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(20103);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/StepTabs.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/StepTabs.jsx";
 
 
 
@@ -4699,22 +4772,14 @@ function StepTabs() {
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)("header", {
     className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_6__["default"]["main-nav"],
     children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
-      pills: true,
+      tabs: true,
       children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        step: "D",
-        currStep: currStep,
-        label: "D"
-      }, void 0, false, {
-        fileName: _jsxFileName,
-        lineNumber: 26,
-        columnNumber: 13
-      }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
         step: "E",
         currStep: currStep,
         label: "Learning Objectives"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 27,
+        lineNumber: 26,
         columnNumber: 13
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
         step: "B",
@@ -4722,23 +4787,23 @@ function StepTabs() {
         label: "Expected Actions"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 32,
+        lineNumber: 31,
         columnNumber: 13
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
         step: "R",
         currStep: currStep,
-        label: "Expected Story"
+        label: "Sample Good Scenario"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 33,
+        lineNumber: 32,
         columnNumber: 13
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
         step: "IE",
         currStep: currStep,
-        label: "What did Happen"
+        label: "What Happened & Why"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 34,
+        lineNumber: 33,
         columnNumber: 13
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxDEV)(_TopButton__WEBPACK_IMPORTED_MODULE_5__["default"], {
         step: "F",
@@ -4746,7 +4811,7 @@ function StepTabs() {
         label: "Take Home Points"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 35,
+        lineNumber: 34,
         columnNumber: 13
       }, this)]
     }, void 0, true, {
@@ -4779,7 +4844,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(55634);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/TopButton.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/header/TopButton.js";
 
 
 
@@ -4841,7 +4906,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(20506);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(24495);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/Analysis.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/Analysis.jsx";
 
 
 
@@ -4980,6 +5045,12 @@ function Analysis({
                 fileName: _jsxFileName,
                 lineNumber: 71,
                 columnNumber: 21
+              }, this), (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isOutOfOrder)(ieSummary, sa.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(_AnalysisMessages__WEBPACK_IMPORTED_MODULE_2__["default"], {
+                messages: sa.feedbackOutOfOrder
+              }, void 0, false, {
+                fileName: _jsxFileName,
+                lineNumber: 74,
+                columnNumber: 21
               }, this)]
             }, void 0, true, {
               fileName: _jsxFileName,
@@ -5010,36 +5081,18 @@ function Analysis({
         children: "The following steps were not indicated"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 81,
+        lineNumber: 84,
         columnNumber: 11
       }, this), nonRequiredActions().map(nra => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
         children: nra.feedbackErrors
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 83,
+        lineNumber: 86,
         columnNumber: 11
       }, this))]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 80,
-      columnNumber: 9
-    }, this), (0,_utils__WEBPACK_IMPORTED_MODULE_5__.isOutOfOrder)(ieSummary, slide.id) && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("div", {
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("h5", {
-        children: "The following steps were performed out of order:"
-      }, void 0, false, {
-        fileName: _jsxFileName,
-        lineNumber: 91,
-        columnNumber: 11
-      }, this), slide.feedbackOutOfOrder.map((para, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)("p", {
-        children: para
-      }, idx, false, {
-        fileName: _jsxFileName,
-        lineNumber: 93,
-        columnNumber: 13
-      }, this))]
-    }, void 0, true, {
-      fileName: _jsxFileName,
-      lineNumber: 90,
+      lineNumber: 83,
       columnNumber: 9
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
       size: "sm",
@@ -5049,7 +5102,7 @@ function Analysis({
       children: "Ok"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 97,
+      lineNumber: 92,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -5073,14 +5126,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/AnalysisMessages.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/AnalysisMessages.jsx";
 
 
 
 
 
 
-const PLACEHOLDER = "There are errors at this step. We will discuss them shortly";
+const PLACEHOLDER = "There are errors at this step. We will discuss them shortly.";
 function AnalysisMessages({
   messages
 }) {
@@ -5187,7 +5240,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(55634);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/ExamineForm.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/ExamineForm.js";
 
 
 
@@ -5326,7 +5379,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ FeedbackIcon)
 /* harmony export */ });
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/FeedbackIcon.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/FeedbackIcon.jsx";
 
 function FeedbackIcon({
   isGood
@@ -5367,7 +5420,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SequentialIEView__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7494);
 /* harmony import */ var _TabbedIEView__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(65119);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/InvestigateExamine.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/InvestigateExamine.jsx";
 
 
 
@@ -5481,7 +5534,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(24495);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/SequentialIEView.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/SequentialIEView.jsx";
 
 
 
@@ -5659,7 +5712,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(24495);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/TabbedIEView.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/TabbedIEView.jsx";
 
 
 
@@ -5785,7 +5838,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DebriefingContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55634);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(24495);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/UserRating.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/ie/UserRating.jsx";
 
 
 
@@ -5811,31 +5864,31 @@ function UserRating({
 
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("p", {
-      style: {
-        fontSize: "1rem"
-      },
-      children: "Click on what you think you completed successfully."
-    }, void 0, false, {
-      fileName: _jsxFileName,
-      lineNumber: 19,
-      columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("p", {
       children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("b", {
         children: ["Did you ", /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("i", {
           children: (0,_utils__WEBPACK_IMPORTED_MODULE_2__.lowerCaseFirstLetter)(slide.label)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 24,
+          lineNumber: 21,
           columnNumber: 19
         }, this), ", including:"]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 23,
+        lineNumber: 20,
         columnNumber: 9
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 22,
+      lineNumber: 19,
+      columnNumber: 7
+    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("p", {
+      style: {
+        fontSize: "0.85rem"
+      },
+      children: "Check what you think you completed successfully."
+    }, void 0, false, {
+      fileName: _jsxFileName,
+      lineNumber: 24,
       columnNumber: 7
     }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
       children: [(0,_utils__WEBPACK_IMPORTED_MODULE_2__.getRequiredSubActions)(slide).map((subAction, idx) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("div", {
@@ -5846,7 +5899,7 @@ function UserRating({
           onChange: handleRatingChange
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 30,
+          lineNumber: 31,
           columnNumber: 13
         }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("label", {
           htmlFor: subAction.id,
@@ -5857,16 +5910,16 @@ function UserRating({
           children: (0,_utils__WEBPACK_IMPORTED_MODULE_2__.capitalizeFirstLetter)(subAction.label)
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 36,
+          lineNumber: 37,
           columnNumber: 13
         }, this)]
       }, subAction.id, true, {
         fileName: _jsxFileName,
-        lineNumber: 29,
+        lineNumber: 30,
         columnNumber: 11
       }, this)), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)("br", {}, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 47,
+        lineNumber: 48,
         columnNumber: 9
       }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxDEV)(reactstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
         size: "sm",
@@ -5875,12 +5928,12 @@ function UserRating({
         children: "Show Feedback"
       }, void 0, false, {
         fileName: _jsxFileName,
-        lineNumber: 48,
+        lineNumber: 49,
         columnNumber: 9
       }, this)]
     }, void 0, true, {
       fileName: _jsxFileName,
-      lineNumber: 27,
+      lineNumber: 28,
       columnNumber: 7
     }, this)]
   }, void 0, true);
@@ -5932,7 +5985,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _footer_NavButtons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(12831);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/SingleColumnLayout.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/SingleColumnLayout.jsx";
 
 
 
@@ -5985,7 +6038,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _footer_NavButtons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(12831);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/TwoDivLayout.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/TwoDivLayout.js";
 
 
 
@@ -6053,7 +6106,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55334);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/UnauthedLayout.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/layouts/UnauthedLayout.js";
 
 
 
@@ -6101,7 +6154,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _OutlineButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(23157);
 /* harmony import */ var _OutlineLabel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(71448);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/FlatLeftNav.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/FlatLeftNav.jsx";
 
 
 
@@ -6173,7 +6226,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _OutlineLabel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(71448);
 /* harmony import */ var _OutlineChildren__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(10788);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/HierarchicalLeftNav.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/HierarchicalLeftNav.jsx";
 
 
 
@@ -6239,7 +6292,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(24495);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineButton.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineButton.jsx";
 
 
 
@@ -6293,7 +6346,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _OutlineButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(23157);
 /* harmony import */ var _OutlineLabel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(71448);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineChildren.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineChildren.js";
 
 
 
@@ -6380,7 +6433,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(24495);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineLabel.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/outline/OutlineLabel.jsx";
 
 
 
@@ -6390,8 +6443,12 @@ function OutlineLabel({
 }) {
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxDEV)("b", {
     style: {
+      display: "inline-block",
       fontSize: "1.2em",
-      lineHeight: "1.2em"
+      lineHeight: "1.2em",
+      border: "1px solid black",
+      borderRadius: "5px",
+      padding: "4px"
     },
     children: (0,_utils__WEBPACK_IMPORTED_MODULE_1__.capitalizeFirstLetter)(node.label)
   }, void 0, false, {
@@ -6425,7 +6482,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Tooltip__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(51579);
 /* harmony import */ var _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(20506);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/r/Review.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/r/Review.jsx";
 
 
 
@@ -6476,19 +6533,7 @@ function Review() {
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)(_layouts_SingleColumnLayout__WEBPACK_IMPORTED_MODULE_5__["default"], {
     currStep: "R",
     currStepPath: stepPath,
-    children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("h2", {
-      children: [/*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("b", {
-        children: "R"
-      }, void 0, false, {
-        fileName: _jsxFileName,
-        lineNumber: 42,
-        columnNumber: 9
-      }, this), "eview what was supposed to happen:"]
-    }, void 0, true, {
-      fileName: _jsxFileName,
-      lineNumber: 41,
-      columnNumber: 7
-    }, this), /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("div", {
+    children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("div", {
       className: classnames__WEBPACK_IMPORTED_MODULE_3___default()(_Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__["default"].slideshow, _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__["default"].card),
       children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("div", {
         className: _Cond2Debriefing_module_css__WEBPACK_IMPORTED_MODULE_7__["default"]["card-body"],
@@ -6497,7 +6542,7 @@ function Review() {
           children: [myData.of[0], " of ", myData.of[1]]
         }, void 0, true, {
           fileName: _jsxFileName,
-          lineNumber: 46,
+          lineNumber: 43,
           columnNumber: 11
         }, this), (_myData$paragraphs = myData.paragraphs) == null ? void 0 : _myData$paragraphs.map((chunks, i) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("p", {
           children: chunks.map((chunk, j) => /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("span", {
@@ -6508,23 +6553,23 @@ function Review() {
               setToolTip: setToolTipText
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 54,
+              lineNumber: 51,
               columnNumber: 21
             }, this) : /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("span", {
               children: chunk.text
             }, void 0, false, {
               fileName: _jsxFileName,
-              lineNumber: 61,
+              lineNumber: 58,
               columnNumber: 21
             }, this)
           }, j, false, {
             fileName: _jsxFileName,
-            lineNumber: 52,
+            lineNumber: 49,
             columnNumber: 17
           }, this))
         }, i, false, {
           fileName: _jsxFileName,
-          lineNumber: 50,
+          lineNumber: 47,
           columnNumber: 13
         }, this)), toolTipText && /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxDEV)("p", {
           style: {
@@ -6534,20 +6579,20 @@ function Review() {
           children: toolTipText
         }, void 0, false, {
           fileName: _jsxFileName,
-          lineNumber: 68,
+          lineNumber: 65,
           columnNumber: 13
         }, this)]
       }, void 0, true, {
         fileName: _jsxFileName,
-        lineNumber: 45,
+        lineNumber: 42,
         columnNumber: 9
       }, this)
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 44,
+      lineNumber: 41,
       columnNumber: 7
-    }, this)]
-  }, void 0, true, {
+    }, this)
+  }, void 0, false, {
     fileName: _jsxFileName,
     lineNumber: 40,
     columnNumber: 5
@@ -6565,7 +6610,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ Tooltip)
 /* harmony export */ });
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/r/Tooltip.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/r/Tooltip.js";
 
 function Tooltip({
   text,
@@ -6623,7 +6668,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7267);
 /* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(55334);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/review/SaveReviewModal.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/components/review/SaveReviewModal.jsx";
 
 
 
@@ -6735,7 +6780,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "computeDataStructures": () => (/* binding */ computeDataStructures)
 /* harmony export */ });
-/* harmony import */ var _Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31461);
+/* harmony import */ var _home_pitt_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31461);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15735);
 /* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6886);
@@ -6811,7 +6856,7 @@ function getIENodeData(node, expandChildren) {
     promptsIfErrors = "",
     subActionsList
   } = node,
-        rest = (0,_Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(node, _excluded);
+        rest = (0,_home_pitt_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(node, _excluded);
 
   const other = {
     feedbackAbsent: (rest.feedbackAbsent || []).filter(e => e !== ""),
@@ -7117,7 +7162,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_DebriefingContext__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(55634);
 /* harmony import */ var _components_Cond2Debriefing__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(38681);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/routes/DebLog.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/cond2-debriefing-ui/src/routes/DebLog.js";
 
 
 
@@ -7175,6 +7220,7 @@ function DebLog({
   const [allSlidesCompleted, setAllSlidesCompleted] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
   const [done, setDone] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(false);
   const [nextURL, setNextURL] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
+  const [startTime, setStartTime] = (0,react__WEBPACK_IMPORTED_MODULE_8__.useState)(null);
 
   const saveDebriefing = () => {
     const newData = Object.assign({}, debLog, {
@@ -7343,6 +7389,7 @@ function DebLog({
     setAllSlidesCompleted(idDat.formalize.response !== "");
     setDone(false);
     setNextURL(next);
+    setStartTime(Date.now());
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_8__.useEffect)(() => {
@@ -7361,7 +7408,7 @@ function DebLog({
       children: "Loading"
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 236,
+      lineNumber: 238,
       columnNumber: 13
     }, this);
   }
@@ -7399,7 +7446,8 @@ function DebLog({
       done,
       setDone,
       saveDebriefing,
-      nextURL
+      nextURL,
+      startTime
     },
     children: /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_15__.jsxDEV)(_components_Cond2Debriefing__WEBPACK_IMPORTED_MODULE_14__["default"], {
       debriefingID: debriefingID,
@@ -7408,12 +7456,12 @@ function DebLog({
       saveModal: saveModal
     }, void 0, false, {
       fileName: _jsxFileName,
-      lineNumber: 276,
+      lineNumber: 279,
       columnNumber: 7
     }, this)
   }, void 0, false, {
     fileName: _jsxFileName,
-    lineNumber: 240,
+    lineNumber: 242,
     columnNumber: 5
   }, this);
 }
@@ -7507,7 +7555,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AnalysisTableHeader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(15678);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(59031);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysesTable.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysesTable.jsx";
 
 
 
@@ -7623,7 +7671,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DebriefingsTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3450);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(59031);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysisDetails.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysisDetails.jsx";
 
 
 
@@ -7892,7 +7940,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ AnalysesTableHeader)
 /* harmony export */ });
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysisTableHeader.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/components/AnalysisTableHeader.jsx";
 
 
 function AnalysesTableHeader() {
@@ -7989,7 +8037,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(77122);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(59031);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/DebriefingsTable.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/components/DebriefingsTable.jsx";
 
 
 
@@ -8207,7 +8255,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _AnalysesTable__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(91604);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(59031);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogDetails.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogDetails.jsx";
 
 
 
@@ -8384,7 +8432,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _meddbriefer_mdb_ui__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(55334);
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(59031);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogTable.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogTable.jsx";
 
 
 
@@ -8635,7 +8683,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ ObserverLogTableHeader)
 /* harmony export */ });
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogTableHeader.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/components/ObserverLogTableHeader.jsx";
 
 function ObserverLogTableHeader() {
   return /*#__PURE__*/(0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("thead", {
@@ -8747,7 +8795,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(48913);
 /* harmony import */ var _components_AnalysisDetails__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(92940);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/routes/Analysis.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/routes/Analysis.jsx";
 
 
 
@@ -8850,7 +8898,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ObserverLog__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(35786);
 /* harmony import */ var _Analysis__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(18429);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/routes/LogChooser.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/routes/LogChooser.jsx";
 
 
 
@@ -8953,7 +9001,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _meddbriefer_analysis__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(54303);
 /* harmony import */ var _components_ObserverLogDetails__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(52603);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/routes/ObserverLog.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/routes/ObserverLog.jsx";
 
 
 
@@ -9065,7 +9113,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _meddbriefer_scenario_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(48913);
 /* harmony import */ var _components_ObserverLogTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(30323);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/debriefing/log-chooser/src/routes/ObserverLogList.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/debriefing/log-chooser/src/routes/ObserverLogList.jsx";
 
 
 
@@ -9294,7 +9342,9 @@ const B4CA_PhaseDEBRF = [{
 }, {
   step: "R",
   slides: [{
-    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("In an idealized scenario, you arrive on scene and find a man dressed in motocross gear lying on the ground. Your initial assessment reveals a helmeted patient who is awake and alert with shallow breaths.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You immediately direct your partner to provide"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("manual c-spine stabilization", "Spinal precautions should be taken with any patient involved in a motor-vehicle accident or any instance where a patient was thrown."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("while removing the helmet and apply a cervical collar. You note the patient has an open airway and that his breathing is rapid and shallow, so you place him on either a"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("non-rebreather mask or nasal cannula.", "While this patient is in mild respiratory distress and has hypoxia, his mental status and respiratory effort are appropriate, so he does not need assistance with ventilation."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("His extremity pulses are strong.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You instruct another responder to obtain a set of baseline vitals and obtain a SAMPLE and OPQRST history from the race official while you perform a rapid head-to-toe assessment. You note that the patient has diminished breath sounds on the left but"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("no signs of decreased cardiac output.", "This patient has a pneumothorax, as evidenced by his hypoxia and unequal breath sounds, but without evidence of decreased cardiac output (ex. JVD, hypotension), he does not have a tension pneumothorax and does not require needle decompression at this time."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("After checking the patient’s anterior, you and your partner log roll the patient, check his posterior, and secure him onto a long back board.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("Once the CID is in place, you and your partners then place the patient on a stretcher, cover him with a blanket, and transfer him to the ambulance. You notify the Level I trauma center you are on the way. En route, you establish two large bore IVs, reassess the patient"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("every five minutes,", "Critically ill patients should be reassessed every 5 minutes."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and confirm that all interventions are working properly, modifying any as necessary."))]
+    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("In an idealized scenario, you arrive on scene and find a man dressed in motocross gear lying on the ground. Your initial assessment reveals a helmeted patient who is awake and alert with shallow breaths.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You immediately direct your partner to provide"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("manual c-spine stabilization", "Spinal precautions should be taken with any patient involved in a motor-vehicle accident or any instance where a patient was thrown."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("while removing the helmet and apply a cervical collar. You note the patient has an open airway and that his breathing is rapid and shallow, so you place him on either a"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("non-rebreather mask or nasal cannula.", "While this patient is in mild respiratory distress and has hypoxia, his mental status and respiratory effort are appropriate, so he does not need assistance with ventilation."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("His extremity pulses are strong."))]
+  }, {
+    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You instruct another responder to obtain a set of baseline vitals and obtain a SAMPLE and OPQRST history from the race official while you perform a rapid head-to-toe assessment. You note that the patient has diminished breath sounds on the left but"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("no signs of decreased cardiac output.", "This patient has a pneumothorax, as evidenced by his hypoxia and unequal breath sounds, but without evidence of decreased cardiac output (ex. JVD, hypotension), he does not have a tension pneumothorax and does not require needle decompression at this time."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("After checking the patient’s anterior, you and your partner log roll the patient, check his posterior, and secure him onto a long back board.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("Once the CID is in place, you and your partners then place the patient on a stretcher, cover him with a blanket, and transfer him to the ambulance. You notify the Level I trauma center you are on the way. En route, you establish two large bore IVs, reassess the patient"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("every five minutes,", "Critically ill patients should be reassessed every 5 minutes."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and confirm that all interventions are working properly, modifying any as necessary."))]
   }]
 }, {
   step: "F",
@@ -11358,7 +11408,9 @@ const B5CA_PhaseDEBRF = [{
 }, {
   step: "R",
   slides: [{
-    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("In an idealized scenario, you arrive on scene and find a patient leaning against the bar. Your initial assessment reveals a patient who is awake but responds only to verbal requests and is holding his hand over a bloody chest wound.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You immediately direct your partner to provide"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("manual c-spine stabilization", "Though there is no apparent spine trauma, given that you do not know the full extent of what happened in the fight, it is safest to assume spinal precautions at the beginning of your assessment."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and apply a cervical collar. You note the patient’s airway is patent but his breathing is rapid and shallow so you place him on a"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("non-rebreather mask.", "Though you might consider using a bag-valve mask to assist with ventilation in this patient, the patient has a penetrating chest wound and could have a tension pneumothorax, so positive-pressure ventilation should be avoided if possible."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("His extremity pulses are weak and his skin is pale and diaphoretic.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You instruct another responder to obtain a set of baseline vitals and obtain a SAMPLE and OPQRST history from a bystander while you perform a rapid head-to-toe assessment. As you examine the patient you note diminished breath sounds on the right and a stab wound to the right chest. Combined with his significant hypotension, you suspect the patient has a right tension pneumothorax. You perform"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("needle decompression of the right lung,", "A large bore needle (at least 14 or 16 gauge) should be inserted in the R chest at the 2nd or 3rd intercostal space at the mid-clavicular line OR fourth of fifth intercostal space at the mid-axillary line to decompress the tension pneumothorax that is causing the patient’s respiratory distress and obstructive shock."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("the success of which you confirm with a repeat lung exam and note an improvement in the patient’s vital signs. Additionally, you place an"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("occlusive dressing", "This patient has a penetrating chest wound that, if untreated, will continue to allow air to collect around the lungs, worsening his tension pneumothorax. Be sure to only tape 3 sides to prevent air from entering the lungs while still allowing blood and air to escape."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("over the initial penetrating chest wound to prevent re-accumulation of air. After completing your secondary survey, you then"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("use a scoop stretcher", "While a cervical collar is appropriate when you approach this trauma patient, further spinal immobilization is contraindicated in this patient with a penetrating chest wound, as immobilization on a spine board may cause further injury."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("to transfer him to the ambulance.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("While en route, you and your partner cover the patient with a blanket and notify the level II trauma center of the patient’s condition and give an ETA. You establish two large bore IVs, administer fluids only as needed to"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("maintain systolic BP >90,", "Initially this patient’s BP is 58/palp, which is due to obstruction shock secondary to his tension pneumothorax. With appropriate management of the tension pneumothorax and resumption of normal cardiac output, you should see an improvement in the patient’s blood pressure without need for significant fluid resuscitation."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("reassess the patient"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("every five minutes,", "This critically ill patient should be reassessed every 5 minutes"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and confirm that all interventions are working properly, modifying any as necessary."))]
+    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("In an idealized scenario, you arrive on scene and find a patient leaning against the bar. Your initial assessment reveals a patient who is awake but responds only to verbal requests and is holding his hand over a bloody chest wound.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You immediately direct your partner to provide"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("manual c-spine stabilization", "Though there is no apparent spine trauma, given that you do not know the full extent of what happened in the fight, it is safest to assume spinal precautions at the beginning of your assessment."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and apply a cervical collar. You note the patient’s airway is patent but his breathing is rapid and shallow so you place him on a"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("non-rebreather mask.", "Though you might consider using a bag-valve mask to assist with ventilation in this patient, the patient has a penetrating chest wound and could have a tension pneumothorax, so positive-pressure ventilation should be avoided if possible."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("His extremity pulses are weak and his skin is pale and diaphoretic."))]
+  }, {
+    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You instruct another responder to obtain a set of baseline vitals and obtain a SAMPLE and OPQRST history from a bystander while you perform a rapid head-to-toe assessment. As you examine the patient you note diminished breath sounds on the right and a stab wound to the right chest. Combined with his significant hypotension, you suspect the patient has a right tension pneumothorax. You perform"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("needle decompression of the right lung,", "A large bore needle (at least 14 or 16 gauge) should be inserted in the R chest at the 2nd or 3rd intercostal space at the mid-clavicular line OR fourth of fifth intercostal space at the mid-axillary line to decompress the tension pneumothorax that is causing the patient’s respiratory distress and obstructive shock."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("the success of which you confirm with a repeat lung exam and note an improvement in the patient’s vital signs. Additionally, you place an"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("occlusive dressing", "This patient has a penetrating chest wound that, if untreated, will continue to allow air to collect around the lungs, worsening his tension pneumothorax. Be sure to only tape 3 sides to prevent air from entering the lungs while still allowing blood and air to escape."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("over the initial penetrating chest wound to prevent re-accumulation of air. After completing your secondary survey, you then"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("use a scoop stretcher", "While a cervical collar is appropriate when you approach this trauma patient, further spinal immobilization is contraindicated in this patient with a penetrating chest wound, as immobilization on a spine board may cause further injury."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("to transfer him to the ambulance.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("While en route, you and your partner cover the patient with a blanket and notify the level II trauma center of the patient’s condition and give an ETA. You establish two large bore IVs, administer fluids only as needed to"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("maintain systolic BP >90,", "Initially this patient’s BP is 58/palp, which is due to obstruction shock secondary to his tension pneumothorax. With appropriate management of the tension pneumothorax and resumption of normal cardiac output, you should see an improvement in the patient’s blood pressure without need for significant fluid resuscitation."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("reassess the patient"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("every five minutes,", "This critically ill patient should be reassessed every 5 minutes"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and confirm that all interventions are working properly, modifying any as necessary."))]
   }]
 }, {
   step: "F",
@@ -11607,8 +11659,7 @@ const B5CA_PhaseIE = {
         feedbackErrors: [""],
         examineIfAbsent: true,
         examineIfErrors: false,
-        promptsIfAbsent: "",
-        promptsIfErrors: "",
+        promptsIfAbsent: "Did not consider risk for cervical spine injury; considered cervical spine injury but did not think the mechanism necessitated spinal stabilization",
         promptsIfErrors: "",
         subActionsList: true,
         subActions: [{
@@ -12026,7 +12077,7 @@ const B5CA_PhaseIE = {
           label: "identify that this patient has a tension pneumothorax and perform pleural decompression appropriately by inserting a large bore needle between ribs 2 and 3 mid-clavicular or between ribs 5 and 6 midaxillary on the right side of the chest",
           type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.REQ,
           feedbackAbsent: ["This patient had absent breath sounds after being stabbed with a knife to the chest. Your differential diagnosis includes pneumothorax or hemothorax. The patient also has signs of diminished cardiac output, including his hypotension and poor perfusion (pale, diaphoretic skin, and weak distal pulses) suggest that he may have a tension pneumothorax, which necessitates needle decompression. Other signs of a tension pneumothorax, which this patient did not have, include JVD or tracheal deviation."],
-          feedbackOutOfOrder: [""],
+          feedbackOutOfOrder: ["Tension pneumothorax is an injury that affects breathing.  It is a potentially life threatening condition that requires prompt intervention. For these reasons, it should be addressed during the primary survey."],
           feedbackErrors: ["Once you have identified a tension pneumothorax, decompression is the appropriate next step. You should use a large-bore needle (ideally 14 or 16 gauge and at least 2 inches in length) and insert it into either:", "- the 2nd or 3rd intercostal space at the mid-clavicular line", "- the 4th or 5th intercostal space at the mid-axillary line", "Remember to insert the needle above the rib, not below, because there is a neurovascular bundle that runs below each rib you want to avoid damaging."],
           examineIfAbsent: true,
           examineIfErrors: false,
@@ -12039,7 +12090,7 @@ const B5CA_PhaseIE = {
           label: "Apply an occlusive dressing over the stab wound to prevent air from getting into the chest",
           type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.REQ,
           feedbackAbsent: ["An open chest wound, such as one caused by a stab-wound after the object has been pulled out, may lead to a worsening tension pneumothorax. As the patient inhales, creating negative intrathoracic pressure, air may be sucked in through the wound and collect in the intrapleural cavity. An occlusive dressing, taped on 3 sides to allow air to escape, will protect against this."],
-          feedbackOutOfOrder: [""],
+          feedbackOutOfOrder: ["Tension pneumothorax is an injury that affects breathing.  It is a potentially life threatening condition that requires prompt intervention. For these reasons, it should be addressed during the primary survey."],
           feedbackErrors: [""],
           examineIfAbsent: true,
           examineIfErrors: false,
@@ -13603,7 +13654,9 @@ const C5CA_PhaseDEBRF = [{
 }, {
   step: "R",
   slides: [{
-    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("In an idealized scenario, you arrive on scene and find a young man lying on the ground in a parking lot surrounded by police officers and bystanders. Your initial assessment reveals a conscious but lethargic patient who has significant bleeding from a gunshot wound to his left upper anterior mid-thigh despite a bystander holding pressure.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You immediately direct your partner to provide manual c-spine stabilization, while you"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("apply a tourniquet", "The patient is hemorrhaging from his upper leg, which is an immediate life threat and should be addressed before progressing on with your exam, including before assessing the patient’s ABCs "), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("to the patient’s left upper leg, proximal to the injury, and confirm that this has stopped the bleeding.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("Next, you find the patient’s airway to be patent but his breathing is rapid and shallow so you assist his ventilations with a"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("bag valve mask", "This patient was not adequately ventilating (rapid, shallow breaths) so O2 delivered via nasal canula or non-rebreather mask alone would not have been adequate."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and turn the O2 up to 15L. His extremity pulses are absent and skin is pale and diaphoretic. You instruct another responder to obtain a set of baseline vitals and obtain a SAMPLE history from a bystander while you perform a rapid head-to-toe assessment.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You and your partners then place the patient"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("on a scoop stretcher,", "Spinal immobilization is contraindicated in this patient with a penetrating abdominal wound; immobilization on a spine board may cause further injury."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("cover him with a blanket, and transfer him to the ambulance. Worried for"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("hemorrhagic shock,", "This GSW victim with a known source of significant bleeding is hypotensive, most likely from hemorrhagic shock, which should be managed with rapid fluid resuscitation, keeping the patient supine, administering O2, and keeping the patient warm"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("you place two large-bore IVs en route and start fluid resuscitation to a goal systolic BP >90.  You notify the Level 2 trauma center you are on the way, reassess the patient"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("every five minutes,", "Critically ill patients should be reassessed every 5 minutes"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and confirm that all interventions are working properly, modifying any as necessary."))]
+    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("In an idealized scenario, you arrive on scene and find a young man lying on the ground in a parking lot surrounded by police officers and bystanders. Your initial assessment reveals a conscious but lethargic patient who has significant bleeding from a gunshot wound to his left upper anterior mid-thigh despite a bystander holding pressure.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You immediately direct your partner to provide manual c-spine stabilization, while you"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("apply a tourniquet", "The patient is hemorrhaging from his upper leg, which is an immediate life threat and should be addressed before progressing on with your exam, including before assessing the patient’s ABCs "), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("to the patient’s left upper leg, proximal to the injury, and confirm that this has stopped the bleeding."))]
+  }, {
+    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("Next, you find the patient’s airway to be patent but his breathing is rapid and shallow so you assist his ventilations with a"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("bag valve mask", "This patient was not adequately ventilating (rapid, shallow breaths) so O2 delivered via nasal canula or non-rebreather mask alone would not have been adequate."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and turn the O2 up to 15L. His extremity pulses are absent and skin is pale and diaphoretic. You instruct another responder to obtain a set of baseline vitals and obtain a SAMPLE history from a bystander while you perform a rapid head-to-toe assessment.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You and your partners then place the patient"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("on a scoop stretcher,", "Spinal immobilization is contraindicated in this patient with a penetrating abdominal wound; immobilization on a spine board may cause further injury."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("cover him with a blanket, and transfer him to the ambulance. Worried for"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("hemorrhagic shock,", "This GSW victim with a known source of significant bleeding is hypotensive, most likely from hemorrhagic shock, which should be managed with rapid fluid resuscitation, keeping the patient supine, administering O2, and keeping the patient warm"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("you place two large-bore IVs en route and start fluid resuscitation to a goal systolic BP >90.  You notify the Level 2 trauma center you are on the way, reassess the patient"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("every five minutes,", "Critically ill patients should be reassessed every 5 minutes"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and confirm that all interventions are working properly, modifying any as necessary."))]
   }]
 }, {
   step: "F",
@@ -14666,6 +14719,21 @@ const C5CA_PhaseIE = {
           subActionsList: false,
           subActions: []
         }]
+      }, {
+        id: "intv-spinal-immobilization-technique-cervical-collar",
+
+        /* unnecessary intervention */
+        label: "Apply an appropriately sized cervical collar",
+        type: _constants__WEBPACK_IMPORTED_MODULE_0__.ACTION_TYPES.UNNEC,
+        feedbackAbsent: [""],
+        feedbackOutOfOrder: [""],
+        feedbackErrors: ["This patient has no evidence of neck injury. Placing a collar and/or CID will make your examination more difficult and should only be done if you suspect an injury to the neck, whether by history or exam."],
+        examineIfAbsent: false,
+        examineIfErrors: false,
+        promptsIfAbsent: "",
+        promptsIfErrors: "",
+        subActionsList: false,
+        subActions: []
       }]
     }, {
       id: "history-taking",
@@ -15694,13 +15762,9 @@ const SC8CP_PhaseDEBRF = [{
 }, {
   step: "R",
   slides: [{
-    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("In an idealized scenario, you arrive on scene and find a 4-year-old boy lying supine beside a pool in the backyard of a suburban house. Other EMS responders have arrived on site to assist you.  Your initial assessment reveals that the boy is unconscious and cyanotic.  A quick pulse check shows that it is slow and weak. Given that the patient is in"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("critical condition,", "This patient is unresponsive and is therefore considered a critical patient."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("you direct a responder to call for air transport to the"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("nearest pediatric trauma center.", "Because this patient is under 14 years of age, he should be transported to the nearest level 1 or 2 pediatric trauma center that is less than 45 minutes away."))]
+    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("In an idealized scenario, you arrive on scene and find a 4-year-old boy lying supine beside a pool in the backyard of a suburban house. Other EMS responders have arrived on site to assist you.  Your initial assessment reveals that the boy is unconscious and cyanotic.  A quick pulse check shows that it is slow and weak. Given that the patient is in"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("critical condition,", "This patient is unresponsive and is therefore considered a critical patient."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("you direct a responder to call for air transport to the"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("nearest pediatric trauma center.", "Because this patient is under 14 years of age, he should be transported to the nearest level 1 or 2 pediatric trauma center that is less than 45 minutes away.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You direct another partner to take"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("manual c-spine precautions", "Any near-drowning or drowning, especially if unwitnessed, should be considered a risk for possible cervical and spinal injury as the patient may have been involved in a diving accident."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and apply a cervical collar. You open the patient’s airway, using a jaw thrust maneuver.  Finding a substantial amount of water and vomit in the boy’s mouth, you apply suction. After the patient’s airway is cleared, you assess breathing and find it to be slow with gurgling sounds. You direct your partner to insert an OPA and ventilate the patient with 100% oxygen delivered through a"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("bag-valve mask", "This patient was not adequately ventilating (slow, gurgling breaths) or oxygenating (low SpO2) so O2 delivered via nasal cannula or non-rebreather mask would not have been adequate."))]
   }, {
-    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You direct another partner to take"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("manual c-spine precautions", "Any near-drowning or drowning, especially if unwitnessed, should be considered a risk for possible cervical and spinal injury as the patient may have been involved in a diving accident."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and apply a cervical collar. You open the patient’s airway, using a jaw thrust maneuver.  Finding a substantial amount of water and vomit in the boy’s mouth, you apply suction. After the patient’s airway is cleared, you assess breathing and find it to be slow with gurgling sounds. You direct your partner to insert an OPA and ventilate the patient with 100% oxygen delivered through a"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("bag-valve mask", "This patient was not adequately ventilating (slow, gurgling breaths) or oxygenating (low SpO2) so O2 delivered via nasal cannula or non-rebreather mask would not have been adequate."))]
-  }, {
-    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You then"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("intubate the patient", "The patient was unresponsive with a GCS of 3 so should be intubated to safely get the patient to the pediatric trauma center (remember, generally with a GCS <8, you should intubate)."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and direct your partner to resume BVM ventilation all while maintaining c-spine precautions. You have another responder obtain a set of baseline vitals and obtain a SAMPLE and OPQRST history from the babysitter while you perform a rapid head-to-toe assessment.  On completion of your secondary survey, you secure him onto a long back board."))]
-  }, {
-    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You and your partners then place the patient on a stretcher and transfer him to the helicopter as soon as it arrives.  You cover him with blankets and ask the pilot to turn up the heat. While en route to the pediatric trauma center, you contact the facility to alert them to the patient’s condition and your ETA.  You establish two large bore IVs, reassess the patient"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("every five minutes,", "Critically ill patients should be reassessed every 5 minutes."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and confirm that all interventions are working properly, modifying any as necessary."))]
+    paragraphs: [(0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You then"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("intubate the patient", "The patient was unresponsive with a GCS of 3 so should be intubated to safely get the patient to the pediatric trauma center (remember, generally with a GCS <8, you should intubate)."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and direct your partner to resume BVM ventilation all while maintaining c-spine precautions. You have another responder obtain a set of baseline vitals and obtain a SAMPLE and OPQRST history from the babysitter while you perform a rapid head-to-toe assessment.  On completion of your secondary survey, you secure him onto a long back board.")), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.para)((0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("You and your partners then place the patient on a stretcher and transfer him to the helicopter as soon as it arrives.  You cover him with blankets and ask the pilot to turn up the heat. While en route to the pediatric trauma center, you contact the facility to alert them to the patient’s condition and your ETA.  You establish two large bore IVs, reassess the patient"), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.link)("every five minutes,", "Critically ill patients should be reassessed every 5 minutes."), (0,_utils__WEBPACK_IMPORTED_MODULE_0__.text)("and confirm that all interventions are working properly, modifying any as necessary."))]
   }]
 }, {
   step: "F",
@@ -20284,7 +20348,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EmailVerification__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(57650);
 /* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(94292);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/AuthFlow.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-auth/src/lib/components/AuthFlow.js";
 
 
 
@@ -20368,7 +20432,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(94292);
 /* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(25600);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/EmailVerification.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-auth/src/lib/components/EmailVerification.js";
  // useCallback, 
 
  // import cn from "classnames"
@@ -20573,7 +20637,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(25600);
 /* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(94292);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/ForgotPasswordForm.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-auth/src/lib/components/ForgotPasswordForm.js";
 
 
 
@@ -20739,7 +20803,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(94292);
 /* harmony import */ var _icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(93391);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/LoginForm.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-auth/src/lib/components/LoginForm.js";
 
 
 
@@ -20971,7 +21035,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contexts_Auth__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(25600);
 /* harmony import */ var _icons_PasswordVisibilityIcon__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(93391);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/RegistrationForm.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-auth/src/lib/components/RegistrationForm.js";
 
 
 
@@ -21278,7 +21342,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _styles_auth_styles_module_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(94292);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/components/icons/PasswordVisibilityIcon.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-auth/src/lib/components/icons/PasswordVisibilityIcon.js";
 
 
 
@@ -21323,7 +21387,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _meddbriefer_mdb_firebase__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(89526);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/contexts/Auth.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-auth/src/lib/contexts/Auth.js";
 
 
 
@@ -21585,7 +21649,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31461);
+/* harmony import */ var _home_pitt_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31461);
 /* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(43105);
 /* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
@@ -21596,7 +21660,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
 
 const _excluded = ["component", "authFlowLayout"];
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/routes/PrivateRoute.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-auth/src/lib/routes/PrivateRoute.js";
 
 
 /* eslint-disable no-extra-boolean-cast */
@@ -21611,7 +21675,7 @@ const PrivateRoute = _ref => {
     component: RouteComponent,
     authFlowLayout: Layout
   } = _ref,
-      rest = (0,_Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, _excluded);
+      rest = (0,_home_pitt_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, _excluded);
 
   const {
     emailVerified
@@ -21685,7 +21749,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31461);
+/* harmony import */ var _home_pitt_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(31461);
 /* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(43105);
 /* harmony import */ var core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_assign_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2784);
@@ -21696,7 +21760,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
 
 const _excluded = ["component", "authFlowLayout"];
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-auth/src/lib/routes/StaffRoute.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-auth/src/lib/routes/StaffRoute.js";
 
 
 
@@ -21723,7 +21787,7 @@ const StaffRoute = _ref => {
     component: RouteComponent,
     authFlowLayout: Layout
   } = _ref,
-      rest = (0,_Users_sts125_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, _excluded);
+      rest = (0,_home_pitt_projects_monorepo_node_modules_babel_runtime_helpers_esm_objectWithoutPropertiesLoose_js__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, _excluded);
 
   const {
     isAuthenticated,
@@ -21847,7 +21911,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(74278);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3743);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/modal/MDBModal.jsx";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-ui/src/lib/modal/MDBModal.jsx";
 
 
 
@@ -21924,7 +21988,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UserDropDown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(42495);
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(92910);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/navbar/MDBNavBar.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-ui/src/lib/navbar/MDBNavBar.js";
 
 
 
@@ -22018,7 +22082,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _meddbriefer_mdb_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(36011);
 /* harmony import */ var _UserIcon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(69220);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/navbar/UserDropDown.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-ui/src/lib/navbar/UserDropDown.js";
 
 
 
@@ -22114,7 +22178,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2784);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/navbar/UserIcon.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-ui/src/lib/navbar/UserIcon.js";
 
 
 
@@ -22151,7 +22215,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var zustand_shallow__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32414);
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(92910);
 /* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(49663);
-var _jsxFileName = "/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/snackbar/Snackbar.js";
+var _jsxFileName = "/home/pitt/projects/monorepo/libs/mdb-ui/src/lib/snackbar/Snackbar.js";
 
  // import classNames from "classnames";
 // import styles from "./Snackbar.module.css";
@@ -22440,7 +22504,7 @@ const getAnswerLabels = (answerIDs, answerType) => {
 /***/ 89322:
 /***/ ((module) => {
 
-module.exports = [[module.id, "/* The snackbar - position it at the bottom and in the middle of the screen */\n#mdb-snackbar {\n    visibility: hidden;\n    /* Hidden by default. Visible on click */\n    /* min-width: 250px; */\n    width: 100%;\n    /* Set a default minimum width */\n    /* margin-left: -125px; */\n    /* margin-left: 0; */\n    /* Divide value of min-width by 2 */\n    background-color: #333;\n    /* Black background color */\n    color: #fff;\n    /* White text color */\n    text-align: center;\n    /* Centered text */\n    border-radius: 2px;\n    /* Rounded borders */\n    padding: 16px;\n    /* Padding */\n    position: fixed;\n    /* Sit on top of the screen */\n    z-index: 1;\n    /* Add a z-index if needed */\n    /* left: 50%; */\n    /* Center the snackbar */\n    bottom: 0px;\n    /* 30px from the bottom */\n}\n/* Show the snackbar when clicking on a button (class added with JavaScript) */\n#mdb-snackbar.show {\n    visibility: visible;\n    /* Show the snackbar */\n    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.\n  However, delay the fade out process for 2.5 seconds */\n    -webkit-animation: fadein 1.0s, fadeout 1.0s 2.5s;\n    animation: fadein 1.0s, fadeout 1.0s 2.5s;\n}\n/* Animations to fade the snackbar in and out */\n@-webkit-keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n@keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n@-webkit-keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30;\n        opacity: 0;\n    }\n}\n@keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30px;\n        opacity: 0;\n    }\n}\nnav.navbar {\n    margin-left: 0;\n    padding-left: 15px;\n    padding-top: 0;\n    padding-bottom: 0;\n    padding-right: 0;\n}\n.brand-wrapper {\n    padding: 0;\n}\n.brand {\n    color: #007bff;\n    font-size: 30px;\n    margin-right: 4px;\n    padding-right: 8px;\n}\n.mdb-title {\n    font-size: 24px;\n    padding-top: 11px;\n    padding-bottom: 5px;\n}\n.navbar-text {\n    margin-bottom: 0;\n}\n.nav button {\n    margin-left: 2px;\n    margin-right: 2px;\n}\n.navbar-btn {\n    text-transform: uppercase;\n    margin-top: 12px;\n    padding-top: 0;\n    padding-bottom: 0;\n    border: 0;\n    height: 25px;\n    margin-left: 7px !important;\n    margin-right: 7px !important;\n}", '', {"version":3,"sources":["/Users/sts125/projects/monorepo/libs/mdb-ui/src/lib/index.css"],"names":[],"mappings":"AAAA,6EAA6E;AAC7E;IACI,kBAAkB;IAClB,wCAAwC;IACxC,sBAAsB;IACtB,WAAW;IACX,gCAAgC;IAChC,yBAAyB;IACzB,oBAAoB;IACpB,mCAAmC;IACnC,sBAAsB;IACtB,2BAA2B;IAC3B,WAAW;IACX,qBAAqB;IACrB,kBAAkB;IAClB,kBAAkB;IAClB,kBAAkB;IAClB,oBAAoB;IACpB,aAAa;IACb,YAAY;IACZ,eAAe;IACf,6BAA6B;IAC7B,UAAU;IACV,4BAA4B;IAC5B,eAAe;IACf,wBAAwB;IACxB,WAAW;IACX,yBAAyB;AAC7B;AAEA,8EAA8E;AAC9E;IACI,mBAAmB;IACnB,sBAAsB;IACtB;uDACmD;IACnD,iDAAiD;IACjD,yCAAyC;AAC7C;AAEA,+CAA+C;AAC/C;IACI;QACI,aAAa;QACb,UAAU;IACd;IACA;QACI,SAAS;QACT,UAAU;IACd;AACJ;AAEA;IACI;QACI,aAAa;QACb,UAAU;IACd;IACA;QACI,SAAS;QACT,UAAU;IACd;AACJ;AAEA;IACI;QACI,SAAS;QACT,UAAU;IACd;;IAEA;QACI,WAAW;QACX,UAAU;IACd;AACJ;AAEA;IACI;QACI,SAAS;QACT,UAAU;IACd;;IAEA;QACI,aAAa;QACb,UAAU;IACd;AACJ;AACA;IACI,cAAc;IACd,kBAAkB;IAClB,cAAc;IACd,iBAAiB;IACjB,gBAAgB;AACpB;AAEA;IACI,UAAU;AACd;AAEA;IACI,cAAc;IACd,eAAe;IACf,iBAAiB;IACjB,kBAAkB;AACtB;AAEA;IACI,eAAe;IACf,iBAAiB;IACjB,mBAAmB;AACvB;AAEA;IACI,gBAAgB;AACpB;AAEA;IACI,gBAAgB;IAChB,iBAAiB;AACrB;AAEA;IACI,yBAAyB;IACzB,gBAAgB;IAChB,cAAc;IACd,iBAAiB;IACjB,SAAS;IACT,YAAY;IACZ,2BAA2B;IAC3B,4BAA4B;AAChC","sourcesContent":["/* The snackbar - position it at the bottom and in the middle of the screen */\n#mdb-snackbar {\n    visibility: hidden;\n    /* Hidden by default. Visible on click */\n    /* min-width: 250px; */\n    width: 100%;\n    /* Set a default minimum width */\n    /* margin-left: -125px; */\n    /* margin-left: 0; */\n    /* Divide value of min-width by 2 */\n    background-color: #333;\n    /* Black background color */\n    color: #fff;\n    /* White text color */\n    text-align: center;\n    /* Centered text */\n    border-radius: 2px;\n    /* Rounded borders */\n    padding: 16px;\n    /* Padding */\n    position: fixed;\n    /* Sit on top of the screen */\n    z-index: 1;\n    /* Add a z-index if needed */\n    /* left: 50%; */\n    /* Center the snackbar */\n    bottom: 0px;\n    /* 30px from the bottom */\n}\n\n/* Show the snackbar when clicking on a button (class added with JavaScript) */\n#mdb-snackbar.show {\n    visibility: visible;\n    /* Show the snackbar */\n    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.\n  However, delay the fade out process for 2.5 seconds */\n    -webkit-animation: fadein 1.0s, fadeout 1.0s 2.5s;\n    animation: fadein 1.0s, fadeout 1.0s 2.5s;\n}\n\n/* Animations to fade the snackbar in and out */\n@-webkit-keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n\n@keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n\n@-webkit-keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30;\n        opacity: 0;\n    }\n}\n\n@keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30px;\n        opacity: 0;\n    }\n}\nnav.navbar {\n    margin-left: 0;\n    padding-left: 15px;\n    padding-top: 0;\n    padding-bottom: 0;\n    padding-right: 0;\n}\n\n.brand-wrapper {\n    padding: 0;\n}\n\n.brand {\n    color: #007bff;\n    font-size: 30px;\n    margin-right: 4px;\n    padding-right: 8px;\n}\n\n.mdb-title {\n    font-size: 24px;\n    padding-top: 11px;\n    padding-bottom: 5px;\n}\n\n.navbar-text {\n    margin-bottom: 0;\n}\n\n.nav button {\n    margin-left: 2px;\n    margin-right: 2px;\n}\n\n.navbar-btn {\n    text-transform: uppercase;\n    margin-top: 12px;\n    padding-top: 0;\n    padding-bottom: 0;\n    border: 0;\n    height: 25px;\n    margin-left: 7px !important;\n    margin-right: 7px !important;\n}"],"sourceRoot":""}]]
+module.exports = [[module.id, "/* The snackbar - position it at the bottom and in the middle of the screen */\n#mdb-snackbar {\n    visibility: hidden;\n    /* Hidden by default. Visible on click */\n    /* min-width: 250px; */\n    width: 100%;\n    /* Set a default minimum width */\n    /* margin-left: -125px; */\n    /* margin-left: 0; */\n    /* Divide value of min-width by 2 */\n    background-color: #333;\n    /* Black background color */\n    color: #fff;\n    /* White text color */\n    text-align: center;\n    /* Centered text */\n    border-radius: 2px;\n    /* Rounded borders */\n    padding: 16px;\n    /* Padding */\n    position: fixed;\n    /* Sit on top of the screen */\n    z-index: 1;\n    /* Add a z-index if needed */\n    /* left: 50%; */\n    /* Center the snackbar */\n    bottom: 0px;\n    /* 30px from the bottom */\n}\n/* Show the snackbar when clicking on a button (class added with JavaScript) */\n#mdb-snackbar.show {\n    visibility: visible;\n    /* Show the snackbar */\n    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.\n  However, delay the fade out process for 2.5 seconds */\n    -webkit-animation: fadein 1.0s, fadeout 1.0s 2.5s;\n    animation: fadein 1.0s, fadeout 1.0s 2.5s;\n}\n/* Animations to fade the snackbar in and out */\n@-webkit-keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n@keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n@-webkit-keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30;\n        opacity: 0;\n    }\n}\n@keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30px;\n        opacity: 0;\n    }\n}\nnav.navbar {\n    margin-left: 0;\n    padding-left: 15px;\n    padding-top: 0;\n    padding-bottom: 0;\n    padding-right: 0;\n}\n.brand-wrapper {\n    padding: 0;\n}\n.brand {\n    color: #007bff;\n    font-size: 30px;\n    margin-right: 4px;\n    padding-right: 8px;\n}\n.mdb-title {\n    font-size: 24px;\n    padding-top: 11px;\n    padding-bottom: 5px;\n}\n.navbar-text {\n    margin-bottom: 0;\n}\n.nav button {\n    margin-left: 2px;\n    margin-right: 2px;\n}\n.navbar-btn {\n    text-transform: uppercase;\n    margin-top: 12px;\n    padding-top: 0;\n    padding-bottom: 0;\n    border: 0;\n    height: 25px;\n    margin-left: 7px !important;\n    margin-right: 7px !important;\n}", '', {"version":3,"sources":["/home/pitt/projects/monorepo/libs/mdb-ui/src/lib/index.css"],"names":[],"mappings":"AAAA,6EAA6E;AAC7E;IACI,kBAAkB;IAClB,wCAAwC;IACxC,sBAAsB;IACtB,WAAW;IACX,gCAAgC;IAChC,yBAAyB;IACzB,oBAAoB;IACpB,mCAAmC;IACnC,sBAAsB;IACtB,2BAA2B;IAC3B,WAAW;IACX,qBAAqB;IACrB,kBAAkB;IAClB,kBAAkB;IAClB,kBAAkB;IAClB,oBAAoB;IACpB,aAAa;IACb,YAAY;IACZ,eAAe;IACf,6BAA6B;IAC7B,UAAU;IACV,4BAA4B;IAC5B,eAAe;IACf,wBAAwB;IACxB,WAAW;IACX,yBAAyB;AAC7B;AAEA,8EAA8E;AAC9E;IACI,mBAAmB;IACnB,sBAAsB;IACtB;uDACmD;IACnD,iDAAiD;IACjD,yCAAyC;AAC7C;AAEA,+CAA+C;AAC/C;IACI;QACI,aAAa;QACb,UAAU;IACd;IACA;QACI,SAAS;QACT,UAAU;IACd;AACJ;AAEA;IACI;QACI,aAAa;QACb,UAAU;IACd;IACA;QACI,SAAS;QACT,UAAU;IACd;AACJ;AAEA;IACI;QACI,SAAS;QACT,UAAU;IACd;;IAEA;QACI,WAAW;QACX,UAAU;IACd;AACJ;AAEA;IACI;QACI,SAAS;QACT,UAAU;IACd;;IAEA;QACI,aAAa;QACb,UAAU;IACd;AACJ;AACA;IACI,cAAc;IACd,kBAAkB;IAClB,cAAc;IACd,iBAAiB;IACjB,gBAAgB;AACpB;AAEA;IACI,UAAU;AACd;AAEA;IACI,cAAc;IACd,eAAe;IACf,iBAAiB;IACjB,kBAAkB;AACtB;AAEA;IACI,eAAe;IACf,iBAAiB;IACjB,mBAAmB;AACvB;AAEA;IACI,gBAAgB;AACpB;AAEA;IACI,gBAAgB;IAChB,iBAAiB;AACrB;AAEA;IACI,yBAAyB;IACzB,gBAAgB;IAChB,cAAc;IACd,iBAAiB;IACjB,SAAS;IACT,YAAY;IACZ,2BAA2B;IAC3B,4BAA4B;AAChC","sourcesContent":["/* The snackbar - position it at the bottom and in the middle of the screen */\n#mdb-snackbar {\n    visibility: hidden;\n    /* Hidden by default. Visible on click */\n    /* min-width: 250px; */\n    width: 100%;\n    /* Set a default minimum width */\n    /* margin-left: -125px; */\n    /* margin-left: 0; */\n    /* Divide value of min-width by 2 */\n    background-color: #333;\n    /* Black background color */\n    color: #fff;\n    /* White text color */\n    text-align: center;\n    /* Centered text */\n    border-radius: 2px;\n    /* Rounded borders */\n    padding: 16px;\n    /* Padding */\n    position: fixed;\n    /* Sit on top of the screen */\n    z-index: 1;\n    /* Add a z-index if needed */\n    /* left: 50%; */\n    /* Center the snackbar */\n    bottom: 0px;\n    /* 30px from the bottom */\n}\n\n/* Show the snackbar when clicking on a button (class added with JavaScript) */\n#mdb-snackbar.show {\n    visibility: visible;\n    /* Show the snackbar */\n    /* Add animation: Take 0.5 seconds to fade in and out the snackbar.\n  However, delay the fade out process for 2.5 seconds */\n    -webkit-animation: fadein 1.0s, fadeout 1.0s 2.5s;\n    animation: fadein 1.0s, fadeout 1.0s 2.5s;\n}\n\n/* Animations to fade the snackbar in and out */\n@-webkit-keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n\n@keyframes fadein {\n    from {\n        bottom: -30px;\n        opacity: 0;\n    }\n    to {\n        bottom: 0;\n        opacity: 1;\n    }\n}\n\n@-webkit-keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30;\n        opacity: 0;\n    }\n}\n\n@keyframes fadeout {\n    from {\n        bottom: 0;\n        opacity: 1;\n    }\n\n    to {\n        bottom: -30px;\n        opacity: 0;\n    }\n}\nnav.navbar {\n    margin-left: 0;\n    padding-left: 15px;\n    padding-top: 0;\n    padding-bottom: 0;\n    padding-right: 0;\n}\n\n.brand-wrapper {\n    padding: 0;\n}\n\n.brand {\n    color: #007bff;\n    font-size: 30px;\n    margin-right: 4px;\n    padding-right: 8px;\n}\n\n.mdb-title {\n    font-size: 24px;\n    padding-top: 11px;\n    padding-bottom: 5px;\n}\n\n.navbar-text {\n    margin-bottom: 0;\n}\n\n.nav button {\n    margin-left: 2px;\n    margin-right: 2px;\n}\n\n.navbar-btn {\n    text-transform: uppercase;\n    margin-top: 12px;\n    padding-top: 0;\n    padding-bottom: 0;\n    border: 0;\n    height: 25px;\n    margin-left: 7px !important;\n    margin-right: 7px !important;\n}"],"sourceRoot":""}]]
 
 /***/ }),
 
